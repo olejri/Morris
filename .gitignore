@@ -1,1 +1,9 @@
 .metadata
+LaTeX/Requirements/*.aux
+LaTeX/Requirements/*.lof
+LaTeX/Requirements/*.lot
+LaTeX/Requirements/*.out
+LaTeX/Requirements/*.gz
+LaTeX/Requirements/*.toc
+LaTeX/Requirements/*.pdf
+LaTeX/Requirements/*.log
