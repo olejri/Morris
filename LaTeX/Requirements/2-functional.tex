@@ -1,8 +1,5 @@
 \section{Functional requirements}
 
-%\subsection{Use Case-beskrivelser}
-
-
 \begin{table}[h!]
 \begin{tabular}{ | p{90pt} | p{270pt}  |}
 \hline
@@ -15,6 +12,130 @@
 
 \end{tabular}
 \caption{FR1 - Placement}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR2  \\ \hline
+\bf Descripton & Movement \\ \hline 
+\bf Requirement & Players can move their pieces one length  \\
+& The game locig checks valid moves  \\ \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR2 - Movement}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR3  \\ \hline
+\bf Descripton & Morris state \\ \hline 
+\bf Requirement & If a player gets three pieces in a row, he can remove one of the opponent's pieces.  \\
+& It is not possible to remove to remove pieces that already is in a Morris state. \\ \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR3 - Morris state}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR4  \\ \hline
+\bf Descripton & Flying state \\ \hline 
+\bf Requirement & If the player only has three pieces left, the player can move his pieces freely to any vacant field \\ \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR4 - Flying}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR5  \\ \hline
+\bf Descripton & Multiplayer \\ \hline 
+\bf Requirement & The game is played by two players.  \\   
+& The game is played over a the network. \\  \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR5 - Multiplayer}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR6  \\ \hline
+\bf Descripton & Random start \\ \hline 
+\bf Requirement & The starting player is chosen at random. \\ \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR6 - Placement}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR7  \\ \hline
+\bf Descripton & Game board \\ \hline 
+\bf Requirement & There should be one type of game board, ala the classic board for \emph{Nine Men's Morris}.\\ \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR7 - Game board}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR8  \\ \hline
+\bf Descripton & Sound effects \\ \hline 
+\bf Requirement & There shall be sound effects for movement. \\
+& There shall be sound effects when a player wins. \\ \hline
+\bf Priority & Low \\ \hline
+
+\end{tabular}
+\caption{FR8 - Sound effects}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR9 \\ \hline
+\bf Descripton & Setting player name \\ \hline 
+\bf Requirement & A player shall be able to set his or her own name.  \\ \hline
+\bf Priority & Medium \\ \hline
+
+\end{tabular}
+\caption{FR9 - Setting player name}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR10  \\ \hline
+\bf Descripton & Highlighting possible moves \\ \hline 
+\bf Requirement & When the player chooses a piece to move, all possible moves shall be highlighted.  \\ \hline
+\bf Priority & Low \\ \hline
+
+\end{tabular}
+\caption{FR10 - Highlighting possible moves}
+\end{table}
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR11  \\ \hline
+\bf Descripton & Game over \\ \hline 
+\bf Requirement & When a player has only two pieces left, the game is over.  \\ \hline
+\bf Priority & High \\ \hline
+
+\end{tabular}
+\caption{FR11 - Game over}
 \end{table}
 
 
