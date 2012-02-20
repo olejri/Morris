@@ -1,0 +1,139 @@
+\pagebreak
+
+\section{Quality requirements}
+
+\subsection{Modifiability}
+
+\subsubsection{M1 - Add new game variant}
+
+Extending the game by adding an additional game board, where the player starts with 12 pieces instead of 9, conforming with the setup of \emph{Twelve Men's Morris}. Additionally the board get four new paths the pieces can move in, to take the increase of pieces in consideration.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  Developer  \\ \hline
+\bf Stimulus & Adding a new game variants \\ \hline 
+\bf Artifact & A change that operates with target system  \\  \hline
+\bf Environment & At design time \\ \hline
+\bf Response & Extends functionality \\ \hline
+\bf Response Measure & 10 hours to complete the modification \\ \hline
+
+\end{tabular}
+\caption{M1 - Add new game variant}
+\end{table}
+
+\subsubsection{M2 - Computer opponent}
+
+Extending the game by making it possible to play single-player against the computer, whereas the computer has three different skill levels ranging from easy to hard. Easy will be random placement of the pieces, medium will require some skill to beat and hard will at worst draw against a human.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  Developer  \\ \hline
+\bf Stimulus & Adding a computer based player \\ \hline 
+\bf Artifact & A change that operates with target system  \\  \hline
+\bf Environment & At design time \\ \hline
+\bf Response & Extends functionality \\ \hline
+\bf Response Measure & 15 hours to do the modification \\ \hline
+
+\end{tabular}
+\caption{M2 - Computer opponent}
+\end{table}
+
+\subsubsection{M3 - Chat}
+
+Will add a new dimension to the game, where people can chat to each other discussing tactics revolving around the game or just to socialize. The chat room is created together with the game, so you will only be able to chat with those you have an active game with.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  Developer  \\ \hline
+\bf Stimulus & Adding game chat \\ \hline 
+\bf Artifact & A change that operates with target system  \\  \hline
+\bf Environment & At design time \\ \hline
+\bf Response & Extends functionality \\ \hline
+\bf Response Measure & 12 hours to do the modification \\ \hline
+
+\end{tabular}
+\caption{M3 - Chat}
+\end{table}
+
+\subsubsection{M4 - Time constraint}
+
+Adding functionality where a player has a limited time limit to decide his/her move, the time limit is set before the game starts. This can make it a more fast-paced game for those who want a more action-filled experience, and can lead to less frustrating waiting time.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  Developer  \\ \hline
+\bf Stimulus & Adding time constraints \\ \hline 
+\bf Artifact & A change that operates with target system  \\  \hline
+\bf Environment & At design time \\ \hline
+\bf Response & Extends functionality \\ \hline
+\bf Response Measure & 8 hours to do the modification \\ \hline
+
+\end{tabular}
+\caption{M4 - Time constraint}
+\end{table}
+
+\subsection{Usability}
+
+\subsubsection{U1 - Learning game rules}
+
+If the user don't know the game rules,  he/she can look up the rules in the application by pressing the rules button. They will then be presented by a page which explains the rules of the game in a short and easy way.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  End user  \\ \hline
+\bf Stimulus & Learning system features \\ \hline 
+\bf Artifact & System  \\  \hline
+\bf Environment & At run-time \\ \hline
+\bf Response & Proviedes a set of rules to play the game \\ \hline
+\bf Response Measure & The user will have sufficient knowledge to play the game \\ \hline
+
+\end{tabular}
+\caption{U1 - Learning game rules}
+\end{table}
+
+\subsubsection{U2 - Show possible moves}
+
+When the player enter a Morris state, he/she can then remove a piece from the opponent. But it is not allowed to remove all pieces, for enemy pieces that already stands in a Morris state cannot be removed. The pieces that are removable are therefore highlighted to minimize user confusion.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  End user  \\ \hline
+\bf Stimulus & Minimize game confusion \\ \hline 
+\bf Artifact & System  \\  \hline
+\bf Environment & At run-time \\ \hline
+\bf Response & Highlights possible moves \\ \hline
+\bf Response Measure & Ratio of successful moves increase, and moves are less confusing for the user \\ \hline
+
+\end{tabular}
+\caption{U2 - Show possible moves}
+\end{table}
+
+\subsection{Testability}
+
+\subsubsection{T1 - Connection between the players}
+When the users connects to a game, the game should welcome both players to the game lobby with their respective names.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus & System verifier  \\ \hline
+\bf Stimulus & Testing connection \\ \hline 
+\bf Artifact & System  \\  \hline
+\bf Environment & At deployment time \\ \hline
+\bf Response & Game welcomes both players to the lobby \\ \hline
+\bf Response Measure & The connection should be completed within 10 seconds \\ \hline
+
+\end{tabular}
+\caption{T1 - Connection between the players}
+\end{table}
+
+\pagebreak
+
+
+
