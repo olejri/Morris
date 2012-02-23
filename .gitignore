@@ -8,3 +8,9 @@ LaTeX/Requirements/*.toc
 LaTeX/Requirements/*.pdf
 LaTeX/Requirements/*.log
 Morris/.classpath
+Morris/.project
+Morris/*.class
+Morris/bin
+Morris/gen
+Morris/proguard.cfg
+Morris/.settings
