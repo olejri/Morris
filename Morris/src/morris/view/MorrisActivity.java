@@ -10,6 +10,6 @@ public class MorrisActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        //test
+        //test hei hei
     }
 }
