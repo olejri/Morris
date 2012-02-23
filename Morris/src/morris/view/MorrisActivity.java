@@ -10,7 +10,6 @@ public class MorrisActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        // HELLO COMMIT WORLD YOFACE
-        
+        //test hei hei
     }
 }
