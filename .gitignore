@@ -7,3 +7,10 @@ LaTeX/Requirements/*.gz
 LaTeX/Requirements/*.toc
 LaTeX/Requirements/*.pdf
 LaTeX/Requirements/*.log
+Morris/.project
+Morris/.classpath
+Morris/*.class
+Morris/bin
+Morris/gen
+Morris/proguard.cfg
+Morris/.settings
