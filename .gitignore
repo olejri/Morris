@@ -1,3 +1,10 @@
+Morris/.project
+Morris/.classpath
+Morris/*.class
+Morris/bin
+Morris/gen
+Morris/proguard.cfg
+Morris/.settings
 .metadata
 LaTeX/Requirements/*.aux
 LaTeX/Requirements/*.lof
@@ -7,10 +14,3 @@ LaTeX/Requirements/*.gz
 LaTeX/Requirements/*.toc
 LaTeX/Requirements/*.pdf
 LaTeX/Requirements/*.log
-Morris/.project
-Morris/.classpath
-Morris/*.class
-Morris/bin
-Morris/gen
-Morris/proguard.cfg
-Morris/.settings
