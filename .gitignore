@@ -11,6 +11,8 @@ Morris/.classpath
 Morris/.project
 Morris/*.class
 Morris/bin
+Morris/bin/Morris.apk
+Morris/bin/resources.ap_
 Morris/gen
 Morris/proguard.cfg
 Morris/.settings
