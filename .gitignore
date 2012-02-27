@@ -7,6 +7,14 @@ LaTeX/Requirements/*.gz
 LaTeX/Requirements/*.toc
 LaTeX/Requirements/*.pdf
 LaTeX/Requirements/*.log
+LaTeX/Architecture/*.aux
+LaTeX/Architecture/*.lof
+LaTeX/Architecture/*.lot
+LaTeX/Architecture/*.out
+LaTeX/Architecture/*.gz
+LaTeX/Architecture/*.toc
+LaTeX/Architecture/*.pdf
+LaTeX/Architecture/*.log
 Morris/.classpath
 Morris/.project
 Morris/*.class
