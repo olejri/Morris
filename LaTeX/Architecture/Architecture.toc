@@ -23,10 +23,10 @@
 \contentsline {subsection}{\numberline {6.3}Singleton}{7}{subsection.6.3}
 \contentsline {section}{\numberline {7}Views}{8}{section.7}
 \contentsline {subsection}{\numberline {7.1}Logical view}{8}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Development view}{8}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Process view}{8}{subsection.7.3}
-\contentsline {section}{\numberline {8}Consistency among views}{8}{section.8}
-\contentsline {section}{\numberline {9}Architectural rationale}{8}{section.9}
-\contentsline {section}{\numberline {10}Issues}{9}{section.10}
-\contentsline {section}{\numberline {11}Changes}{9}{section.11}
-\contentsline {section}{References}{10}{section*.4}
+\contentsline {subsection}{\numberline {7.2}Development view}{9}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Process view}{10}{subsection.7.3}
+\contentsline {section}{\numberline {8}Consistency among views}{11}{section.8}
+\contentsline {section}{\numberline {9}Architectural rationale}{11}{section.9}
+\contentsline {section}{\numberline {10}Issues}{11}{section.10}
+\contentsline {section}{\numberline {11}Changes}{12}{section.11}
+\contentsline {section}{References}{13}{section*.4}

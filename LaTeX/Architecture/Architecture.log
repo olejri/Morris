@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 FEB 2012 14:34
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 FEB 2012 23:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -320,20 +320,28 @@ Package: `setspace' 6.7 <2000/12/01>
 \WF@everypar=\toks18
 Package: wrapfig 2003/01/31  v 3.6
 )
+(/usr/local/texlive/2010/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count90
+\float@exts=\toks19
+\float@box=\box27
+\@float@everytoks=\toks20
+\@floatcapt=\box28
+)
 (/usr/local/texlive/2010/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
  (JPG)
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2009/09/15 v5.5a a miscellany of footnote facilities
-\FN@temptoken=\toks19
+\FN@temptoken=\toks21
 \footnotemargin=\dimen107
 
 
 LaTeX Warning: Command \@makecol  has changed.
                Check if current package is valid.
 
-\c@pp@next@reset=\count90
+\c@pp@next@reset=\count91
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -347,7 +355,7 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks20
+\KV@toks@=\toks22
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -419,8 +427,8 @@ Package: xcolor-patch 2009/12/12 xcolor patch
 Package: letltxmacro 2008/06/24 v1.3 Let assignment for LaTeX macros (HO)
 )
 \@linkdim=\dimen110
-\Hy@linkcounter=\count91
-\Hy@pagecounter=\count92
+\Hy@linkcounter=\count92
+\Hy@pagecounter=\count93
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2010/06/18 v6.81g Hyperref: PDFDocEncoding definition (HO)
@@ -451,10 +459,10 @@ Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/bigintcalc.sty
 Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
 ))
-\Fld@menulength=\count93
+\Fld@menulength=\count94
 \Field@Width=\dimen111
 \Fld@charsize=\dimen112
-\Field@toks=\toks21
+\Field@toks=\toks23
 Package hyperref Info: Hyper figures OFF on input line 5137.
 Package hyperref Info: Link nesting OFF on input line 5142.
 Package hyperref Info: Hyper index ON on input line 5145.
@@ -468,9 +476,9 @@ LaTeX Info: Redefining \pageref on input line 5211.
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2010/03/25 v1.12 At begin shipout hook (HO)
 )
-\Hy@abspage=\count94
-\c@Item=\count95
-\c@Hfootnote=\count96
+\Hy@abspage=\count95
+\c@Item=\count96
+\c@Hfootnote=\count97
 )
 * hyperref using default driver hpdftex *
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -480,8 +488,8 @@ File: hpdftex.def 2010/06/18 v6.81g Hyperref driver for pdfTeX
 Package: atveryend 2010/03/24 v1.5 Hooks at very end of document (HO)
 Package atveryend Info: \enddocument detected (standard).
 )
-\Fld@listcount=\count97
-\c@bookmark@seq@number=\count98
+\Fld@listcount=\count98
+\c@bookmark@seq@number=\count99
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2010/03/16 v1.6 Rerun checks for auxiliary files (HO)
@@ -497,33 +505,33 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (./Architecture.aux)
 \openout1 = `Architecture.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 (/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count99
+\scratchcounter=\count100
 \scratchdimen=\dimen113
-\scratchbox=\box27
-\nofMPsegments=\count100
-\nofMParguments=\count101
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count102
+\scratchbox=\box29
+\nofMPsegments=\count101
+\nofMParguments=\count102
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count103
 \MPscratchDim=\dimen114
-\MPnumerator=\count103
-\everyMPtoPDFconversion=\toks23
+\MPnumerator=\count104
+\everyMPtoPDFconversion=\toks25
 ) (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -539,8 +547,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box28
-Package hyperref Info: Link coloring OFF on input line 38.
+\AtBeginShipoutBox=\box30
+Package hyperref Info: Link coloring OFF on input line 39.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -551,11 +559,11 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
-\c@section@level=\count104
+\c@section@level=\count105
 )
-LaTeX Info: Redefining \ref on input line 38.
-LaTeX Info: Redefining \pageref on input line 38.
-LaTeX Info: Redefining \nameref on input line 38.
+LaTeX Info: Redefining \ref on input line 39.
+LaTeX Info: Redefining \pageref on input line 39.
+LaTeX Info: Redefining \nameref on input line 39.
 
 (./Architecture.out) (./Architecture.out)
 \@outlinefile=\write3
@@ -579,7 +587,7 @@ ids.jpg>]) (./Architecture.tocpdfTeX warning (ext4): destination with the same
 identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ... {9}Architectural rationale}{8}{section.9}
+l.29 ...{9}Architectural rationale}{11}{section.9}
                                                    [1])
 \tf@toc=\write4
 \openout4 = `Architecture.toc'.
@@ -597,29 +605,63 @@ l.29 ... {9}Architectural rationale}{8}{section.9}
 (./3-stakeholders.tex [3]) (./4-viewpoint.tex [4]) (./5-tactics.tex [5
 
 ])
-(./6-patterns.tex [6]) (./7-views.tex) (./8-consistency.tex [7])
-(./9-rationale.tex
+(./6-patterns.tex [6]
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+) (./7-views.tex [7]
+<./Images/LogicalView.png, id=239, 724.6272pt x 652.839pt>
+File: ./Images/LogicalView.png Graphic file (type png)
+
+<use ./Images/LogicalView.png>
+<./Images/DevelopmentView.png, id=241, 289.5618pt x 431.6928pt>
+File: ./Images/DevelopmentView.png Graphic file (type png)
+
+<use ./Images/DevelopmentView.png> [8 <./Images/LogicalView.png (PNG copy)>]
+[9 <./Images/DevelopmentView.png (PNG copy)>]
+<./Images/ProcessView.png, id=253, 382.5492pt x 698.61pt>
+File: ./Images/ProcessView.png Graphic file (type png)
+
+<use ./Images/ProcessView.png>) (./8-consistency.tex [10 <./Images/ProcessView.
+png (PNG copy)>]) (./9-rationale.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./10-issues.tex [8]) (./11-changes.tex) [9] (./Architecture.bbl)
-AED: lastpage setting LastPage [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 68.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 68.
+) (./10-issues.tex) (./11-changes.tex [11]) [12] (./Architecture.bbl
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Underfull \hbox (badness 3148) in paragraph at lines 8--13
+[]\T1/cmr/m/sc/12 P. Krutchen\T1/cmr/m/n/12 ,  The 4+1 View Model of Soft-ware 
+Ar-chi-tec-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--13
+\T1/cmr/m/n/12 ture,  []$\T1/cmtt/m/n/12 http : / / www . cs . ubc . ca / ~greg
+or / teaching / papers / 4 +
+ []
+
+) AED: lastpage setting LastPage [13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
  (./Architecture.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 68.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
 Package rerunfilecheck Info: File `Architecture.out' has not changed.
 (rerunfilecheck)             Checksum: BB8F2312C11FA1A180823CC9008725E4;2059.
  ) 
 Here is how much of TeX's memory you used:
- 6078 strings out of 493747
- 86981 string characters out of 3143546
- 168899 words of memory out of 3000000
- 9149 multiletter control sequences out of 15000+200000
- 15252 words of font info for 35 fonts, out of 3000000 for 9000
+ 6177 strings out of 493747
+ 88827 string characters out of 3143546
+ 170308 words of memory out of 3000000
+ 9228 multiletter control sequences out of 15000+200000
+ 16249 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,11n,43p,497b,337s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,43p,497b,339s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></
 usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></us
@@ -630,11 +672,13 @@ l/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/
 texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/te
 xlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texl
 ive/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texliv
-e/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
-Output written on Architecture.pdf (11 pages, 227003 bytes).
+e/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/
+2010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/20
+10/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on Architecture.pdf (14 pages, 461610 bytes).
 PDF statistics:
- 295 PDF objects out of 1000 (max. 8388607)
- 268 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
- 262 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 333 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 

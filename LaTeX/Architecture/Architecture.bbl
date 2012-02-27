@@ -4,4 +4,11 @@
 {\sc S.~Mork, Haram} and {\sc Rishoff},
 \newblock Requirement Document.
 
+\bibitem{krutchen}
+{\sc P.~Krutchen},
+\newblock The 4+1 View Model of Software Architecture,
+\newblock
+  \url{http://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf},
+  1995.
+
 \end{thebibliography}
