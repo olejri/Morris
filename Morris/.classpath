@@ -3,5 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+<<<<<<< HEAD
 	<classpathentry kind="output" path="bin/classes"/>
+=======
+	<classpathentry kind="lib" path="C:/Program Files/Android/Skiller_Android_SDK/bin/SkillerAndroidSDK.jar"/>
+	<classpathentry kind="output" path="bin"/>
+>>>>>>> 6d2f21eae86eb79f3f6f5a9e188ee29522e43ccb
 </classpath>

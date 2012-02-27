@@ -1,0 +1,32 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Architectural drivers}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Quality in all parts of the architecture}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Not too complex architecture}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Fast start up}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Stakeholders}{}% 6
+\BOOKMARK [1][-]{section.4}{Architectural viewpoint selection}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Logical view}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Development view}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Process view}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Architectural tactics}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Modifiability}{section.5}% 12
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Prevention of Ripple Effect}{subsection.5.1}% 13
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Localize Changes}{subsection.5.1}% 14
+\BOOKMARK [2][-]{subsection.5.2}{Usability}{section.5}% 15
+\BOOKMARK [3][-]{subsubsection.5.2.1}{User feedback between implementation iterations}{subsection.5.2}% 16
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Follow the Android user interface guidelines}{subsection.5.2}% 17
+\BOOKMARK [2][-]{subsection.5.3}{Testability}{section.5}% 18
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Testing third party multiplayer connection}{subsection.5.3}% 19
+\BOOKMARK [1][-]{section.6}{Architectural patterns}{}% 20
+\BOOKMARK [2][-]{subsection.6.1}{States}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.2}{MVC}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.3}{Singleton}{section.6}% 23
+\BOOKMARK [1][-]{section.7}{Views}{}% 24
+\BOOKMARK [2][-]{subsection.7.1}{Logical view}{section.7}% 25
+\BOOKMARK [2][-]{subsection.7.2}{Development view}{section.7}% 26
+\BOOKMARK [2][-]{subsection.7.3}{Process view}{section.7}% 27
+\BOOKMARK [1][-]{section.8}{Consistency among views}{}% 28
+\BOOKMARK [1][-]{section.9}{Architectural rationale}{}% 29
+\BOOKMARK [1][-]{section.10}{Issues}{}% 30
+\BOOKMARK [1][-]{section.11}{Changes}{}% 31
+\BOOKMARK [1][-]{section*.4}{References}{}% 32
