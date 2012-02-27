@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  23 FEB 2012 15:17
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 FEB 2012 14:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,7 +562,7 @@ LaTeX Info: Redefining \nameref on input line 38.
 \openout3 = `Architecture.out'.
 
  (./0-frontpage.tex
-<./androids.jpg, id=104, 552.0625pt x 414.54875pt>
+<./androids.jpg, id=132, 552.0625pt x 414.54875pt>
 File: ./androids.jpg Graphic file (type jpg)
  <use ./androids.jpg>
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -575,45 +575,51 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./andro
-ids.jpg>]) (./Architecture.toc)
+ids.jpg>]) (./Architecture.tocpdfTeX warning (ext4): destination with the same 
+identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.29 ... {9}Architectural rationale}{8}{section.9}
+                                                   [1])
 \tf@toc=\write4
 \openout4 = `Architecture.toc'.
 
- (./Architecture.lotpdfTeX warning (ext4): destination with the same identifier
- (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2 ...2}{\ignorespaces Logical view}}{5}{table.2}
-                                                   [1])
+ (./Architecture.lot)
 \tf@lot=\write5
 \openout5 = `Architecture.lot'.
 
- (./Architecture.lof)
+
+(./Architecture.lof)
 \tf@lof=\write6
 \openout6 = `Architecture.lof'.
 
+ [2] (./1-introduction.tex) (./2-drivers.tex)
+(./3-stakeholders.tex [3]) (./4-viewpoint.tex [4]) (./5-tactics.tex [5
 
-[2] (./1-introduction.tex) (./2-drivers.tex) (./3-stakeholders.tex [3])
-(./4-viewpoint.tex [4]) (./5-tactics.tex [5
+])
+(./6-patterns.tex [6]) (./7-views.tex) (./8-consistency.tex [7])
+(./9-rationale.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
-]) (./6-patterns.tex) (./7-views.tex) [6] [7] (./Architecture.bbl) AED: lastpag
-e setting LastPage [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
+ []
 
-(./Architecture.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
+) (./10-issues.tex [8]) (./11-changes.tex) [9] (./Architecture.bbl)
+AED: lastpage setting LastPage [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 68.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 68.
+ (./Architecture.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 68.
 Package rerunfilecheck Info: File `Architecture.out' has not changed.
-(rerunfilecheck)             Checksum: ACC2D988ADF3648E77C817DE56E3E875;1686.
+(rerunfilecheck)             Checksum: BB8F2312C11FA1A180823CC9008725E4;2059.
  ) 
 Here is how much of TeX's memory you used:
- 6049 strings out of 493747
- 86618 string characters out of 3143546
- 167897 words of memory out of 3000000
- 9142 multiletter control sequences out of 15000+200000
+ 6078 strings out of 493747
+ 86981 string characters out of 3143546
+ 168899 words of memory out of 3000000
+ 9149 multiletter control sequences out of 15000+200000
  15252 words of font info for 35 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,12n,43p,466b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,43p,497b,337s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></
 usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></us
@@ -625,10 +631,10 @@ texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/te
 xlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texl
 ive/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texliv
 e/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
-Output written on Architecture.pdf (9 pages, 217527 bytes).
+Output written on Architecture.pdf (11 pages, 227003 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 221 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 295 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 262 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -18,8 +18,15 @@
 \BOOKMARK [2][-]{subsection.5.3}{Testability}{section.5}% 18
 \BOOKMARK [3][-]{subsubsection.5.3.1}{Testing third party multiplayer connection}{subsection.5.3}% 19
 \BOOKMARK [1][-]{section.6}{Architectural patterns}{}% 20
-\BOOKMARK [1][-]{section.7}{Views}{}% 21
-\BOOKMARK [2][-]{subsection.7.1}{Logical view}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.2}{Development view}{section.7}% 23
-\BOOKMARK [2][-]{subsection.7.3}{Process view}{section.7}% 24
-\BOOKMARK [1][-]{section*.4}{References}{}% 25
+\BOOKMARK [2][-]{subsection.6.1}{States}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.2}{MVC}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.3}{Singleton}{section.6}% 23
+\BOOKMARK [1][-]{section.7}{Views}{}% 24
+\BOOKMARK [2][-]{subsection.7.1}{Logical view}{section.7}% 25
+\BOOKMARK [2][-]{subsection.7.2}{Development view}{section.7}% 26
+\BOOKMARK [2][-]{subsection.7.3}{Process view}{section.7}% 27
+\BOOKMARK [1][-]{section.8}{Consistency among views}{}% 28
+\BOOKMARK [1][-]{section.9}{Architectural rationale}{}% 29
+\BOOKMARK [1][-]{section.10}{Issues}{}% 30
+\BOOKMARK [1][-]{section.11}{Changes}{}% 31
+\BOOKMARK [1][-]{section*.4}{References}{}% 32
