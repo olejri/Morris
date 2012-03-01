@@ -12,5 +12,6 @@ public class MorrisActivity extends Activity {
         
         
         //SKJER A?
+        System.out.println("HAHAHAHAHAH GIT ROX");
     }
 }
