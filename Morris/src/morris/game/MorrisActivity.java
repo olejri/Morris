@@ -9,6 +9,9 @@ public class MorrisActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        
+        //SKJER A?
+        System.out.println("HAHAHAHAHAH GIT ROX");
     }
-    //WHAT THE FUCK
 }
