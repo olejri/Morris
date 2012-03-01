@@ -10,7 +10,7 @@ public class MorrisActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        // TRUSA FULL AV B®SJ?
+        
+        //SKJER A?
     }
-    //WHAT THE FUCK
 }
