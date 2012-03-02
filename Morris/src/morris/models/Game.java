@@ -3,9 +3,6 @@ package morris.models;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import android.util.Log;
-
-
 import morris.interfaces.GameListener;
 
 
@@ -33,7 +30,7 @@ public class Game {
     }
     
     /**
-     * Eksempel pŒ Œ kj¿re en metode
+     * Eksempel pï¿½ ï¿½ kjï¿½re en metode
      * 
     private void firePieceMoved(Piece piece) {
     	for(GameListener l : gamelisteners) {

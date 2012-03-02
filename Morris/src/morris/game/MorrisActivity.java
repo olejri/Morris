@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 public class MorrisActivity extends Activity {
 	
@@ -63,6 +62,8 @@ public class MorrisActivity extends Activity {
 			public void onClick(View v){
 				GameHandler.getInstance().clearGame();
 				GameHandler.getInstance().createNewGame();
+				Intent intent=new Intent(MorrisActivity.this, PlayGameActivity.class);
+				startActivity(intent);
 			}
 		});
 		
