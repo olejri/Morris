@@ -8,8 +8,26 @@
     </include>
 
     <morris.gui.BoardView
+        android:id="@+id/board_view_id"
         style="@style/layout_wrap_wrap"
         android:layout_below="@id/header"
         android:layout_margin="5dp" />
+
+    <RelativeLayout 
+        style="@style/layout_wrap_wrap"
+        android:layout_below="@id/board_view_id"
+         >
+         
+        <LinearLayout 
+            style="@style/layout_wrap_wrap"
+ 			android:background="@android:color/darker_gray"
+            ></LinearLayout>
+        
+        
+        
+        
+        
+        
+    </RelativeLayout>
 
 </RelativeLayout>
