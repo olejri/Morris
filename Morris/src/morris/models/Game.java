@@ -10,7 +10,7 @@ import morris.states.RemovalState;
 
 public class Game {
 
-	private List<StateListener> gamelisteners = new CopyOnWriteArrayList<StateListener>();
+	private List<StateListener> stateListeners = new CopyOnWriteArrayList<StateListener>();
 	private State state;
 	
 	public Game(){
@@ -32,18 +32,18 @@ public class Game {
 	 * @param listener
 	 */
     public void addListener(StateListener listener) {
-    	gamelisteners.add(listener);
+    	stateListeners.add(listener);
     }
     /**
      * remove listener
      * @param listener
      */
     public void removeListener(StateListener listener){
-    	gamelisteners.remove(listener);
+    	stateListeners.remove(listener);
     }
     
     /**
-     * Eksempel pŒ Œ kj¿re en metode
+     * Eksempel pï¿½ ï¿½ kjï¿½re en metode
      * 
     private void firePieceMoved(Piece piece) {
     	for(GameListener l : gamelisteners) {
