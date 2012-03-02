@@ -2,6 +2,6 @@ package morris.states;
 
 import morris.interfaces.StateListener;
 
-public class MoveStates implements StateListener {
+public class MoveState implements StateListener {
 
 }
