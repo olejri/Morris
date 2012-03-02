@@ -11,7 +11,7 @@
         android:id="@+id/board_view_id"
         style="@style/layout_wrap_wrap"
         android:layout_below="@id/header"
-        android:layout_margin="5dp" />
+        android:layout_margin="10dp" />
 
     <RelativeLayout 
         style="@style/layout_wrap_wrap"
