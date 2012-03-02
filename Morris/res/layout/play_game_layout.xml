@@ -4,8 +4,12 @@
     android:background="@drawable/meny_background"
     android:orientation="vertical" >
 
-    
-    <include layout="@layout/header"></include>
-    
-        
+    <include layout="@layout/header" >
+    </include>
+
+    <morris.gui.BoardView
+        style="@style/layout_wrap_wrap"
+        android:layout_below="@id/header"
+        android:layout_margin="5dp" />
+
 </RelativeLayout>
