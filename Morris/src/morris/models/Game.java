@@ -2,16 +2,11 @@ package morris.models;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import android.util.Log;
-
-
-import morris.interfaces.GameListener;
-
+import morris.interfaces.StateListener;
 
 public class Game {
 
-	private List<GameListener> gamelisteners = new CopyOnWriteArrayList<GameListener>();
+	private List<StateListener> gamelisteners = new CopyOnWriteArrayList<StateListener>();
 	
 	public Game(){
 		
@@ -21,14 +16,14 @@ public class Game {
 	 * Add listener
 	 * @param listener
 	 */
-    public void addListener(GameListener listener) {
+    public void addListener(StateListener listener) {
     	gamelisteners.add(listener);
     }
     /**
      * remove listener
      * @param listener
      */
-    public void removeListener(GameListener listener){
+    public void removeListener(StateListener listener){
     	gamelisteners.remove(listener);
     }
     
