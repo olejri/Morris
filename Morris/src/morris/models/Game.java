@@ -2,14 +2,29 @@ package morris.models;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import morris.interfaces.State;
 import morris.interfaces.StateListener;
+import morris.states.MoveState;
+import morris.states.RemovalState;
 
 public class Game {
 
 	private List<StateListener> gamelisteners = new CopyOnWriteArrayList<StateListener>();
+	private State state;
 	
 	public Game(){
-		
+		setState(new MoveState());
+	}
+	
+	public void listSelectablePieces() {
+		if(state != null){
+			this.state.listSelectablePieces();
+		}
+	}
+	
+	public void setState(State state){
+		this.state = state;
 	}
 	
 	/**
