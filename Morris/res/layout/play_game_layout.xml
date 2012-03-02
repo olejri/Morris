@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_fill_fill"
+    android:background="@drawable/meny_background"
+    android:orientation="vertical" >
+
+    
+    <include layout="@layout/header"></include>
+    
+        
+</RelativeLayout>

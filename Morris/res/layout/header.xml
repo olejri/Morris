@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Toolbar shown at all Activities in the application. Shows Iridium and GPS signal -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout 
+	android:id="@+id/header"
+	android:layout_width="fill_parent"
+    android:layout_height="40sp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/header_background"> 
+    
+    
+    <TextView
+	    android:id="@+id/toolbar_title"
+	    style="@style/toolbar_text_style"
+	    android:text="Morris"
+	    android:layout_alignParentLeft="true">
+    </TextView>
+    
+</RelativeLayout>
+</merge>

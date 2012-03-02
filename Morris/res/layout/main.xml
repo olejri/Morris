@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_fill_fill"
+    android:background="@drawable/meny_background"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/header"></include>
+
+    <Button
+        android:id="@+id/menu_button_creategame"
+        style="@style/button_style_menu"
+        android:text="Create Game"
+        android:layout_below="@id/header" />
+
+    <Button
+        android:id="@+id/menu_button_joinegame"
+        style="@style/button_style_menu"
+        android:text="Joine Game"
+        android:layout_below="@id/menu_button_creategame"
+         />
+
+    <Button
+        android:id="@+id/menu_button_help"
+        style="@style/button_style_menu"
+        android:text="Help"
+        android:layout_below="@id/menu_button_joinegame"
+         />
+</RelativeLayout>

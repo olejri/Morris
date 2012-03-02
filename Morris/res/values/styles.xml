@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="layout_wrap_wrap">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="layout_fill_fill">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <style name="layout_wrapheight_fillwidth">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <style name="layout_fillheight_wrapwidth">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <!-- Big standard buttons -->
+    <style name="button_style_menu" parent="layout_wrap_wrap">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:onClick">onClick</item>
+    </style>
+
+    <!-- Toolbar text style -->
+    <style name="toolbar_text_style" parent="layout_wrap_wrap">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:padding">5sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>
