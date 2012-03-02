@@ -4,8 +4,34 @@
     android:background="@drawable/meny_background"
     android:orientation="vertical" >
 
-    
-    <include layout="@layout/header"></include>
-    
-        
+    <include layout="@layout/header" >
+    </include>
+
+    <LinearLayout
+        android:id="@+id/score_board_id"
+        style="@style/layout_fill_fill"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/layout_fill_fill"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/layout_fill_fill"
+            android:layout_weight="1" >
+        </LinearLayout>
+    </LinearLayout>
+
+    <morris.gui.BoardView
+        android:id="@+id/board_view_id"
+        style="@style/layout_wrap_wrap"
+        android:layout_above="@id/score_board_id"
+        android:layout_below="@id/header"
+        android:layout_margin="10dp" />
+
 </RelativeLayout>
