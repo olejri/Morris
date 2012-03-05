@@ -4,13 +4,24 @@
     android:background="@drawable/meny_background"
     android:orientation="vertical" >
 
-    <include layout="@layout/header"></include>
-    
-    <LinearLayout
-        android:layout_below="@id/header"
+    <include layout="@layout/header" >
+    </include>
+
+    <ScrollView
         style="@style/layout_fill_fill"
-        android:layout_margin="20dp"
-        android:background="@drawable/round_background_white" >
-    </LinearLayout>
+        android:layout_below="@+id/header"
+         >
+
+        <LinearLayout
+            android:id="@+id/help_box"
+            style="@style/layout_wrapheight_fillwidth"
+            android:layout_below="@id/header"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_background_white"
+            android:orientation="vertical"
+            android:padding="10dp" >
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

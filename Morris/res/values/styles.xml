@@ -39,4 +39,22 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="gridview_style" parent="layout_fill_fill">
+        <item name="android:columnWidth">10dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:verticalSpacing">1dp</item>
+        <item name="android:horizontalSpacing">10dp</item>
+    </style>
+
+    <!-- Toolbar text style -->
+    <style name="score_board_player_text" parent="layout_wrapheight_fillwidth">
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>
