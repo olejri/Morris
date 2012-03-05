@@ -15,7 +15,7 @@ public class PlayGameActivity extends Activity {
 		setContentView(R.layout.play_game_layout);
 		
 		setUpScoreBoard();
-		
+
 	}
 	
 	private void setUpScoreBoard(){
@@ -28,5 +28,7 @@ public class PlayGameActivity extends Activity {
 		PieceAdapter adapter_white = new PieceAdapter(this,true,9);
 		gridview_white.setAdapter(adapter_white);
 	}
+	
+	
 	
 }

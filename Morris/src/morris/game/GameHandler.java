@@ -1,9 +1,11 @@
 package morris.game;
 
+import morris.models.Game;
+
 public class GameHandler {
 	
 	private static GameHandler instance = null;
-	
+	public static Game morrisGame = null;
 	
 	// GameHandler is a Singleton.
 	// the access to it is only through the getInstance() method
@@ -13,10 +15,19 @@ public class GameHandler {
 		}
 		return instance;
 	}
-	
-	// Singleton's private constructor
-	private GameHandler(){
-		
+	/**
+	 * Set MorrisGame
+	 * @param morrisGame
+	 */
+	public static void setMorrisGame(Game morrisGame){
+		GameHandler.morrisGame = morrisGame;
+	}
+	/**
+	 * Return MorrisGame
+	 * @return
+	 */
+	public static Game getMorrisGame(){
+		return morrisGame;
 	}
 	
 	
