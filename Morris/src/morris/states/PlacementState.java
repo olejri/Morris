@@ -6,10 +6,9 @@ import morris.interfaces.StateListener;
 public class PlacementState implements StateListener, State{
 
 	@Override
-	public void listSelectablePieces() {
+	public void highlightPossibilities() {
 		// TODO
-		// Lists all pieces that are flagged as removable.
-		System.out.println("All selectable pieces listed from PlacementState.");
+		System.out.println("All possibilities highlighted in PlacementState.");
 		
 	}
 

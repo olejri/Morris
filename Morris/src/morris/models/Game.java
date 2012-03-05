@@ -6,7 +6,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.states.MoveState;
-import morris.states.RemovalState;
 
 public class Game {
 
@@ -19,7 +18,7 @@ public class Game {
 	
 	public void listSelectablePieces() {
 		if(state != null){
-			this.state.listSelectablePieces();
+			this.state.highlightPossibilities();
 		}
 	}
 	
