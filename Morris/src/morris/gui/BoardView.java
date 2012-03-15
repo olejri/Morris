@@ -99,12 +99,24 @@ public class BoardView extends View {
 		drawLine(midX, yBottom-thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
-
+		
+		for (Point point : pointList){
+			l.Out(point.toString());
+			if (point.getId() == 13){
+				p.setStyle(Style.STROKE);
+				p.setColor(Color.GREEN);
+				p.setStrokeWidth(3);
+				point.highLight(canvas, p);
+			}
+			
+		}
+		
+		
 	}
 
 	public void drawRect(float xLeft, float yTop, float xRight, float yBottom, Canvas canvas, Paint p){
 		canvas.drawRect(xLeft, yTop, xRight, yBottom, p);
-		
+
 	}
 
 	public void drawCircle(float x, float y, Canvas canvas, Paint p){
@@ -130,12 +142,11 @@ public class BoardView extends View {
 			drawCircle(x, yTop, canvas, p);
 			pointList.add(new Point(teller, x, yTop));
 			drawCircle(x, yBottom, canvas, p);
-			pointList.add(new Point(teller+3, x, yTop));
+			pointList.add(new Point(teller+3, x, yBottom));
 			teller++;
-			
 		}
 		midX = midX - secondRect;
-		teller++;
+		teller = 6;
 		for(float x = xLeft+secondRect; x < xRight+xLeft; x = x + midX){
 			drawCircle(x, yTop+secondRect, canvas, p);
 			pointList.add(new Point(teller, x, yTop+secondRect));
@@ -143,18 +154,24 @@ public class BoardView extends View {
 			pointList.add(new Point(teller+3, x, yBottom-secondRect));
 			teller++;
 		}
-		midX = midX - thirdRect;
-		teller++;
-		
-		
-		
-
-
-
+		midX = midX - secondRect;
+		teller = 12;
+		for(float x = xLeft+thirdRect; x <= xRight-thirdRect; x = x + midX){
+			drawCircle(x, yTop+thirdRect, canvas, p);
+			pointList.add(new Point(teller, x, yTop+thirdRect));
+			drawCircle(x, yBottom-thirdRect, canvas, p);
+			pointList.add(new Point(teller+3, x, yBottom-thirdRect));
+			teller++;
+		}
+		teller = 18;		
+		for(float x = xLeft; x<= xLeft+thirdRect; x = x + secondRect){
+			drawCircle(x, midY, canvas, p);
+			pointList.add(new Point(teller, x, yTop+thirdRect));
+			drawCircle(xRight-thirdRect-xLeft+x, midY, canvas, p);
+			pointList.add(new Point(teller+3, xRight-thirdRect+x, midY));
+			teller++;
+		}
 	}
-
-
-
 }
 
 
