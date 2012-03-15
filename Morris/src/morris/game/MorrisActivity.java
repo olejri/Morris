@@ -18,10 +18,11 @@ import android.view.Window;
 
 public class MorrisActivity extends Activity {
 
-
+	public MorrisActivity ma = this;
 	SKApplication skMorris;
 	private int screen_width; 
-	private int screen_height; 
+	private int screen_height;
+	
 
 
 	/** Called when the activity is first created. */
@@ -31,7 +32,7 @@ public class MorrisActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 
-		//GameHandler.getInstance().setMenuContext(ma);
+		GameHandler.getInstance().setMenuContext(ma);
 
 		Display display = getWindowManager().getDefaultDisplay();
 		screen_width = display.getWidth();

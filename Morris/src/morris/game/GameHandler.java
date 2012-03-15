@@ -190,9 +190,9 @@ public class GameHandler {
 		GameHandler.getInstance().setWaiting_for_opponent(true);
 		Context lol = GameHandler.getInstance().getMenuContext();
 		System.out.println(""+fee);
-		System.out.println(""+lol);
+		System.out.println(""+lol);*/
 		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(), PlayGameActivity.class);
-		GameHandler.getInstance().getMenuContext().startActivity(intent);*/
+		GameHandler.getInstance().getMenuContext().startActivity(intent);
 	}
 	
 	
