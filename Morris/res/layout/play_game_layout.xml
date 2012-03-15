@@ -12,18 +12,47 @@
         style="@style/layout_fill_fill"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_background_white"
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
+            android:id="@+id/linearLayout_player1"
             style="@style/layout_fill_fill"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/player1_name"
+                style="@style/score_board_player_text"
+                android:text="Player 1" />
+
+            <GridView
+                android:id="@+id/gridview_player1"
+                style="@style/gridview_style" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             style="@style/layout_fill_fill"
-            android:layout_weight="1" >
+            android:layout_width="2px"
+            android:background="@android:color/black" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_player2"
+            style="@style/layout_fill_fill"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/player2_name"
+                style="@style/score_board_player_text"
+                android:text="Player 2" />
+
+            <GridView
+                android:id="@+id/gridview_player2"
+                style="@style/gridview_style" />
         </LinearLayout>
     </LinearLayout>
 

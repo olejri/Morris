@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
+import morris.models.Game;
 
 import com.skiller.api.items.SKUser;
 import com.skiller.api.listeners.SKOnFeeChosenListener;
@@ -17,6 +19,7 @@ import com.skiller.api.listeners.SKOnGetFeeOptionsListener;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.responses.SKFeeChosenResponse;
 import com.skiller.api.responses.SKGetFeeOptionsResponse;
+
 
 public class GameHandler {
 	
@@ -33,21 +36,33 @@ public class GameHandler {
 	private SKUser owner;
 	private SKUser guest;
 	private int pot;
-	
-	
-	
-	// GameHandler is a Singleton.
-	// the access to it is only through the getInstance() method
+	private static Game morrisGame = null;
+
+
+
 	public static GameHandler getInstance(){
-		if(instance == null){
-			instance = new GameHandler();
-		}
-		return instance;
+ 		if(instance == null){
+				instance = new GameHandler();
+			}
+			return instance;
 	}
 	
-	// Singleton's private constructor
-	private GameHandler(){
-		
+	private GameHandler(){	
+	}
+	
+	/**
+	 * Set MorrisGame
+	 * @param morrisGame
+	 */
+	public static void setMorrisGame(Game morrisGame){
+		GameHandler.morrisGame = morrisGame;
+	}
+	/**
+	 * Return MorrisGame
+	 * @return
+	 */
+	public static Game getMorrisGame(){
+		return morrisGame;
 	}
 	
 	
@@ -56,6 +71,7 @@ public class GameHandler {
 		//startGameWithChosenFee(2);
 		//getMinMAXValuesForChooseFeeDialog();
 		chooseFeeDialog();
+		setMorrisGame(new Game());
 	}
 	
 	// clearGame() method - clears the game attributes

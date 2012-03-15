@@ -2,7 +2,7 @@ package morris.game;
 
 import morris.help.Constant;
 import morris.models.StartGame;
-
+import morris.models.Game;
 import com.skiller.api.listeners.SKBaseListener;
 import com.skiller.api.listeners.SKOnTurnbasedGameChosenListener;
 import com.skiller.api.operations.SKApplication;
@@ -45,6 +45,7 @@ public class MorrisActivity extends Activity {
 			}
 		});	
 		
+		
 	}
 
 	public void onClick(View view) {
@@ -55,7 +56,6 @@ public class MorrisActivity extends Activity {
 			//i.setClass(this, PlayGameActivity.class);
 			//startActivity(i);
 		} else if (view.getId() == R.id.menu_button_joingame) {
-			GameHandler.getInstance().clearGame();
 			skMorris.getUIManager().showTurnbasedGamesLobbyScreen(this, new SKOnTurnbasedGameChosenListener(){
 				public void onResponse(SKTurnbasedGameChosenResponse st){
 					skMorris.getGameManager().getTurnBasedTools().joinGame(st.getGameId(), new StartGame());
