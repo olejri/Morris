@@ -11,6 +11,7 @@ import morris.interfaces.StateListener;
 import morris.states.MoveState;
 import morris.states.PlacementState;
 import morris.states.RemovalState;
+import morris.states.SelectState;
 
 public class Game {
 
@@ -21,12 +22,14 @@ public class Game {
 	private Board board;
 	public String gameType;
 	
+	int pieceCounter = 0;
+	
 	public Player player1;
 	public Player player2;
 	
 	// Satt til placementstate midlertidig. Logisk Œ starte der uansett.
 	public Game(){
-		setState(new MoveState());
+		setState(new PlacementState());
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
 	}
@@ -57,9 +60,10 @@ public class Game {
 		return gameType;
 	}
 	
-	public ArrayList<Slot> getHighlightList() {
+	// Her kan man ta inn pointID og et Player-objekt.
+	public ArrayList<Slot> getHighlightList(int id, Player player) {
 		//getBoard().getSlotByID(11).setTaken(true);
-		return this.state.getHighlightList(board, 10, new Player("Black", "Kjell Barry")); // aktuell spiller benyttes
+		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
 	}
 	
 	public void setState(State state){
@@ -103,6 +107,10 @@ public class Game {
 		//Check morris etc then:
 		System.out.println("Player placed: GameAct");
 		firePiecePlaced(player, piece);
+		pieceCounter++;
+		if(pieceCounter == 4){
+			setState(new SelectState());
+		}
 	}
    
 	

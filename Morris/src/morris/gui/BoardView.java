@@ -6,7 +6,9 @@ import morris.help.LogHelp;
 import morris.models.Piece;
 import morris.models.Player;
 import morris.models.Slot;
+import morris.states.MoveState;
 import morris.states.PlacementState;
+import morris.states.SelectState;
 import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -40,6 +42,7 @@ public class BoardView extends View {
 	private float yBottomOld;
 	private int pieceSize;
 	private boolean makePointList = true;
+	private int selectedPieceID = -1;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
 
@@ -111,20 +114,31 @@ public class BoardView extends View {
 
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
-
+				Point p = getPressedPoint(event.getX(), event.getY());
 				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {
 					System.out.println("Instanse of match");
-					Point p = getPressedPoint(event.getX(), event.getY());
+					
 					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
 						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
 							piece.setPosition(p.getId());
 							GameHandler.getInstance().getMorrisGame().playerPlacedPiece(GameHandler.getInstance().getMorrisGame().getPlayer1(),piece);
+							GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).setTaken(true);
+							GameHandler.getInstance().getMorrisGame().getBoard().printTakenSlots();
 							System.out.println("ID set");
 							break;
 						}
 					}
+					
 
+				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
+					selectedPieceID = p.getId();
+					GameHandler.getInstance().getMorrisGame().setState(new MoveState());
+				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){
+					if(selectedPieceID == p.getId()){
+						selectedPieceID = -1;
+						GameHandler.getInstance().getMorrisGame().setState(new SelectState());
+					}
 				}
 			}
 			postInvalidate();
@@ -135,8 +149,8 @@ public class BoardView extends View {
 	}
 
 	public void highlightPoints(Canvas c, Paint p) {
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame()
-				.getHighlightList();
+		// MŒ hente inn virkelig spillerobjekt her.
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList(selectedPieceID, new Player("White", "Barry Cuda")); 
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
 				if (highlights.get(i).getId() == pointList.get(j).getId()) {

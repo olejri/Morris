@@ -76,6 +76,9 @@ public class Board {
 		return false;		
 	}
 	
+	/*
+	 * Assigns logical neighbours to all slots.
+	 */
 	private void assignSlotDomains(){
 		if(slots != null){
 			// First row (0-2)
@@ -160,10 +163,11 @@ public class Board {
 		}
 	}
 	
-	public void test(){
+	public void printTakenSlots(){
+		System.out.println("Taken board coordinates:");
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
-				if(isValidBoardCoordinate(i, j)){
+				if(slots[i][j].isTaken()){
 					System.out.println("["+i+"]["+j+"]");
 				}
 			}
