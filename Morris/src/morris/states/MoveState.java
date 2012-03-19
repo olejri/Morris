@@ -12,6 +12,7 @@ public class MoveState implements StateListener, State {
 	@Override
 	public ArrayList<Slot> getHighlightList(Slot[][] slots, Player currentPlayer) {
 		// TODO Auto-generated method stub
+		// Highlights possible moves based on which piece is selected.
 		return null;
 	}
 

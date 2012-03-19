@@ -12,6 +12,7 @@ public class RemovalState implements StateListener, State {
 	@Override
 	public ArrayList<Slot> getHighlightList(Slot[][] slots, Player currentPlayer) {
 		// TODO Auto-generated method stub
+		// Highlights all pieces that are not causing Morris state.
 		return null;
 	}
 
