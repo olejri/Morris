@@ -37,6 +37,7 @@ public class BoardView extends View {
 	private float xRightOld;
 	private float yBottomOld;
 	private int pieceSize;
+	private boolean makePointList = true;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
 
@@ -179,7 +180,6 @@ public class BoardView extends View {
 
 	private void drawBoard(Canvas canvas) {
 		// board calc
-
 		resetVar();
 		boardW = xRight - xLeft + yTop;
 		calcValue = boardW / 6;
@@ -208,9 +208,8 @@ public class BoardView extends View {
 		// 4th line
 		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
-		if (pointList.isEmpty()) {
-			drawPoints(canvas, p);
-		}
+		drawPoints(canvas, p);
+		
 
 		/*
 		 * for (Point point : pointList){ l.Out(point.toString()); if
@@ -254,37 +253,45 @@ public class BoardView extends View {
 		int teller = 0;
 		for (float x = xLeft; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop, canvas, p);
-			pointList.add(new Point(teller, x, yTop));
 			drawCircle(x, yBottom, canvas, p);
+			if (makePointList){
+			pointList.add(new Point(teller, x, yTop));
 			pointList.add(new Point(teller + 3, x, yBottom));
+			}
 			teller++;
 		}
 		midX = midX - secondRect;
 		teller = 6;
 		for (float x = xLeft + secondRect; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop + secondRect, canvas, p);
-			pointList.add(new Point(teller, x, yTop + secondRect));
 			drawCircle(x, yBottom - secondRect, canvas, p);
+			if (makePointList){
+			pointList.add(new Point(teller, x, yTop + secondRect));
 			pointList.add(new Point(teller + 3, x, yBottom - secondRect));
+			}
 			teller++;
 		}
 		midX = midX - secondRect;
 		teller = 12;
 		for (float x = xLeft + thirdRect; x <= xRight - thirdRect; x = x + midX) {
 			drawCircle(x, yTop + thirdRect, canvas, p);
-			pointList.add(new Point(teller, x, yTop + thirdRect));
 			drawCircle(x, yBottom - thirdRect, canvas, p);
+			if (makePointList){
+			pointList.add(new Point(teller, x, yTop + thirdRect));
 			pointList.add(new Point(teller + 3, x, yBottom - thirdRect));
+			}
 			teller++;
 		}
 		teller = 18;
 		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
-			pointList.add(new Point(teller, x, midY));
 			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
-			pointList.add(new Point(teller + 3, xRight - thirdRect - xLeft + x,
-					midY));
+			if (makePointList){
+			pointList.add(new Point(teller, x, midY));
+			pointList.add(new Point(teller + 3, xRight - thirdRect - xLeft + x, midY));
+			}
 			teller++;
 		}
+		makePointList = false;
 	}
 }
