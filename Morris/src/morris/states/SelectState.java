@@ -4,25 +4,27 @@ import java.util.ArrayList;
 
 import morris.interfaces.State;
 import morris.models.Board;
+import morris.models.Piece;
 import morris.models.Player;
 import morris.models.Slot;
 
-public class SelectState implements State {
 
+public class SelectState implements State {	
 	
 	/*
-	 * TEMPORARY JUST FOR TESTING. METHOD MUST BE REWRITTEN! OMG!
+	 * Returns an ArrayList of the current players piece positions that are to be highlighted.
 	 * @see morris.interfaces.State#getHighlightList(morris.models.Board, int, morris.models.Player)
 	 */
 	@Override
 	public ArrayList<Slot> getHighlightList(Board board, int id, Player currentPlayer) {
-		// Highlights the selectable/movable pieces belonging to the current player
-		Slot[][] slots = board.getSlots();
 		ArrayList<Slot> highlights = new ArrayList<Slot>();
-		for(int i=0; i<slots.length; i++){
-			for(int j=0; j<slots.length; j++){
-				if(slots[i][j].isEnabled() && !slots[i][j].isTaken()) highlights.add(slots[i][j]);
-			}
+		ArrayList<Piece> pieces = currentPlayer.getPieces();
+		for(Piece p : pieces){
+			ArrayList<Integer> domain = board.getSlotByID(p.getPosition()).getDomain();
+			System.out.println("ID:"+p.getPosition()+" Domain size: "+domain.size());
+			for(Integer i : domain){
+				if(!board.getSlotByID(i).isTaken() && !highlights.contains(board.getSlotByID(p.getPosition()))) highlights.add(board.getSlotByID(p.getPosition()));
+			}	
 		}
 		return highlights;
 	}

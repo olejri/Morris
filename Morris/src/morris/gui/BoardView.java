@@ -115,22 +115,20 @@ public class BoardView extends View {
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
-				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {
-					System.out.println("Instanse of match");
-					
+				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {					
 					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
 						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
 							piece.setPosition(p.getId());
 							GameHandler.getInstance().getMorrisGame().playerPlacedPiece(GameHandler.getInstance().getMorrisGame().getPlayer1(),piece);
-							GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).setTaken(true);
-							GameHandler.getInstance().getMorrisGame().getBoard().printTakenSlots();
-							System.out.println("ID set");
+							GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).setTaken(true);  // STEINAR 19.03
+							GameHandler.getInstance().getMorrisGame().getBoard().printTakenSlots(); // STEINAR 19.03
+							System.out.println("ID set to:"+piece.getPosition());
 							break;
 						}
 					}
 					
-
+				// STEINAR 19.03	
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
 					selectedPieceID = p.getId();
 					GameHandler.getInstance().getMorrisGame().setState(new MoveState());
@@ -147,10 +145,16 @@ public class BoardView extends View {
 
 		return true;
 	}
+	
+	// Add needed parameters. I want a piece highlighting plz. -Steinar
+	public void highlightPieces(Player player){
+		//TODO
+	}
 
 	public void highlightPoints(Canvas c, Paint p) {
-		// MŒ hente inn virkelig spillerobjekt her.
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList(selectedPieceID, new Player("White", "Barry Cuda")); 
+		// GET PLAYER ONE FOR TESTING PURPOSES
+		// STEINAR 19.03
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList(selectedPieceID, GameHandler.getInstance().getMorrisGame().getPlayer1());  
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
 				if (highlights.get(i).getId() == pointList.get(j).getId()) {
