@@ -97,7 +97,9 @@ public class BoardView extends View {
 		System.out.println("xNew: " + xNew + " yNew :" + yNew);
 
 	}
-
+	/**
+	 * Player pressed the player board
+	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
@@ -109,13 +111,13 @@ public class BoardView extends View {
 			GameHandler.getMorrisGame().getPlayer1().getPieces().get(1).setPosition(p.getId());
 			}
 		}
+		//Update screen
 		postInvalidate();
 		return true;
 	}
 
 	public void highlightPoints(Canvas c, Paint p) {
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame()
-				.getHighlightList();
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
 				if (highlights.get(i).getId() == pointList.get(j).getId()) {
@@ -124,7 +126,12 @@ public class BoardView extends View {
 			}
 		}
 	}
-
+	/**
+	 * Get Point the player has pressed
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private Point getPressedPoint(float x, float y) {
 		for (Point p : pointList) {
 			if (p.getX() - x > -50 && p.getX() - x < 50) {
@@ -135,9 +142,22 @@ public class BoardView extends View {
 		}
 		return null;
 	}
-
+	/**
+	 * Draw all pieces on the board
+	 * @param canvas
+	 */
 	private void drawPieces(Canvas canvas) {
+		//Draw player 1 pieces
 		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()) {
+			if (p.getPosition() > 0) {
+				Point position = getPointFromId(p.getPosition());
+				if (position != null) {
+					drawWhiteImage(canvas, position);
+				}
+			}
+		}
+		//Draw player 2 pieces
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2().getPieces()) {
 			if (p.getPosition() > 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
@@ -147,7 +167,11 @@ public class BoardView extends View {
 		}
 
 	}
-
+	/**
+	 * Return Point from ID
+	 * @param id
+	 * @return
+	 */
 	private Point getPointFromId(int id) {
 		for (Point p : pointList) {
 			if (id == p.getId()) {
@@ -165,12 +189,10 @@ public class BoardView extends View {
 	 * @param point
 	 */
 	private void drawWhiteImage(Canvas canvas, Point point) {
-		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,
-				false);
-		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()
-				- (b.getHeight() / 2), null);
+		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,false);
+		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY() - (b.getHeight() / 2), null);
 	}
-
+	
 	private void resetVar() {
 		xRight = xRightOld;
 		yBottom = yBottomOld;
