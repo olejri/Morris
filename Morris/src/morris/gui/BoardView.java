@@ -69,6 +69,17 @@ public class BoardView extends View {
 		//This method is overridden in both local and network-class
 		return true;
 	}
+	
+	public void highlightPoints(Canvas c, Paint p){
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
+		for(int i=0; i<highlights.size(); i++){
+			for(int j=0; j<pointList.size(); j++){
+				if(highlights.get(i).getId() == pointList.get(j).getId()){
+					pointList.get(j).highLight(c, p);
+				}
+			}
+		}
+	}
 
 
 	public void drawBoard(Canvas canvas){
@@ -100,6 +111,7 @@ public class BoardView extends View {
 		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
 		
+		/*
 		for (Point point : pointList){
 			l.Out(point.toString());
 			if (point.getId() == 13){
@@ -109,9 +121,11 @@ public class BoardView extends View {
 				point.highLight(canvas, p);
 			}
 			
-		}
-		
-		
+		}*/
+		p.setStyle(Style.STROKE);
+		p.setColor(Color.GREEN);
+		p.setStrokeWidth(3);
+		highlightPoints(canvas, p);
 	}
 
 	public void drawRect(float xLeft, float yTop, float xRight, float yBottom, Canvas canvas, Paint p){
