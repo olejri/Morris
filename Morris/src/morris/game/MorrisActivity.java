@@ -18,8 +18,7 @@ import android.view.Window;
 
 public class MorrisActivity extends Activity {
 
-	public MorrisActivity ma = this;
-	SKApplication skMorris;
+	private SKApplication skMorris;
 	private int screen_width; 
 	private int screen_height;
 	
@@ -32,15 +31,13 @@ public class MorrisActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 
-		GameHandler.getInstance().setMenuContext(ma);
-
+		GameHandler.getInstance().setMenuContext(this);
 		Display display = getWindowManager().getDefaultDisplay();
-		screen_width = display.getWidth();
-		screen_height = display.getHeight();
+		
 
 		skMorris = new SKApplication(Constant.app_id, Constant.app_key, Constant.app_secret, "1", 0);
 		GameHandler.getInstance().setSkApplication(skMorris);
-		skMorris.login(this, screen_width, screen_height, null, null, new SKBaseListener(){
+		skMorris.login(this, display.getWidth(), display.getHeight(), null, null, new SKBaseListener(){
 			public void onResponse(SKBaseResponse st){
 
 			}
@@ -65,6 +62,8 @@ public class MorrisActivity extends Activity {
 		} else if (view.getId() == R.id.menu_button_help) {
 			i.setClass(this, HelpActivity.class);
 			startActivity(i);
+		} else if(view.getId() == R.id.menu_button_show_board){
+			startActivity(new Intent(this, PlayGameActivity.class));
 		}
 
 	}

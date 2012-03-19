@@ -1,10 +1,10 @@
 package morris.gui;
 
-
 import java.util.ArrayList;
 
 import morris.help.LogHelp;
 
+import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-
 
 public class BoardView extends View {
 
@@ -37,26 +36,45 @@ public class BoardView extends View {
 	private float thirdRect;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
-
-
+	
+	//Bitmaps pieces
+	
+	private Bitmap white_piece;
+	private Bitmap white_piece_selected;
+	private Bitmap white_piece_remove;
+	private Bitmap black_piece;
+	private Bitmap black_piece_selected;
+	private Bitmap black_piece_remove;
 
 	public BoardView(Context context) {
-		super(context);	
+		super(context);
+		init();
 	}
 
 	public BoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init();
 	}
-
-
+	
+	private void init(){
+		white_piece = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white);
+		white_piece_selected = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_selected);
+		white_piece_remove = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_remove);
+		black_piece = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_black);
+		black_piece_selected = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_black_selected);
+		white_piece_remove = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_remove);
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		//Draw board
 		drawBoard(canvas);
-
+		
+		drawPieces(canvas);
 
 	}
-	protected void onSizeChanged(int xNew, int yNew, int xOld, int yOld){
+
+	protected void onSizeChanged(int xNew, int yNew, int xOld, int yOld) {
 		super.onSizeChanged(xNew, yNew, xOld, yOld);
 		viewWidth = xNew;
 		viewHeight = yNew;
@@ -66,68 +84,103 @@ public class BoardView extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		//This method is overridden in both local and network-class
+		
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			
+		} else if (event.getAction() == MotionEvent.ACTION_UP) {
+			Point pressed = getPressedPoint(event.getX(), event.getY());
+			if(pressed!=null){
+				System.out.println("Pressed Point: " + pressed.getId());
+			}
+		}
 		return true;
 	}
+	
+	private Point getPressedPoint(float x, float y){
+		for(Point p : pointList){
+			if(p.getX()-x>-50 && p.getX()-x<50){
+				if(p.getY()-y>-50 && p.getY()-y<50){
+					return p;
+				}
+			}
+		}
+		return null;
+	}
+	
+	private void drawPieces(Canvas canvas){
+		for (Point point : pointList) {
+			l.Out(point.toString());
+			if (point.getId() % 2 == 0) {
+				Bitmap b = Bitmap.createScaledBitmap(white_piece, 50, 50, false);
+				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
+			}else{
+				Bitmap b = Bitmap.createScaledBitmap(black_piece, 50, 50, false);
+				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
+			}
+		}
+	}
+	
 
-
-	public void drawBoard(Canvas canvas){
-		//board calc
-		boardW = xRight-xLeft+yTop;
-		calcValue = boardW/6;
+	private void drawBoard(Canvas canvas) {
+		// board calc
+		boardW = xRight - xLeft + yTop;
+		calcValue = boardW / 6;
 		secondRect = calcValue;
-		thirdRect = calcValue*2;
+		thirdRect = calcValue * 2;
 		Paint p = getPaint();
-		//Rect r = new Rect(xLeft, yTop, viewWidth-11, viewWidth-10);
-		xRight = xRight-xLeft;
-		yBottom = yBottom-yTop;
-		midX = xLeft+((xRight-xLeft)/2);
-		midY = yTop+((yBottom-yTop)/2);
-		//first Rect
+		// Rect r = new Rect(xLeft, yTop, viewWidth-11, viewWidth-10);
+		xRight = xRight - xLeft;
+		yBottom = yBottom - yTop;
+		midX = xLeft + ((xRight - xLeft) / 2);
+		midY = yTop + ((yBottom - yTop) / 2);
+		// first Rect
 		drawRect(xLeft, yTop, xRight, yBottom, canvas, p);
-		//second Rect
-		drawRect(xLeft+secondRect, yTop+secondRect, xRight-secondRect, yBottom-secondRect, canvas, p);
-		//third Rect
-		drawRect(xLeft+thirdRect, yTop+thirdRect, xRight-thirdRect, yBottom-thirdRect, canvas, p);
-		//first Line
-		drawLine(xLeft, midX, xLeft+thirdRect, midX, canvas, p);
-		//second Line
-		drawLine(xRight-thirdRect, midY, xRight, midY, canvas, p);
-		//third Line
-		drawLine(midX, yTop, midX, yTop+thirdRect, canvas, p);
-		//4th line
-		drawLine(midX, yBottom-thirdRect, midX, yBottom, canvas, p);
+		// second Rect
+		drawRect(xLeft + secondRect, yTop + secondRect, xRight - secondRect,
+				yBottom - secondRect, canvas, p);
+		// third Rect
+		drawRect(xLeft + thirdRect, yTop + thirdRect, xRight - thirdRect,
+				yBottom - thirdRect, canvas, p);
+		// first Line
+		drawLine(xLeft, midX, xLeft + thirdRect, midX, canvas, p);
+		// second Line
+		drawLine(xRight - thirdRect, midY, xRight, midY, canvas, p);
+		// third Line
+		drawLine(midX, yTop, midX, yTop + thirdRect, canvas, p);
+		// 4th line
+		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
-		
-		for (Point point : pointList){
+
+		for (Point point : pointList) {
 			l.Out(point.toString());
-			if (point.getId() == 13){
+			if (point.getId() == 13) {
 				p.setStyle(Style.STROKE);
 				p.setColor(Color.GREEN);
 				p.setStrokeWidth(3);
 				point.highLight(canvas, p);
 			}
-			
+
 		}
-		
-		
+
 	}
 
-	public void drawRect(float xLeft, float yTop, float xRight, float yBottom, Canvas canvas, Paint p){
+	private void drawRect(float xLeft, float yTop, float xRight, float yBottom,
+			Canvas canvas, Paint p) {
 		canvas.drawRect(xLeft, yTop, xRight, yBottom, p);
 
 	}
 
-	public void drawCircle(float x, float y, Canvas canvas, Paint p){
+	private void drawCircle(float x, float y, Canvas canvas, Paint p) {
 		canvas.drawCircle(x, y, 10, p);
 	}
 
-	public void drawLine(double startX, double startY, double stopX, double stopY, Canvas canvas, Paint p){
-		canvas.drawLine((int)startX, (int)startY, (int)stopX, (int)stopY, p);
+	private void drawLine(double startX, double startY, double stopX,
+			double stopY, Canvas canvas, Paint p) {
+		canvas.drawLine((int) startX, (int) startY, (int) stopX, (int) stopY, p);
 	}
 
-	public Paint getPaint(){
+	private Paint getPaint() {
 		Paint p = new Paint();
 		p.setStyle(Style.STROKE);
 		p.setColor(Color.BLACK);
@@ -135,43 +188,41 @@ public class BoardView extends View {
 		return p;
 	}
 
-	public void drawPoints(Canvas canvas , Paint p){
+	private void drawPoints(Canvas canvas, Paint p) {
 		midX = midX - xLeft;
 		int teller = 0;
-		for(float x = xLeft; x < xRight+xLeft; x = x + midX){
+		for (float x = xLeft; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop, canvas, p);
 			pointList.add(new Point(teller, x, yTop));
 			drawCircle(x, yBottom, canvas, p);
-			pointList.add(new Point(teller+3, x, yBottom));
+			pointList.add(new Point(teller + 3, x, yBottom));
 			teller++;
 		}
 		midX = midX - secondRect;
 		teller = 6;
-		for(float x = xLeft+secondRect; x < xRight+xLeft; x = x + midX){
-			drawCircle(x, yTop+secondRect, canvas, p);
-			pointList.add(new Point(teller, x, yTop+secondRect));
-			drawCircle(x, yBottom-secondRect, canvas, p);
-			pointList.add(new Point(teller+3, x, yBottom-secondRect));
+		for (float x = xLeft + secondRect; x < xRight + xLeft; x = x + midX) {
+			drawCircle(x, yTop + secondRect, canvas, p);
+			pointList.add(new Point(teller, x, yTop + secondRect));
+			drawCircle(x, yBottom - secondRect, canvas, p);
+			pointList.add(new Point(teller + 3, x, yBottom - secondRect));
 			teller++;
 		}
 		midX = midX - secondRect;
 		teller = 12;
-		for(float x = xLeft+thirdRect; x <= xRight-thirdRect; x = x + midX){
-			drawCircle(x, yTop+thirdRect, canvas, p);
-			pointList.add(new Point(teller, x, yTop+thirdRect));
-			drawCircle(x, yBottom-thirdRect, canvas, p);
-			pointList.add(new Point(teller+3, x, yBottom-thirdRect));
+		for (float x = xLeft + thirdRect; x <= xRight - thirdRect; x = x + midX) {
+			drawCircle(x, yTop + thirdRect, canvas, p);
+			pointList.add(new Point(teller, x, yTop + thirdRect));
+			drawCircle(x, yBottom - thirdRect, canvas, p);
+			pointList.add(new Point(teller + 3, x, yBottom - thirdRect));
 			teller++;
 		}
-		teller = 18;		
-		for(float x = xLeft; x<= xLeft+thirdRect; x = x + secondRect){
+		teller = 18;
+		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
-			pointList.add(new Point(teller, x, yTop+thirdRect));
-			drawCircle(xRight-thirdRect-xLeft+x, midY, canvas, p);
-			pointList.add(new Point(teller+3, xRight-thirdRect+x, midY));
+			pointList.add(new Point(teller, x, yTop + thirdRect));
+			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
+			pointList.add(new Point(teller + 3, xRight - thirdRect + x, midY));
 			teller++;
 		}
 	}
 }
-
-

@@ -26,6 +26,13 @@ public class Point {
 		return id;
 	}
 	
+	public float getX(){
+		return xCoor;
+	}
+	public float getY(){
+		return yCoor;
+	}
+	
 	public void highLight(Canvas canvas, Paint p){
 		canvas.drawCircle(xCoor, yCoor, 11, p);
 	}
