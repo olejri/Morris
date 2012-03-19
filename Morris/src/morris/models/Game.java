@@ -16,6 +16,7 @@ public class Game {
 
 	private List<StateListener> stateListeners = new CopyOnWriteArrayList<StateListener>();
 	private List<GameListener> gameListeners = new CopyOnWriteArrayList<GameListener>();
+	public boolean yourTurn = true;
 	private State state;
 	private Board board;
 	public String gameType;
@@ -28,12 +29,21 @@ public class Game {
 		setState(new MoveState());
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
-		
 	}
 	
 	public void initPlayers(){
 		player1 = new Player(Constant.WHITE,"Emil");
 		player2 = new Player(Constant.BLACK,"Steinar");
+	}
+	
+	public State getState(){
+		return state;
+	}
+	public boolean isYourTurn(){
+		return yourTurn;
+	}
+	public void setYourTurn(boolean yourTurn){
+		this.yourTurn = yourTurn;
 	}
 	
 	public Player getPlayer1(){
@@ -88,6 +98,12 @@ public class Game {
     		l.playerPlacedPiece(player, piece);
     	}
     }
+
+	public void playerPlacedPiece(Player player,Piece piece) {
+		//Check morris etc then:
+		System.out.println("Player placed: GameAct");
+		firePiecePlaced(player, piece);
+	}
    
 	
 }
