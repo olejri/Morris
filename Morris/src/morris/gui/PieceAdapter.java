@@ -1,7 +1,10 @@
 package morris.gui;
 
-import android.R;
+import morris.game.GameHandler;
+import morris.help.Constant;
+import morris.models.Player;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,18 +13,23 @@ import android.widget.ImageView;
 
 public class PieceAdapter extends BaseAdapter {
 	private Context context;
-	private boolean white = false;
-	private int number;
+	private String color;
 
-	public PieceAdapter(Context context,boolean white,int number) {
+	public PieceAdapter(Context context,String color) {
 		this.context = context;
-		this.white = white;
-		this.number = number;
+		this.color = color;
 	}
 
 	@Override
-	public int getCount() {
-		return number;
+	public int getCount() { // lagt til getInstance()
+		if(GameHandler.getMorrisGame().getPlayer1().getColor().equals(color)){
+			return GameHandler.getMorrisGame().getPlayer1().getPieces().size();
+		}else if(GameHandler.getMorrisGame().getPlayer2().getColor().equals(color)){
+			Log.i("GameHandler", "Size: " + GameHandler.getMorrisGame().getPlayer1().getPieces().size());
+			return GameHandler.getMorrisGame().getPlayer2().getPieces().size();
+		}else{
+			return 0;
+		}
 	}
 
 	@Override
@@ -45,22 +53,11 @@ public class PieceAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-		if (white) {
+		if (color.equals(Constant.WHITE)) {
 			imageView.setImageResource(morris.game.R.drawable.piece_white);
 		}else{
 			imageView.setImageResource(morris.game.R.drawable.piece_black);
 		}
 		return imageView;
 	}
-
-	private Integer[] BLACK = { morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black,
-			morris.game.R.drawable.piece_black };
-
 }
