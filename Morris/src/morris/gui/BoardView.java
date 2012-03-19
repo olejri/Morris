@@ -40,7 +40,7 @@ public class BoardView extends View {
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
 
-	//Bitmaps pieces
+	// Bitmaps pieces
 	private Bitmap white_piece;
 	private Bitmap white_piece_selected;
 	private Bitmap white_piece_remove;
@@ -58,18 +58,24 @@ public class BoardView extends View {
 		init();
 	}
 
-	private void init(){
-		white_piece = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white);
-		white_piece_selected = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_selected);
-		white_piece_remove = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_remove);
-		black_piece = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_black);
-		black_piece_selected = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_black_selected);
-		white_piece_remove = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_remove);
+	private void init() {
+		white_piece = BitmapFactory.decodeResource(getResources(),
+				morris.game.R.drawable.piece_white);
+		white_piece_selected = BitmapFactory.decodeResource(getResources(),
+				morris.game.R.drawable.piece_white_selected);
+		white_piece_remove = BitmapFactory.decodeResource(getResources(),
+				morris.game.R.drawable.piece_white_remove);
+		black_piece = BitmapFactory.decodeResource(getResources(),
+				morris.game.R.drawable.piece_black);
+		black_piece_selected = BitmapFactory.decodeResource(getResources(),
+				morris.game.R.drawable.piece_black_selected);
+		white_piece_remove = BitmapFactory.decodeResource(getResources(),
+				morris.game.R.drawable.piece_white_remove);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		//Draw board
+		// Draw board
 		drawBoard(canvas);
 
 		drawPieces(canvas);
@@ -82,14 +88,13 @@ public class BoardView extends View {
 		viewHeight = yNew;
 		xRight = viewWidth;
 		yBottom = viewWidth;
-		float calc = xRight/30;
+		float calc = xRight / 30;
 		xLeft = calc;
 		yTop = calc;
-		pieceSize = (int) (calc*2);
+		pieceSize = (int) (calc * 2);
 		xRightOld = xRight;
 		yBottomOld = yBottom;
 		System.out.println("xNew: " + xNew + " yNew :" + yNew);
-
 
 	}
 
@@ -100,27 +105,30 @@ public class BoardView extends View {
 
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			Point p = getPressedPoint(event.getX(), event.getY());
+			if(p!=null){
 			GameHandler.getMorrisGame().getPlayer1().getPieces().get(1).setPosition(p.getId());
+			}
 		}
 		postInvalidate();
 		return true;
 	}
 
-	public void highlightPoints(Canvas c, Paint p){
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
-		for(int i=0; i<highlights.size(); i++){
-			for(int j=0; j<pointList.size(); j++){
-				if(highlights.get(i).getId() == pointList.get(j).getId()){
+	public void highlightPoints(Canvas c, Paint p) {
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame()
+				.getHighlightList();
+		for (int i = 0; i < highlights.size(); i++) {
+			for (int j = 0; j < pointList.size(); j++) {
+				if (highlights.get(i).getId() == pointList.get(j).getId()) {
 					pointList.get(j).highLight(c, p);
 				}
 			}
 		}
 	}
 
-	private Point getPressedPoint(float x, float y){
-		for(Point p : pointList){
-			if(p.getX()-x>-50 && p.getX()-x<50){
-				if(p.getY()-y>-50 && p.getY()-y<50){
+	private Point getPressedPoint(float x, float y) {
+		for (Point p : pointList) {
+			if (p.getX() - x > -50 && p.getX() - x < 50) {
+				if (p.getY() - y > -50 && p.getY() - y < 50) {
 					return p;
 				}
 			}
@@ -128,56 +136,50 @@ public class BoardView extends View {
 		return null;
 	}
 
-	private void drawPieces(Canvas canvas){
-		for (Point point : pointList) {
-			l.Out(point.toString());
-			if (point.getId() % 2 == 0) {
-				Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize, false);
-				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
-			}else{
-				Bitmap b = Bitmap.createScaledBitmap(black_piece, pieceSize, pieceSize, false);
-				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
-
-				for(Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()){
-					if(p.getPosition()>0){
-						Point position = getPointFromId(p.getPosition());
-						if(position!=null){
-							drawWhiteImage(canvas, position);
-						}
-					}
+	private void drawPieces(Canvas canvas) {
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()) {
+			if (p.getPosition() > 0) {
+				Point position = getPointFromId(p.getPosition());
+				if (position != null) {
+					drawWhiteImage(canvas, position);
 				}
 			}
 		}
+
 	}
 
-
-	private Point getPointFromId(int id){
-		for(Point p : pointList){
-			if(id==p.getId()){
+	private Point getPointFromId(int id) {
+		for (Point p : pointList) {
+			if (id == p.getId()) {
 				return p;
 
 			}
 		}
 		return null;
 	}
+
 	/**
 	 * Draw white piece image on current point position
+	 * 
 	 * @param canvas
 	 * @param point
 	 */
-	private void drawWhiteImage(Canvas canvas, Point point){
-		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize, false);
-		canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
+	private void drawWhiteImage(Canvas canvas, Point point) {
+		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,
+				false);
+		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()
+				- (b.getHeight() / 2), null);
 	}
 
-	private void resetVar(){
+	private void resetVar() {
 		xRight = xRightOld;
 		yBottom = yBottomOld;
-		
+
 	}
+
 	private void drawBoard(Canvas canvas) {
 		// board calc
-		
+
 		resetVar();
 		boardW = xRight - xLeft + yTop;
 		calcValue = boardW / 6;
@@ -206,19 +208,18 @@ public class BoardView extends View {
 		// 4th line
 		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
-		drawPoints(canvas, p);
+		if (pointList.isEmpty()) {
+			drawPoints(canvas, p);
+		}
 
 		/*
-		for (Point point : pointList){
-			l.Out(point.toString());
-			if (point.getId() == 13){
-				p.setStyle(Style.STROKE);
-				p.setColor(Color.GREEN);
-				p.setStrokeWidth(3);
-				point.highLight(canvas, p);
-			}
-
-		}*/
+		 * for (Point point : pointList){ l.Out(point.toString()); if
+		 * (point.getId() == 13){ p.setStyle(Style.STROKE);
+		 * p.setColor(Color.GREEN); p.setStrokeWidth(3); point.highLight(canvas,
+		 * p); }
+		 * 
+		 * }
+		 */
 		p.setStyle(Style.STROKE);
 		p.setColor(Color.GREEN);
 		p.setStrokeWidth(3);
@@ -280,8 +281,9 @@ public class BoardView extends View {
 		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
 			pointList.add(new Point(teller, x, midY));
-			drawCircle(xRight-thirdRect-xLeft+x, midY, canvas, p);
-			pointList.add(new Point(teller+3, xRight-thirdRect-xLeft+x, midY));
+			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
+			pointList.add(new Point(teller + 3, xRight - thirdRect - xLeft + x,
+					midY));
 			teller++;
 		}
 	}
