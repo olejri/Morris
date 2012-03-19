@@ -1,11 +1,9 @@
 package morris.gui;
 
 import java.util.ArrayList;
-
 import morris.game.GameHandler;
 import morris.help.LogHelp;
 import morris.models.Slot;
-
 import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,9 +21,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 
 public class BoardView extends View {
-
-	private float xLeft = 20;
-	private float yTop = 20;
+	private float xLeft;
+	private float yTop;
 	private float xRight;
 	private float yBottom;
 	private float viewWidth;
@@ -36,12 +33,11 @@ public class BoardView extends View {
 	private float calcValue;
 	private float secondRect;
 	private float thirdRect;
-	private int test2;
+	private int pieceSize;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
 	
 	//Bitmaps pieces
-	
 	private Bitmap white_piece;
 	private Bitmap white_piece_selected;
 	private Bitmap white_piece_remove;
@@ -83,10 +79,10 @@ public class BoardView extends View {
 		viewHeight = yNew;
 		xRight = viewWidth;
 		yBottom = viewWidth;
-		float test = xRight/30;
-		xLeft = test;
-		yTop = test;
-		test2 = (int) (test*2);
+		float calc = xRight/30;
+		xLeft = calc;
+		yTop = calc;
+		pieceSize = (int) (calc*2);
 		
 	}
 
@@ -130,10 +126,10 @@ public class BoardView extends View {
 		for (Point point : pointList) {
 			l.Out(point.toString());
 			if (point.getId() % 2 == 0) {
-				Bitmap b = Bitmap.createScaledBitmap(white_piece, test2, test2, false);
+				Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize, false);
 				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
 			}else{
-				Bitmap b = Bitmap.createScaledBitmap(black_piece, test2, test2, false);
+				Bitmap b = Bitmap.createScaledBitmap(black_piece, pieceSize, pieceSize, false);
 				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
 			}
 		}
