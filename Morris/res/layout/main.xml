@@ -25,7 +25,11 @@
         android:text="Help"
         android:layout_below="@id/menu_button_joingame"
     />
-  	
-  
+    
+        <Button
+            android:id="@+id/menu_button_show_board"
+            style="@style/button_style_menu"
+            android:layout_below="@id/menu_button_help"
+            android:text="Show board" />
   		
 </RelativeLayout>

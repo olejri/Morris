@@ -22,7 +22,6 @@ public class PlayGameActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.play_game_layout);
 		
-		
 		GameHandler.setMorrisGame(new Game());
 		GameHandler.getMorrisGame().initPlayers();
 

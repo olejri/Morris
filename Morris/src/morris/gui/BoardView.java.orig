@@ -55,6 +55,7 @@ public class BoardView extends View {
 
 	public BoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+<<<<<<< HEAD
 		init();
 	}
 	
@@ -66,6 +67,9 @@ public class BoardView extends View {
 		black_piece_selected = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_black_selected);
 		white_piece_remove = BitmapFactory.decodeResource(getResources(), morris.game.R.drawable.piece_white_remove);
 	}
+=======
+	}	
+>>>>>>> 4a7008aea3f1cc4c16397a198900a602104a14b7
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -98,17 +102,7 @@ public class BoardView extends View {
 		return true;
 	}
 	
-	public void highlightPoints(Canvas c, Paint p){
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
-		for(int i=0; i<highlights.size(); i++){
-			for(int j=0; j<pointList.size(); j++){
-				if(highlights.get(i).getId() == pointList.get(j).getId()){
-					pointList.get(j).highLight(c, p);
-				}
-			}
-		}
-	}
-	
+<<<<<<< HEAD
 	private Point getPressedPoint(float x, float y){
 		for(Point p : pointList){
 			if(p.getX()-x>-50 && p.getX()-x<50){
@@ -133,6 +127,18 @@ public class BoardView extends View {
 		}
 	}
 	
+=======
+	public void highlightPoints(Canvas c, Paint p){
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
+		for(int i=0; i<highlights.size(); i++){
+			for(int j=0; j<pointList.size(); j++){
+				if(highlights.get(i).getId() == pointList.get(j).getId()){
+					pointList.get(j).highLight(c, p);
+				}
+			}
+		}
+	}
+>>>>>>> 4a7008aea3f1cc4c16397a198900a602104a14b7
 
 	private void drawBoard(Canvas canvas) {
 		// board calc
@@ -164,22 +170,33 @@ public class BoardView extends View {
 		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
+<<<<<<< HEAD
+
+		for (Point point : pointList) {
+=======
 		
 		/*
 		for (Point point : pointList){
+>>>>>>> 4a7008aea3f1cc4c16397a198900a602104a14b7
 			l.Out(point.toString());
-			if (point.getId() == 13){
+			if (point.getId() == 13) {
 				p.setStyle(Style.STROKE);
 				p.setColor(Color.GREEN);
 				p.setStrokeWidth(3);
 				point.highLight(canvas, p);
 			}
+<<<<<<< HEAD
+
+		}
+
+=======
 			
 		}*/
 		p.setStyle(Style.STROKE);
 		p.setColor(Color.GREEN);
 		p.setStrokeWidth(3);
 		highlightPoints(canvas, p);
+>>>>>>> 4a7008aea3f1cc4c16397a198900a602104a14b7
 	}
 
 	private void drawRect(float xLeft, float yTop, float xRight, float yBottom,
@@ -236,9 +253,15 @@ public class BoardView extends View {
 		teller = 18;
 		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
+<<<<<<< HEAD
+			pointList.add(new Point(teller, x, yTop + thirdRect));
+			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
+			pointList.add(new Point(teller + 3, xRight - thirdRect + x, midY));
+=======
 			pointList.add(new Point(teller, x, midY));
 			drawCircle(xRight-thirdRect-xLeft+x, midY, canvas, p);
 			pointList.add(new Point(teller+3, xRight-thirdRect-xLeft+x, midY));
+>>>>>>> 4a7008aea3f1cc4c16397a198900a602104a14b7
 			teller++;
 		}
 	}
