@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
+import morris.models.Board;
 import morris.models.Player;
 import morris.models.Slot;
 
@@ -11,7 +12,8 @@ public class FlyingState implements State, StateListener{
 
 	// Copied and pasted from PlacementState
 	@Override
-	public ArrayList<Slot> getHighlightList(Slot[][] slots, Player currentPlayer) {
+	public ArrayList<Slot> getHighlightList(Board board, int id, Player currentPlayer) {
+		Slot[][] slots = board.getSlots();
 		ArrayList<Slot> highlights = new ArrayList<Slot>();
 		for(int i=0; i<slots.length; i++){
 			for(int j=0; j<slots.length; j++){
@@ -20,5 +22,4 @@ public class FlyingState implements State, StateListener{
 		}
 		return highlights;
 	}
-
 }

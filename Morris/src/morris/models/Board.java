@@ -18,6 +18,16 @@ public class Board {
 			}
 		}
 		assignSlotIdentifiers();
+		assignSlotDomains();
+	}
+	
+	public Slot getSlotByID(int id){
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<columns; j++){
+				if(slots[i][j].getId() == id) return slots[i][j];
+			}
+		}
+		return null;
 	}
 	
 	public Slot[][] getSlots(){
@@ -64,6 +74,48 @@ public class Board {
 			if(column == 0 || column == 3 || column == 6) return true;
 		} 
 		return false;		
+	}
+	
+	private void assignSlotDomains(){
+		if(slots != null){
+			// First row (0-2)
+			slots[0][0].setDomain(new int[] {1,18});
+			slots[0][3].setDomain(new int[] {0,2,7});
+			slots[0][6].setDomain(new int[] {1,23});
+
+			// Second row (6-8)
+			slots[1][1].setDomain(new int[] {19,7});
+			slots[1][3].setDomain(new int[] {1,6,8,13});
+			slots[1][5].setDomain(new int[] {7,22});			
+
+			// Third row (12-14)
+			slots[2][2].setDomain(new int[] {13,20});
+			slots[2][3].setDomain(new int[] {12,7,14});
+			slots[2][4].setDomain(new int[] {13,21});
+			
+			// Fourth row (18-23)
+			slots[3][0].setDomain(new int[] {0,3,19});
+			slots[3][1].setDomain(new int[] {18,6,20,9});
+			slots[3][2].setDomain(new int[] {19,12,15});
+			slots[3][4].setDomain(new int[] {14,22,17});
+			slots[3][5].setDomain(new int[] {21,8,23,11});
+			slots[3][6].setDomain(new int[] {22,2,5});
+			
+			// Fifth row (15-17)
+			slots[4][2].setDomain(new int[] {20,16});
+			slots[4][3].setDomain(new int[] {15,10,17});
+			slots[4][4].setDomain(new int[] {16,21});
+			
+			// Sixth row (9-11)
+			slots[5][1].setDomain(new int[] {19,10});
+			slots[5][3].setDomain(new int[] {9,16,4,11});
+			slots[5][5].setDomain(new int[] {10,22});
+			
+			// Seventh row (3-5)
+			slots[6][0].setDomain(new int[] {18,4});
+			slots[6][3].setDomain(new int[] {3,10,5});
+			slots[6][6].setDomain(new int[] {4,23});
+		}
 	}
 	
 	private void assignSlotIdentifiers(){

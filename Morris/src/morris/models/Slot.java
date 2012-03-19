@@ -1,5 +1,7 @@
 package morris.models;
 
+import java.util.ArrayList;
+
 public class Slot {
 	
 	/*
@@ -10,10 +12,21 @@ public class Slot {
 	private boolean taken;
 	private boolean enabled;
 	private int id = -1;
+	private ArrayList<Integer> domain = new ArrayList<Integer>();
+	private Piece piece;
 	
 	public Slot(){
+		piece = null;
 		enabled = false;
 		taken = false;
+	}
+	
+	public void setPiece(Piece piece){
+		this.piece = piece;
+	}
+	
+	public Piece getPiece(){
+		return piece;
 	}
 	
 	public int getId(){
@@ -38,5 +51,16 @@ public class Slot {
 	
 	public void setTaken(boolean bool){
 		this.taken = bool;
+	}
+	
+	public void setDomain(int[] domain){
+		this.domain.clear();
+		for(int i=0; i<domain.length; i++){
+			this.domain.add(domain[i]);
+		}
+	}
+	
+	public ArrayList<Integer> getDomain(){
+		return domain;
 	}
 }

@@ -41,7 +41,7 @@ public class Game {
 	}
 	
 	public ArrayList<Slot> getHighlightList() {
-		return this.state.getHighlightList(board.getSlots(), new Player("White","Kjell Barry")); // aktuell spiller benyttes
+		return this.state.getHighlightList(board, -1, new Player("Black", "Kjell Barry")); // aktuell spiller benyttes
 	}
 	
 	public void setState(State state){
