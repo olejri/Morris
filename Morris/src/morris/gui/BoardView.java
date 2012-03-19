@@ -34,6 +34,8 @@ public class BoardView extends View {
 	private float calcValue;
 	private float secondRect;
 	private float thirdRect;
+	private float xRightOld;
+	private float yBottomOld;
 	private int pieceSize;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
@@ -84,6 +86,8 @@ public class BoardView extends View {
 		xLeft = calc;
 		yTop = calc;
 		pieceSize = (int) (calc*2);
+		xRightOld = xRight;
+		yBottomOld = yBottom;
 		System.out.println("xNew: " + xNew + " yNew :" + yNew);
 
 
@@ -166,9 +170,15 @@ public class BoardView extends View {
 		canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
 	}
 
-
+	private void resetVar(){
+		xRight = xRightOld;
+		yBottom = yBottomOld;
+		
+	}
 	private void drawBoard(Canvas canvas) {
 		// board calc
+		
+		resetVar();
 		boardW = xRight - xLeft + yTop;
 		calcValue = boardW / 6;
 		secondRect = calcValue;
