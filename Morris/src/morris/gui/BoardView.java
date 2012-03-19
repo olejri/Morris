@@ -24,8 +24,8 @@ import android.view.View;
 
 public class BoardView extends View {
 
-	private float xLeft = 10;
-	private float yTop = 10;
+	private float xLeft = 20;
+	private float yTop = 20;
 	private float xRight;
 	private float yBottom;
 	private float viewWidth;
@@ -36,6 +36,7 @@ public class BoardView extends View {
 	private float calcValue;
 	private float secondRect;
 	private float thirdRect;
+	private int test2;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
 	
@@ -82,6 +83,11 @@ public class BoardView extends View {
 		viewHeight = yNew;
 		xRight = viewWidth;
 		yBottom = viewWidth;
+		float test = xRight/30;
+		xLeft = test;
+		yTop = test;
+		test2 = (int) (test*2);
+		
 	}
 
 	@Override
@@ -124,10 +130,10 @@ public class BoardView extends View {
 		for (Point point : pointList) {
 			l.Out(point.toString());
 			if (point.getId() % 2 == 0) {
-				Bitmap b = Bitmap.createScaledBitmap(white_piece, 50, 50, false);
+				Bitmap b = Bitmap.createScaledBitmap(white_piece, test2, test2, false);
 				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
 			}else{
-				Bitmap b = Bitmap.createScaledBitmap(black_piece, 50, 50, false);
+				Bitmap b = Bitmap.createScaledBitmap(black_piece, test2, test2, false);
 				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
 			}
 		}
