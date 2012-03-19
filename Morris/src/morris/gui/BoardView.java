@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import morris.game.GameHandler;
 import morris.help.LogHelp;
+import morris.models.Piece;
 import morris.models.Slot;
 
 import android.R;
@@ -87,6 +88,7 @@ public class BoardView extends View {
 		xLeft = test;
 		yTop = test;
 		test2 = (int) (test*2);
+		System.out.println("xNew: " + xNew + " yNew :" + yNew);
 		
 	}
 
@@ -96,11 +98,10 @@ public class BoardView extends View {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-			Point pressed = getPressedPoint(event.getX(), event.getY());
-			if(pressed!=null){
-				System.out.println("Pressed Point: " + pressed.getId());
-			}
+			Point p = getPressedPoint(event.getX(), event.getY());
+			GameHandler.getMorrisGame().getPlayer1().getPieces().get(1).setPosition(p.getId());
 		}
+		postInvalidate();
 		return true;
 	}
 	
@@ -127,16 +128,32 @@ public class BoardView extends View {
 	}
 	
 	private void drawPieces(Canvas canvas){
-		for (Point point : pointList) {
-			l.Out(point.toString());
-			if (point.getId() % 2 == 0) {
-				Bitmap b = Bitmap.createScaledBitmap(white_piece, test2, test2, false);
-				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
-			}else{
-				Bitmap b = Bitmap.createScaledBitmap(black_piece, test2, test2, false);
-				canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
+		for(Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()){
+			if(p.getPosition()>0){
+				Point position = getPointFromId(p.getPosition());
+				if(position!=null){
+					drawWhiteImage(canvas, position);
+				}
 			}
 		}
+	}
+	
+	private Point getPointFromId(int id){
+		for(Point p : pointList){
+			if(id==p.getId()){
+				return p;
+			}
+		}
+		return null;
+	}
+	/**
+	 * Draw white piece image on current point position
+	 * @param canvas
+	 * @param point
+	 */
+	private void drawWhiteImage(Canvas canvas, Point point){
+		Bitmap b = Bitmap.createScaledBitmap(white_piece, test2, test2, false);
+		canvas.drawBitmap(b, point.getX()-(b.getWidth()/2), point.getY()-(b.getHeight()/2), null);
 	}
 	
 

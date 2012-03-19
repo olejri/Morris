@@ -2,6 +2,7 @@ package morris.gui;
 
 import morris.game.GameHandler;
 import morris.help.Constant;
+import morris.models.Piece;
 import morris.models.Player;
 import android.content.Context;
 import android.util.Log;
@@ -22,11 +23,17 @@ public class PieceAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() { // lagt til getInstance()
+		int counter = 0;
 		if(GameHandler.getMorrisGame().getPlayer1().getColor().equals(color)){
-			return GameHandler.getMorrisGame().getPlayer1().getPieces().size();
+			for(Piece p : GameHandler.getMorrisGame().getPlayer1().getPieces()){
+				if(p.getPosition()==-1)counter++;
+			}
+		return counter;	
 		}else if(GameHandler.getMorrisGame().getPlayer2().getColor().equals(color)){
-			Log.i("GameHandler", "Size: " + GameHandler.getMorrisGame().getPlayer1().getPieces().size());
-			return GameHandler.getMorrisGame().getPlayer2().getPieces().size();
+			for(Piece p : GameHandler.getMorrisGame().getPlayer2().getPieces()){
+				if(p.getPosition()==-1)counter++;
+			}
+		return counter;	
 		}else{
 			return 0;
 		}

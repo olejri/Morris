@@ -7,6 +7,8 @@ public class Piece {
 	private int currentRow;
 	private int currentColumn;
 	
+	private int atPosition = -1;
+	
 	public Piece(){
 		
 	}
@@ -16,8 +18,16 @@ public class Piece {
 		currentColumn = column;
 	}
 	
+	public int getPosition(){
+		return atPosition;
+	}
+	
 	public int getCurrentRow(){
 		return currentRow;
+	}
+	
+	public void setPosition(int atPosition){
+		this.atPosition = atPosition;
 	}
 	
 	public int getCurrentColumn(){
