@@ -1,27 +1,27 @@
 package morris.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import morris.help.Constant;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
-import morris.states.MoveState;
-import morris.states.RemovalState;
+import morris.states.PlacementState;
 
 public class Game {
 
 	private List<StateListener> stateListeners = new CopyOnWriteArrayList<StateListener>();
 	private State state;
+	private Board board = new Board();
 	public String gameType = "nine_mens_morris";
-	
 	public Player player1;
 	public Player player2;
 	
+	// Satt til placementstate midlertidig. Logisk Œ starte der uansett.
 	public Game(){
-		setState(new MoveState());
+		setState(new PlacementState());
 		//gameType = Constant.NINE_MENS_MORRIS;
-		
 	}
 	
 	public void initPlayers(){
@@ -40,14 +40,20 @@ public class Game {
 		return gameType;
 	}
 	
-	public void listSelectablePieces() {
-		if(state != null){
-			this.state.listSelectablePieces();
-		}
+	public ArrayList<Slot> getHighlightList() {
+		return this.state.getHighlightList(board.getSlots(), new Player("White","Kjell Barry")); // aktuell spiller benyttes
 	}
 	
 	public void setState(State state){
 		this.state = state;
+	}
+	
+	public Board getBoard(){
+		return board;
+	}
+	
+	public void reserveBoardSlot(int id){
+		board.reserveSlot(id);
 	}
 	
 	/**

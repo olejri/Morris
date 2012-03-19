@@ -2,7 +2,9 @@ package morris.gui;
 
 import java.util.ArrayList;
 
+import morris.game.GameHandler;
 import morris.help.LogHelp;
+import morris.models.Slot;
 
 import android.R;
 import android.content.Context;
@@ -96,6 +98,17 @@ public class BoardView extends View {
 		return true;
 	}
 	
+	public void highlightPoints(Canvas c, Paint p){
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
+		for(int i=0; i<highlights.size(); i++){
+			for(int j=0; j<pointList.size(); j++){
+				if(highlights.get(i).getId() == pointList.get(j).getId()){
+					pointList.get(j).highLight(c, p);
+				}
+			}
+		}
+	}
+	
 	private Point getPressedPoint(float x, float y){
 		for(Point p : pointList){
 			if(p.getX()-x>-50 && p.getX()-x<50){
@@ -151,18 +164,22 @@ public class BoardView extends View {
 		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
-
-		for (Point point : pointList) {
+		
+		/*
+		for (Point point : pointList){
 			l.Out(point.toString());
-			if (point.getId() == 13) {
+			if (point.getId() == 13){
 				p.setStyle(Style.STROKE);
 				p.setColor(Color.GREEN);
 				p.setStrokeWidth(3);
 				point.highLight(canvas, p);
 			}
-
-		}
-
+			
+		}*/
+		p.setStyle(Style.STROKE);
+		p.setColor(Color.GREEN);
+		p.setStrokeWidth(3);
+		highlightPoints(canvas, p);
 	}
 
 	private void drawRect(float xLeft, float yTop, float xRight, float yBottom,
@@ -219,9 +236,9 @@ public class BoardView extends View {
 		teller = 18;
 		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
-			pointList.add(new Point(teller, x, yTop + thirdRect));
-			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
-			pointList.add(new Point(teller + 3, xRight - thirdRect + x, midY));
+			pointList.add(new Point(teller, x, midY));
+			drawCircle(xRight-thirdRect-xLeft+x, midY, canvas, p);
+			pointList.add(new Point(teller+3, xRight-thirdRect-xLeft+x, midY));
 			teller++;
 		}
 	}

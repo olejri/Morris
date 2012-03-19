@@ -1,16 +1,18 @@
 package morris.states;
 
+import java.util.ArrayList;
+
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
+import morris.models.Player;
+import morris.models.Slot;
 
 public class RemovalState implements StateListener, State {
 
 	@Override
-	public void listSelectablePieces() {
-		// TODO
-		// Lists all pieces that are flagged as removable.
-		System.out.println("All selectable pieces listed from RemovalState.");
-		
+	public ArrayList<Slot> getHighlightList(Slot[][] slots, Player currentPlayer) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
