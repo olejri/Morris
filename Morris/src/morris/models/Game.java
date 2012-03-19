@@ -5,23 +5,29 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import morris.help.Constant;
+import morris.interfaces.GameListener;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.states.PlacementState;
+import morris.states.RemovalState;
 
 public class Game {
 
 	private List<StateListener> stateListeners = new CopyOnWriteArrayList<StateListener>();
+	private List<GameListener> gameListeners = new CopyOnWriteArrayList<GameListener>();
 	private State state;
-	private Board board = new Board();
-	public String gameType = "nine_mens_morris";
+	private Board board;
+	public String gameType;
+	
 	public Player player1;
 	public Player player2;
 	
 	// Satt til placementstate midlertidig. Logisk Œ starte der uansett.
 	public Game(){
 		setState(new PlacementState());
-		//gameType = Constant.NINE_MENS_MORRIS;
+		board = new Board();
+		gameType = Constant.NINE_MENS_MORRIS;
+		
 	}
 	
 	public void initPlayers(){
@@ -74,16 +80,12 @@ public class Game {
     /**
      * FIRE LISTENERS
      */
-    
-    
-    /**
-     * Eksempel pï¿½ ï¿½ kjï¿½re en metode
-     * 
-    private void firePieceMoved(Piece piece) {
-    	for(GameListener l : gamelisteners) {
-    		l.pieceMoved(piece);
-    	}    	
+     
+    private void firePiecePlaced(Player player,Piece piece) {
+    	for(GameListener l : gameListeners){
+    		l.playerPlacedPiece(player, piece);
+    	}
     }
-    */
+   
 	
 }
