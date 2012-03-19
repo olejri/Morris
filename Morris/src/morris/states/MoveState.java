@@ -26,9 +26,10 @@ public class MoveState implements StateListener, State {
 		//Slot[][] slots = board.getSlots();
 		Slot selected = board.getSlotByID(id);
 		ArrayList<Integer> freeSlots = new ArrayList<Integer>();
-		for(int i=0; i<selected.getDomain().size(); i++){
-			if(!board.getSlotByID(selected.getDomain().get(i)).isTaken()){
-				freeSlots.add(selected.getDomain().get(i));
+		ArrayList<Integer> temp = selected.getDomain();
+		for(int i=0; i<temp.size(); i++){
+			if(!board.getSlotByID(temp.get(i)).isTaken()){
+				freeSlots.add(temp.get(i));
 			}
 		}
 		return freeSlots;	

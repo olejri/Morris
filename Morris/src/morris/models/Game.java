@@ -8,6 +8,7 @@ import morris.help.Constant;
 import morris.interfaces.GameListener;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
+import morris.states.MoveState;
 import morris.states.PlacementState;
 import morris.states.RemovalState;
 
@@ -24,7 +25,7 @@ public class Game {
 	
 	// Satt til placementstate midlertidig. Logisk Œ starte der uansett.
 	public Game(){
-		setState(new PlacementState());
+		setState(new MoveState());
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
 		
@@ -47,7 +48,8 @@ public class Game {
 	}
 	
 	public ArrayList<Slot> getHighlightList() {
-		return this.state.getHighlightList(board, -1, new Player("Black", "Kjell Barry")); // aktuell spiller benyttes
+		//getBoard().getSlotByID(11).setTaken(true);
+		return this.state.getHighlightList(board, 10, new Player("Black", "Kjell Barry")); // aktuell spiller benyttes
 	}
 	
 	public void setState(State state){
