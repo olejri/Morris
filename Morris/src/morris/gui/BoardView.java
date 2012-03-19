@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import morris.game.GameHandler;
 import morris.help.LogHelp;
 import morris.models.Piece;
+import morris.models.Player;
 import morris.models.Slot;
+import morris.states.PlacementState;
 import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -98,6 +100,7 @@ public class BoardView extends View {
 		System.out.println("xNew: " + xNew + " yNew :" + yNew);
 
 	}
+
 	/**
 	 * Player pressed the player board
 	 */
@@ -107,18 +110,33 @@ public class BoardView extends View {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-			Point p = getPressedPoint(event.getX(), event.getY());
-			if(p!=null){
-			GameHandler.getMorrisGame().getPlayer1().getPieces().get(1).setPosition(p.getId());
+			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
+
+				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {
+					System.out.println("Instanse of match");
+					Point p = getPressedPoint(event.getX(), event.getY());
+					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
+						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
+						if (piece.getPosition() < 0) {
+							piece.setPosition(p.getId());
+							GameHandler.getInstance().getMorrisGame().playerPlacedPiece(GameHandler.getInstance().getMorrisGame().getPlayer1(),piece);
+							System.out.println("ID set");
+							break;
+						}
+					}
+
+				}
 			}
+			postInvalidate();
 		}
-		//Update screen
-		postInvalidate();
+		// Update screen
+
 		return true;
 	}
 
 	public void highlightPoints(Canvas c, Paint p) {
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList();
+		ArrayList<Slot> highlights = GameHandler.getMorrisGame()
+				.getHighlightList();
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
 				if (highlights.get(i).getId() == pointList.get(j).getId()) {
@@ -127,8 +145,10 @@ public class BoardView extends View {
 			}
 		}
 	}
+
 	/**
 	 * Get Point the player has pressed
+	 * 
 	 * @param x
 	 * @param y
 	 * @return
@@ -137,29 +157,36 @@ public class BoardView extends View {
 		for (Point p : pointList) {
 			if (p.getX() - x > -50 && p.getX() - x < 50) {
 				if (p.getY() - y > -50 && p.getY() - y < 50) {
+					System.out.println("POINT FOUND: " + p.getId() + " X: "
+							+ p.getX());
+
 					return p;
 				}
 			}
 		}
 		return null;
 	}
+
 	/**
 	 * Draw all pieces on the board
+	 * 
 	 * @param canvas
 	 */
 	private void drawPieces(Canvas canvas) {
-		//Draw player 1 pieces
-		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()) {
-			if (p.getPosition() > 0) {
+		// Draw player 1 pieces
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1()
+				.getPieces()) {
+			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
 					drawWhiteImage(canvas, position);
 				}
 			}
 		}
-		//Draw player 2 pieces
-		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2().getPieces()) {
-			if (p.getPosition() > 0) {
+		// Draw player 2 pieces
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2()
+				.getPieces()) {
+			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
 					drawWhiteImage(canvas, position);
@@ -168,8 +195,10 @@ public class BoardView extends View {
 		}
 
 	}
+
 	/**
 	 * Return Point from ID
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -190,10 +219,14 @@ public class BoardView extends View {
 	 * @param point
 	 */
 	private void drawWhiteImage(Canvas canvas, Point point) {
-		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,false);
-		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY() - (b.getHeight() / 2), null);
+		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,
+				false);
+		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()
+				- (b.getHeight() / 2), null);
+		System.out.println("PointID: " + point.getId() + " x: " + point.getX()
+				+ " y: " + point.getY());
 	}
-	
+
 	private void resetVar() {
 		xRight = xRightOld;
 		yBottom = yBottomOld;
@@ -231,7 +264,6 @@ public class BoardView extends View {
 		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
 		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
-		
 
 		/*
 		 * for (Point point : pointList){ l.Out(point.toString()); if
@@ -276,9 +308,9 @@ public class BoardView extends View {
 		for (float x = xLeft; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop, canvas, p);
 			drawCircle(x, yBottom, canvas, p);
-			if (makePointList){
-			pointList.add(new Point(teller, x, yTop));
-			pointList.add(new Point(teller + 3, x, yBottom));
+			if (makePointList) {
+				pointList.add(new Point(teller, x, yTop));
+				pointList.add(new Point(teller + 3, x, yBottom));
 			}
 			teller++;
 		}
@@ -287,9 +319,9 @@ public class BoardView extends View {
 		for (float x = xLeft + secondRect; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop + secondRect, canvas, p);
 			drawCircle(x, yBottom - secondRect, canvas, p);
-			if (makePointList){
-			pointList.add(new Point(teller, x, yTop + secondRect));
-			pointList.add(new Point(teller + 3, x, yBottom - secondRect));
+			if (makePointList) {
+				pointList.add(new Point(teller, x, yTop + secondRect));
+				pointList.add(new Point(teller + 3, x, yBottom - secondRect));
 			}
 			teller++;
 		}
@@ -298,9 +330,9 @@ public class BoardView extends View {
 		for (float x = xLeft + thirdRect; x <= xRight - thirdRect; x = x + midX) {
 			drawCircle(x, yTop + thirdRect, canvas, p);
 			drawCircle(x, yBottom - thirdRect, canvas, p);
-			if (makePointList){
-			pointList.add(new Point(teller, x, yTop + thirdRect));
-			pointList.add(new Point(teller + 3, x, yBottom - thirdRect));
+			if (makePointList) {
+				pointList.add(new Point(teller, x, yTop + thirdRect));
+				pointList.add(new Point(teller + 3, x, yBottom - thirdRect));
 			}
 			teller++;
 		}
@@ -308,9 +340,10 @@ public class BoardView extends View {
 		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
 			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
-			if (makePointList){
-			pointList.add(new Point(teller, x, midY));
-			pointList.add(new Point(teller + 3, xRight - thirdRect - xLeft + x, midY));
+			if (makePointList) {
+				pointList.add(new Point(teller, x, midY));
+				pointList.add(new Point(teller + 3, xRight - thirdRect - xLeft
+						+ x, midY));
 			}
 			teller++;
 		}

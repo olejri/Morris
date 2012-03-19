@@ -24,19 +24,23 @@ public class PieceAdapter extends BaseAdapter {
 	@Override
 	public int getCount() { // lagt til getInstance()
 		int counter = 0;
+		
 		if(GameHandler.getMorrisGame().getPlayer1().getColor().equals(color)){
 			for(Piece p : GameHandler.getMorrisGame().getPlayer1().getPieces()){
-				if(p.getPosition()==-1)counter++;
+				if(p.getPosition()<0)counter++;
 			}
+			System.out.println("getCount: " + counter);
 		return counter;	
 		}else if(GameHandler.getMorrisGame().getPlayer2().getColor().equals(color)){
 			for(Piece p : GameHandler.getMorrisGame().getPlayer2().getPieces()){
-				if(p.getPosition()==-1)counter++;
+				if(p.getPosition()<0)counter++;
 			}
+			System.out.println("getCount: " + counter);
 		return counter;	
 		}else{
 			return 0;
 		}
+		
 	}
 
 	@Override
