@@ -182,7 +182,7 @@ public class BoardView extends View {
 			drawCircle(x, midY, canvas, p);
 			pointList.add(new Point(teller, x, midY));
 			drawCircle(xRight-thirdRect-xLeft+x, midY, canvas, p);
-			pointList.add(new Point(teller+3, xRight-thirdRect+x, midY));
+			pointList.add(new Point(teller+3, xRight-thirdRect-xLeft+x, midY));
 			teller++;
 		}
 	}
