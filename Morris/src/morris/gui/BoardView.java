@@ -3,7 +3,9 @@ package morris.gui;
 
 import java.util.ArrayList;
 
+import morris.game.GameHandler;
 import morris.help.LogHelp;
+import morris.models.Slot;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -46,9 +48,7 @@ public class BoardView extends View {
 
 	public BoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-	}
-
-
+	}	
 
 	@Override
 	protected void onDraw(Canvas canvas) {

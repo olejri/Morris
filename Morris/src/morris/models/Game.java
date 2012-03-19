@@ -1,29 +1,38 @@
 package morris.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
-import morris.states.MoveState;
+import morris.states.PlacementState;
 
 public class Game {
 
 	private List<StateListener> stateListeners = new CopyOnWriteArrayList<StateListener>();
 	private State state;
+	private Board board = new Board();
 	
+	// Satt til placementstate midlertidig. Logisk Œ starte der uansett.
 	public Game(){
-		setState(new MoveState());
+		setState(new PlacementState());
 	}
 	
-	public void listSelectablePieces() {
-		if(state != null){
-			this.state.highlightPossibilities();
-		}
+	public ArrayList<Slot> getHighlightList() {
+		return this.state.getHighlightList(board.getSlots(), new Player("Kjell Barry", 9)); // aktuell spiller benyttes
 	}
 	
 	public void setState(State state){
 		this.state = state;
+	}
+	
+	public Board getBoard(){
+		return board;
+	}
+	
+	public void reserveBoardSlot(int id){
+		board.reserveSlot(id);
 	}
 	
 	/**
