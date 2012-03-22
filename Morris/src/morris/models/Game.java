@@ -48,6 +48,10 @@ public class Game {
 		return selectable;
 	}
 	
+	public void move(int from, int to){
+		
+	}
+	
 	public State getState(){
 		return state;
 	}

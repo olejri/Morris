@@ -27,12 +27,20 @@ public class SelectState implements State {
 			ArrayList<Integer> domain = board.getSlotByID(p.getPosition()).getDomain();
 			System.out.println("ID:"+p.getPosition()+" Domain size: "+domain.size());
 			for(Integer i : domain){
+				updateSelectablePieces(p, board, i);
 				if(!board.getSlotByID(i).isTaken() && !highlights.contains(board.getSlotByID(p.getPosition()))) highlights.add(board.getSlotByID(p.getPosition()));
 			}	
 		}
 		return highlights;
 	}
-	
+
+	private void updateSelectablePieces(Piece p, Board board, int id){
+		if(!board.getSlotByID(id).isTaken()){
+			p.setSelectable(true);
+		} else {
+			p.setSelectable(false);
+		}
+	}
 
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
