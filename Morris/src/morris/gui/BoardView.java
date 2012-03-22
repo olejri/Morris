@@ -102,8 +102,8 @@ public class BoardView extends View {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
 				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {					
-					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
-						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
+					for (int i = 0; i < GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces().size(); i++) {
+						Piece piece = GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
 							piece.setPosition(p.getId());
 							GameHandler.getInstance().getMorrisGame().playerPlacedPiece(GameHandler.getInstance().getMorrisGame().getPlayer1(),piece);
