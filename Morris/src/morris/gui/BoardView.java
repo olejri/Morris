@@ -114,11 +114,16 @@ public class BoardView extends View {
 						}
 					}
 					
-				// STEINAR 19.03	
+				// STEINAR 19.03
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
-					//if(!GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).isTaken())
-					selectedPieceID = p.getId();
-					GameHandler.getInstance().getMorrisGame().setState(new MoveState());
+					//if(GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).isTaken()){
+					ArrayList<Piece> pieces = GameHandler.getInstance().getMorrisGame().getSelectablePieces(GameHandler.getInstance().getMorrisGame().getPlayer1());
+					for(Piece piece : pieces){
+						if(piece.getPosition() == p.getId()){
+							selectedPieceID = p.getId();
+							GameHandler.getInstance().getMorrisGame().setState(new MoveState());
+						}
+					}	
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){
 					if(selectedPieceID == p.getId()){
 						selectedPieceID = -1;
