@@ -46,7 +46,6 @@ public class BoardView extends View {
 	private float yBottomOld;
 	private int pieceSize;
 	private boolean makePointList = true;
-	private int selectedPieceID = -1;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
 
@@ -150,7 +149,12 @@ public class BoardView extends View {
 	public void highlightPoints(Canvas c, Paint p) {
 		// GET PLAYER ONE FOR TESTING PURPOSES
 		// STEINAR 19.03
-		ArrayList<Slot> highlights = GameHandler.getMorrisGame().getHighlightList(selectedPieceID, GameHandler.getInstance().getMorrisGame().getPlayer1());  
+		ArrayList<Slot> highlights = new ArrayList<Slot>();
+		if(GameHandler.getInstance().getMorrisGame().getPlayer1().getSelectedPiece() != null){
+			highlights = GameHandler.getMorrisGame().getHighlightList(GameHandler.getInstance().getMorrisGame().getPlayer1().getSelectedPiece().getPosition(), GameHandler.getInstance().getMorrisGame().getPlayer1());  
+		} else {
+			highlights = GameHandler.getMorrisGame().getHighlightList(-1, GameHandler.getInstance().getMorrisGame().getPlayer1());  
+		}
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
 				if (highlights.get(i).getId() == pointList.get(j).getId()) {
