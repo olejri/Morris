@@ -8,6 +8,7 @@ import morris.models.Player;
 import morris.models.Slot;
 import morris.states.MoveState;
 import morris.states.PlacementState;
+import morris.states.RemovalState;
 import morris.states.SelectState;
 import android.R;
 import android.content.Context;
@@ -137,6 +138,8 @@ public class BoardView extends View {
 						selectedPieceID = -1;
 						GameHandler.getInstance().getMorrisGame().setState(new SelectState());
 					}
+				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof RemovalState){
+					
 				}
 			}
 			postInvalidate();
