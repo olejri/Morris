@@ -2,6 +2,7 @@ package morris.models;
 
 import java.util.ArrayList;
 
+import android.R;
 import android.util.Log;
 
 import morris.game.GameHandler;

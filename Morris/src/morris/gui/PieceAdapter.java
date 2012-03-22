@@ -1,6 +1,7 @@
 package morris.gui;
 
 import morris.game.GameHandler;
+import morris.game.R;
 import morris.help.Constant;
 import morris.models.Piece;
 import morris.models.Player;
@@ -16,36 +17,32 @@ public class PieceAdapter extends BaseAdapter {
 	private Context context;
 	private String color;
 
-	public PieceAdapter(Context context,String color) {
+	public PieceAdapter(Context context, String color) {
 		this.context = context;
 		this.color = color;
 	}
 
 	@Override
 	public int getCount() { // lagt til getInstance()
+
 		int counter = 0;
-		
-		if(GameHandler.getMorrisGame().getPlayer1().getColor().equals(color)){
-			for(Piece p : GameHandler.getMorrisGame().getPlayer1().getPieces()){
-				if(p.getPosition()<0)counter++;
+		if (color.equals(Constant.WHITE)) {
+			for (Piece p : GameHandler.getMorrisGame().getPlayer1().getPieces()) {
+				if (p.getPosition() < 0)
+					counter++;
 			}
-			System.out.println("getCount: " + counter);
-		return counter;	
-		}else if(GameHandler.getMorrisGame().getPlayer2().getColor().equals(color)){
-			for(Piece p : GameHandler.getMorrisGame().getPlayer2().getPieces()){
-				if(p.getPosition()<0)counter++;
+		} else {
+			for (Piece p : GameHandler.getMorrisGame().getPlayer2().getPieces()) {
+				if (p.getPosition() < 0)
+					counter++;
 			}
-			System.out.println("getCount: " + counter);
-		return counter;	
-		}else{
-			return 0;
 		}
-		
+		return counter;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return null;
+		return position;
 	}
 
 	@Override
@@ -55,8 +52,9 @@ public class PieceAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		View v = convertView;
 		ImageView imageView;
-		if (convertView == null) {
+		if (v == null) {
 			imageView = new ImageView(context);
 			imageView.setLayoutParams(new GridView.LayoutParams(30, 30));
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -64,11 +62,10 @@ public class PieceAdapter extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-		if (color.equals(Constant.WHITE)) {
-			imageView.setImageResource(morris.game.R.drawable.piece_white);
-		}else{
-			imageView.setImageResource(morris.game.R.drawable.piece_black);
-		}
+		if(color.equals(Constant.WHITE))imageView.setBackgroundResource(R.drawable.piece_white);
+		else imageView.setBackgroundResource(R.drawable.piece_black);
+		
 		return imageView;
 	}
+
 }
