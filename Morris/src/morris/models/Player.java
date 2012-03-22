@@ -35,7 +35,7 @@ public class Player {
 	 */
 	public void initPieces(){
 		int pieces_number = 9;
-		if(GameHandler.getMorrisGame().getMorrisGameType().equals(Constant.TWELVE_MENS_MORRIS)){
+		if(GameHandler.getInstance().getMorrisGame().getMorrisGameType().equals(Constant.TWELVE_MENS_MORRIS)){
 			pieces_number = 12;
 		}
 		for(int i=0;i<pieces_number;i++){

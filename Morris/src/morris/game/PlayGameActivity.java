@@ -33,7 +33,7 @@ public class PlayGameActivity extends Activity implements GameListener {
 
 		GameHandler.setMorrisGame(new Game());
 		
-		GameHandler.getMorrisGame().initPlayers();
+		GameHandler.getInstance().getMorrisGame().initPlayers();
 		
 		GameHandler.getInstance().getMorrisGame().addGameListener(this);
 
@@ -63,8 +63,8 @@ public class PlayGameActivity extends Activity implements GameListener {
 	private void setScoreBoardNames() {
 		TextView player1 = (TextView) findViewById(R.id.player1_name);
 		TextView player2 = (TextView) findViewById(R.id.player2_name);
-		player1.setText(GameHandler.getMorrisGame().getPlayer1().getName());
-		player2.setText(GameHandler.getMorrisGame().getPlayer2().getName());
+		player1.setText(GameHandler.getInstance().getMorrisGame().getPlayer1().getName());
+		player2.setText(GameHandler.getInstance().getMorrisGame().getPlayer2().getName());
 	}
 
 	/**
