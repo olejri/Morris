@@ -23,9 +23,10 @@ public class Constant {
 	/**
 	 * Selected states on pieces
 	 */
+	public static final int NORMAL = 3;
 	public static final int SELECTED = 1;
-	public static final int NORMAL = 2;
-	public static final int REMOVABLE = 3;
+	public static final int SELECTABLE = 2;
+	public static final int REMOVABLE = 4;
 	
 	
 

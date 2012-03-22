@@ -51,10 +51,15 @@ public class SelectState implements State {
 				}else{
 					p.updatePieceResource(Constant.NORMAL);
 				}
-				
 			}
 		}
 		
+	}
+	
+	private boolean isPieceSelectable(Player player,int positionID){
+		
+		
+		return false;
 	}
 
 
