@@ -115,6 +115,7 @@ public class BoardView extends View {
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
+				if(p!=null){
 				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {					
 					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
 						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
@@ -140,6 +141,7 @@ public class BoardView extends View {
 				}
 			}
 			postInvalidate();
+		}
 		}
 		// Update screen
 
