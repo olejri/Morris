@@ -45,6 +45,7 @@ public class GameHandler {
 	}
 
 	private GameHandler() {
+		clearGame();
 	}
 
 	/**
@@ -175,15 +176,12 @@ public class GameHandler {
 
 	private void startGameWithChosenFee(int fee) {
 		System.out.println("startGameWithChosenFee() started");
-	//	skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
+		skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
 		/*
 		 * GameHandler.getInstance().clearGame();
-		 * GameHandler.getInstance().setWaiting_for_opponent(true); Context lol
-		 * = GameHandler.getInstance().getMenuContext();
-		 * System.out.println(""+fee); System.out.println(""+lol);
+		 * GameHandler.getInstance().setWaiting_for_opponent(true);
 		 */
-		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(),
-				PlayGameActivity.class);
+		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(), PlayGameActivity.class);
 		GameHandler.getInstance().getMenuContext().startActivity(intent);
 	}
 
