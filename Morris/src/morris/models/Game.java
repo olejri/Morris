@@ -39,6 +39,15 @@ public class Game {
 		player2 = new Player(Constant.BLACK,"Steinar");
 	}
 	
+	public ArrayList<Piece> getSelectablePieces(Player player){
+		ArrayList<Piece> pieces = player.getPieces();
+		ArrayList<Piece> selectable = new ArrayList<Piece>();
+		for(Piece p : pieces){
+			if(p.isSelectable()) selectable.add(p);
+		}
+		return selectable;
+	}
+	
 	public State getState(){
 		return state;
 	}
