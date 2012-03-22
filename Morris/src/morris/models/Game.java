@@ -74,6 +74,14 @@ public class Game {
 		//getBoard().getSlotByID(11).setTaken(true);
 		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
 	}
+	/**
+	 * Update pieces resourse images
+	 * @param player
+	 * @param positionId
+	 */
+	public void updatePieceImages(Player player,int positionId){
+		this.state.updatePieceImages(player, positionId);
+	}
 	
 	public void setState(State state){
 		this.state = state;

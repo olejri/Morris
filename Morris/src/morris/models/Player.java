@@ -24,6 +24,7 @@ public class Player {
 	
 	public ArrayList<Piece>getPieces(){
 		return pieces;
+		
 	}
 	public String getColor(){
 		return color;
@@ -39,14 +40,14 @@ public class Player {
 			pieces_number = 12;
 		}
 		for(int i=0;i<pieces_number;i++){
-			pieces.add(new Piece());
+			pieces.add(new Piece(color));
 		}
 	}
 
 	public Player(String name, int numberOfPieces){
 		this.name = name;
 		for(int i=0; i<numberOfPieces; i++){
-			pieces.add(new Piece());
+			pieces.add(new Piece(color));
 		}
 	}
 	
