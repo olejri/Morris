@@ -49,12 +49,6 @@ public class BoardView extends View {
 	ArrayList<Point> pointList = new ArrayList<Point>();
 
 	// Bitmaps pieces
-	private Bitmap white_piece;
-	private Bitmap white_piece_selected;
-	private Bitmap white_piece_remove;
-	private Bitmap black_piece;
-	private Bitmap black_piece_selected;
-	private Bitmap black_piece_remove;
 
 	public BoardView(Context context) {
 		super(context);
@@ -67,18 +61,7 @@ public class BoardView extends View {
 	}
 
 	private void init() {
-		white_piece = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white);
-		white_piece_selected = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white_selected);
-		white_piece_remove = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white_remove);
-		black_piece = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_black);
-		black_piece_selected = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_black_selected);
-		white_piece_remove = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white_remove);
+
 	}
 
 	@Override
@@ -199,22 +182,20 @@ public class BoardView extends View {
 	 */
 	private void drawPieces(Canvas canvas) {
 		// Draw player 1 pieces
-		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1()
-				.getPieces()) {
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()) {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
-					drawPieceImage(canvas, position,white_piece);
+					drawPieceImage(canvas, position,p.getResource());
 				}
 			}
 		}
 		// Draw player 2 pieces
-		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2()
-				.getPieces()) {
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2().getPieces()) {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
-					drawPieceImage(canvas, position,black_piece);
+					drawPieceImage(canvas, position,p.getResource());
 				}
 			}
 		}
@@ -243,7 +224,8 @@ public class BoardView extends View {
 	 * @param canvas
 	 * @param point
 	 */
-	private void drawPieceImage(Canvas canvas, Point point,Bitmap bitmap) {
+	private void drawPieceImage(Canvas canvas, Point point,int resource) {
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resource);
 		Bitmap b = Bitmap.createScaledBitmap(bitmap, pieceSize, pieceSize,false);
 		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()- (b.getHeight() / 2), null);
 	}

@@ -18,5 +18,12 @@ public class Constant {
 	public static final String BLACK = "black";
 	public static final String WHITE = "white";
 	
+	/**
+	 * Selected states on pieces
+	 */
+	public static final String SELECTED = "selected";
+	public static final String NORMAL = "normal";
+	public static final String REMOVABLE = "removable";
+	
 
 }

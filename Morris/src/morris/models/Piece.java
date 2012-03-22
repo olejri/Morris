@@ -1,17 +1,57 @@
 package morris.models;
 
+import android.R;
+import morris.help.Constant;
+
 public class Piece {
 
 	private boolean selectable;
 	private boolean movable;
 	private int currentRow;
 	private int currentColumn;
-	private boolean morris = false;
-	
+	private boolean inMorris = false;
 	private int atPosition = -1;
+	private String color;
+	private int imageResource = -1;
 	
-	public Piece(){
-		
+	public Piece(String color){
+		this.color = color;
+		initResource();
+	}
+	
+	public void initResource(){
+		if(color.equals(Constant.WHITE)){
+			imageResource = morris.game.R.drawable.piece_white;
+		}else{
+			imageResource = morris.game.R.drawable.piece_black;
+		}
+	}
+	/**
+	 * Update piece resource
+	 * @param imageState
+	 */
+	public void updatePieceResource(String imageState){
+		if(color.equals(Constant.WHITE)){
+			if(imageState.equals(Constant.SELECTED)){
+				imageResource = morris.game.R.drawable.piece_white_selected;
+			}else if(imageState.equals(Constant.REMOVABLE)){
+				imageResource = morris.game.R.drawable.piece_white_remove;
+			}else if(imageState.equals(Constant.NORMAL)){
+				imageResource = morris.game.R.drawable.piece_white;
+			}
+		}else{
+			if(imageState.equals(Constant.SELECTED)){
+				imageResource = morris.game.R.drawable.piece_black_selected;
+			}else if(imageState.equals(Constant.REMOVABLE)){
+				imageResource = morris.game.R.drawable.piece_black_remove;
+			}else if(imageState.equals(Constant.NORMAL)){
+				imageResource = morris.game.R.drawable.piece_black;
+			}
+		}
+	}
+	
+	public int getResource(){
+		return imageResource;
 	}
 	
 	public void placeAtCoordinate(int row, int column){
@@ -24,11 +64,11 @@ public class Piece {
 	}
 	
 	public boolean inMorris(){
-		return morris;
+		return inMorris;
 	}
 	
 	public void setMorris(boolean bool){
-		morris = bool;
+		inMorris = bool;
 	}
 	
 	public int getCurrentRow(){

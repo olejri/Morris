@@ -24,8 +24,10 @@ public class FlyingState implements State, StateListener{
 	}
 
 	@Override
-	public void updatePieceImages() {
+	public void updatePieceImages(Player player,int positionId) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }
