@@ -133,6 +133,7 @@ public class BoardView extends View {
 					
 				// STEINAR 19.03	
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
+					if(GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).is)
 					selectedPieceID = p.getId();
 					GameHandler.getInstance().getMorrisGame().setState(new MoveState());
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){

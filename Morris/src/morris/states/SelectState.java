@@ -29,4 +29,10 @@ public class SelectState implements State {
 		return highlights;
 	}
 
+	@Override
+	public void updatePieceImages() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

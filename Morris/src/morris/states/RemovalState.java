@@ -26,11 +26,11 @@ public class RemovalState implements StateListener, State {
 		}
 		return highlights;
 	}
-	
-	
-	// TEMP
-	// MÅ FINNE ALLE BRIKKER SOM IKKE STÅR I MORRIS. BØR HA EN LIVE SJEKK FOR HVA SOM STÅR I MORRIS, 
-	// FORDI EN BRIKKE KAN DANNE MORRIS VERTIKALT OG HORISONTALT SAMTIDIG
 
+	@Override
+	public void updatePieceImages() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
