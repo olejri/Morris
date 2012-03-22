@@ -200,7 +200,7 @@ public class BoardView extends View {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
-					drawWhiteImage(canvas, position);
+					drawPieceImage(canvas, position,white_piece);
 				}
 			}
 		}
@@ -210,7 +210,7 @@ public class BoardView extends View {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
-					drawWhiteImage(canvas, position);
+					drawPieceImage(canvas, position,black_piece);
 				}
 			}
 		}
@@ -239,13 +239,9 @@ public class BoardView extends View {
 	 * @param canvas
 	 * @param point
 	 */
-	private void drawWhiteImage(Canvas canvas, Point point) {
-		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,
-				false);
-		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()
-				- (b.getHeight() / 2), null);
-		System.out.println("PointID: " + point.getId() + " x: " + point.getX()
-				+ " y: " + point.getY());
+	private void drawPieceImage(Canvas canvas, Point point,Bitmap bitmap) {
+		Bitmap b = Bitmap.createScaledBitmap(bitmap, pieceSize, pieceSize,false);
+		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()- (b.getHeight() / 2), null);
 	}
 
 	private void resetVar() {
