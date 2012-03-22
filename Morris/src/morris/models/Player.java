@@ -24,6 +24,7 @@ public class Player {
 	
 	public ArrayList<Piece>getPieces(){
 		return pieces;
+		
 	}
 	public String getColor(){
 		return color;
@@ -35,18 +36,18 @@ public class Player {
 	 */
 	public void initPieces(){
 		int pieces_number = 9;
-		if(GameHandler.getMorrisGame().getMorrisGameType().equals(Constant.TWELVE_MENS_MORRIS)){
+		if(GameHandler.getInstance().getMorrisGame().getMorrisGameType().equals(Constant.TWELVE_MENS_MORRIS)){
 			pieces_number = 12;
 		}
 		for(int i=0;i<pieces_number;i++){
-			pieces.add(new Piece());
+			pieces.add(new Piece(color));
 		}
 	}
 
 	public Player(String name, int numberOfPieces){
 		this.name = name;
 		for(int i=0; i<numberOfPieces; i++){
-			pieces.add(new Piece());
+			pieces.add(new Piece(color));
 		}
 	}
 	

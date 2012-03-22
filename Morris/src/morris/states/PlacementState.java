@@ -25,4 +25,11 @@ public class PlacementState implements StateListener, State{
 		}
 		return highlights;
 	}
+
+	@Override
+	public void updatePieceImages(Player player,int positionId){
+		// TODO Auto-generated method stub
+		
+	}
+
 }

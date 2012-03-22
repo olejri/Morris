@@ -39,6 +39,19 @@ public class Game {
 		player2 = new Player(Constant.BLACK,"Steinar");
 	}
 	
+	public ArrayList<Piece> getSelectablePieces(Player player){
+		ArrayList<Piece> pieces = player.getPieces();
+		ArrayList<Piece> selectable = new ArrayList<Piece>();
+		for(Piece p : pieces){
+			if(p.isSelectable()) selectable.add(p);
+		}
+		return selectable;
+	}
+	
+	public void move(int from, int to){
+		
+	}
+	
 	public State getState(){
 		return state;
 	}
@@ -64,6 +77,14 @@ public class Game {
 	public ArrayList<Slot> getHighlightList(int id, Player player) {
 		//getBoard().getSlotByID(11).setTaken(true);
 		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
+	}
+	/**
+	 * Update pieces resourse images
+	 * @param player
+	 * @param positionId
+	 */
+	public void updatePieceImages(Player player,int positionId){
+		this.state.updatePieceImages(player, positionId);
 	}
 	
 	public void setState(State state){

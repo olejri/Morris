@@ -3,12 +3,14 @@ package morris.gui;
 import java.util.ArrayList;
 import morris.game.GameHandler;
 import morris.game.GameHandler;
+import morris.help.Constant;
 import morris.help.LogHelp;
 import morris.models.Piece;
 import morris.models.Player;
 import morris.models.Slot;
 import morris.states.MoveState;
 import morris.states.PlacementState;
+import morris.states.RemovalState;
 import morris.states.SelectState;
 import android.R;
 import android.content.Context;
@@ -20,6 +22,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.os.Debug;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -48,12 +51,6 @@ public class BoardView extends View {
 	ArrayList<Point> pointList = new ArrayList<Point>();
 
 	// Bitmaps pieces
-	private Bitmap white_piece;
-	private Bitmap white_piece_selected;
-	private Bitmap white_piece_remove;
-	private Bitmap black_piece;
-	private Bitmap black_piece_selected;
-	private Bitmap black_piece_remove;
 
 	public BoardView(Context context) {
 		super(context);
@@ -66,18 +63,7 @@ public class BoardView extends View {
 	}
 
 	private void init() {
-		white_piece = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white);
-		white_piece_selected = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white_selected);
-		white_piece_remove = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white_remove);
-		black_piece = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_black);
-		black_piece_selected = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_black_selected);
-		white_piece_remove = BitmapFactory.decodeResource(getResources(),
-				morris.game.R.drawable.piece_white_remove);
+
 	}
 
 	@Override
@@ -116,9 +102,11 @@ public class BoardView extends View {
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
-				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {					
-					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
-						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
+				if(p!=null){
+				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {	
+					Log.i(Constant.STATE_DEBUG, "Placement state");
+					for (int i = 0; i < GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces().size(); i++) {
+						Piece piece = GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
 							piece.setPosition(p.getId());
 							GameHandler.getInstance().getMorrisGame().playerPlacedPiece(GameHandler.getInstance().getMorrisGame().getPlayer1(),piece);
@@ -129,18 +117,23 @@ public class BoardView extends View {
 						}
 					}
 					
-				// STEINAR 19.03	
+				// STEINAR 19.03
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
-					selectedPieceID = p.getId();
-					GameHandler.getInstance().getMorrisGame().setState(new MoveState());
+					Log.i(Constant.STATE_DEBUG, "Select state");
+					
+						GameHandler.getInstance().getMorrisGame().updatePieceImages(GameHandler.getInstance().getMorrisGame().getPlayer1(), p.getId());
+						GameHandler.getInstance().getMorrisGame().setState(new MoveState());
+					
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){
-					if(selectedPieceID == p.getId()){
-						selectedPieceID = -1;
-						GameHandler.getInstance().getMorrisGame().setState(new SelectState());
-					}
+					Log.i(Constant.STATE_DEBUG, "Move state");
+						GameHandler.getInstance().getMorrisGame().updatePieceImages(GameHandler.getInstance().getMorrisGame().getPlayer1(), p.getId());
+					//	GameHandler.getInstance().getMorrisGame().setState(new SelectState());
+				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof RemovalState){
+					
 				}
 			}
 			postInvalidate();
+		}
 		}
 		// Update screen
 
@@ -193,22 +186,20 @@ public class BoardView extends View {
 	 */
 	private void drawPieces(Canvas canvas) {
 		// Draw player 1 pieces
-		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1()
-				.getPieces()) {
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces()) {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
-					drawWhiteImage(canvas, position);
+					drawPieceImage(canvas, position,p.getResource());
 				}
 			}
 		}
 		// Draw player 2 pieces
-		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2()
-				.getPieces()) {
+		for (Piece p : GameHandler.getInstance().getMorrisGame().getPlayer2().getPieces()) {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
-					drawWhiteImage(canvas, position);
+					drawPieceImage(canvas, position,p.getResource());
 				}
 			}
 		}
@@ -237,13 +228,10 @@ public class BoardView extends View {
 	 * @param canvas
 	 * @param point
 	 */
-	private void drawWhiteImage(Canvas canvas, Point point) {
-		Bitmap b = Bitmap.createScaledBitmap(white_piece, pieceSize, pieceSize,
-				false);
-		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()
-				- (b.getHeight() / 2), null);
-		System.out.println("PointID: " + point.getId() + " x: " + point.getX()
-				+ " y: " + point.getY());
+	private void drawPieceImage(Canvas canvas, Point point,int resource) {
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resource);
+		Bitmap b = Bitmap.createScaledBitmap(bitmap, pieceSize, pieceSize,false);
+		canvas.drawBitmap(b, point.getX() - (b.getWidth() / 2), point.getY()- (b.getHeight() / 2), null);
 	}
 
 	private void resetVar() {
