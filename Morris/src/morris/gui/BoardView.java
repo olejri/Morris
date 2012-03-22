@@ -119,21 +119,15 @@ public class BoardView extends View {
 					
 				// STEINAR 19.03
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
-					//if(GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).isTaken()){
 					Log.i(Constant.STATE_DEBUG, "Select state");
-					ArrayList<Piece> pieces = GameHandler.getInstance().getMorrisGame().getSelectablePieces(GameHandler.getInstance().getMorrisGame().getPlayer1());
-					for(Piece piece : pieces){
-						if(piece.getPosition() == p.getId()){
-							GameHandler.getInstance().getMorrisGame().getState().updatePieceImages(GameHandler.getInstance().getMorrisGame().getPlayer1(), p.getId());
-							GameHandler.getInstance().getMorrisGame().setState(new MoveState());
-						}
-					}	
+					
+						GameHandler.getInstance().getMorrisGame().updatePieceImages(GameHandler.getInstance().getMorrisGame().getPlayer1(), p.getId());
+						GameHandler.getInstance().getMorrisGame().setState(new MoveState());
+					
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){
 					Log.i(Constant.STATE_DEBUG, "Move state");
-					if(selectedPieceID == p.getId()){
-						selectedPieceID = -1;
-						GameHandler.getInstance().getMorrisGame().setState(new SelectState());
-					}
+						GameHandler.getInstance().getMorrisGame().updatePieceImages(GameHandler.getInstance().getMorrisGame().getPlayer1(), p.getId());
+					//	GameHandler.getInstance().getMorrisGame().setState(new SelectState());
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof RemovalState){
 					
 				}

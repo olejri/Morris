@@ -39,24 +39,9 @@ public class SelectState implements State {
 				p.setSelectable(false);
 			}
 		}
-		printSelectablePieces(GameHandler.getInstance().getMorrisGame().getSelectablePieces(currentPlayer));
 		return highlights;
 	}
 
-	private void updateSelectablePieces(Piece p, Board board, int id){
-		if(!board.getSlotByID(id).isTaken()){
-			Log.i(Constant.STATE_DEBUG, "Selectable piece. State: " + p.getImageState() + " ID " + p.getPosition());
-			p.setSelectable(true);
-		} else {
-			p.setSelectable(false);
-		}
-	}
-	
-	private void printSelectablePieces(ArrayList<Piece> PL){
-		for(Piece p : PL){
-			System.out.println("Selectable piece. ID: "+p.getPosition());
-		}
-	}
 
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
@@ -64,13 +49,10 @@ public class SelectState implements State {
 			if(p.getPosition()==positionId){
 				if(p.getImageState()==Constant.NORMAL){
 					p.updatePieceResource(Constant.SELECTED);
-				}else{
-					p.updatePieceResource(Constant.NORMAL);
 				}
-				if(p.getImageState()==Constant.SELECTABLE){
-					p.updatePieceResource(Constant.SELECTABLE);
-				}
-			}	
+			}else{
+				p.updatePieceResource(Constant.NORMAL);
+			}
 		}
 	}
 }
