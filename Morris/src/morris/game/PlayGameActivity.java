@@ -1,5 +1,7 @@
 package morris.game;
 
+import com.skiller.api.items.SKUser;
+
 import morris.gui.PieceAdapter;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
@@ -9,10 +11,8 @@ import morris.models.Player;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Window;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class PlayGameActivity extends Activity implements GameListener {
@@ -32,17 +32,40 @@ public class PlayGameActivity extends Activity implements GameListener {
 		h = new Handler();
 
 		GameHandler.setMorrisGame(new Game());
-		
+		GameHandler.getMorrisGame().initPlayers();		
+		GameHandler.getInstance().getMorrisGame().addGameListener(this);
+
+		SKUser owner = GameHandler.getInstance().getOwner();
+		SKUser guest = GameHandler.getInstance().getGuest();
 		GameHandler.getInstance().getMorrisGame().initPlayers();
 		
-		GameHandler.getInstance().getMorrisGame().addGameListener(this);
+		GameHandler.getInstance().setCanvasContext(this);
 
 		setUpScoreBoard();
 		setScoreBoardNames();
-
-
 		// updateScoreBoard();
-
+		
+		try{
+			if(GameHandler.getInstance().isWaiting_for_opponnent()){
+				GameHandler.getInstance().showToastOnCanvas("Still waiting on opponent");
+			}
+			if(GameHandler.getInstance().isGameOwner()){
+				if(GameHandler.getInstance().isGameStarted()){
+					GameHandler.getInstance().clearGame();
+					GameHandler.getInstance().setGameStarted(false);
+					GameHandler.getInstance().setWaiting_for_opponent(false);
+					GameHandler.getInstance().setSide(1);
+					GameHandler.getInstance().setSide(2);
+					GameHandler.getInstance().showToastOnCanvas("Game starting?");
+				}
+			}
+			else{
+				
+			}
+		}
+		catch(Exception e){
+			
+		}
 	}
 
 	/**
