@@ -14,27 +14,31 @@ public class Piece {
 	private String color;
 	private int imageResource = -1;
 	public int imageState = -1;
-	
-	public Piece(String color){
+
+	public Piece(String color) {
 		this.color = color;
 		initResource();
 	}
-	
-	public void initResource(){
+
+	public void initResource() {
 		imageState = Constant.NORMAL;
-		if(color.equals(Constant.WHITE)){
+		if (color.equals(Constant.WHITE)) {
 			imageResource = morris.game.R.drawable.piece_white;
-		}else{
+		} else {
 			imageResource = morris.game.R.drawable.piece_black;
 		}
 	}
+
 	/**
 	 * Update piece resource
+	 * 
 	 * @param imageState
 	 */
 	public void updatePieceResource(int imageState){
 		if(color.equals(Constant.WHITE)){
-			if(imageState == Constant.SELECTED){
+			if(imageState == Constant.SELECTABLE){
+				imageResource = morris.game.R.drawable.pieces_white_selectable;
+			}else if(imageState == Constant.SELECTED){
 				imageResource = morris.game.R.drawable.piece_white_selected;
 			}else if(imageState==Constant.REMOVABLE){
 				imageResource = morris.game.R.drawable.piece_white_remove;
@@ -42,7 +46,9 @@ public class Piece {
 				imageResource = morris.game.R.drawable.piece_white;
 			}
 		}else{
-			if(imageState==Constant.SELECTED){
+			if(imageState==Constant.SELECTABLE){
+				imageResource = morris.game.R.drawable.piece_black_selectable;
+			}else if(imageState==Constant.SELECTED){
 				imageResource = morris.game.R.drawable.piece_black_selected;
 			}else if(imageState==Constant.REMOVABLE){
 				imageResource = morris.game.R.drawable.piece_black_remove;
@@ -51,41 +57,41 @@ public class Piece {
 			}
 		}
 	}
-	
-	public int getResource(){
+
+	public int getResource() {
 		return imageResource;
 	}
-	
-	public int getImageState(){
+
+	public int getImageState() {
 		return imageState;
 	}
-	
-	public void placeAtCoordinate(int row, int column){
+
+	public void placeAtCoordinate(int row, int column) {
 		currentRow = row;
 		currentColumn = column;
 	}
-	
-	public int getPosition(){
+
+	public int getPosition() {
 		return atPosition;
 	}
-	
-	public boolean inMorris(){
+
+	public boolean inMorris() {
 		return inMorris;
 	}
-	
-	public void setMorris(boolean bool){
+
+	public void setMorris(boolean bool) {
 		inMorris = bool;
 	}
-	
-	public int getCurrentRow(){
+
+	public int getCurrentRow() {
 		return currentRow;
 	}
-	
-	public void setPosition(int atPosition){
+
+	public void setPosition(int atPosition) {
 		this.atPosition = atPosition;
 	}
-	
-	public int getCurrentColumn(){
+
+	public int getCurrentColumn() {
 		return currentColumn;
 	}
 
@@ -95,6 +101,11 @@ public class Piece {
 
 	public void setSelectable(boolean selectable) {
 		this.selectable = selectable;
+		if(selectable){
+			updatePieceResource(Constant.SELECTABLE);
+		}else{
+			updatePieceResource(Constant.NORMAL);
+		}
 	}
 
 	public boolean isMovable() {
@@ -104,7 +115,5 @@ public class Piece {
 	public void setMovable(boolean movable) {
 		this.movable = movable;
 	}
-	
-	
-}
 
+}

@@ -3,6 +3,7 @@ package morris.states;
 import java.util.ArrayList;
 
 import android.R;
+import android.util.Log;
 
 import morris.game.GameHandler;
 import morris.help.Constant;
@@ -36,6 +37,7 @@ public class SelectState implements State {
 
 	private void updateSelectablePieces(Piece p, Board board, int id){
 		if(!board.getSlotByID(id).isTaken()){
+			Log.i(Constant.STATE_DEBUG, "Selectable piece. State: " + p.getImageState() + " ID " + p.getPosition());
 			p.setSelectable(true);
 		} else {
 			p.setSelectable(false);
@@ -45,12 +47,8 @@ public class SelectState implements State {
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
 		for(Piece p : player.getPieces()){
-			if(p.getPosition()==positionId){
-				if(p.getImageState()==Constant.NORMAL){
-					p.updatePieceResource(Constant.SELECTED);
-				}else{
-					p.updatePieceResource(Constant.NORMAL);
-				}
+			if(p.getImageState()==Constant.SELECTABLE){
+				p.updatePieceResource(Constant.SELECTABLE);
 			}
 		}
 		
