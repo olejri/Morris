@@ -2,7 +2,9 @@ package morris.game;
 
 import java.util.Timer;
 
+import morris.models.GameMove;
 import morris.models.StartGame;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,34 +12,44 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.util.Log;
 import morris.models.Game;
 
 import com.skiller.api.items.SKUser;
 import com.skiller.api.listeners.SKOnFeeChosenListener;
 import com.skiller.api.listeners.SKOnGetFeeOptionsListener;
 import com.skiller.api.operations.SKApplication;
+import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
 import com.skiller.api.responses.SKGetFeeOptionsResponse;
 
 public class GameHandler {
 
 	private static GameHandler instance = null;
-	private SKApplication skMorris;
+	
+	
 	private Context menuContext;
+	private Context canvasContext;
+	
 	private ProgressDialog progressDialog;
-	private boolean waiting_for_opponnent = false;
 	private Timer timer;
+	
+	private boolean serverEndGameresponse=false;
+	private boolean gameStarted=false;
+	private boolean waiting_for_opponnent = false;
+	private boolean canvasContextON=false;
+	private boolean gameOwner;
+	private boolean printed = false;
 	
 	private static Game morrisGame = null;
 
-	private boolean gameOwner;
-
-	private String game_id;
+	private SKApplication skMorris;
 	private SKUser owner;
 	private SKUser guest;
+	private String game_id;
 	private int pot;
 	
+	private int turn;
+	private int side;
 
 	public static GameHandler getInstance() {
 		if (instance == null) {
@@ -51,20 +63,26 @@ public class GameHandler {
 	}
 
 	
-	// createNewGame() method - starts a new game that other can join
+	/*
+	 *  createNewGame() method - starts a new game that other can join
+	 */
 	public void createNewGame() {
-		// startGameWithChosenFee(2);
-		// getMinMAXValuesForChooseFeeDialog();
 		chooseFeeDialog();
 	}
 
-	// clearGame() method - clears the game attributes
+	/*
+	 *  clearGame() method - clears the game attributes
+	 */
 	public void clearGame() {
-
+		serverEndGameresponse=false;
+		turn = 1;
+		printed = false;
+		gameStarted=false;
 	}
 
-	// chooseFeeDialog() method - opens a dialog where u state the fee for the
-	// new game
+	/*
+	 * chooseFeeDialog() method - opens a dialog where u choose the fee for the new game
+	 */
 	private void chooseFeeDialog() {
 		skMorris.getUIManager().showChooseFeeScreen(menuContext,
 				new SKOnFeeChosenListener() {
@@ -75,6 +93,10 @@ public class GameHandler {
 				});
 	}
 
+	/*
+	 * 	getMinMAXValuesForChooseFeeDialog() method - create a custom fee dialog when creating
+	 * a new game. *Currently not used*
+	 */
 	private void getMinMAXValuesForChooseFeeDialog() {
 		String lols = skMorris.getGameManager().getTurnBasedTools().toString();
 		System.out.println("WUT" + lols);
@@ -158,17 +180,156 @@ public class GameHandler {
 				});
 	}
 
+	/*
+	 * startGameWithChosenFee() method - creating a game with a chosen fee, the game will
+	 * now wait for an opponent to join before anything happens.
+	 */
 	private void startGameWithChosenFee(int fee) {
 		System.out.println("startGameWithChosenFee() started");
 		skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
-		/*
-		 * GameHandler.getInstance().clearGame();
-		 * GameHandler.getInstance().setWaiting_for_opponent(true);
-		 */
+		GameHandler.getInstance().clearGame();
+		GameHandler.getInstance().setWaiting_for_opponent(true);
+		
+		
 		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(), PlayGameActivity.class);
 		GameHandler.getInstance().getMenuContext().startActivity(intent);
 	}
+	
+	/*
+	 * sendInformation() method - Standard game move, sending payload with as a String with the x,y coordinates/id's
+	 */
+	public void sendInformation(String payload, int event, String chat){
+		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
+	}	
+	
+	
+	/*
+	 * handleMyMove() method - handles my move according to recieved x and y data.
+	 * Invotes the suitable communication method when needed
+	 */
+	public void handleMyMove(int x, int y){
+		
+	}
+	
+	/*
+	 *  handleOpponentMove() method - handles the opponent move according to received game_state.
+	 *  invokes the suitable communication method for every game_state.
+	 */	
+	public void handleOpponentMove(int game_state, String game_id, String Opponentpayload){
+		GameHandler.getInstance().setGameStarted(true);
+		
+		switch(game_state){
+		case SKTurnBasedTools.GAME_STATE_WON:
+			GameHandler.getInstance().setServerEndGameresponse(true);
+			break;
+			
+		case SKTurnBasedTools.GAME_STATE_LOST:
+			GameHandler.getInstance().setServerEndGameresponse(true);
+			break;
+			
+		case SKTurnBasedTools.GAME_STATE_TIED:
+			GameHandler.getInstance().setServerEndGameresponse(true);
+			break;
+			
+		case SKTurnBasedTools.GAME_STATE_ARE_YOU_HERE:
+			skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, SKTurnBasedTools.GAME_EVENT_STILL_HERE, "", null, new GameMove());
+		
+		default:
+			
+			String strx = Opponentpayload.substring(0, 1);
+			String stry = Opponentpayload.substring(1, 2);
+			
+			int x = Integer.parseInt(strx);
+			int y = Integer.parseInt(stry);
+			
+			GameHandler.getInstance().makeMove(x, y);
+			
+			GameHandler.getInstance().switchTurns();
+			//NOW CHECK IF SOMEONE IS WINNING, NEEDS MOAR LOGIC
+			
+			break;
+		}
+	}
+	
+	
+	/*
+	 * makeMove() method - gets the coordinates and updates the data structure
+	 * *MANGLER LOGIKK*
+	 */
+	public boolean makeMove(int x, int y){
+		return true;
+	}
+	
+	
+	/*
+	 *  SwitchTurns() method - switches the turns between the users
+	 */
+	public void switchTurns(){
+		if(turn == 1){
+			this.setTurn(2);
+		}
+		else{
+			this.setTurn(1);
+		}
+	}
+	
+	/*
+	 * showToastOnCanvas() method - shows a specified toast message on the canvas
+	 */
+	public void showToastOnCanvas(final String string){
+		Runnable toastAction = new Runnable(){
 
+			@Override
+			public void run() {
+				Toast.makeText(GameHandler.getInstance().getCanvasContext(), string, Toast.LENGTH_SHORT).show();
+				
+			}
+			
+		};
+		((Activity)(GameHandler.getInstance().getCanvasContext())).runOnUiThread(toastAction );
+	}
+	
+	
+	public void setTurn(int turn){
+		this.turn = turn;
+	}
+		
+	public int getSide(){
+		return side;
+	}
+
+	public void setSide(int side){
+		this.side = side;
+	}
+
+	public boolean isServerEndGameresponse(){
+		return serverEndGameresponse;
+	}
+	
+	public void setServerEndGameresponse(boolean serverEndGameresponse){
+		this.serverEndGameresponse = serverEndGameresponse;
+	}
+	
+	public boolean isGameStarted() 
+	{
+		return gameStarted;
+	}
+
+	public void setGameStarted(boolean gameStarted) 
+	{
+		this.gameStarted = gameStarted;
+	}
+	
+	public boolean isPrinted(){
+		return printed;
+	}
+
+
+
+	public void setPrinted(boolean printed) {
+		this.printed = printed;
+	}
+	
 	public String getGame_id() {
 		return game_id;
 	}
@@ -217,6 +378,22 @@ public class GameHandler {
 		waiting_for_opponnent = waitingForOpponnent;
 	}
 
+	public Context getCanvasContext() {
+		return canvasContext;
+	}
+
+	public void setCanvasContext(Context canvasContext) {
+		this.canvasContext = canvasContext;
+	}
+	
+	public boolean isCanvasContextON() {
+		return canvasContextON;
+	}
+
+	public void setCanvasContextON(boolean canvasContextON) {
+		this.canvasContextON = canvasContextON;
+	}
+	
 	public Context getMenuContext() {
 		return menuContext;
 	}

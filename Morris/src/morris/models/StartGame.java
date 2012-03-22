@@ -61,8 +61,8 @@ public class StartGame extends SKOnGameStartedListener {
 			SKUser owner=st.getOwner();
 			String game_id=st.getGameId();
 			
-			//GameHandler.getInstance().setGameStarted(true);
-			//GameHandler.getInstance().setPrinted(false);
+			GameHandler.getInstance().setGameStarted(true);
+			GameHandler.getInstance().setPrinted(false);
 			GameHandler.getInstance().setGame_id(game_id);
 			GameHandler.getInstance().setOwner(owner);
 			GameHandler.getInstance().setGuest(guest);
