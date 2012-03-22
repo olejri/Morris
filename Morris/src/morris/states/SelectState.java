@@ -25,12 +25,20 @@ public class SelectState implements State {
 		ArrayList<Piece> pieces = currentPlayer.getPieces();
 		for(Piece p : pieces){
 			ArrayList<Integer> domain = board.getSlotByID(p.getPosition()).getDomain();
-			System.out.println("ID:"+p.getPosition()+" Domain size: "+domain.size());
+			//System.out.println("ID:"+p.getPosition()+" Domain size: "+domain.size());
+			boolean selectable = false;
 			for(Integer i : domain){
-				updateSelectablePieces(p, board, i);
+				if(!board.getSlotByID(i).isTaken()) selectable = true;
+				//updateSelectablePieces(p, board, i);
 				if(!board.getSlotByID(i).isTaken() && !highlights.contains(board.getSlotByID(p.getPosition()))) highlights.add(board.getSlotByID(p.getPosition()));
-			}	
+			}
+			if(selectable){
+				p.setSelectable(true);
+			} else {
+				p.setSelectable(false);
+			}
 		}
+		printSelectablePieces(GameHandler.getInstance().getMorrisGame().getSelectablePieces(currentPlayer));
 		return highlights;
 	}
 
@@ -39,6 +47,12 @@ public class SelectState implements State {
 			p.setSelectable(true);
 		} else {
 			p.setSelectable(false);
+		}
+	}
+	
+	private void printSelectablePieces(ArrayList<Piece> PL){
+		for(Piece p : PL){
+			System.out.println("Selectable piece. ID: "+p.getPosition());
 		}
 	}
 
@@ -51,15 +65,10 @@ public class SelectState implements State {
 				}else{
 					p.updatePieceResource(Constant.NORMAL);
 				}
+				
 			}
 		}
 		
-	}
-	
-	private boolean isPieceSelectable(Player player,int positionID){
-		
-		
-		return false;
 	}
 
 
