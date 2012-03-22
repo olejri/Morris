@@ -34,4 +34,10 @@ public class MoveState implements StateListener, State {
 		}
 		return freeSlots;	
 	}
+
+	@Override
+	public void updatePieceImages() {
+		// TODO Auto-generated method stub
+		
+	}
 }

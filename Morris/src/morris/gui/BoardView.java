@@ -9,6 +9,7 @@ import morris.models.Player;
 import morris.models.Slot;
 import morris.states.MoveState;
 import morris.states.PlacementState;
+import morris.states.RemovalState;
 import morris.states.SelectState;
 import android.R;
 import android.content.Context;
@@ -132,6 +133,7 @@ public class BoardView extends View {
 					
 				// STEINAR 19.03	
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
+					//if(!GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).isTaken())
 					selectedPieceID = p.getId();
 					GameHandler.getInstance().getMorrisGame().setState(new MoveState());
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){
@@ -139,6 +141,8 @@ public class BoardView extends View {
 						selectedPieceID = -1;
 						GameHandler.getInstance().getMorrisGame().setState(new SelectState());
 					}
+				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof RemovalState){
+					
 				}
 			}
 			postInvalidate();

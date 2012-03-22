@@ -22,4 +22,10 @@ public class FlyingState implements State, StateListener{
 		}
 		return highlights;
 	}
+
+	@Override
+	public void updatePieceImages() {
+		// TODO Auto-generated method stub
+		
+	}
 }

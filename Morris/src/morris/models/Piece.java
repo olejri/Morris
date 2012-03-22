@@ -6,6 +6,7 @@ public class Piece {
 	private boolean movable;
 	private int currentRow;
 	private int currentColumn;
+	private boolean morris = false;
 	
 	private int atPosition = -1;
 	
@@ -20,6 +21,14 @@ public class Piece {
 	
 	public int getPosition(){
 		return atPosition;
+	}
+	
+	public boolean inMorris(){
+		return morris;
+	}
+	
+	public void setMorris(boolean bool){
+		morris = bool;
 	}
 	
 	public int getCurrentRow(){
