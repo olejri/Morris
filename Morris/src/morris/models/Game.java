@@ -82,8 +82,8 @@ public class Game {
 	 * Add listener
 	 * @param listener
 	 */
-    public void addListener(StateListener listener) {
-    	stateListeners.add(listener);
+    public void addGameListener(GameListener listener) {
+    	gameListeners.add(listener);
     }
     /**
      * remove listener

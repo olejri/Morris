@@ -2,6 +2,7 @@ package morris.gui;
 
 import java.util.ArrayList;
 import morris.game.GameHandler;
+import morris.game.GameHandler;
 import morris.help.LogHelp;
 import morris.models.Piece;
 import morris.models.Player;
@@ -116,6 +117,7 @@ public class BoardView extends View {
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
+				if(p!=null){
 				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {					
 					for (int i = 0; i < GameHandler.getMorrisGame().getPlayer1().getPieces().size(); i++) {
 						Piece piece = GameHandler.getMorrisGame().getPlayer1().getPieces().get(i);
@@ -143,6 +145,7 @@ public class BoardView extends View {
 				}
 			}
 			postInvalidate();
+		}
 		}
 		// Update screen
 

@@ -2,6 +2,7 @@ package morris.models;
 
 import java.util.ArrayList;
 
+import android.R;
 import android.util.Log;
 
 import morris.game.GameHandler;
@@ -59,7 +60,7 @@ public class Player {
 	
 	public void removePiece(int row, int column){
 		// TODO
-		// Logikken som finner ut hvilken brikke som skal fjernes (og hvilken koordinat den har) trenger ikke n¿dvendigvis ligge her.
+		// Logikken som finner ut hvilken brikke som skal fjernes (og hvilken koordinat den har) trenger ikke nï¿½dvendigvis ligge her.
 	}
 	
 }

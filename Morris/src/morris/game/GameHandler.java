@@ -28,6 +28,8 @@ public class GameHandler {
 	private ProgressDialog progressDialog;
 	private boolean waiting_for_opponnent = false;
 	private Timer timer;
+	
+	private static Game morrisGame = null;
 
 	private boolean gameOwner;
 
@@ -35,7 +37,7 @@ public class GameHandler {
 	private SKUser owner;
 	private SKUser guest;
 	private int pot;
-	private static Game morrisGame = null;
+	
 
 	public static GameHandler getInstance() {
 		if (instance == null) {
@@ -45,32 +47,15 @@ public class GameHandler {
 	}
 
 	private GameHandler() {
+		clearGame();
 	}
 
-	/**
-	 * Set MorrisGame
-	 * 
-	 * @param morrisGame
-	 */
-	public static void setMorrisGame(Game morrisGame) {
-		GameHandler.morrisGame = morrisGame;
-	}
-
-	/**
-	 * Return MorrisGame
-	 * 
-	 * @return
-	 */
-	public static Game getMorrisGame() {
-		return morrisGame;
-	}
-
+	
 	// createNewGame() method - starts a new game that other can join
 	public void createNewGame() {
 		// startGameWithChosenFee(2);
 		// getMinMAXValuesForChooseFeeDialog();
 		chooseFeeDialog();
-		setMorrisGame(new Game());
 	}
 
 	// clearGame() method - clears the game attributes
@@ -175,15 +160,12 @@ public class GameHandler {
 
 	private void startGameWithChosenFee(int fee) {
 		System.out.println("startGameWithChosenFee() started");
-	//	skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
+		skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
 		/*
 		 * GameHandler.getInstance().clearGame();
-		 * GameHandler.getInstance().setWaiting_for_opponent(true); Context lol
-		 * = GameHandler.getInstance().getMenuContext();
-		 * System.out.println(""+fee); System.out.println(""+lol);
+		 * GameHandler.getInstance().setWaiting_for_opponent(true);
 		 */
-		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(),
-				PlayGameActivity.class);
+		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(), PlayGameActivity.class);
 		GameHandler.getInstance().getMenuContext().startActivity(intent);
 	}
 
@@ -266,6 +248,23 @@ public class GameHandler {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 
+	}
+	/**
+	 * Set MorrisGame
+	 * 
+	 * @param morrisGame
+	 */
+	public static void setMorrisGame(Game morrisGame) {
+		GameHandler.morrisGame = morrisGame;
+	}
+
+	/**
+	 * Return MorrisGame
+	 * 
+	 * @return
+	 */
+	public static Game getMorrisGame() {
+		return morrisGame;
 	}
 
 }
