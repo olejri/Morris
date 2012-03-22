@@ -28,6 +28,11 @@ public class Constant {
 	public static final int SELECTABLE = 2;
 	public static final int REMOVABLE = 4;
 	
+	/**
+	 * Log
+	 */
+	public static final String STATE_DEBUG = "state_debug";
+	
 	
 
 }

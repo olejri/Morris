@@ -3,6 +3,7 @@ package morris.gui;
 import java.util.ArrayList;
 import morris.game.GameHandler;
 import morris.game.GameHandler;
+import morris.help.Constant;
 import morris.help.LogHelp;
 import morris.models.Piece;
 import morris.models.Player;
@@ -21,6 +22,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.os.Debug;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -101,7 +103,8 @@ public class BoardView extends View {
 			if (GameHandler.getInstance().getMorrisGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
-				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {					
+				if (GameHandler.getInstance().getMorrisGame().getState() instanceof PlacementState) {	
+					Log.i(Constant.STATE_DEBUG, "Placement state");
 					for (int i = 0; i < GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces().size(); i++) {
 						Piece piece = GameHandler.getInstance().getMorrisGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
@@ -117,6 +120,7 @@ public class BoardView extends View {
 				// STEINAR 19.03
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof SelectState){
 					//if(GameHandler.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).isTaken()){
+					Log.i(Constant.STATE_DEBUG, "Select state");
 					ArrayList<Piece> pieces = GameHandler.getInstance().getMorrisGame().getSelectablePieces(GameHandler.getInstance().getMorrisGame().getPlayer1());
 					for(Piece piece : pieces){
 						if(piece.getPosition() == p.getId()){
@@ -125,6 +129,7 @@ public class BoardView extends View {
 						}
 					}	
 				} else if(GameHandler.getInstance().getMorrisGame().getState() instanceof MoveState){
+					Log.i(Constant.STATE_DEBUG, "Move state");
 					if(selectedPieceID == p.getId()){
 						selectedPieceID = -1;
 						GameHandler.getInstance().getMorrisGame().setState(new SelectState());
