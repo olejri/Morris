@@ -2,6 +2,7 @@ package morris.gui;
 
 import java.util.ArrayList;
 import morris.game.GameHandler;
+import morris.game.GameHandler;
 import morris.help.LogHelp;
 import morris.models.Piece;
 import morris.models.Player;
