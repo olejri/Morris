@@ -28,6 +28,8 @@ public class GameHandler {
 	private ProgressDialog progressDialog;
 	private boolean waiting_for_opponnent = false;
 	private Timer timer;
+	
+	private static Game morrisGame = null;
 
 	private boolean gameOwner;
 
@@ -35,7 +37,7 @@ public class GameHandler {
 	private SKUser owner;
 	private SKUser guest;
 	private int pot;
-	private static Game morrisGame = null;
+	
 
 	public static GameHandler getInstance() {
 		if (instance == null) {
@@ -48,30 +50,12 @@ public class GameHandler {
 		clearGame();
 	}
 
-	/**
-	 * Set MorrisGame
-	 * 
-	 * @param morrisGame
-	 */
-	public static void setMorrisGame(Game morrisGame) {
-		GameHandler.morrisGame = morrisGame;
-	}
-
-	/**
-	 * Return MorrisGame
-	 * 
-	 * @return
-	 */
-	public static Game getMorrisGame() {
-		return morrisGame;
-	}
-
+	
 	// createNewGame() method - starts a new game that other can join
 	public void createNewGame() {
 		// startGameWithChosenFee(2);
 		// getMinMAXValuesForChooseFeeDialog();
 		chooseFeeDialog();
-		setMorrisGame(new Game());
 	}
 
 	// clearGame() method - clears the game attributes
@@ -264,6 +248,23 @@ public class GameHandler {
 	public void setTimer(Timer timer) {
 		this.timer = timer;
 
+	}
+	/**
+	 * Set MorrisGame
+	 * 
+	 * @param morrisGame
+	 */
+	public static void setMorrisGame(Game morrisGame) {
+		GameHandler.morrisGame = morrisGame;
+	}
+
+	/**
+	 * Return MorrisGame
+	 * 
+	 * @return
+	 */
+	public static Game getMorrisGame() {
+		return morrisGame;
 	}
 
 }
