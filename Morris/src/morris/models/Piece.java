@@ -13,6 +13,7 @@ public class Piece {
 	private int atPosition = -1;
 	private String color;
 	private int imageResource = -1;
+	public int imageState = -1;
 	
 	public Piece(String color){
 		this.color = color;
@@ -20,6 +21,7 @@ public class Piece {
 	}
 	
 	public void initResource(){
+		imageState = Constant.NORMAL;
 		if(color.equals(Constant.WHITE)){
 			imageResource = morris.game.R.drawable.piece_white;
 		}else{
@@ -30,21 +32,21 @@ public class Piece {
 	 * Update piece resource
 	 * @param imageState
 	 */
-	public void updatePieceResource(String imageState){
+	public void updatePieceResource(int imageState){
 		if(color.equals(Constant.WHITE)){
-			if(imageState.equals(Constant.SELECTED)){
+			if(imageState == Constant.SELECTED){
 				imageResource = morris.game.R.drawable.piece_white_selected;
-			}else if(imageState.equals(Constant.REMOVABLE)){
+			}else if(imageState==Constant.REMOVABLE){
 				imageResource = morris.game.R.drawable.piece_white_remove;
-			}else if(imageState.equals(Constant.NORMAL)){
+			}else if(imageState==Constant.NORMAL){
 				imageResource = morris.game.R.drawable.piece_white;
 			}
 		}else{
-			if(imageState.equals(Constant.SELECTED)){
+			if(imageState==Constant.SELECTED){
 				imageResource = morris.game.R.drawable.piece_black_selected;
-			}else if(imageState.equals(Constant.REMOVABLE)){
+			}else if(imageState==Constant.REMOVABLE){
 				imageResource = morris.game.R.drawable.piece_black_remove;
-			}else if(imageState.equals(Constant.NORMAL)){
+			}else if(imageState==Constant.NORMAL){
 				imageResource = morris.game.R.drawable.piece_black;
 			}
 		}
@@ -52,6 +54,10 @@ public class Piece {
 	
 	public int getResource(){
 		return imageResource;
+	}
+	
+	public int getImageState(){
+		return imageState;
 	}
 	
 	public void placeAtCoordinate(int row, int column){

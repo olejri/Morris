@@ -120,7 +120,7 @@ public class BoardView extends View {
 					ArrayList<Piece> pieces = GameHandler.getInstance().getMorrisGame().getSelectablePieces(GameHandler.getInstance().getMorrisGame().getPlayer1());
 					for(Piece piece : pieces){
 						if(piece.getPosition() == p.getId()){
-							selectedPieceID = p.getId();
+							GameHandler.getInstance().getMorrisGame().getState().updatePieceImages(GameHandler.getInstance().getMorrisGame().getPlayer1(), p.getId());
 							GameHandler.getInstance().getMorrisGame().setState(new MoveState());
 						}
 					}	

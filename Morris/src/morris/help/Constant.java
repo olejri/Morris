@@ -1,5 +1,7 @@
 package morris.help;
 
+import morris.game.R;
+
 public class Constant {
 	
 	//Skiller id's for permission to use the Skiller Tools
@@ -21,9 +23,10 @@ public class Constant {
 	/**
 	 * Selected states on pieces
 	 */
-	public static final String SELECTED = "selected";
-	public static final String NORMAL = "normal";
-	public static final String REMOVABLE = "removable";
+	public static final int SELECTED = 1;
+	public static final int NORMAL = 2;
+	public static final int REMOVABLE = 3;
+	
 	
 
 }

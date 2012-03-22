@@ -2,6 +2,10 @@ package morris.states;
 
 import java.util.ArrayList;
 
+import android.R;
+
+import morris.game.GameHandler;
+import morris.help.Constant;
 import morris.interfaces.State;
 import morris.models.Board;
 import morris.models.Piece;
@@ -31,7 +35,16 @@ public class SelectState implements State {
 
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
-		// TODO Auto-generated method stub
+		for(Piece p : player.getPieces()){
+			if(p.getPosition()==positionId){
+				if(p.getImageState()==Constant.NORMAL){
+					p.updatePieceResource(Constant.SELECTED);
+				}else{
+					p.updatePieceResource(Constant.NORMAL);
+				}
+				
+			}
+		}
 		
 	}
 
