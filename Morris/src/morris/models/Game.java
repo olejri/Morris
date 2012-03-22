@@ -86,7 +86,7 @@ public class Game {
 	public void updatePieceImages(Player player,int positionId){
 		this.state.updatePieceImages(player, positionId);
 	}
-	
+
 	public void setState(State state){
 		this.state = state;
 	}
@@ -132,6 +132,14 @@ public class Game {
 		if(pieceCounter == 4){
 			setState(new SelectState());
 		}
+	}
+	public boolean selectable(Player player,int positionId){
+		for(Piece p : player.getPieces()){
+			if(p.getPosition()==positionId){
+				if(p.isSelectable())return true;
+			}
+		}
+		return false;
 	}
    
 	

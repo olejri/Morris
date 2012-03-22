@@ -12,11 +12,11 @@ public class Player {
 	public String name;
 	public String color;
 	public ArrayList<Piece>pieces;
+	public Piece selectedPiece = null;
 	
 	public Player(String color, String name){
 		this.name = name;
 		this.color = color;
-		
 		pieces = new ArrayList<Piece>();
 		
 		initPieces();
@@ -28,6 +28,14 @@ public class Player {
 	}
 	public String getColor(){
 		return color;
+	}
+	
+	public void setSelectedPiece(Piece selectedPiece){
+		this.selectedPiece = selectedPiece;
+	}
+	
+	public Piece getSelectedPiece(){
+		return selectedPiece;
 	}
 
 	/**

@@ -35,6 +35,7 @@ public class Piece {
 	 * @param imageState
 	 */
 	public void updatePieceResource(int imageState){
+		this.imageState = imageState;
 		if(color.equals(Constant.WHITE)){
 			if(imageState == Constant.SELECTABLE){
 				imageResource = morris.game.R.drawable.pieces_white_selectable;

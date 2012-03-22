@@ -47,8 +47,9 @@ public class SelectState implements State {
 	public void updatePieceImages(Player player,int positionId) {
 		for(Piece p : player.getPieces()){
 			if(p.getPosition()==positionId){
-				if(p.getImageState()==Constant.NORMAL){
+				if(p.getImageState()==Constant.SELECTABLE){
 					p.updatePieceResource(Constant.SELECTED);
+					player.setSelectedPiece(p);
 				}
 			}else{
 				p.updatePieceResource(Constant.NORMAL);
