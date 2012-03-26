@@ -48,8 +48,14 @@ public class Game {
 		return selectable;
 	}
 	
-	public void move(int from, int to){
-		
+	/*
+	 * Input parameters are Point IDs
+	 */
+	public void move(Piece p, int to){
+		// ENDRER atPosition for piece, og setTaken for de aktuelle slots. 
+		board.unreserveSlot(p.getPosition());
+		board.reserveSlot(to);
+		p.setPosition(to);
 	}
 	
 	public State getState(){
