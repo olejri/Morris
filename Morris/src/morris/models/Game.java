@@ -50,10 +50,12 @@ public class Game {
 	
 	/*
 	 * Input parameters are selected piece and destination point ID
+	 * ID for the point the piece was moved from is available via p.getPosition().
+	 * The player integer can be 1 or 2, depending on whose turn it is.
 	 */
-	public void move(Piece p, int to){ 
-		board.unreserveSlot(p.getPosition());
-		board.reserveSlot(to);
+	public void move(Piece p, int to, int player){ 
+		unreserveBoardSlot(p.getPosition());
+		reserveBoardSlot(to, player);
 		p.setPosition(to);
 	}
 	
@@ -78,13 +80,56 @@ public class Game {
 		return gameType;
 	}
 	
+	// MÅ HUSKE Å SETTE p.inMorris = true for brikken som ble flytta
+	// Vurder å skifte navn på metoden til checkMorris eller noe
+	public boolean achievedMorris(int id){
+		int row = board.getSlotByID(id).getX();
+		int column = board.getSlotByID(id).getY();
+		int occupant =  board.getSlotOccupant(row, column);
+		if(checkRow(row, occupant) && checkColumn(column, occupant)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private boolean checkRow(int row, int occupant) {
+		int counter = 0;
+		Slot[][] slots = board.getSlots();
+		for(int i=0; i<slots.length; i++){
+			if(slots[row][i].getOccupant() == occupant){
+				counter++;
+			}
+		}
+		if(counter == 3){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private boolean checkColumn(int column, int occupant) {
+		int counter = 0;
+		Slot[][] slots = board.getSlots();
+		for(int i=0; i<slots.length; i++){
+			if(slots[i][column].getOccupant() == occupant){
+				counter++;
+			}
+		}
+		if(counter == 3){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	// Her kan man ta inn pointID og et Player-objekt.
 	public ArrayList<Slot> getHighlightList(int id, Player player) {
 		//getBoard().getSlotByID(11).setTaken(true);
 		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
 	}
 	/**
-	 * Update pieces resourse images
+	 * Update pieces resource images
 	 * @param player
 	 * @param positionId
 	 */
@@ -100,8 +145,12 @@ public class Game {
 		return board;
 	}
 	
-	public void reserveBoardSlot(int id){
-		board.reserveSlot(id);
+	public void reserveBoardSlot(int id, int player){
+		board.reserveSlot(id, player);
+	}
+	
+	public void unreserveBoardSlot(int id){
+		board.unreserveSlot(id);
 	}
 	
 	/**
@@ -134,6 +183,9 @@ public class Game {
      * Remove pieceCounter and implement logic for initial state change in GameController.
      */
 	public void playerPlacedPiece(Player player,Piece piece) {
+		if(achievedMorris(piece.getPosition())){
+			System.out.println("MORRIS OMG!");
+		}
 		//Check morris etc then:
 		System.out.println("Player placed: GameAct");
 		firePiecePlaced(player, piece);

@@ -11,22 +11,33 @@ public class Slot {
 	
 	private boolean taken;
 	private boolean enabled;
+	private int x;
+	private int y;
 	private int id = -1;
+	private int occupant = 0;
 	private ArrayList<Integer> domain = new ArrayList<Integer>();
-	private Piece piece;
 	
-	public Slot(){
-		piece = null;
+	public Slot(int x, int y){
+		this.x = x;
+		this.y = y;
 		enabled = false;
 		taken = false;
 	}
 	
-	public void setPiece(Piece piece){
-		this.piece = piece;
+	public void setOccupant(int occupant){
+		this.occupant = occupant;
 	}
 	
-	public Piece getPiece(){
-		return piece;
+	public int getOccupant(){
+		return occupant;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
 	}
 	
 	public int getId(){
@@ -49,8 +60,9 @@ public class Slot {
 		return taken;
 	}
 	
-	public void setTaken(boolean bool){
+	public void setTaken(boolean bool, int occupant){
 		this.taken = bool;
+		this.occupant = occupant;
 	}
 	
 	public void setDomain(int[] domain){

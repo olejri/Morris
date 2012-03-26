@@ -11,7 +11,7 @@ public class Board {
 		slots = new Slot[rows][columns];
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
-				slots[i][j] = new Slot();
+				slots[i][j] = new Slot(i,j);
 				if(isValidBoardCoordinate(i, j)){
 					slots[i][j].setEnabled(true);
 				}
@@ -30,16 +30,20 @@ public class Board {
 		return null;
 	}
 	
+	public int getSlotOccupant(int x, int y){
+		return slots[x][y].getOccupant();
+	}
+	
 	public Slot[][] getSlots(){
 		return slots;
 	}
 		
 	// Burde kanskje ogsŒ ta inn en brikke som skal stŒ der?
-	public void reserveSlot(int id){
+	public void reserveSlot(int id, int player){
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
 				if(slots[i][j].getId() == id){
-					slots[i][j].setTaken(true);
+					slots[i][j].setTaken(true, player);
 					break;
 				}
 			}
@@ -50,7 +54,7 @@ public class Board {
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
 				if(slots[i][j].getId() == id){
-					slots[i][j].setTaken(false);
+					slots[i][j].setTaken(false, 0);
 					break;
 				}
 			}
