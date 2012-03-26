@@ -127,7 +127,11 @@ public class BoardView extends View {
 				} else if(GameController.getGame().getState() instanceof MoveState){
 					Log.i(Constant.STATE_DEBUG, "Move state");
 						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+						
 						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+							GameController.getGame().setState(new SelectState());
+						}else{
+							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), 1); // SISTE PARAMETER ER SPILLER ID
 							GameController.getGame().setState(new SelectState());
 						}
 				} else if(GameController.getGame().getState() instanceof RemovalState){
@@ -318,48 +322,48 @@ public class BoardView extends View {
 
 	private void drawPoints(Canvas canvas, Paint p) {
 		midX = midX - xLeft;
-		int teller = 0;
+		int counter = 0;
 		for (float x = xLeft; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop, canvas, p);
 			drawCircle(x, yBottom, canvas, p);
 			if (makePointList) {
-				pointList.add(new Point(teller, x, yTop));
-				pointList.add(new Point(teller + 3, x, yBottom));
+				pointList.add(new Point(counter, x, yTop));
+				pointList.add(new Point(counter + 3, x, yBottom));
 			}
-			teller++;
+			counter++;
 		}
 		midX = midX - secondRect;
-		teller = 6;
+		counter = 6;
 		for (float x = xLeft + secondRect; x < xRight + xLeft; x = x + midX) {
 			drawCircle(x, yTop + secondRect, canvas, p);
 			drawCircle(x, yBottom - secondRect, canvas, p);
 			if (makePointList) {
-				pointList.add(new Point(teller, x, yTop + secondRect));
-				pointList.add(new Point(teller + 3, x, yBottom - secondRect));
+				pointList.add(new Point(counter, x, yTop + secondRect));
+				pointList.add(new Point(counter + 3, x, yBottom - secondRect));
 			}
-			teller++;
+			counter++;
 		}
 		midX = midX - secondRect;
-		teller = 12;
+		counter = 12;
 		for (float x = xLeft + thirdRect; x <= xRight - thirdRect; x = x + midX) {
 			drawCircle(x, yTop + thirdRect, canvas, p);
 			drawCircle(x, yBottom - thirdRect, canvas, p);
 			if (makePointList) {
-				pointList.add(new Point(teller, x, yTop + thirdRect));
-				pointList.add(new Point(teller + 3, x, yBottom - thirdRect));
+				pointList.add(new Point(counter, x, yTop + thirdRect));
+				pointList.add(new Point(counter + 3, x, yBottom - thirdRect));
 			}
-			teller++;
+			counter++;
 		}
-		teller = 18;
+		counter = 18;
 		for (float x = xLeft; x <= xLeft + thirdRect; x = x + secondRect) {
 			drawCircle(x, midY, canvas, p);
 			drawCircle(xRight - thirdRect - xLeft + x, midY, canvas, p);
 			if (makePointList) {
-				pointList.add(new Point(teller, x, midY));
-				pointList.add(new Point(teller + 3, xRight - thirdRect - xLeft
+				pointList.add(new Point(counter, x, midY));
+				pointList.add(new Point(counter + 3, xRight - thirdRect - xLeft
 						+ x, midY));
 			}
-			teller++;
+			counter++;
 		}
 		makePointList = false;
 	}

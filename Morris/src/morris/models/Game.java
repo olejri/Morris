@@ -80,25 +80,82 @@ public class Game {
 		return gameType;
 	}
 	
+	/*
+	 * from pointID to pointID + occupant integer
+	 */
+	public void updateMorrisStates(int fromID, int toID, int occupant){
+		int fromX = board.getSlotByID(fromID).getX();
+		int toX = board.getSlotByID(toID).getX();
+		int fromY = board.getSlotByID(fromID).getY();
+		int toY = board.getSlotByID(toID).getY();
+		
+		if(fromX == toX){
+			// KUN SJEKK KOLONNE, OG OPPDATERE 
+		} else if (fromY == toY){
+			
+		} else {
+			// TWELVE MENS MORRIS OMG
+		}
+		
+		
+		ArrayList<Piece> pieces = new ArrayList<Piece>();
+		if(occupant == 1){
+			pieces = getPlayer1().getPieces();
+		} else if(occupant == 2){
+			pieces = getPlayer2().getPieces();
+		} else {
+			
+		}
+		// BLA GJENNOM PIECE LIST OG FINN BRIKKENE MED SAMME ID SOM SLOTS
+		
+		
+	}
+	
 	// MÅ HUSKE Å SETTE p.inMorris = true for brikken som ble flytta
 	// Vurder å skifte navn på metoden til checkMorris eller noe
+	// Metoden er avhengig av at occupant settes til slots når flytt gjøres (fra BoardView per nå)
+	
 	public boolean achievedMorris(int id){
 		int row = board.getSlotByID(id).getX();
 		int column = board.getSlotByID(id).getY();
 		int occupant =  board.getSlotOccupant(row, column);
-		if(checkRow(row, occupant) && checkColumn(column, occupant)){
+		if(checkRow(row, column, occupant) || checkColumn(column, row, occupant)){
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	private boolean checkRow(int row, int occupant) {
+	private boolean checkRow(int row, int x, int occupant) {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
-		for(int i=0; i<slots.length; i++){
-			if(slots[row][i].getOccupant() == occupant){
-				counter++;
+		if(row != 3){
+			for(int i=0; i<slots.length; i++){
+				if(slots[row][i].getOccupant() == occupant){
+					counter++;
+				}
+			}	
+		} else {
+			if(x<4){
+				for(int i=0; i<3; i++){
+					if(slots[row][i].getOccupant() == occupant) counter++;
+				}
+				// NØDLØSNING
+				/*
+				if(slots[3][0].getOccupant() == occupant && slots[3][2].getOccupant() == occupant && slots[3][2].getOccupant() == occupant){
+					counter = 3;
+				}
+				*/
+			} else{
+				for(int i=4; i<7; i++){
+					if(slots[row][i].getOccupant() == occupant) counter++;
+				}
+				// NØDLØSNING
+				/*
+				if(slots[3][4].getOccupant() == occupant && slots[3][5].getOccupant() == occupant && slots[3][6].getOccupant() == occupant){
+					counter = 3;
+				}	
+				*/
 			}
 		}
 		if(counter == 3){
@@ -108,12 +165,53 @@ public class Game {
 		}
 	}
 	
-	private boolean checkColumn(int column, int occupant) {
+	// Brukes bare til å sjekke Morris
+	private ArrayList<Piece> getPieces(int player){
+		if(player == 1){
+			return getPlayer1().getPieces();
+		} else {
+			return getPlayer2().getPieces();
+		}
+	}
+	
+	private boolean checkColumn(int column, int y, int occupant) {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
-		for(int i=0; i<slots.length; i++){
-			if(slots[i][column].getOccupant() == occupant){
-				counter++;
+		ArrayList<Piece> pieces = getPieces(occupant);
+		if(column != 3){
+			for(int i=0; i<slots.length; i++){
+				if(slots[i][column].getOccupant() == occupant){
+					counter++;		
+				}
+			}
+		} else {
+			if(y<4){
+				for(int i=0; i<3; i++){
+					if(slots[i][column].getOccupant() == occupant) counter++;
+				}
+				// MÅ TESTES
+				if(counter == 3){
+					for(int i=0; i<slots.length; i++){
+						for(int j=0; j<pieces.size(); j++){
+							if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+						}
+					}
+					return true;
+				}
+				// NØDLØSNING
+				/*
+				if(slots[0][3].getOccupant() == occupant && slots[1][3].getOccupant() == occupant && slots[2][3].getOccupant() == occupant){
+					counter = 3;
+				}*/
+			} else{
+				for(int i=4; i<7; i++){
+					if(slots[i][column].getOccupant() == occupant) counter++;
+				}
+				// NØDLØSNING
+				/*
+				if(slots[4][3].getOccupant() == occupant && slots[5][3].getOccupant() == occupant && slots[6][3].getOccupant() == occupant){
+					counter = 3;
+				}*/			
 			}
 		}
 		if(counter == 3){
