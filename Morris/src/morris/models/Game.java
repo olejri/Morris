@@ -49,10 +49,9 @@ public class Game {
 	}
 	
 	/*
-	 * Input parameters are Point IDs
+	 * Input parameters are selected piece and destination point ID
 	 */
-	public void move(Piece p, int to){
-		// ENDRER atPosition for piece, og setTaken for de aktuelle slots. 
+	public void move(Piece p, int to){ 
 		board.unreserveSlot(p.getPosition());
 		board.reserveSlot(to);
 		p.setPosition(to);
@@ -130,6 +129,10 @@ public class Game {
     	}
     }
 
+    /*
+     * TODO
+     * Remove pieceCounter and implement logic for initial state change in GameController.
+     */
 	public void playerPlacedPiece(Player player,Piece piece) {
 		//Check morris etc then:
 		System.out.println("Player placed: GameAct");
