@@ -58,6 +58,11 @@ public class GameController {
 		}
 		return instance;
 	}
+	
+	public static Game getGame(){
+		return GameController.getInstance().getMorrisGame();
+	}
+	
 
 	private GameController() {
 		clearGame();

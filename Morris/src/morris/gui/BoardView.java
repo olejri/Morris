@@ -99,37 +99,37 @@ public class BoardView extends View {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-			if (GameController.getInstance().getMorrisGame().isYourTurn()) {
+			if (GameController.getGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
-				if (GameController.getInstance().getMorrisGame().getState() instanceof PlacementState) {	
+				if (GameController.getGame().getState() instanceof PlacementState) {	
 					Log.i(Constant.STATE_DEBUG, "Placement state");
-					for (int i = 0; i < GameController.getInstance().getMorrisGame().getPlayer1().getPieces().size(); i++) {
-						Piece piece = GameController.getInstance().getMorrisGame().getPlayer1().getPieces().get(i);
+					for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
+						Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
 							piece.setPosition(p.getId());
-							GameController.getInstance().getMorrisGame().playerPlacedPiece(GameController.getInstance().getMorrisGame().getPlayer1(),piece);
-							GameController.getInstance().getMorrisGame().getBoard().getSlotByID(p.getId()).setTaken(true);  // STEINAR 19.03
-							GameController.getInstance().getMorrisGame().getBoard().printTakenSlots(); // STEINAR 19.03
+							GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
+							GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true);  // STEINAR 19.03
+							GameController.getGame().getBoard().printTakenSlots(); // STEINAR 19.03
 							System.out.println("ID set to:"+piece.getPosition());
 							break;
 						}
 					}
 					
 				// STEINAR 19.03
-				} else if(GameController.getInstance().getMorrisGame().getState() instanceof SelectState){
+				} else if(GameController.getGame().getState() instanceof SelectState){
 					Log.i(Constant.STATE_DEBUG, "Select state");
-					if(GameController.getInstance().getMorrisGame().selectable(GameController.getInstance().getMorrisGame().getPlayer1(), p.getId())){
-						GameController.getInstance().getMorrisGame().updatePieceImages(GameController.getInstance().getMorrisGame().getPlayer1(), p.getId());
-						GameController.getInstance().getMorrisGame().setState(new MoveState());
+					if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
+						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+						GameController.getGame().setState(new MoveState());
 					}
-				} else if(GameController.getInstance().getMorrisGame().getState() instanceof MoveState){
+				} else if(GameController.getGame().getState() instanceof MoveState){
 					Log.i(Constant.STATE_DEBUG, "Move state");
-						GameController.getInstance().getMorrisGame().updatePieceImages(GameController.getInstance().getMorrisGame().getPlayer1(), p.getId());
-						if(GameController.getInstance().getMorrisGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
-							GameController.getInstance().getMorrisGame().setState(new SelectState());
+						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+							GameController.getGame().setState(new SelectState());
 						}
-				} else if(GameController.getInstance().getMorrisGame().getState() instanceof RemovalState){
+				} else if(GameController.getGame().getState() instanceof RemovalState){
 					
 				}
 			}
@@ -150,10 +150,10 @@ public class BoardView extends View {
 		// GET PLAYER ONE FOR TESTING PURPOSES
 		// STEINAR 19.03
 		ArrayList<Slot> highlights = new ArrayList<Slot>();
-		if(GameController.getInstance().getMorrisGame().getPlayer1().getSelectedPiece() != null){
-			highlights = GameController.getMorrisGame().getHighlightList(GameController.getInstance().getMorrisGame().getPlayer1().getSelectedPiece().getPosition(), GameController.getInstance().getMorrisGame().getPlayer1());  
+		if(GameController.getGame().getPlayer1().getSelectedPiece() != null){
+			highlights = GameController.getMorrisGame().getHighlightList(GameController.getGame().getPlayer1().getSelectedPiece().getPosition(), GameController.getGame().getPlayer1());  
 		} else {
-			highlights = GameController.getMorrisGame().getHighlightList(-1, GameController.getInstance().getMorrisGame().getPlayer1());  
+			highlights = GameController.getMorrisGame().getHighlightList(-1, GameController.getGame().getPlayer1());  
 		}
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
@@ -192,7 +192,7 @@ public class BoardView extends View {
 	 */
 	private void drawPieces(Canvas canvas) {
 		// Draw player 1 pieces
-		for (Piece p : GameController.getInstance().getMorrisGame().getPlayer1().getPieces()) {
+		for (Piece p : GameController.getGame().getPlayer1().getPieces()) {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
@@ -201,7 +201,7 @@ public class BoardView extends View {
 			}
 		}
 		// Draw player 2 pieces
-		for (Piece p : GameController.getInstance().getMorrisGame().getPlayer2().getPieces()) {
+		for (Piece p : GameController.getGame().getPlayer2().getPieces()) {
 			if (p.getPosition() >= 0) {
 				Point position = getPointFromId(p.getPosition());
 				if (position != null) {
