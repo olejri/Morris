@@ -1,7 +1,7 @@
 package morris.gui;
 
-import morris.game.GameHandler;
 import morris.game.R;
+import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.models.Piece;
 import morris.models.Player;
@@ -27,12 +27,12 @@ public class PieceAdapter extends BaseAdapter {
 
 		int counter = 0;
 		if (color.equals(Constant.WHITE)) {
-			for (Piece p : GameHandler.getMorrisGame().getPlayer1().getPieces()) {
+			for (Piece p : GameController.getMorrisGame().getPlayer1().getPieces()) {
 				if (p.getPosition() < 0)
 					counter++;
 			}
 		} else {
-			for (Piece p : GameHandler.getMorrisGame().getPlayer2().getPieces()) {
+			for (Piece p : GameController.getMorrisGame().getPlayer2().getPieces()) {
 				if (p.getPosition() < 0)
 					counter++;
 			}

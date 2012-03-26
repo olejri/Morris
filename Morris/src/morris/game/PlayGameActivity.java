@@ -2,6 +2,7 @@ package morris.game;
 
 import com.skiller.api.items.SKUser;
 
+import morris.game.controller.GameController;
 import morris.gui.PieceAdapter;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
@@ -31,32 +32,32 @@ public class PlayGameActivity extends Activity implements GameListener {
 
 		h = new Handler();
 
-		GameHandler.setMorrisGame(new Game());
-		GameHandler.getMorrisGame().initPlayers();		
-		GameHandler.getInstance().getMorrisGame().addGameListener(this);
+		GameController.setMorrisGame(new Game());
+		GameController.getMorrisGame().initPlayers();		
+		GameController.getInstance().getMorrisGame().addGameListener(this);
 
-		SKUser owner = GameHandler.getInstance().getOwner();
-		SKUser guest = GameHandler.getInstance().getGuest();
-		GameHandler.getInstance().getMorrisGame().initPlayers();
+		SKUser owner = GameController.getInstance().getOwner();
+		SKUser guest = GameController.getInstance().getGuest();
+		GameController.getInstance().getMorrisGame().initPlayers();
 		
-		GameHandler.getInstance().setCanvasContext(this);
+		GameController.getInstance().setCanvasContext(this);
 
 		setUpScoreBoard();
 		setScoreBoardNames();
 		// updateScoreBoard();
 		
 		try{
-			if(GameHandler.getInstance().isWaiting_for_opponnent()){
-				GameHandler.getInstance().showToastOnCanvas("Still waiting on opponent");
+			if(GameController.getInstance().isWaiting_for_opponnent()){
+				GameController.getInstance().showToastOnCanvas("Still waiting on opponent");
 			}
-			if(GameHandler.getInstance().isGameOwner()){
-				if(GameHandler.getInstance().isGameStarted()){
-					GameHandler.getInstance().clearGame();
-					GameHandler.getInstance().setGameStarted(false);
-					GameHandler.getInstance().setWaiting_for_opponent(false);
-					GameHandler.getInstance().setSide(1);
-					GameHandler.getInstance().setSide(2);
-					GameHandler.getInstance().showToastOnCanvas("Game starting?");
+			if(GameController.getInstance().isGameOwner()){
+				if(GameController.getInstance().isGameStarted()){
+					GameController.getInstance().clearGame();
+					GameController.getInstance().setGameStarted(false);
+					GameController.getInstance().setWaiting_for_opponent(false);
+					GameController.getInstance().setSide(1);
+					GameController.getInstance().setSide(2);
+					GameController.getInstance().showToastOnCanvas("Game starting?");
 				}
 			}
 			else{
@@ -86,8 +87,8 @@ public class PlayGameActivity extends Activity implements GameListener {
 	private void setScoreBoardNames() {
 		TextView player1 = (TextView) findViewById(R.id.player1_name);
 		TextView player2 = (TextView) findViewById(R.id.player2_name);
-		player1.setText(GameHandler.getInstance().getMorrisGame().getPlayer1().getName());
-		player2.setText(GameHandler.getInstance().getMorrisGame().getPlayer2().getName());
+		player1.setText(GameController.getInstance().getMorrisGame().getPlayer1().getName());
+		player2.setText(GameController.getInstance().getMorrisGame().getPlayer2().getName());
 	}
 
 	/**
@@ -98,7 +99,6 @@ public class PlayGameActivity extends Activity implements GameListener {
 		pieceAdapter2.notifyDataSetChanged();
 		gridview_white.refreshDrawableState();
 		gridview_black.refreshDrawableState();
-
 	}
 
 	@Override

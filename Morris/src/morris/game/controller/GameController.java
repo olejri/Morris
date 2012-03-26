@@ -1,7 +1,8 @@
-package morris.game;
+package morris.game.controller;
 
 import java.util.Timer;
 
+import morris.game.PlayGameActivity;
 import morris.models.GameMove;
 import morris.models.StartGame;
 import android.app.Activity;
@@ -22,9 +23,9 @@ import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
 import com.skiller.api.responses.SKGetFeeOptionsResponse;
 
-public class GameHandler {
+public class GameController {
 
-	private static GameHandler instance = null;
+	private static GameController instance = null;
 	
 	
 	private Context menuContext;
@@ -51,14 +52,14 @@ public class GameHandler {
 	private int turn;
 	private int side;
 
-	public static GameHandler getInstance() {
+	public static GameController getInstance() {
 		if (instance == null) {
-			instance = new GameHandler();
+			instance = new GameController();
 		}
 		return instance;
 	}
 
-	private GameHandler() {
+	private GameController() {
 		clearGame();
 	}
 
@@ -187,12 +188,12 @@ public class GameHandler {
 	private void startGameWithChosenFee(int fee) {
 		System.out.println("startGameWithChosenFee() started");
 		skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
-		GameHandler.getInstance().clearGame();
-		GameHandler.getInstance().setWaiting_for_opponent(true);
+		GameController.getInstance().clearGame();
+		GameController.getInstance().setWaiting_for_opponent(true);
 		
 		
-		Intent intent = new Intent(GameHandler.getInstance().getMenuContext(), PlayGameActivity.class);
-		GameHandler.getInstance().getMenuContext().startActivity(intent);
+		Intent intent = new Intent(GameController.getInstance().getMenuContext(), PlayGameActivity.class);
+		GameController.getInstance().getMenuContext().startActivity(intent);
 	}
 	
 	/*
@@ -216,19 +217,19 @@ public class GameHandler {
 	 *  invokes the suitable communication method for every game_state.
 	 */	
 	public void handleOpponentMove(int game_state, String game_id, String Opponentpayload){
-		GameHandler.getInstance().setGameStarted(true);
+		GameController.getInstance().setGameStarted(true);
 		
 		switch(game_state){
 		case SKTurnBasedTools.GAME_STATE_WON:
-			GameHandler.getInstance().setServerEndGameresponse(true);
+			GameController.getInstance().setServerEndGameresponse(true);
 			break;
 			
 		case SKTurnBasedTools.GAME_STATE_LOST:
-			GameHandler.getInstance().setServerEndGameresponse(true);
+			GameController.getInstance().setServerEndGameresponse(true);
 			break;
 			
 		case SKTurnBasedTools.GAME_STATE_TIED:
-			GameHandler.getInstance().setServerEndGameresponse(true);
+			GameController.getInstance().setServerEndGameresponse(true);
 			break;
 			
 		case SKTurnBasedTools.GAME_STATE_ARE_YOU_HERE:
@@ -242,9 +243,9 @@ public class GameHandler {
 			int x = Integer.parseInt(strx);
 			int y = Integer.parseInt(stry);
 			
-			GameHandler.getInstance().makeMove(x, y);
+			GameController.getInstance().makeMove(x, y);
 			
-			GameHandler.getInstance().switchTurns();
+			GameController.getInstance().switchTurns();
 			//NOW CHECK IF SOMEONE IS WINNING, NEEDS MOAR LOGIC
 			
 			break;
@@ -281,12 +282,12 @@ public class GameHandler {
 
 			@Override
 			public void run() {
-				Toast.makeText(GameHandler.getInstance().getCanvasContext(), string, Toast.LENGTH_SHORT).show();
+				Toast.makeText(GameController.getInstance().getCanvasContext(), string, Toast.LENGTH_SHORT).show();
 				
 			}
 			
 		};
-		((Activity)(GameHandler.getInstance().getCanvasContext())).runOnUiThread(toastAction );
+		((Activity)(GameController.getInstance().getCanvasContext())).runOnUiThread(toastAction );
 	}
 	
 	
@@ -432,7 +433,7 @@ public class GameHandler {
 	 * @param morrisGame
 	 */
 	public static void setMorrisGame(Game morrisGame) {
-		GameHandler.morrisGame = morrisGame;
+		GameController.morrisGame = morrisGame;
 	}
 
 	/**

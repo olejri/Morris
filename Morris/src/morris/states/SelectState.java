@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.R;
 import android.util.Log;
 
-import morris.game.GameHandler;
+import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.State;
 import morris.models.Board;

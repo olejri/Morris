@@ -1,5 +1,6 @@
 package morris.game;
 
+import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.models.StartGame;
 import morris.models.Game;
@@ -31,12 +32,12 @@ public class MorrisActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 
-		GameHandler.getInstance().setMenuContext(this);
+		GameController.getInstance().setMenuContext(this);
 		Display display = getWindowManager().getDefaultDisplay();
 		
 
 		skMorris = new SKApplication(Constant.app_id, Constant.app_key, Constant.app_secret, "1", 0);
-		GameHandler.getInstance().setSkApplication(skMorris);
+		GameController.getInstance().setSkApplication(skMorris);
 		skMorris.login(this, display.getWidth(), display.getHeight(), null, null, new SKBaseListener(){
 			public void onResponse(SKBaseResponse st){
 
@@ -49,8 +50,8 @@ public class MorrisActivity extends Activity {
 	public void onClick(View view) {
 		Intent i = new Intent();
 		if (view.getId() == R.id.menu_button_creategame) {
-			GameHandler.getInstance().clearGame();
-			GameHandler.getInstance().createNewGame();
+			GameController.getInstance().clearGame();
+			GameController.getInstance().createNewGame();
 			//i.setClass(this, PlayGameActivity.class);
 			//startActivity(i);
 		} else if (view.getId() == R.id.menu_button_joingame) {
