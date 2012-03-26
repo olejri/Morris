@@ -2,6 +2,7 @@ package morris.states;
 
 import java.util.ArrayList;
 
+import morris.help.Constant;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.models.Board;
@@ -29,7 +30,11 @@ public class RemovalState implements StateListener, State {
 
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
-		// TODO Auto-generated method stub
+		for (Piece p : player.getPieces()) {
+			if (p.inMorris() == false){
+				p.updatePieceResource(Constant.REMOVABLE);
+			}
+		}
 		
 	}
 

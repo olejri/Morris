@@ -21,6 +21,7 @@ public class MorrisActivity extends Activity {
 	private SKApplication skMorris;
 	private int screen_width; 
 	private int screen_height;
+	//hei
 	
 
 
