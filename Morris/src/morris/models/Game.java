@@ -57,6 +57,10 @@ public class Game {
 		unreserveBoardSlot(p.getPosition());
 		reserveBoardSlot(to, player);
 		p.setPosition(to);
+		// Checks for Morris at the point the piece is placed at.
+		if(achievedMorris(to)){
+			System.out.println("MORRIS OMG!");
+		}
 	}
 	
 	public State getState(){
@@ -81,6 +85,7 @@ public class Game {
 	}
 	
 	/*
+	 * This method is intended to use when the player enters removalstate, and updates inMorris for all opponent pieces
 	 * from pointID to pointID + occupant integer
 	 */
 	public void updateMorrisStates(int fromID, int toID, int occupant){
@@ -129,6 +134,7 @@ public class Game {
 	private boolean checkRow(int row, int x, int occupant) {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
+		ArrayList<Piece> pieces = getPieces(occupant);
 		if(row != 3){
 			for(int i=0; i<slots.length; i++){
 				if(slots[row][i].getOccupant() == occupant){
@@ -140,25 +146,45 @@ public class Game {
 				for(int i=0; i<3; i++){
 					if(slots[row][i].getOccupant() == occupant) counter++;
 				}
-				// N¯DL¯SNING
-				/*
-				if(slots[3][0].getOccupant() == occupant && slots[3][2].getOccupant() == occupant && slots[3][2].getOccupant() == occupant){
-					counter = 3;
+				
+				if(counter == 3){
+					for(int i=0; i<3; i++){
+						for(int j=0; j<pieces.size(); j++){
+							if(slots[row][i].isEnabled()){
+								if(pieces.get(j).getPosition() == slots[row][i].getId()) pieces.get(j).setMorris(true);
+							}
+						}
+					}
+					return true;
 				}
-				*/
 			} else{
 				for(int i=4; i<7; i++){
 					if(slots[row][i].getOccupant() == occupant) counter++;
 				}
-				// N¯DL¯SNING
-				/*
-				if(slots[3][4].getOccupant() == occupant && slots[3][5].getOccupant() == occupant && slots[3][6].getOccupant() == occupant){
-					counter = 3;
-				}	
-				*/
+				
+				if(counter == 3){
+					for(int i=4; i<7; i++){
+						for(int j=0; j<pieces.size(); j++){
+							if(slots[row][i].isEnabled()){
+								if(pieces.get(j).getPosition() == slots[row][i].getId()) pieces.get(j).setMorris(true);
+							}
+						}
+					}
+					return true;
+				}
 			}
 		}
 		if(counter == 3){
+			for(int i=0; i<slots.length; i++){
+				for(int j=0; j<pieces.size(); j++){
+					if(slots[row][i].isEnabled()){
+						if(pieces.get(j).getPosition() == slots[row][i].getId()){
+							pieces.get(j).setMorris(true);
+							if(pieces.get(j).inMorris()) System.out.println("Piece with ID "+pieces.get(j).getPosition()+" in row "+row+" is in Morris.");
+						}
+					}
+				}
+			}
 			return true;
 		} else {
 			return false;
@@ -176,7 +202,6 @@ public class Game {
 		}
 	}
 	
-	// B¯R SJEKKE AT BRIKKER OG SLOTS IKKE ER LIK -1
 	private boolean checkColumn(int column, int y, int occupant) {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
@@ -195,7 +220,9 @@ public class Game {
 				if(counter == 3){
 					for(int i=0; i<3; i++){
 						for(int j=0; j<pieces.size(); j++){
-							if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+							if(slots[i][column].isEnabled()){
+								if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+							}
 						}
 					}
 					return true;
@@ -208,7 +235,9 @@ public class Game {
 				if(counter == 3){
 					for(int i=4; i<7; i++){
 						for(int j=0; j<pieces.size(); j++){
-							if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+							if(slots[i][column].isEnabled()){
+								if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+							}
 						}
 					}
 					return true;
@@ -218,7 +247,12 @@ public class Game {
 		if(counter == 3){
 			for(int i=0; i<slots.length; i++){
 				for(int j=0; j<pieces.size(); j++){
-					if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+					if(slots[i][column].isEnabled()){
+						if(pieces.get(j).getPosition() == slots[i][column].getId()){
+							pieces.get(j).setMorris(true);
+							//if(pieces.get(j).inMorris()) System.out.println("Piece with ID "+pieces.get(j).getPosition()+" in column "+column+" is in Morris.");
+						}
+					}
 				}
 			}
 			return true;
