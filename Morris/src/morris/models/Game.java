@@ -60,7 +60,7 @@ public class Game {
 		
 		// Checks for Morris at the point the piece is placed at.
 		if(achievedMorris(to)){
-			System.out.println("Placement Morris achieved. Removal State should be set!");
+			System.out.println("Movement Morris achieved. Removal State should be set!");
 			updateMorrisStates(player); // Her skal mostander benyttes for Œ oppdatere hans brikker
 			
 			//setState(new RemovalState());
@@ -266,7 +266,6 @@ public class Game {
 					if(slots[i][column].isEnabled()){
 						if(pieces.get(j).getPosition() == slots[i][column].getId()){
 							pieces.get(j).setMorris(true);
-							if(pieces.get(j).inMorris()) System.out.println("CHECKCOLUMN - Piece with ID "+pieces.get(j).getPosition()+" in column "+column+" is in Morris.");
 						}
 					}
 				}
