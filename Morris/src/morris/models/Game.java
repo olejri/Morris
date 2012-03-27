@@ -346,7 +346,7 @@ public class Game {
 			}
 			
 			if(achievedMorris(piece.getPosition())){
-				System.out.println("Placement Morris achieved. Removal State should be set!");
+				System.out.println("Morris achieved. Removal State should be set!");
 				//setState(new RemovalState());
 			}
 	
