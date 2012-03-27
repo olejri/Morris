@@ -57,9 +57,15 @@ public class Game {
 		unreserveBoardSlot(p.getPosition());
 		reserveBoardSlot(to, player);
 		p.setPosition(to);
+		
 		// Checks for Morris at the point the piece is placed at.
 		if(achievedMorris(to)){
-			System.out.println("MORRIS OMG!");
+			System.out.println("Placement Morris achieved. Removal State should be set!");
+			updateMorrisStates(player); // Her skal mostander benyttes for Œ oppdatere hans brikker
+			
+			//setState(new RemovalState());
+			// MŒ trigge metode som setter removable image resource
+			//updatePieceImages(getPlayer1(), p.getPosition());
 		}
 	}
 	
@@ -88,35 +94,24 @@ public class Game {
 	 * This method is intended to use when the player enters removalstate, and updates inMorris for all opponent pieces
 	 * from pointID to pointID + occupant integer
 	 */
-	public void updateMorrisStates(int fromID, int toID, int occupant){
-		int fromX = board.getSlotByID(fromID).getX();
-		int toX = board.getSlotByID(toID).getX();
-		int fromY = board.getSlotByID(fromID).getY();
-		int toY = board.getSlotByID(toID).getY();
-		
-		if(fromX == toX){
-			// KUN SJEKK KOLONNE, OG OPPDATERE 
-		} else if (fromY == toY){
-			
-		} else {
-			// TWELVE MENS MORRIS OMG
+	public void updateMorrisStates(int occupant){
+		ArrayList<Piece> pieces = getPieces(occupant);
+
+		// Reset inMorris for all pieces
+		for(Piece p : pieces){
+			p.setMorris(false);
 		}
-		
-		
-		ArrayList<Piece> pieces = new ArrayList<Piece>();
-		if(occupant == 1){
-			pieces = getPlayer1().getPieces();
-		} else if(occupant == 2){
-			pieces = getPlayer2().getPieces();
-		} else {
-			
+
+		// Checks all rows and columns and sets Morris state for the pieces in Morris.
+		Slot[][] slots = board.getSlots();
+		for(int i=0; i<slots.length; i++){
+			for(int j=0; j<slots.length; j++){
+				checkRow(i,j,occupant);
+				checkColumn(j,i,occupant);
+			}
 		}
-		// BLA GJENNOM PIECE LIST OG FINN BRIKKENE MED SAMME ID SOM SLOTS
-		
-		
 	}
 	
-	// M HUSKE  SETTE p.inMorris = true for brikken som ble flytta
 	// Vurder Œ skifte navn pŒ metoden til checkMorris eller noe
 	// Metoden er avhengig av at occupant settes til slots nŒr flytt gj¿res (fra BoardView per nŒ)
 	
@@ -135,6 +130,8 @@ public class Game {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
 		ArrayList<Piece> pieces = getPieces(occupant);
+		
+		// Check for all rows other than row 3
 		if(row != 3){
 			for(int i=0; i<slots.length; i++){
 				if(slots[row][i].getOccupant() == occupant){
@@ -142,6 +139,7 @@ public class Game {
 				}
 			}	
 		} else {
+			// Separate check for left part of row 3
 			if(x<4){
 				for(int i=0; i<3; i++){
 					if(slots[row][i].getOccupant() == occupant) counter++;
@@ -151,36 +149,44 @@ public class Game {
 					for(int i=0; i<3; i++){
 						for(int j=0; j<pieces.size(); j++){
 							if(slots[row][i].isEnabled()){
-								if(pieces.get(j).getPosition() == slots[row][i].getId()) pieces.get(j).setMorris(true);
+								if(pieces.get(j).getPosition() == slots[row][i].getId()){
+									pieces.get(j).setMorris(true);
+								}
 							}
 						}
 					}
 					return true;
+				} else {
+					return false;
 				}
 			} else{
+				// Separate check for right part of row 3
 				for(int i=4; i<7; i++){
 					if(slots[row][i].getOccupant() == occupant) counter++;
-				}
-				
+				}			
 				if(counter == 3){
 					for(int i=4; i<7; i++){
 						for(int j=0; j<pieces.size(); j++){
 							if(slots[row][i].isEnabled()){
-								if(pieces.get(j).getPosition() == slots[row][i].getId()) pieces.get(j).setMorris(true);
+								if(pieces.get(j).getPosition() == slots[row][i].getId()) {
+									pieces.get(j).setMorris(true);
+								}
 							}
 						}
 					}
 					return true;
+				} else {
+					return false;
 				}
 			}
 		}
+		// Morris in row != 3
 		if(counter == 3){
 			for(int i=0; i<slots.length; i++){
 				for(int j=0; j<pieces.size(); j++){
 					if(slots[row][i].isEnabled()){
 						if(pieces.get(j).getPosition() == slots[row][i].getId()){
 							pieces.get(j).setMorris(true);
-							if(pieces.get(j).inMorris()) System.out.println("Piece with ID "+pieces.get(j).getPosition()+" in row "+row+" is in Morris.");
 						}
 					}
 				}
@@ -206,6 +212,8 @@ public class Game {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
 		ArrayList<Piece> pieces = getPieces(occupant);
+		
+		// Check for all columns other than column 3
 		if(column != 3){
 			for(int i=0; i<slots.length; i++){
 				if(slots[i][column].getOccupant() == occupant){
@@ -213,6 +221,7 @@ public class Game {
 				}
 			}
 		} else {
+			// Separate check for upper part of column 3
 			if(y<4){
 				for(int i=0; i<3; i++){
 					if(slots[i][column].getOccupant() == occupant) counter++;
@@ -226,9 +235,13 @@ public class Game {
 						}
 					}
 					return true;
+				} else {
+					return false;
 				}
 				
+			// Separate check for lower part of column 3
 			} else{
+				
 				for(int i=4; i<7; i++){
 					if(slots[i][column].getOccupant() == occupant) counter++;
 				}	
@@ -241,16 +254,19 @@ public class Game {
 						}
 					}
 					return true;
+				} else {
+					return false;
 				}
 			}
 		}
+		// Morris in column != 3
 		if(counter == 3){
 			for(int i=0; i<slots.length; i++){
 				for(int j=0; j<pieces.size(); j++){
 					if(slots[i][column].isEnabled()){
 						if(pieces.get(j).getPosition() == slots[i][column].getId()){
 							pieces.get(j).setMorris(true);
-							//if(pieces.get(j).inMorris()) System.out.println("Piece with ID "+pieces.get(j).getPosition()+" in column "+column+" is in Morris.");
+							if(pieces.get(j).inMorris()) System.out.println("CHECKCOLUMN - Piece with ID "+pieces.get(j).getPosition()+" in column "+column+" is in Morris.");
 						}
 					}
 				}
@@ -321,15 +337,24 @@ public class Game {
      * Remove pieceCounter and implement logic for initial state change in GameController.
      */
 	public void playerPlacedPiece(Player player,Piece piece) {
-		if(achievedMorris(piece.getPosition())){
-			System.out.println("MORRIS OMG!");
-		}
-		//Check morris etc then:
-		System.out.println("Player placed: GameAct");
-		firePiecePlaced(player, piece);
-		pieceCounter++;
-		if(pieceCounter == 4){
-			setState(new SelectState());
+		if(piece.getPosition() > 0){
+			// TEMP
+			if(player == getPlayer1()){
+				reserveBoardSlot(piece.getPosition(), 1);
+			} else {
+				reserveBoardSlot(piece.getPosition(), 2);
+			}
+			
+			if(achievedMorris(piece.getPosition())){
+				System.out.println("Placement Morris achieved. Removal State should be set!");
+				//setState(new RemovalState());
+			}
+	
+			firePiecePlaced(player, piece);
+			pieceCounter++;
+			if(pieceCounter == 4){
+				setState(new SelectState());
+			}
 		}
 	}
 	public boolean selectable(Player player,int positionId){

@@ -7,7 +7,6 @@ public class Board {
 	private int columns = 7;
 
 	public Board(){
-		System.out.println("Executing board constructor");
 		slots = new Slot[rows][columns];
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
@@ -165,16 +164,5 @@ public class Board {
 			slots[6][3].setId(4);
 			slots[6][6].setId(5);
 		}
-	}
-	
-	public void printTakenSlots(){
-		System.out.println("Taken board coordinates:");
-		for(int i=0; i<rows; i++){
-			for(int j=0; j<columns; j++){
-				if(slots[i][j].isTaken()){
-					System.out.println("["+i+"]["+j+"]");
-				}
-			}
-		}	
 	}
 }

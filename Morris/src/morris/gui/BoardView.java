@@ -111,7 +111,6 @@ public class BoardView extends View {
 							GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
 							// STEINAR 26.03 Lagt til 1 for Œ assigne punktene til spiller Žn
 							GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
-							GameController.getGame().getBoard().printTakenSlots(); // STEINAR 19.03
 							System.out.println("ID set to:"+piece.getPosition());
 							break;
 						}
