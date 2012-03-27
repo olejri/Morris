@@ -54,18 +54,14 @@ public class Game {
 	 * The player integer can be 1 or 2, depending on whose turn it is.
 	 */
 	public void move(Piece p, int to, int player){ 
-		unreserveBoardSlot(p.getPosition());
-		reserveBoardSlot(to, player);
+		unreserveBoardModelPoint(p.getPosition());
+		reserveBoardModelPoint(to, p);
 		p.setPosition(to);
 		
-		// Checks for Morris at the point the piece is placed at.
-		if(achievedMorris(to)){
+		// Checks for Morris at the point the piece is placed at.		
+		if(checkMorris(p)){ // endret fra achievedMorris(to)
 			System.out.println("Movement Morris achieved. Removal State should be set!");
-			updateMorrisStates(player); // Her skal mostander benyttes for å oppdatere hans brikker
-			
-			//setState(new RemovalState());
-			// Må trigge metode som setter removable image resource
-			//updatePieceImages(getPlayer1(), p.getPosition());
+			//updateMorrisStates(player); // Her skal mostander benyttes for å oppdatere hans brikker
 		}
 	}
 	
@@ -102,98 +98,81 @@ public class Game {
 			p.setMorris(false);
 		}
 
-		// Checks all rows and columns and sets Morris state for the pieces in Morris.
-		Slot[][] slots = board.getSlots();
-		for(int i=0; i<slots.length; i++){
-			for(int j=0; j<slots.length; j++){
-				checkRow(i,j,occupant);
-				checkColumn(j,i,occupant);
+		ArrayList<ModelPoint> points = board.getPoints();
+
+	}
+	
+	private void setMorrisInDomain(ArrayList<Integer> domain){
+		for(Integer id : domain){
+			board.getPoint(id).getPiece().setMorris(true);
+		}
+	}
+	/*
+	 * Checks if the newly placed piece caused a Morris state.
+	 */
+	private boolean checkMorris(Piece piece){
+		ArrayList<Integer> hDomain = board.getHorizontalDomain(piece.getPosition());
+		int horizontal = 0;
+		for(Integer i : hDomain){
+			if(board.getPoint(i) != null){
+				if(board.getPoint(i).getPiece() != null){
+					if(piece.getColor() == board.getPoint(i).getPiece().getColor()) horizontal++;
+				}
 			}
 		}
-	}
-	
-	// Vurder å skifte navn på metoden til checkMorris eller noe
-	// Metoden er avhengig av at occupant settes til slots når flytt gjøres (fra BoardView per nå)
-	
-	public boolean achievedMorris(int id){
-		int row = board.getSlotByID(id).getX();
-		int column = board.getSlotByID(id).getY();
-		int occupant =  board.getSlotOccupant(row, column);
-		if(checkRow(row, column, occupant) || checkColumn(column, row, occupant)){
-			return true;
-		} else {
-			return false;
+		if(horizontal==3){
+			setMorrisInDomain(hDomain);
 		}
-	}
-	
-	private boolean checkRow(int row, int x, int occupant) {
-		int counter = 0;
-		Slot[][] slots = board.getSlots();
-		ArrayList<Piece> pieces = getPieces(occupant);
+		ArrayList<Integer> vDomain = board.getVerticalDomain(piece.getPosition());
 		
-		// Check for all rows other than row 3
-		if(row != 3){
-			for(int i=0; i<slots.length; i++){
-				if(slots[row][i].getOccupant() == occupant){
-					counter++;
-				}
-			}	
-		} else {
-			// Separate check for left part of row 3
-			if(x<4){
-				for(int i=0; i<3; i++){
-					if(slots[row][i].getOccupant() == occupant) counter++;
-				}
-				
-				if(counter == 3){
-					for(int i=0; i<3; i++){
-						for(int j=0; j<pieces.size(); j++){
-							if(slots[row][i].isEnabled()){
-								if(pieces.get(j).getPosition() == slots[row][i].getId()){
-									pieces.get(j).setMorris(true);
-								}
-							}
-						}
-					}
-					return true;
-				} else {
-					return false;
-				}
-			} else{
-				// Separate check for right part of row 3
-				for(int i=4; i<7; i++){
-					if(slots[row][i].getOccupant() == occupant) counter++;
-				}			
-				if(counter == 3){
-					for(int i=4; i<7; i++){
-						for(int j=0; j<pieces.size(); j++){
-							if(slots[row][i].isEnabled()){
-								if(pieces.get(j).getPosition() == slots[row][i].getId()) {
-									pieces.get(j).setMorris(true);
-								}
-							}
-						}
-					}
-					return true;
-				} else {
-					return false;
+		int vertical = 0;
+		for(Integer i : vDomain){
+			if(board.getPoint(i) != null){
+				if(board.getPoint(i).getPiece() != null){
+					if(piece.getColor() == board.getPoint(i).getPiece().getColor()) vertical++;
 				}
 			}
 		}
-		// Morris in row != 3
-		if(counter == 3){
-			for(int i=0; i<slots.length; i++){
-				for(int j=0; j<pieces.size(); j++){
-					if(slots[row][i].isEnabled()){
-						if(pieces.get(j).getPosition() == slots[row][i].getId()){
-							pieces.get(j).setMorris(true);
-						}
-					}
-				}
-			}
+		if(vertical==3){
+			setMorrisInDomain(vDomain);
+		}
+		if(vertical==3 || horizontal==3){
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	/*
+	 * Updates the board, setting correct state on all pieces.
+	 * TODO Make certain that both pieces (belonging to player and modelpoint) is updated.
+	 */
+	private void updateMorrisStates(Player player){
+		ArrayList<Piece> pieces = getPieces(1);
+		int horizontal = 0;
+		int vertical = 0;
+		for(Piece p : pieces){
+			p.setMorris(false); // Usikker på om denne vil funke.
+			ArrayList<Integer> hDomain = board.getHorizontalDomain(p.getPosition());
+			horizontal = 0;
+			for(Integer i : hDomain){
+				if(board.getPoint(i) != null){
+					if(p.getColor() == board.getPoint(i).getPiece().getColor()) horizontal++;
+				}
+			}
+			if(horizontal==3){
+				setMorrisInDomain(hDomain);
+			}
+			ArrayList<Integer> vDomain = board.getVerticalDomain(p.getPosition());
+			vertical = 0;
+			for(Integer i : vDomain){
+				if(board.getPoint(i) != null){
+					if(p.getColor() == board.getPoint(i).getPiece().getColor()) vertical++;
+				}
+			}
+			if(vertical==3){
+				setMorrisInDomain(vDomain);
+			}
 		}
 	}
 	
@@ -207,80 +186,13 @@ public class Game {
 			return getPlayer2().getPieces();
 		}
 	}
-	
-	private boolean checkColumn(int column, int y, int occupant) {
-		int counter = 0;
-		Slot[][] slots = board.getSlots();
-		ArrayList<Piece> pieces = getPieces(occupant);
-		
-		// Check for all columns other than column 3
-		if(column != 3){
-			for(int i=0; i<slots.length; i++){
-				if(slots[i][column].getOccupant() == occupant){
-					counter++;		
-				}
-			}
-		} else {
-			// Separate check for upper part of column 3
-			if(y<4){
-				for(int i=0; i<3; i++){
-					if(slots[i][column].getOccupant() == occupant) counter++;
-				}
-				if(counter == 3){
-					for(int i=0; i<3; i++){
-						for(int j=0; j<pieces.size(); j++){
-							if(slots[i][column].isEnabled()){
-								if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
-							}
-						}
-					}
-					return true;
-				} else {
-					return false;
-				}
-				
-			// Separate check for lower part of column 3
-			} else{
-				
-				for(int i=4; i<7; i++){
-					if(slots[i][column].getOccupant() == occupant) counter++;
-				}	
-				if(counter == 3){
-					for(int i=4; i<7; i++){
-						for(int j=0; j<pieces.size(); j++){
-							if(slots[i][column].isEnabled()){
-								if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
-							}
-						}
-					}
-					return true;
-				} else {
-					return false;
-				}
-			}
-		}
-		// Morris in column != 3
-		if(counter == 3){
-			for(int i=0; i<slots.length; i++){
-				for(int j=0; j<pieces.size(); j++){
-					if(slots[i][column].isEnabled()){
-						if(pieces.get(j).getPosition() == slots[i][column].getId()){
-							pieces.get(j).setMorris(true);
-						}
-					}
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+
 	// Her kan man ta inn pointID og et Player-objekt.
-	public ArrayList<Slot> getHighlightList(int id, Player player) {
-		//getBoard().getSlotByID(11).setTaken(true);
+	public ArrayList<ModelPoint> getHighlightList(int id, Player player) {
 		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
 	}
+	
+	
 	/**
 	 * Update pieces resource images
 	 * @param player
@@ -298,12 +210,12 @@ public class Game {
 		return board;
 	}
 	
-	public void reserveBoardSlot(int id, int player){
-		board.reserveSlot(id, player);
+	public void reserveBoardModelPoint(int id, Piece piece){
+		board.reserveModelPoint(id, piece);
 	}
 	
-	public void unreserveBoardSlot(int id){
-		board.unreserveSlot(id);
+	public void unreserveBoardModelPoint(int id){
+		board.unReserveModelPoint(id);
 	}
 	
 	/**
@@ -336,19 +248,15 @@ public class Game {
      * Remove pieceCounter and implement logic for initial state change in GameController.
      */
 	public void playerPlacedPiece(Player player,Piece piece) {
-		if(piece.getPosition() > 0){
-			// TEMP
-			if(player == getPlayer1()){
-				reserveBoardSlot(piece.getPosition(), 1);
-			} else {
-				reserveBoardSlot(piece.getPosition(), 2);
+		if(piece.getPosition() > 0){	
+			
+			// Denne bør ikke trigge dersom det er et feilaktig trykk
+			reserveBoardModelPoint(piece.getPosition(), piece);
+			
+			if(checkMorris(piece)){
+				System.out.println("Morris achieved. Removal State should be set!");
 			}
 			
-			if(achievedMorris(piece.getPosition())){
-				System.out.println("Morris achieved. Removal State should be set!");
-				//setState(new RemovalState());
-			}
-	
 			firePiecePlaced(player, piece);
 			pieceCounter++;
 			if(pieceCounter == 4){

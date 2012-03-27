@@ -1,13 +1,13 @@
 package morris.gui;
 
 import java.util.ArrayList;
-
 import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.help.LogHelp;
+import morris.models.Game;
+import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
-import morris.models.Slot;
 import morris.states.MoveState;
 import morris.states.PlacementState;
 import morris.states.RemovalState;
@@ -110,7 +110,9 @@ public class BoardView extends View {
 							piece.setPosition(p.getId());
 							GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
 							// STEINAR 26.03 Lagt til 1 for Œ assigne punktene til spiller Žn
-							GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
+							//GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
+							GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
+							
 							System.out.println("ID set to:"+piece.getPosition());
 							break;
 						}
@@ -150,12 +152,15 @@ public class BoardView extends View {
 		//TODO
 	}
 
+	/*
+	 * Metoden highlighter bare for spiller 1. For testing.
+	 */
 	public void highlightPoints(Canvas c, Paint p) {
-		// GET PLAYER ONE FOR TESTING PURPOSES
-		// STEINAR 19.03
-		ArrayList<Slot> highlights = new ArrayList<Slot>();
-		if(GameController.getGame().getPlayer1().getSelectedPiece() != null){
-			highlights = GameController.getMorrisGame().getHighlightList(GameController.getGame().getPlayer1().getSelectedPiece().getPosition(), GameController.getGame().getPlayer1());  
+		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
+		
+		// BURDE KALLES MED GameController.getHighlightList()
+		if(GameController.getGame().getPlayer1().getSelectedPiece() != null){					
+			highlights = GameController.getGame().getHighlightList(GameController.getGame().getPlayer1().getSelectedPiece().getPosition(), GameController.getGame().getPlayer1());  
 		} else {
 			highlights = GameController.getMorrisGame().getHighlightList(-1, GameController.getGame().getPlayer1());  
 		}

@@ -1,17 +1,12 @@
 package morris.states;
 
 import java.util.ArrayList;
-
-import android.R;
-import android.util.Log;
-
-import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.State;
 import morris.models.Board;
+import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
-import morris.models.Slot;
 
 
 public class SelectState implements State {	
@@ -21,22 +16,25 @@ public class SelectState implements State {
 	 * @see morris.interfaces.State#getHighlightList(morris.models.Board, int, morris.models.Player)
 	 */
 	@Override
-	public ArrayList<Slot> getHighlightList(Board board, int id, Player currentPlayer) {
-		ArrayList<Slot> highlights = new ArrayList<Slot>();
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
+		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		ArrayList<Piece> pieces = currentPlayer.getPieces();
 		for(Piece p : pieces){
-			ArrayList<Integer> domain = board.getSlotByID(p.getPosition()).getDomain();
-			//System.out.println("ID:"+p.getPosition()+" Domain size: "+domain.size());
-			boolean selectable = false;
-			for(Integer i : domain){
-				if(!board.getSlotByID(i).isTaken()) selectable = true;
-				//updateSelectablePieces(p, board, i);
-				if(!board.getSlotByID(i).isTaken() && !highlights.contains(board.getSlotByID(p.getPosition()))) highlights.add(board.getSlotByID(p.getPosition()));
-			}
-			if(selectable){
-				p.setSelectable(true);
-			} else {
-				p.setSelectable(false);
+			if(board.getPoint(p.getPosition()) != null){
+				ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
+				boolean selectable = false;
+				for(Integer i : neighbours){
+					if(!board.getPoint(i).isTaken()) selectable = true;
+					//updateSelectablePieces(p, board, i);
+					if(!board.getPoint(i).isTaken() && !highlights.contains(board.getPoint(p.getPosition()))){
+						highlights.add(board.getPoint(p.getPosition()));
+					}
+				}
+				if(selectable){
+					p.setSelectable(true);
+				} else {
+					p.setSelectable(false);
+				}
 			}
 		}
 		return highlights;

@@ -6,32 +6,28 @@ import morris.help.Constant;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.models.Board;
+import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
-import morris.models.Slot;
 
 public class MoveState implements StateListener, State {
 
-	// Should be renamed to getPointHighlights, and there should also be a
-	// method for Piece highlighting.
 	@Override
-	public ArrayList<Slot> getHighlightList(Board board, int id,
-			Player currentPlayer) {
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
 		ArrayList<Integer> IDs = getPossibleMoves(board, id);
-		ArrayList<Slot> highlights = new ArrayList<Slot>();
+		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		for (int i = 0; i < IDs.size(); i++) {
-			highlights.add(board.getSlotByID(IDs.get(i)));
+			highlights.add(board.getPoint(IDs.get(i)));
 		}
 		return highlights;
 	}
-
+	
 	private ArrayList<Integer> getPossibleMoves(Board board, int id) {
-		// Slot[][] slots = board.getSlots();
-		Slot selected = board.getSlotByID(id);
+		ModelPoint selected = board.getPoint(id);
 		ArrayList<Integer> freeSlots = new ArrayList<Integer>();
-		ArrayList<Integer> temp = selected.getDomain();
+		ArrayList<Integer> temp = selected.getNeighbours();
 		for (int i = 0; i < temp.size(); i++) {
-			if (!board.getSlotByID(temp.get(i)).isTaken()) {
+			if (!board.getPoint(temp.get(i)).isTaken()) {
 				freeSlots.add(temp.get(i));
 			}
 		}

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.models.Board;
+import morris.models.ModelPoint;
 import morris.models.Player;
-import morris.models.Slot;
 
 public class PlacementState implements StateListener, State{
 	
@@ -15,13 +15,11 @@ public class PlacementState implements StateListener, State{
 	 * @see morris.interfaces.State#highlightPossibilities(morris.models.Slot[][], morris.models.Player)
 	 */
 	@Override
-	public ArrayList<Slot> getHighlightList(Board board, int id, Player currentPlayer) {
-		Slot[][] slots = board.getSlots();
-		ArrayList<Slot> highlights = new ArrayList<Slot>();
-		for(int i=0; i<slots.length; i++){
-			for(int j=0; j<slots.length; j++){
-				if(slots[i][j].isEnabled() && !slots[i][j].isTaken()) highlights.add(slots[i][j]);
-			}
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
+		ArrayList<ModelPoint> points = board.getPoints();
+		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
+		for(ModelPoint mp : points){
+			if(!mp.isTaken())highlights.add(mp);
 		}
 		return highlights;
 	}
