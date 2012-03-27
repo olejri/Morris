@@ -4,6 +4,8 @@ import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.models.StartGame;
 import morris.models.Game;
+
+
 import com.skiller.api.listeners.SKBaseListener;
 import com.skiller.api.listeners.SKOnTurnbasedGameChosenListener;
 import com.skiller.api.operations.SKApplication;
@@ -12,10 +14,13 @@ import com.skiller.api.responses.SKTurnbasedGameChosenResponse;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.view.Window;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -34,7 +39,7 @@ public class MainActivity extends Activity {
 
 		GameController.getInstance().setMenuContext(this);
 		Display display = getWindowManager().getDefaultDisplay();
-		
+		setButtonFonts();
 
 		skMorris = new SKApplication(Constant.app_id, Constant.app_key, Constant.app_secret, "1", 0);
 		GameController.getInstance().setSkApplication(skMorris);
@@ -45,6 +50,15 @@ public class MainActivity extends Activity {
 		});	
 		
 		
+	}
+	
+	private void setButtonFonts(){
+		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
+		((Button)((Activity)this).findViewById(R.id.menu_button_creategame)).setTypeface(button_font);
+		((Button)((Activity)this).findViewById(R.id.menu_button_joingame)).setTypeface(button_font);
+		((Button)((Activity)this).findViewById(R.id.menu_button_help)).setTypeface(button_font);
+		((Button)((Activity)this).findViewById(R.id.menu_button_show_board)).setTypeface(button_font);
+		((TextView)((Activity)this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
 	}
 
 	public void onClick(View view) {
