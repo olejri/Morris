@@ -165,7 +165,9 @@ public class Game {
 		}
 	}
 	
-	// Brukes bare til Œ sjekke Morris
+	/*
+	 * Help method only used to get the player's pieces when checking for Morris state (rows and columns).
+	 */
 	private ArrayList<Piece> getPieces(int player){
 		if(player == 1){
 			return getPlayer1().getPieces();
@@ -174,6 +176,7 @@ public class Game {
 		}
 	}
 	
+	// B¯R SJEKKE AT BRIKKER OG SLOTS IKKE ER LIK -1
 	private boolean checkColumn(int column, int y, int occupant) {
 		int counter = 0;
 		Slot[][] slots = board.getSlots();
@@ -189,32 +192,35 @@ public class Game {
 				for(int i=0; i<3; i++){
 					if(slots[i][column].getOccupant() == occupant) counter++;
 				}
-				// M TESTES
 				if(counter == 3){
-					for(int i=0; i<slots.length; i++){
+					for(int i=0; i<3; i++){
 						for(int j=0; j<pieces.size(); j++){
 							if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
 						}
 					}
 					return true;
 				}
-				// N¯DL¯SNING
-				/*
-				if(slots[0][3].getOccupant() == occupant && slots[1][3].getOccupant() == occupant && slots[2][3].getOccupant() == occupant){
-					counter = 3;
-				}*/
+				
 			} else{
 				for(int i=4; i<7; i++){
 					if(slots[i][column].getOccupant() == occupant) counter++;
+				}	
+				if(counter == 3){
+					for(int i=4; i<7; i++){
+						for(int j=0; j<pieces.size(); j++){
+							if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+						}
+					}
+					return true;
 				}
-				// N¯DL¯SNING
-				/*
-				if(slots[4][3].getOccupant() == occupant && slots[5][3].getOccupant() == occupant && slots[6][3].getOccupant() == occupant){
-					counter = 3;
-				}*/			
 			}
 		}
 		if(counter == 3){
+			for(int i=0; i<slots.length; i++){
+				for(int j=0; j<pieces.size(); j++){
+					if(pieces.get(j).getPosition() == slots[i][column].getId()) pieces.get(j).setMorris(true);
+				}
+			}
 			return true;
 		} else {
 			return false;
