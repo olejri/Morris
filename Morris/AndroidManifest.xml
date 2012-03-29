@@ -19,7 +19,8 @@
         android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".MainActivity" >
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +29,13 @@
         </activity>
         <activity 
             android:label="Morris -> Play"
-            android:name=".PlayGameActivity" >
+            android:name=".PlayGameActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity 
             android:label="Morris -> Help"
-            android:name=".HelpActivity" >
+            android:name=".HelpActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

@@ -12,7 +12,8 @@
         style="@style/layout_fill_fill"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/round_background_white"
         android:orientation="horizontal" >
 
@@ -57,10 +58,12 @@
     </LinearLayout>
 
     <morris.gui.BoardView
+        android:layout_centerInParent="true"
         android:id="@+id/board_view_id"
         style="@style/layout_wrap_wrap"
         android:layout_above="@id/score_board_id"
         android:layout_below="@id/header"
-        android:layout_margin="10dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
 </RelativeLayout>
