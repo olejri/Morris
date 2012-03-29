@@ -1,6 +1,6 @@
 package morris.models;
 
-import morris.game.GameHandler;
+import morris.game.controller.GameController;
 
 import com.skiller.api.listeners.SKOnGameMoveListener;
 import com.skiller.api.responses.SKGameMoveResponse;
@@ -19,7 +19,7 @@ public class GameMove extends SKOnGameMoveListener{
 			String game_id=st.getGameId();
 			//2. game logic
 			String Opponentpayload=st.getPayload();
-			GameHandler.getInstance().handleOpponentMove(game_state, game_id, Opponentpayload);	
+			GameController.getInstance().handleOpponentMove(game_state, game_id, Opponentpayload);	
 		}
 		else
 		{//status ERROR
