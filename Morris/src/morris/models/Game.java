@@ -24,7 +24,6 @@ public class Game {
 	public String gameType;
 	
 	int pieceCounter = 0;
-	private Player current = null;
 	
 	public Player player1;
 	public Player player2;
@@ -39,7 +38,6 @@ public class Game {
 	public void initPlayers(){
 		player1 = new Player(Constant.WHITE,"Emil");
 		player2 = new Player(Constant.BLACK,"Steinar");
-		current = getPlayer1(); // Brukt for hotseat
 	}
 	
 	public ArrayList<Piece> getSelectablePieces(Player player){
