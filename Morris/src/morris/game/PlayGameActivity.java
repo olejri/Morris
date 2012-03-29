@@ -10,9 +10,11 @@ import morris.models.Game;
 import morris.models.Piece;
 import morris.models.Player;
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class PlayGameActivity extends Activity implements GameListener {
 		setContentView(R.layout.play_game_layout);
 
 		h = new Handler();
+		setButtonFonts();
 
 		GameController.setMorrisGame(new Game());
 		GameController.getMorrisGame().initPlayers();		
@@ -67,6 +70,11 @@ public class PlayGameActivity extends Activity implements GameListener {
 		catch(Exception e){
 			
 		}
+	}
+	
+	private void setButtonFonts(){
+		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
+		((TextView)((Activity)this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
 	}
 
 	/**
