@@ -67,9 +67,4 @@ public class Player {
 		this.name = name;
 	}
 	
-	public void removePiece(int row, int column){
-		// TODO
-		// Logikken som finner ut hvilken brikke som skal fjernes (og hvilken koordinat den har) trenger ikke n�dvendigvis ligge her.
-	}
-	
 }

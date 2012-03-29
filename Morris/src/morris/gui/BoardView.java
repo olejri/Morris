@@ -133,7 +133,7 @@ public class BoardView extends View {
 						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
 							GameController.getGame().setState(new SelectState());
 						}else{
-							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), 1); // SISTE PARAMETER ER SPILLER ID
+							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
 							GameController.getGame().setState(new SelectState());
 						}
 				} else if(GameController.getGame().getState() instanceof RemovalState){

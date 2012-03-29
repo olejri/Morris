@@ -17,21 +17,25 @@ public class RemovalState implements StateListener, State {
 	 * @see morris.interfaces.State#getHighlightList(morris.models.Board, int, morris.models.Player)
 	 */
 	@Override
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
-		/*ArrayList<Slot> highlights = new ArrayList<Slot>();
-		ArrayList<Piece> pieces = currentPlayer.getPieces();
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player opponent) {
+		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
+		ArrayList<Piece> pieces = opponent.getPieces();
 		for(Piece p : pieces){
 			if(!p.inMorris()){
-				highlights.add(board.getSlotByID(p.getPosition()));
+				highlights.add(board.getPoint(p.getPosition()));
 			}
 		}
-		return highlights;*/
-		return null;
+		return highlights;
 	}
 
+	
 	@Override
-	public void updatePieceImages(Player player,int positionId) {
-		// TODO Auto-generated method stub
+	public void updatePieceImages(Player opponent,int positionId) {
+		for (Piece p : opponent.getPieces()) {
+			if (!p.inMorris()){
+				p.updatePieceResource(Constant.REMOVABLE);
+			}
+		}
 	}
 }
 

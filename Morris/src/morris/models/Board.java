@@ -10,10 +10,6 @@ public class Board {
 		for(int id=0; id<24; id++){
 			points.add(new ModelPoint(id));
 		}
-		System.out.println("ModelPoint neighbours:");
-		for(ModelPoint mp : points){
-			System.out.println("ID: "+mp.getId()+" Neighbours: "+mp.getNeighbours());
-		}
 	}
 	
 	public ArrayList<ModelPoint> getPoints(){
