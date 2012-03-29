@@ -9,6 +9,15 @@ public class Constant {
 	public static final String app_secret = "d7a8155968d9437781f82f10df7c5188";
 	public static final String app_id = "934190831255";
 	
+	
+	public static int boardHeight ;
+	public static int boardWidth;
+	public static int scoreBoardHeight;
+	
+	public static int pieceSize;
+	/**
+	 * Screen height
+	 */
 	/**
 	 * Game Types
 	 */

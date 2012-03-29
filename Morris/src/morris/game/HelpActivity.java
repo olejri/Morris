@@ -2,10 +2,12 @@ package morris.game;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ public class HelpActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.help_layout);
 		
+		setTextFont();
+		
 		LinearLayout help_box = (LinearLayout)findViewById(R.id.help_box);
 		
 		help_box.addView(getTitleTextView("Rules",android.R.drawable.ic_menu_info_details));
@@ -27,6 +31,11 @@ public class HelpActivity extends Activity {
 	
 		help_box.addView(getTitleTextView("More",android.R.drawable.ic_menu_info_details));
 		help_box.addView(getDescriptionView("Scrolling works. Yeas. ladjkfals kdfl ksdnf lksdnf lskdnf lskdf lsdf k"));
+	}
+	
+	private void setTextFont(){
+		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
+		((TextView)((Activity)this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
 	}
 	
 	private View getTitleTextView(String title,int titleImage){

@@ -83,7 +83,8 @@ public class BoardView extends View {
 		float calc = xRight / 30;
 		xLeft = calc;
 		yTop = calc;
-		pieceSize = (int) (calc * 2);
+		Constant.pieceSize = (int) (calc * 2);
+		pieceSize = (int)(calc *2);
 		xRightOld = xRight;
 		yBottomOld = yBottom;
 		System.out.println("xNew: " + xNew + " yNew :" + yNew);
