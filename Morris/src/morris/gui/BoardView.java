@@ -8,6 +8,7 @@ import morris.models.Game;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
+import morris.states.FlyingState;
 import morris.states.MoveState;
 import morris.states.PlacementState;
 import morris.states.RemovalState;
@@ -108,11 +109,11 @@ public class BoardView extends View {
 					for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
 						Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
 						if (piece.getPosition() < 0) {
-							piece.setPosition(p.getId());
-							GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
+							//piece.setPosition(p.getId());
+							Log.i(Constant.STATE_DEBUG, "Point ID som sendes til placement: "+p.getId());
+							GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece, p.getId());
 							// STEINAR 26.03 Lagt til 1 for Œ assigne punktene til spiller Žn
-							//GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
-							GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
+							//GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
 							
 							System.out.println("ID set to:"+piece.getPosition());
 							break;
@@ -125,6 +126,7 @@ public class BoardView extends View {
 					if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
 						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
 						GameController.getGame().setState(new MoveState());
+						//GameController.getGame().setState(new FlyingState());
 					}
 				} else if(GameController.getGame().getState() instanceof MoveState){
 					Log.i(Constant.STATE_DEBUG, "Move state");
@@ -133,11 +135,21 @@ public class BoardView extends View {
 						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
 							GameController.getGame().setState(new SelectState());
 						}else{
+							// move(piece, to, player)
 							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
+							// B¯R BARE GJ¯RES DERSOM DET ER ET GYLDIG FLYTT
 							GameController.getGame().setState(new SelectState());
 						}
 				} else if(GameController.getGame().getState() instanceof RemovalState){
 					
+				} else if(GameController.getGame().getState() instanceof FlyingState){
+					if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+						GameController.getGame().setState(new SelectState());
+					}else{
+						GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
+						// B¯R BARE GJ¯RES DERSOM DET ER ET GYLDIG FLYTT
+						GameController.getGame().setState(new SelectState());
+					}
 				}
 			}
 			postInvalidate();

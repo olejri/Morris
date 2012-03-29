@@ -29,6 +29,13 @@ public class ModelPoint {
 		return taken;
 	}
 	
+	public boolean isNeighbour(int target){
+		for(Integer i : getNeighbours()){
+			if(target == i) return true;
+		}
+		return false;
+	}
+	
 	public Piece getPiece(){
 		return piece;
 	}

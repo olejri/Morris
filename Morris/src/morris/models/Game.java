@@ -8,6 +8,7 @@ import morris.help.Constant;
 import morris.interfaces.GameListener;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
+import morris.states.FlyingState;
 import morris.states.MoveState;
 import morris.states.PlacementState;
 import morris.states.RemovalState;
@@ -23,6 +24,7 @@ public class Game {
 	public String gameType;
 	
 	int pieceCounter = 0;
+	private Player current = null;
 	
 	public Player player1;
 	public Player player2;
@@ -37,6 +39,7 @@ public class Game {
 	public void initPlayers(){
 		player1 = new Player(Constant.WHITE,"Emil");
 		player2 = new Player(Constant.BLACK,"Steinar");
+		current = getPlayer1(); // Brukt for hotseat
 	}
 	
 	public ArrayList<Piece> getSelectablePieces(Player player){
@@ -48,15 +51,30 @@ public class Game {
 		return selectable;
 	}
 	
+	private boolean isValidMove(Piece piece, int to){
+		if(state instanceof PlacementState || state instanceof FlyingState){
+			if(!board.getPoint(to).isTaken()){
+				return true;
+			}
+		} else if(state instanceof MoveState){
+			if(!board.getPoint(to).isTaken() && board.getPoint(piece.getPosition()).isNeighbour(to)){
+				return true;
+			}
+		} 
+		return false;
+	}
+	
 	/*
 	 * Input parameters are selected piece and destination point ID
 	 * ID for the point the piece was moved from is available via p.getPosition().
 	 * The player integer can be 1 or 2, depending on whose turn it is.
 	 */
 	public void move(Piece p, int to, Player player){ 
-		unreserveBoardModelPoint(p.getPosition());
-		reserveBoardModelPoint(to, p);
-		p.setPosition(to);
+		if(isValidMove(p, to)){
+			unreserveBoardModelPoint(p.getPosition());
+			reserveBoardModelPoint(to, p);
+			p.setPosition(to);
+		}
 		
 		// Checks for Morris at the point the piece is placed at.		
 		if(checkMorris(p,getPlayer1())){ // endret fra achievedMorris(to)
@@ -65,7 +83,7 @@ public class Game {
 			updateMorrisStates(getPlayer1());
 			System.out.println("Removable pieces:");
 			for(Piece piece : getPieces(1)){
-				if(!piece.inMorris()){
+				if(!piece.inMorris() && piece.getPosition() >= 0){
 					System.out.println("Piece at position "+piece.getPosition()+" is removable!");
 				}
 			}
@@ -136,17 +154,15 @@ public class Game {
 	
 	/*
 	 * Updates the board, setting correct state on all pieces.
-	 * TODO Make sure that both pieces (belonging to player and modelpoint) is updated.
 	 * TODO Update Morris states for opponent's pieces
 	 */
 	private void updateMorrisStates(Player player){
 		ArrayList<Piece> pieces = getPieces(1);
 		int horizontal = 0;
 		int vertical = 0;
-		// Må sjekke at position ikke er <0
 		for(Piece p : pieces){
 			if(p.getPosition() >= 0){
-				p.setMorris(false); // Usikker på om denne vil funke.
+				p.setMorris(false);
 				ArrayList<Integer> hDomain = board.getHorizontalDomain(p.getPosition());
 				horizontal = 0;
 				for(Integer i : hDomain){
@@ -168,7 +184,6 @@ public class Game {
 					setMorrisInDomain(vDomain, player);
 				}
 			}
-
 		}
 	}
 	
@@ -243,12 +258,10 @@ public class Game {
      * TODO
      * Remove pieceCounter and implement logic for initial state change in GameController.
      */
-	public void playerPlacedPiece(Player player,Piece piece) {
-		if(piece.getPosition() > 0){	
-			
-			// Denne bør ikke trigge dersom det er et feilaktig trykk
-			reserveBoardModelPoint(piece.getPosition(), piece);
-			
+	public void playerPlacedPiece(Player player,Piece piece, int position) {
+		if(isValidMove(piece, position)){
+			piece.setPosition(position);
+			reserveBoardModelPoint(position, piece); 
 			if(checkMorris(piece, player)){
 				System.out.println("Morris achieved. Removal State should be set!");
 				updateMorrisStates(player);
@@ -256,7 +269,9 @@ public class Game {
 				// TEST
 				System.out.println("Removable pieces:");
 				for(Piece p : getPieces(1)){
-					System.out.println("Piece at position "+p.getPosition()+" is removable!");
+					if(!piece.inMorris() && piece.getPosition() >= 0){
+						System.out.println("Piece at position "+piece.getPosition()+" is removable!");
+					}
 				}
 			}
 			
@@ -267,10 +282,12 @@ public class Game {
 			}
 		}
 	}
+	
+	
 	public boolean selectable(Player player,int positionId){
 		for(Piece p : player.getPieces()){
 			if(p.getPosition()==positionId){
-				if(p.isSelectable())return true;
+				if(p.isSelectable()) return true;
 			}
 		}
 		return false;
