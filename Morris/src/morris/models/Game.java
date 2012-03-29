@@ -53,15 +53,22 @@ public class Game {
 	 * ID for the point the piece was moved from is available via p.getPosition().
 	 * The player integer can be 1 or 2, depending on whose turn it is.
 	 */
-	public void move(Piece p, int to, int player){ 
+	public void move(Piece p, int to, Player player){ 
 		unreserveBoardModelPoint(p.getPosition());
 		reserveBoardModelPoint(to, p);
 		p.setPosition(to);
 		
 		// Checks for Morris at the point the piece is placed at.		
-		if(checkMorris(p)){ // endret fra achievedMorris(to)
+		if(checkMorris(p,getPlayer1())){ // endret fra achievedMorris(to)
 			System.out.println("Movement Morris achieved. Removal State should be set!");
-			//updateMorrisStates(player); // Her skal mostander benyttes for å oppdatere hans brikker
+			// TEST
+			updateMorrisStates(getPlayer1());
+			System.out.println("Removable pieces:");
+			for(Piece piece : getPieces(1)){
+				if(!piece.inMorris()){
+					System.out.println("Piece at position "+piece.getPosition()+" is removable!");
+				}
+			}
 		}
 	}
 	
@@ -86,31 +93,15 @@ public class Game {
 		return gameType;
 	}
 	
-	/*
-	 * This method is intended to use when the player enters removalstate, and updates inMorris for all opponent pieces
-	 * from pointID to pointID + occupant integer
-	 */
-	public void updateMorrisStates(int occupant){
-		ArrayList<Piece> pieces = getPieces(occupant);
-
-		// Reset inMorris for all pieces
-		for(Piece p : pieces){
-			p.setMorris(false);
-		}
-
-		ArrayList<ModelPoint> points = board.getPoints();
-
-	}
-	
-	private void setMorrisInDomain(ArrayList<Integer> domain){
+	private void setMorrisInDomain(ArrayList<Integer> domain, Player player){
 		for(Integer id : domain){
-			board.getPoint(id).getPiece().setMorris(true);
+			board.getPoint(id).getPiece().setMorris(true);		
 		}
 	}
 	/*
 	 * Checks if the newly placed piece caused a Morris state.
 	 */
-	private boolean checkMorris(Piece piece){
+	private boolean checkMorris(Piece piece, Player player){
 		ArrayList<Integer> hDomain = board.getHorizontalDomain(piece.getPosition());
 		int horizontal = 0;
 		for(Integer i : hDomain){
@@ -121,7 +112,7 @@ public class Game {
 			}
 		}
 		if(horizontal==3){
-			setMorrisInDomain(hDomain);
+			setMorrisInDomain(hDomain, player);
 		}
 		ArrayList<Integer> vDomain = board.getVerticalDomain(piece.getPosition());
 		
@@ -134,7 +125,7 @@ public class Game {
 			}
 		}
 		if(vertical==3){
-			setMorrisInDomain(vDomain);
+			setMorrisInDomain(vDomain, player);
 		}
 		if(vertical==3 || horizontal==3){
 			return true;
@@ -145,34 +136,39 @@ public class Game {
 	
 	/*
 	 * Updates the board, setting correct state on all pieces.
-	 * TODO Make certain that both pieces (belonging to player and modelpoint) is updated.
+	 * TODO Make sure that both pieces (belonging to player and modelpoint) is updated.
+	 * TODO Update Morris states for opponent's pieces
 	 */
 	private void updateMorrisStates(Player player){
 		ArrayList<Piece> pieces = getPieces(1);
 		int horizontal = 0;
 		int vertical = 0;
+		// Må sjekke at position ikke er <0
 		for(Piece p : pieces){
-			p.setMorris(false); // Usikker på om denne vil funke.
-			ArrayList<Integer> hDomain = board.getHorizontalDomain(p.getPosition());
-			horizontal = 0;
-			for(Integer i : hDomain){
-				if(board.getPoint(i) != null){
-					if(p.getColor() == board.getPoint(i).getPiece().getColor()) horizontal++;
+			if(p.getPosition() >= 0){
+				p.setMorris(false); // Usikker på om denne vil funke.
+				ArrayList<Integer> hDomain = board.getHorizontalDomain(p.getPosition());
+				horizontal = 0;
+				for(Integer i : hDomain){
+					if(board.getPoint(i).getPiece() != null){
+						if(p.getColor() == board.getPoint(i).getPiece().getColor()) horizontal++;
+					}
+				}
+				if(horizontal==3){
+					setMorrisInDomain(hDomain, player);
+				}
+				ArrayList<Integer> vDomain = board.getVerticalDomain(p.getPosition());
+				vertical = 0;
+				for(Integer i : vDomain){
+					if(board.getPoint(i).getPiece() != null){
+						if(p.getColor() == board.getPoint(i).getPiece().getColor()) vertical++;
+					}
+				}
+				if(vertical==3){
+					setMorrisInDomain(vDomain, player);
 				}
 			}
-			if(horizontal==3){
-				setMorrisInDomain(hDomain);
-			}
-			ArrayList<Integer> vDomain = board.getVerticalDomain(p.getPosition());
-			vertical = 0;
-			for(Integer i : vDomain){
-				if(board.getPoint(i) != null){
-					if(p.getColor() == board.getPoint(i).getPiece().getColor()) vertical++;
-				}
-			}
-			if(vertical==3){
-				setMorrisInDomain(vDomain);
-			}
+
 		}
 	}
 	
@@ -253,8 +249,15 @@ public class Game {
 			// Denne bør ikke trigge dersom det er et feilaktig trykk
 			reserveBoardModelPoint(piece.getPosition(), piece);
 			
-			if(checkMorris(piece)){
+			if(checkMorris(piece, player)){
 				System.out.println("Morris achieved. Removal State should be set!");
+				updateMorrisStates(player);
+				
+				// TEST
+				System.out.println("Removable pieces:");
+				for(Piece p : getPieces(1)){
+					System.out.println("Piece at position "+p.getPosition()+" is removable!");
+				}
 			}
 			
 			firePiecePlaced(player, piece);
