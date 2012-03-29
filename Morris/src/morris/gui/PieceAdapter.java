@@ -56,7 +56,7 @@ public class PieceAdapter extends BaseAdapter {
 		ImageView imageView;
 		if (v == null) {
 			imageView = new ImageView(context);
-			imageView.setLayoutParams(new GridView.LayoutParams(30, 30));
+			imageView.setLayoutParams(new GridView.LayoutParams(25, 25));
 			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			imageView.setPadding(2, 2, 2, 2);
 		} else {
