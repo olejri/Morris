@@ -92,8 +92,8 @@ public class PlayGameActivity extends Activity implements GameListener {
 		Log.i("height", "Header height: " + headerheight);
 		
 		int usableArea = screenHeight - (headerheight);
-		float viewHeight = (float) usableArea * 0.70f;
-		float scoreHeight = (float)usableArea * 0.20f;
+		float viewHeight = (float) usableArea * 0.60f;
+		float scoreHeight = (float)usableArea * 0.30f;
 		
 
 		Constant.boardHeight = (int)viewHeight;

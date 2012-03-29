@@ -183,8 +183,8 @@ public class BoardView extends View {
 	 */
 	private Point getPressedPoint(float x, float y) {
 		for (Point p : pointList) {
-			if (p.getX() - x > -50 && p.getX() - x < 50) {
-				if (p.getY() - y > -50 && p.getY() - y < 50) {
+			if (p.getX() - x > -(pieceSize/2) && p.getX() - x < (pieceSize/2)) {
+				if (p.getY() - y > -(pieceSize/2) && p.getY() - y < (pieceSize/2)) {
 					System.out.println("POINT FOUND: " + p.getId() + " X: "
 							+ p.getX());
 
