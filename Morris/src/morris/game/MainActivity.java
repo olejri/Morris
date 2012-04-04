@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 	private SKApplication skMorris;
 	private int screen_width; 
 	private int screen_height;
-	
+
 
 
 	/** Called when the activity is first created. */
@@ -48,11 +48,12 @@ public class MainActivity extends Activity {
 
 			}
 		});	
-		
-		
+
+
 	}
-	
+
 	private void setButtonFonts(){
+
 		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
 		((Button)((Activity)this).findViewById(R.id.menu_button_creategame)).setTypeface(button_font);
 		((Button)((Activity)this).findViewById(R.id.menu_button_joingame)).setTypeface(button_font);
@@ -82,13 +83,13 @@ public class MainActivity extends Activity {
 		}
 
 	}
-	
+
 	@Override
 	public void onDestroy(){
 		skMorris.logout(new SKBaseListener(){
 			@Override
 			public void onResponse(SKBaseResponse st){
-				
+
 			}
 		});
 		android.os.Process.killProcess(android.os.Process.myPid());

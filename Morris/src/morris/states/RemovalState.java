@@ -22,7 +22,9 @@ public class RemovalState implements StateListener, State {
 		ArrayList<Piece> pieces = opponent.getPieces();
 		for(Piece p : pieces){
 			if(!p.inMorris()){
+				if(board.getPoint(p.getPosition()) != null){
 				highlights.add(board.getPoint(p.getPosition()));
+				}
 			}
 		}
 		return highlights;
@@ -34,6 +36,10 @@ public class RemovalState implements StateListener, State {
 		for (Piece p : opponent.getPieces()) {
 			if (!p.inMorris()){
 				p.updatePieceResource(Constant.REMOVABLE);
+			}
+			//TODO fix for opponent
+			else {
+				p.updatePieceResource(Constant.NORMAL);
 			}
 		}
 	}

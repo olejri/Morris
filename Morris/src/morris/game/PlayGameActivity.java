@@ -42,13 +42,13 @@ public class PlayGameActivity extends Activity implements GameListener {
 		SKUser owner = GameController.getInstance().getOwner();
 		SKUser guest = GameController.getInstance().getGuest();
 		GameController.getInstance().getMorrisGame().initPlayers();
-		
+
 		GameController.getInstance().setCanvasContext(this);
 
 		setUpScoreBoard();
 		setScoreBoardNames();
 		// updateScoreBoard();
-		
+
 		try{
 			if(GameController.getInstance().isWaiting_for_opponnent()){
 				GameController.getInstance().showToastOnCanvas("Still waiting on opponent");
@@ -64,17 +64,20 @@ public class PlayGameActivity extends Activity implements GameListener {
 				}
 			}
 			else{
-				
+
 			}
 		}
 		catch(Exception e){
-			
+
 		}
 	}
-	
+
+
 	private void setButtonFonts(){
+
 		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
 		((TextView)((Activity)this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
+
 	}
 
 	/**
@@ -86,7 +89,7 @@ public class PlayGameActivity extends Activity implements GameListener {
 		pieceAdapter1 = new PieceAdapter(getApplicationContext(),Constant.WHITE);
 		gridview_black.setAdapter(pieceAdapter1);
 		// Set up player 2 pieces
-		
+
 		gridview_white = (GridView) findViewById(R.id.gridview_player2);
 		pieceAdapter2 = new PieceAdapter(getApplicationContext(), Constant.BLACK);
 		gridview_white.setAdapter(pieceAdapter2);

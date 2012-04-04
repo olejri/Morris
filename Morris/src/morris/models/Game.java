@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import android.util.Log;
+
+import morris.gui.Point;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
 import morris.interfaces.State;
@@ -21,24 +24,24 @@ public class Game {
 	private State state;
 	private Board board;
 	public String gameType;
-	
+
 	int pieceCounter = 0;
-	
+
 	public Player player1;
 	public Player player2;
-	
-	// Satt til placementstate midlertidig. Logisk Œ starte der uansett.
+
+	// Satt til placementstate midlertidig. Logisk ï¿½ starte der uansett.
 	public Game(){
 		setState(new PlacementState());
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
 	}
-	
+
 	public void initPlayers(){
 		player1 = new Player(Constant.WHITE,"Emil");
 		player2 = new Player(Constant.BLACK,"Steinar");
 	}
-	
+
 	public ArrayList<Piece> getSelectablePieces(Player player){
 		ArrayList<Piece> pieces = player.getPieces();
 		ArrayList<Piece> selectable = new ArrayList<Piece>();
@@ -47,7 +50,7 @@ public class Game {
 		}
 		return selectable;
 	}
-	
+
 	/*
 	 * Input parameters are selected piece and destination point ID
 	 * ID for the point the piece was moved from is available via p.getPosition().
@@ -57,11 +60,13 @@ public class Game {
 		unreserveBoardModelPoint(p.getPosition());
 		reserveBoardModelPoint(to, p);
 		p.setPosition(to);
-		
+
 		// Checks for Morris at the point the piece is placed at.		
 		if(checkMorris(p,getPlayer1())){ // endret fra achievedMorris(to)
+			Log.i("LOGHELP", "Morris STATE");
 			System.out.println("Movement Morris achieved. Removal State should be set!");
 			// TEST
+			setState(new RemovalState());
 			updateMorrisStates(getPlayer1());
 			System.out.println("Removable pieces:");
 			for(Piece piece : getPieces(1)){
@@ -71,7 +76,7 @@ public class Game {
 			}
 		}
 	}
-	
+
 	public State getState(){
 		return state;
 	}
@@ -81,18 +86,18 @@ public class Game {
 	public void setYourTurn(boolean yourTurn){
 		this.yourTurn = yourTurn;
 	}
-	
+
 	public Player getPlayer1(){
 		return player1;
 	}
 	public Player getPlayer2(){
 		return player2;
 	}
-	
+
 	public String getMorrisGameType(){
 		return gameType;
 	}
-	
+
 	private void setMorrisInDomain(ArrayList<Integer> domain, Player player){
 		for(Integer id : domain){
 			board.getPoint(id).getPiece().setMorris(true);		
@@ -115,7 +120,7 @@ public class Game {
 			setMorrisInDomain(hDomain, player);
 		}
 		ArrayList<Integer> vDomain = board.getVerticalDomain(piece.getPosition());
-		
+
 		int vertical = 0;
 		for(Integer i : vDomain){
 			if(board.getPoint(i) != null){
@@ -133,7 +138,21 @@ public class Game {
 			return false;
 		}
 	}
-	
+
+	public void removePiece(Point p, Player player) {
+		ArrayList<Piece> pieces = player.getPieces();
+		Piece ps = null;
+		for (Piece piece : pieces){
+			if(piece.getPosition() == p.getId()){
+				ps = piece;
+			}
+		}
+		player.removePiece(ps);
+
+
+
+	}
+
 	/*
 	 * Updates the board, setting correct state on all pieces.
 	 * TODO Make sure that both pieces (belonging to player and modelpoint) is updated.
@@ -143,10 +162,10 @@ public class Game {
 		ArrayList<Piece> pieces = getPieces(1);
 		int horizontal = 0;
 		int vertical = 0;
-		// MŒ sjekke at position ikke er <0
+		// Mï¿½ sjekke at position ikke er <0
 		for(Piece p : pieces){
 			if(p.getPosition() >= 0){
-				p.setMorris(false); // Usikker pŒ om denne vil funke.
+				p.setMorris(false); // Usikker pï¿½ om denne vil funke.
 				ArrayList<Integer> hDomain = board.getHorizontalDomain(p.getPosition());
 				horizontal = 0;
 				for(Integer i : hDomain){
@@ -171,7 +190,7 @@ public class Game {
 
 		}
 	}
-	
+
 	/*
 	 * Help method only used to get the player's pieces when checking for Morris state (rows and columns).
 	 */
@@ -187,8 +206,8 @@ public class Game {
 	public ArrayList<ModelPoint> getHighlightList(int id, Player player) {
 		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
 	}
-	
-	
+
+
 	/**
 	 * Update pieces resource images
 	 * @param player
@@ -201,68 +220,70 @@ public class Game {
 	public void setState(State state){
 		this.state = state;
 	}
-	
+
 	public Board getBoard(){
 		return board;
 	}
-	
+
 	public void reserveBoardModelPoint(int id, Piece piece){
 		board.reserveModelPoint(id, piece);
 	}
-	
+
 	public void unreserveBoardModelPoint(int id){
 		board.unReserveModelPoint(id);
 	}
-	
+
 	/**
 	 * Add listener
 	 * @param listener
 	 */
-    public void addGameListener(GameListener listener) {
-    	gameListeners.add(listener);
-    }
-    /**
-     * remove listener
-     * @param listener
-     */
-    public void removeListener(StateListener listener){
-    	stateListeners.remove(listener);
-    }
-    
-    /**
-     * FIRE LISTENERS
-     */
-     
-    private void firePiecePlaced(Player player,Piece piece) {
-    	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece);
-    	}
-    }
+	public void addGameListener(GameListener listener) {
+		gameListeners.add(listener);
+	}
+	/**
+	 * remove listener
+	 * @param listener
+	 */
+	public void removeListener(StateListener listener){
+		stateListeners.remove(listener);
+	}
 
-    /*
-     * TODO
-     * Remove pieceCounter and implement logic for initial state change in GameController.
-     */
+	/**
+	 * FIRE LISTENERS
+	 */
+
+	private void firePiecePlaced(Player player,Piece piece) {
+		for(GameListener l : gameListeners){
+			l.playerPlacedPiece(player, piece);
+		}
+	}
+
+	/*
+	 * TODO
+	 * Remove pieceCounter and implement logic for initial state change in GameController.
+	 */
 	public void playerPlacedPiece(Player player,Piece piece) {
 		if(piece.getPosition() > 0){	
-			
-			// Denne b¿r ikke trigge dersom det er et feilaktig trykk
+
+			// Denne bï¿½r ikke trigge dersom det er et feilaktig trykk
 			reserveBoardModelPoint(piece.getPosition(), piece);
-			
+
 			if(checkMorris(piece, player)){
 				System.out.println("Morris achieved. Removal State should be set!");
+
 				updateMorrisStates(player);
-				
+
 				// TEST
 				System.out.println("Removable pieces:");
 				for(Piece p : getPieces(1)){
 					System.out.println("Piece at position "+p.getPosition()+" is removable!");
 				}
 			}
-			
+
 			firePiecePlaced(player, piece);
 			pieceCounter++;
 			if(pieceCounter == 4){
+				Log.i("LOGHELP", "testing started");
 				setState(new SelectState());
 			}
 		}
@@ -275,6 +296,6 @@ public class Game {
 		}
 		return false;
 	}
-   
-	
+
+
 }

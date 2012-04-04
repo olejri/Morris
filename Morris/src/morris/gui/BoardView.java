@@ -102,51 +102,64 @@ public class BoardView extends View {
 			if (GameController.getGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
-				if (GameController.getGame().getState() instanceof PlacementState) {	
-					Log.i(Constant.STATE_DEBUG, "Placement state");
-					for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
-						Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
-						if (piece.getPosition() < 0) {
-							piece.setPosition(p.getId());
-							GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
-							// STEINAR 26.03 Lagt til 1 for Œ assigne punktene til spiller Žn
-							//GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
-							GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
-							
-							System.out.println("ID set to:"+piece.getPosition());
-							break;
+					if (GameController.getGame().getState() instanceof PlacementState) {	
+						Log.i(Constant.STATE_DEBUG, "Placement state");
+						for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
+							Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
+							if (piece.getPosition() < 0) {
+								piece.setPosition(p.getId());
+								GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
+								// STEINAR 26.03 Lagt til 1 for ï¿½ assigne punktene til spiller ï¿½n
+								//GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
+								GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
+
+								System.out.println("ID set to:"+piece.getPosition());
+								break;
+							}
 						}
-					}
-					
-				// STEINAR 19.03
-				} else if(GameController.getGame().getState() instanceof SelectState){
-					Log.i(Constant.STATE_DEBUG, "Select state");
-					if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
+
+						// STEINAR 19.03
+					} else if(GameController.getGame().getState() instanceof SelectState){
+						Log.i(Constant.STATE_DEBUG, "Select state");
+						if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
+							GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+							GameController.getGame().setState(new MoveState());
+						}
+					} else if(GameController.getGame().getState() instanceof MoveState){
+						Log.i(Constant.STATE_DEBUG, "Move state");
 						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-						GameController.getGame().setState(new MoveState());
-					}
-				} else if(GameController.getGame().getState() instanceof MoveState){
-					Log.i(Constant.STATE_DEBUG, "Move state");
-						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-						
+
 						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+
 							GameController.getGame().setState(new SelectState());
 						}else{
 							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
-							GameController.getGame().setState(new SelectState());
+							if(GameController.getGame().getState() instanceof RemovalState){
+								Log.i(Constant.STATE_DEBUG, "Remove state");
+								GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+							}
+							else {
+								GameController.getGame().setState(new SelectState());
+							}
+
 						}
-				} else if(GameController.getGame().getState() instanceof RemovalState){
-					
+					} else if(GameController.getGame().getState() instanceof RemovalState){
+						// testing with just player1
+						GameController.getGame().removePiece(p, GameController.getGame().getPlayer1());
+						GameController.getGame().setState(new SelectState());
+						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+						
+
+					}
 				}
+				postInvalidate();
 			}
-			postInvalidate();
-		}
 		}
 		// Update screen
 
 		return true;
 	}
-	
+
 	// Add needed parameters. I want a piece highlighting plz. -Steinar
 	public void highlightPieces(Player player){
 		//TODO
@@ -157,7 +170,7 @@ public class BoardView extends View {
 	 */
 	public void highlightPoints(Canvas c, Paint p) {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
-		
+
 		// BURDE KALLES MED GameController.getHighlightList()
 		if(GameController.getGame().getPlayer1().getSelectedPiece() != null){					
 			highlights = GameController.getGame().getHighlightList(GameController.getGame().getPlayer1().getSelectedPiece().getPosition(), GameController.getGame().getPlayer1());  
