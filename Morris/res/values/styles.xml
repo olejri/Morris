@@ -27,6 +27,7 @@
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_width">200dp</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:background">@drawable/color_button_black</item>
@@ -44,7 +45,8 @@
 
     <style name="gridview_style" parent="layout_fill_fill">
         <item name="android:columnWidth">10dp</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
         <item name="android:gravity">center</item>
         <item name="android:stretchMode">columnWidth</item>
         <item name="android:numColumns">auto_fit</item>

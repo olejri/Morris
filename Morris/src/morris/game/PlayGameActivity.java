@@ -3,6 +3,7 @@ package morris.game;
 import com.skiller.api.items.SKUser;
 
 import morris.game.controller.GameController;
+import morris.gui.BoardView;
 import morris.gui.PieceAdapter;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
@@ -13,10 +14,15 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.Display;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
 public class PlayGameActivity extends Activity implements GameListener {
 	public PieceAdapter pieceAdapter1;
@@ -31,6 +37,8 @@ public class PlayGameActivity extends Activity implements GameListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.play_game_layout);
+
+		setBoardHeight();
 
 		h = new Handler();
 		setButtonFonts();
@@ -71,6 +79,42 @@ public class PlayGameActivity extends Activity implements GameListener {
 
 		}
 	}
+	/**
+	 * onWindowChange we dedicate 70 % of the screen to the BoardView and 20 for scoreview
+	 */
+	public void onWindowFocusChanged(boolean hasFocus) {
+		Display display = getWindowManager().getDefaultDisplay();
+		int screenHeight = display.getHeight();
+
+		RelativeLayout header = (RelativeLayout)findViewById(R.id.header);
+		int headerheight = header.getHeight();
+
+		Log.i("height", "Header height: " + headerheight);
+
+		int usableArea = screenHeight - (headerheight);
+		float viewHeight = (float) usableArea * 0.60f;
+		float scoreHeight = (float)usableArea * 0.30f;
+
+
+		Constant.boardHeight = (int)viewHeight;
+		Constant.scoreBoardHeight = (int)scoreHeight;
+
+
+		BoardView cardView = (BoardView) findViewById(R.id.board_view_id);
+		LinearLayout scoreView = (LinearLayout)findViewById(R.id.score_board_id);
+		RelativeLayout.LayoutParams scoreParams = (RelativeLayout.LayoutParams) scoreView.getLayoutParams();
+		RelativeLayout.LayoutParams params = (LayoutParams) cardView.getLayoutParams();
+
+		scoreView.setLayoutParams(scoreParams);
+		cardView.setLayoutParams(params);
+
+	}
+	/**
+	 * Set boardView height to 70 % of screen
+	 */
+	private void setBoardHeight(){
+
+	}
 
 
 	private void setButtonFonts(){
@@ -91,8 +135,12 @@ public class PlayGameActivity extends Activity implements GameListener {
 		// Set up player 2 pieces
 
 		gridview_white = (GridView) findViewById(R.id.gridview_player2);
+
+
 		pieceAdapter2 = new PieceAdapter(getApplicationContext(), Constant.BLACK);
 		gridview_white.setAdapter(pieceAdapter2);
+
+
 	}
 
 	private void setScoreBoardNames() {

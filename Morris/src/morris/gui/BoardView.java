@@ -8,6 +8,7 @@ import morris.models.Game;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
+import morris.states.FlyingState;
 import morris.states.MoveState;
 import morris.states.PlacementState;
 import morris.states.RemovalState;
@@ -83,7 +84,8 @@ public class BoardView extends View {
 		float calc = xRight / 30;
 		xLeft = calc;
 		yTop = calc;
-		pieceSize = (int) (calc * 2);
+		Constant.pieceSize = (int) (calc * 2);
+		pieceSize = (int)(calc *2);
 		xRightOld = xRight;
 		yBottomOld = yBottom;
 		System.out.println("xNew: " + xNew + " yNew :" + yNew);
@@ -102,22 +104,21 @@ public class BoardView extends View {
 			if (GameController.getGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
+
 					if (GameController.getGame().getState() instanceof PlacementState) {	
 						Log.i(Constant.STATE_DEBUG, "Placement state");
 						for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
 							Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
 							if (piece.getPosition() < 0) {
 								piece.setPosition(p.getId());
-								GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece);
+								GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece, p.getId());
 								// STEINAR 26.03 Lagt til 1 for � assigne punktene til spiller �n
 								//GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
 								GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
-
 								System.out.println("ID set to:"+piece.getPosition());
 								break;
 							}
 						}
-
 						// STEINAR 19.03
 					} else if(GameController.getGame().getState() instanceof SelectState){
 						Log.i(Constant.STATE_DEBUG, "Select state");
@@ -127,29 +128,68 @@ public class BoardView extends View {
 						}
 					} else if(GameController.getGame().getState() instanceof MoveState){
 						Log.i(Constant.STATE_DEBUG, "Move state");
-						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-
-						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
-
-							GameController.getGame().setState(new SelectState());
-						}else{
-							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
-							if(GameController.getGame().getState() instanceof RemovalState){
-								Log.i(Constant.STATE_DEBUG, "Remove state");
+						if (GameController.getGame().getState() instanceof PlacementState) {	
+							Log.i(Constant.STATE_DEBUG, "Placement state");
+							for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
+								Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
+								if (piece.getPosition() < 0) {
+									//piece.setPosition(p.getId());
+									Log.i(Constant.STATE_DEBUG, "Point ID som sendes til placement: "+p.getId());
+									GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece, p.getId());
+									// STEINAR 26.03 Lagt til 1 for � assigne punktene til spiller �n
+									//GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
+									System.out.println("ID set to:"+piece.getPosition());
+									break;
+								}
+							}
+							// STEINAR 19.03
+						} else if(GameController.getGame().getState() instanceof SelectState){
+							Log.i(Constant.STATE_DEBUG, "Select state");
+							if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
 								GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+								GameController.getGame().setState(new MoveState());
+								//GameController.getGame().setState(new FlyingState());
 							}
-							else {
-								GameController.getGame().setState(new SelectState());
-							}
+						} else if(GameController.getGame().getState() instanceof MoveState){
+							Log.i(Constant.STATE_DEBUG, "Move state");
 
+							GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+
+							if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+
+								GameController.getGame().setState(new SelectState());
+							}else{
+								// move(piece, to, player)
+								GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
+
+								if(GameController.getGame().getState() instanceof RemovalState){
+									Log.i(Constant.STATE_DEBUG, "Remove state");
+									GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
+								}
+								else {
+
+									// B�R BARE GJ�RES DERSOM DET ER ET GYLDIG FLYTT
+									GameController.getGame().setState(new SelectState());
+								}
+
+							}
+							//Ole 29.03.2012
 						}
 					} else if(GameController.getGame().getState() instanceof RemovalState){
 						// testing with just player1
 						GameController.getGame().removePiece(p, GameController.getGame().getPlayer1());
 						GameController.getGame().setState(new SelectState());
 						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-						
+					
+					} else if(GameController.getGame().getState() instanceof FlyingState){
+						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+							GameController.getGame().setState(new SelectState());
+						}else{
+							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
+							// B�R BARE GJ�RES DERSOM DET ER ET GYLDIG FLYTT
+							GameController.getGame().setState(new SelectState());
 
+						}
 					}
 				}
 				postInvalidate();
@@ -195,8 +235,8 @@ public class BoardView extends View {
 	 */
 	private Point getPressedPoint(float x, float y) {
 		for (Point p : pointList) {
-			if (p.getX() - x > -50 && p.getX() - x < 50) {
-				if (p.getY() - y > -50 && p.getY() - y < 50) {
+			if (p.getX() - x > -(pieceSize/2) && p.getX() - x < (pieceSize/2)) {
+				if (p.getY() - y > -(pieceSize/2) && p.getY() - y < (pieceSize/2)) {
 					System.out.println("POINT FOUND: " + p.getId() + " X: "
 							+ p.getX());
 
