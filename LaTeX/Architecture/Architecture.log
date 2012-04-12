@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.11)  12 APR 2012 13:11
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.11)  12 APR 2012 13:48
 entering extended mode
 **Architecture.tex
 (D:\GiT\Morris\LaTeX\Architecture\Architecture.tex
@@ -599,8 +599,12 @@ l.29 ...ine {7.3}Process view}{10}{subsection.7.3}
 (D:\GiT\Morris\LaTeX\Architecture\5-tactics.tex [5
 
 ])
-(D:\GiT\Morris\LaTeX\Architecture\6-patterns.tex [6])
-(D:\GiT\Morris\LaTeX\Architecture\7-views.tex [7]
+(D:\GiT\Morris\LaTeX\Architecture\6-patterns.tex [6]
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+) (D:\GiT\Morris\LaTeX\Architecture\7-views.tex [7]
 <./Images/LogicalView.png, id=247, 724.6272pt x 652.839pt>
 File: ./Images/LogicalView.png Graphic file (type png)
 
@@ -673,9 +677,9 @@ ec\dpi600\ecrm1440.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
 r\jknappen\ec\dpi600\eccc1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fon
 ts\pk\ljfour\jknappen\ec\dpi600\eccc2074.pk> <C:\Users\Nelich\AppData\Local\MiK
 TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1728.pk>
-Output written on Architecture.pdf (14 pages, 433683 bytes).
+Output written on Architecture.pdf (14 pages, 432687 bytes).
 PDF statistics:
- 707 PDF objects out of 1000 (max. 8388607)
+ 703 PDF objects out of 1000 (max. 8388607)
  61 named destinations out of 1000 (max. 500000)
  293 words of extra memory for PDF output out of 10000 (max. 10000000)
 
