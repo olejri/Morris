@@ -8,15 +8,15 @@
 \BOOKMARK [2][-]{subsection.4.1}{Logical view}{section.4}% 8
 \BOOKMARK [2][-]{subsection.4.2}{Development view}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.3}{Process view}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{Architectural tactics}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{Modifiability}{section.5}% 12
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Prevention of Ripple Effect}{subsection.5.1}% 13
-\BOOKMARK [3][-]{subsubsection.5.1.2}{Localize Changes}{subsection.5.1}% 14
-\BOOKMARK [2][-]{subsection.5.2}{Usability}{section.5}% 15
-\BOOKMARK [3][-]{subsubsection.5.2.1}{User feedback between implementation iterations}{subsection.5.2}% 16
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Follow the Android user interface guidelines}{subsection.5.2}% 17
-\BOOKMARK [2][-]{subsection.5.3}{Testability}{section.5}% 18
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Testing third party multiplayer connection}{subsection.5.3}% 19
+\BOOKMARK [2][-]{subsection.4.4}{Physical view}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Architectural tactics}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{Modifiability}{section.5}% 13
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Prevention of Ripple Effect}{subsection.5.1}% 14
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Localize Changes}{subsection.5.1}% 15
+\BOOKMARK [2][-]{subsection.5.2}{Usability}{section.5}% 16
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Design-time tactics}{subsection.5.2}% 17
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Runtime tactics}{subsection.5.2}% 18
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Others}{subsection.5.2}% 19
 \BOOKMARK [1][-]{section.6}{Architectural patterns}{}% 20
 \BOOKMARK [2][-]{subsection.6.1}{States}{section.6}% 21
 \BOOKMARK [2][-]{subsection.6.2}{MVC}{section.6}% 22
