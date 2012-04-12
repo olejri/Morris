@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  12 APR 2012 14:55
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  12 APR 2012 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,7 +570,7 @@ LaTeX Info: Redefining \nameref on input line 39.
 \openout3 = `Architecture.out'.
 
  (./0-frontpage.tex
-<./androids.jpg, id=128, 552.0625pt x 414.54875pt>
+<./androids.jpg, id=132, 552.0625pt x 414.54875pt>
 File: ./androids.jpg Graphic file (type jpg)
  <use ./androids.jpg>
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -587,7 +587,7 @@ ids.jpg>]) (./Architecture.tocpdfTeX warning (ext4): destination with the same
 identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...n}{\numberline {10}Issues}{12}{section.10}
+l.29 ...{9}Architectural rationale}{13}{section.9}
                                                    [1])
 \tf@toc=\write4
 \openout4 = `Architecture.toc'.
@@ -641,16 +641,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--8
  []
 
 [8]) (./7-views.tex [9]
-<./Images/LogicalView.png, id=246, 724.6272pt x 652.839pt>
+<./Images/LogicalView.png, id=252, 724.6272pt x 652.839pt>
 File: ./Images/LogicalView.png Graphic file (type png)
 
 <use ./Images/LogicalView.png>
-<./Images/DevelopmentView.png, id=248, 289.5618pt x 431.6928pt>
+<./Images/DevelopmentView.png, id=254, 289.5618pt x 431.6928pt>
 File: ./Images/DevelopmentView.png Graphic file (type png)
 
 <use ./Images/DevelopmentView.png> [10 <./Images/LogicalView.png (PNG copy)>]
 [11 <./Images/DevelopmentView.png (PNG copy)>]
-<./Images/ProcessView.png, id=260, 382.5492pt x 698.61pt>
+<./Images/ProcessView.png, id=266, 382.5492pt x 698.61pt>
 File: ./Images/ProcessView.png Graphic file (type png)
 
 <use ./Images/ProcessView.png>) (./8-consistency.tex [12 <./Images/ProcessView.
@@ -659,7 +659,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./10-issues.tex) (./11-changes.tex [13]) [14] (./Architecture.bbl
+) (./10-issues.tex) (./11-changes.tex [13]
+Underfull \hbox (badness 2189) in paragraph at lines 10--10
+[]|\T1/cmr/m/n/12 Rewritten in-tro-duc-tion and added run-time and
+ []
+
+) [14] (./Architecture.bbl
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -681,24 +686,14 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
  (./Architecture.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
-
-
-Package rerunfilecheck Warning: File `Architecture.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Architecture.out':
-(rerunfilecheck)             Before: 6190935334D813A84ABA91F0CFC96463;1905
-(rerunfilecheck)             After:  FDE4A8FC15504A8EE4F33CE67830156D;1968.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `Architecture.out' has not changed.
+(rerunfilecheck)             Checksum: FDE4A8FC15504A8EE4F33CE67830156D;1968.
  ) 
 Here is how much of TeX's memory you used:
- 6196 strings out of 493747
- 89133 string characters out of 3143546
+ 6197 strings out of 493747
+ 89149 string characters out of 3143546
  171308 words of memory out of 3000000
- 9241 multiletter control sequences out of 15000+200000
+ 9242 multiletter control sequences out of 15000+200000
  16249 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  41i,11n,43p,772b,376s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -716,10 +711,10 @@ ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2
 010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/201
 0/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Architecture.pdf (16 pages, 471112 bytes).
+Output written on Architecture.pdf (16 pages, 471353 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
- 307 compressed objects within 4 object streams
+ 351 PDF objects out of 1000 (max. 8388607)
+ 312 compressed objects within 4 object streams
  62 named destinations out of 1000 (max. 500000)
- 269 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 
