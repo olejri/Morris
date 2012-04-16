@@ -192,7 +192,8 @@ public class Network implements GameListener {
 
 			Network.getInstance().switchTurns();
 			// NOW CHECK IF SOMEONE IS WINNING, NEEDS MOAR LOGIC
-
+			
+			handleMessage(Opponentpayload);
 			break;
 		}
 	}
