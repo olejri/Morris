@@ -42,6 +42,15 @@ public class Constant {
 	 */
 	public static final String STATE_DEBUG = "state_debug";
 	
+	/**
+	 * Message protocol messages
+	 */
+	public static final String SPLIT =";";
+	public static final String MESSAGE_PIECE_PLACED = "m_p_p";
+	public static final String MESSAGE_PIECE_MOVED = "m_p_m";
+	public static final String MESSAGE_PIECE_DELETED ="m_p_d";
+	
+	
 	
 
 }

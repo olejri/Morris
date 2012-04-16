@@ -18,6 +18,7 @@ import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
 
 import morris.game.controller.GameController;
+import morris.help.Constant;
 import morris.interfaces.GameListener;
 import morris.interfaces.NetworkListener;
 import morris.models.GameMove;
@@ -25,9 +26,11 @@ import morris.models.Piece;
 import morris.models.Player;
 import morris.models.StartGame;
 
+
 public class Network implements GameListener{
 	
 	List<NetworkListener>networkListeners = new CopyOnWriteArrayList<NetworkListener>();
+	
 	
 	private static Network instance = null;
 	
@@ -139,7 +142,7 @@ public class Network implements GameListener{
 		int event = SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY;
 		String chat=null;
 		//sending the information
-		Network.getInstance().sendInformation( payload, event, chat);
+		Network.getInstance().sendInformation(payload, event, chat);
 		Network.getInstance().setGameStarted(true);
 		Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
 		Network.getInstance().getMenuContext().startActivity(intent);
@@ -182,6 +185,26 @@ public class Network implements GameListener{
 			//NOW CHECK IF SOMEONE IS WINNING, NEEDS MOAR LOGIC
 			
 			break;
+		}
+	}
+	/**
+	 * Decode message and performe
+	 * @param message
+	 */
+	private void handleMessage(String message){
+		String[]parts = message.split(Constant.SPLIT);
+		if((parts[0]).equals(Constant.MESSAGE_PIECE_PLACED)){
+			int pieceID = Integer.parseInt(parts[1]);
+			int toPosition = Integer.parseInt(parts[2]);
+			fireNetworkPlayerPlacedPiece(pieceID, toPosition);
+			//DO SOMETHING
+		}else if((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)){
+			int pieceID = Integer.parseInt(parts[1]);
+			int toPosition = Integer.parseInt(parts[2]);
+			fireNetworkPlayerMoved(pieceID, toPosition);
+			//DO SOMETHING
+		}else if((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)){
+			int pieceID = Integer.parseInt(parts[1]);
 		}
 	}
 	
@@ -369,16 +392,22 @@ public class Network implements GameListener{
 	}
 
 
-	@Override
-	public void playerMoved(Player player, Piece piece) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
-		Network.getInstance().sendInformation("Player placed piece pieceID: "+" Name: " + player.getName()+", PieceID: " + piece.getPosition(), SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		//Sending place message
+		String movedMessage = Constant.MESSAGE_PIECE_MOVED+Constant.SPLIT+piece.getPosition();
+		Network.getInstance().sendInformation(movedMessage, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+	}
+
+	@Override
+	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+		//Sending move message
+		String movedMessage = Constant.MESSAGE_PIECE_MOVED+Constant.SPLIT+pieceFromPosition+Constant.SPLIT+pieceToPosition;
+		Network.getInstance().sendInformation(movedMessage, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		
 		
 	}
 }
