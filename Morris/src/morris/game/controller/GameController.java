@@ -341,8 +341,6 @@ public class GameController {
 		return printed;
 	}
 
-
-
 	public void setPrinted(boolean printed) {
 		this.printed = printed;
 	}
