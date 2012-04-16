@@ -1,39 +1,34 @@
-package morris.game.controller;
+package morris.game;
 
 import java.util.Timer;
 
-import morris.game.PlayGameActivity;
-import morris.models.GameMove;
-import morris.models.StartGame;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.widget.EditText;
-import android.widget.Toast;
-import morris.models.Game;
 
 import com.skiller.api.items.SKUser;
 import com.skiller.api.listeners.SKOnFeeChosenListener;
-import com.skiller.api.listeners.SKOnGetFeeOptionsListener;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
-import com.skiller.api.responses.SKGetFeeOptionsResponse;
 
-public class GameController {
+import morris.game.controller.GameController;
+import morris.interfaces.GameListener;
+import morris.interfaces.NetworkListener;
+import morris.models.GameMove;
+import morris.models.Piece;
+import morris.models.Player;
+import morris.models.StartGame;
 
-	private static GameController instance = null;
+public class Network implements GameListener{
 	
+	private static Network instance = null;
 	
+	// Get / Set variables
 	private Context menuContext;
 	private Context canvasContext;
-	
 	private ProgressDialog progressDialog;
-	private Timer timer;
-	
+	private Timer timer;	
 	private boolean serverEndGameresponse=false;
 	private boolean gameStarted=false;
 	private boolean waiting_for_opponnent = false;
@@ -41,8 +36,7 @@ public class GameController {
 	private boolean gameOwner;
 	private boolean printed = false;
 	
-	private static Game morrisGame = null;
-
+	// Skiller variables
 	private SKApplication skMorris;
 	private SKUser owner;
 	private SKUser guest;
@@ -51,45 +45,18 @@ public class GameController {
 	
 	private int turn;
 	private int side;
-
-	public static GameController getInstance() {
+	
+	/*
+	 * Singleton
+	 */
+	public static Network getInstance() {
 		if (instance == null) {
-			instance = new GameController();
+			instance = new Network();
 		}
 		return instance;
 	}
 	
-	public static Game getGame(){
-		return GameController.getInstance().getMorrisGame();
-	}
 	
-
-	private GameController() {
-		clearGame();
-	}
-
-	
-	/*
-	 *  createNewGame() method - starts a new game that other can join
-	 */
-	public void createNewGame() {
-		
-		//chooseFeeDialog();
-	}
-
-	/*
-	 *  clearGame() method - clears the game attributes
-	 */
-	public void clearGame() {
-		serverEndGameresponse=false;
-		turn = 1;
-		printed = false;
-		gameStarted=false;
-	}
-
-	/*
-	 * chooseFeeDialog() method - opens a dialog where u choose the fee for the new game
-	 */
 	private void chooseFeeDialog() {
 		skMorris.getUIManager().showChooseFeeScreen(menuContext,
 				new SKOnFeeChosenListener() {
@@ -99,94 +66,7 @@ public class GameController {
 					}
 				});
 	}
-
-	/*
-	 * 	getMinMAXValuesForChooseFeeDialog() method - create a custom fee dialog when creating
-	 * a new game. *Currently not used*
-	 */
-	private void getMinMAXValuesForChooseFeeDialog() {
-		String lols = skMorris.getGameManager().getTurnBasedTools().toString();
-		System.out.println("WUT" + lols);
-		skMorris.getGameManager().getTurnBasedTools()
-				.getFeeOptions(new SKOnGetFeeOptionsListener() {
-
-					private int minFee = 0;
-					private int maxFee = 0;
-					private String title = "Choose fee";
-					private String text;
-
-					@Override
-					public void onResponse(SKGetFeeOptionsResponse arg0) {
-						if (arg0.getStatusCode() == 0) {// valid response
-							minFee = arg0.getMinFee();
-							maxFee = arg0.getMaxFee();
-							text = "Game fee (" + minFee + " - " + maxFee
-									+ "): ";
-							showChooseFeeDialog(title, text);
-						} else {// error
-							text = "Game fee (" + minFee + " - " + maxFee
-									+ "): ";
-							showChooseFeeDialog(title, text);
-						}
-					}
-
-					private void showChooseFeeDialog(final String title,
-							final String text) {
-						AlertDialog.Builder alert = new AlertDialog.Builder(
-								menuContext);
-						alert.setTitle(title);
-						alert.setMessage(text);
-						// Set an EditText view to get user input
-						final EditText input = new EditText(menuContext);
-
-						alert.setView(input);
-						alert.setPositiveButton("Ok",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,int whichButton) {
-
-										String value = input.getText().toString();
-										int fee = 0;
-										try {
-											fee = Integer.parseInt(value);
-										} catch (NumberFormatException e) {
-											showFeeErrorToast();
-											return;
-										}
-
-										if ((fee < minFee) || (fee > maxFee)) {
-											showFeeErrorToast();
-											return;
-										}
-
-										// invokes the CreateNewGame() method of
-										// the TurnBasedGames object.
-										// this method creates a new game that
-										// is represented in the lobby and
-										// opened for other users to join
-										startGameWithChosenFee(fee);
-
-										return;
-									}
-
-									private void showFeeErrorToast() {
-										Toast.makeText(menuContext,"Invalid fee value!",Toast.LENGTH_SHORT).show();
-										showChooseFeeDialog(title, text);
-									}
-								});
-
-						alert.setNegativeButton("Cancel",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,int which) {
-										return;
-									}
-								});
-
-						alert.show();
-					}
-
-				});
-	}
-
+	
 	/*
 	 * startGameWithChosenFee() method - creating a game with a chosen fee, the game will
 	 * now wait for an opponent to join before anything happens.
@@ -206,17 +86,9 @@ public class GameController {
 	 * sendInformation() method - Standard game move, sending payload with as a String with the x,y coordinates/id's
 	 */
 	public void sendInformation(String payload, int event, String chat){
-		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
-	}	
-	
-	
-	/*
-	 * handleMyMove() method - handles my move according to recieved x and y data.
-	 * Invotes the suitable communication method when needed
-	 */
-	public void handleMyMove(int x, int y){
-		
+		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new NetworkListener());
 	}
+	
 	
 	/*
 	 *  handleOpponentMove() method - handles the opponent move according to received game_state.
@@ -258,15 +130,25 @@ public class GameController {
 		}
 	}
 	
-	
 	/*
-	 * makeMove() method - gets the coordinates and updates the data structure
-	 * *MANGLER LOGIKK*
+	 * handleMyMove() method - handles my move according to recieved x and y data.
+	 * Invotes the suitable communication method when needed
 	 */
-	public boolean makeMove(int x, int y){
-		return true;
+	public void handleMyMove(int x, int y){
+		Network.getInstance().switchTurns();
+		String payload = Integer.toString(x)+Integer.toString(y);
+		int event1 = SKTurnBasedTools.GAME_EVENT_MAKING_MOVE;
+		String chat = null;
+		
+		Network.getInstance().sendInformation(payload, event1, chat);
 	}
 	
+	//game logic's methods	
+	//makeMove method - gets the coordinates and updates the data structure if needed 
+	public boolean makeMove(int x, int y){
+		//oppdater spillebrette med det nye trekket, evnt brikke som er fjernet.
+		return true;	
+	}
 	
 	/*
 	 *  SwitchTurns() method - switches the turns between the users
@@ -279,23 +161,6 @@ public class GameController {
 			this.setTurn(1);
 		}
 	}
-	
-	/*
-	 * showToastOnCanvas() method - shows a specified toast message on the canvas
-	 */
-	public void showToastOnCanvas(final String string){
-		Runnable toastAction = new Runnable(){
-
-			@Override
-			public void run() {
-				Toast.makeText(GameController.getInstance().getCanvasContext(), string, Toast.LENGTH_SHORT).show();
-				
-			}
-			
-		};
-		((Activity)(GameController.getInstance().getCanvasContext())).runOnUiThread(toastAction );
-	}
-	
 	
 	public void setTurn(int turn){
 		this.turn = turn;
@@ -431,22 +296,18 @@ public class GameController {
 		this.timer = timer;
 
 	}
-	/**
-	 * Set MorrisGame
-	 * 
-	 * @param morrisGame
-	 */
-	public static void setMorrisGame(Game morrisGame) {
-		GameController.morrisGame = morrisGame;
+
+
+	@Override
+	public void playerMoved(Player player, Piece piece) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * Return MorrisGame
-	 * 
-	 * @return
-	 */
-	public static Game getMorrisGame() {
-		return morrisGame;
-	}
 
+	@Override
+	public void playerPlacedPiece(Player player, Piece piece) {
+		// TODO Auto-generated method stub
+		
+	}
 }
