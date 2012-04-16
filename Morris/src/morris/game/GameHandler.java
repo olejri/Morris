@@ -324,8 +324,6 @@ public class GameHandler {
 		return printed;
 	}
 
-
-
 	public void setPrinted(boolean printed) {
 		this.printed = printed;
 	}
