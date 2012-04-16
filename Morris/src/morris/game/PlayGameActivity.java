@@ -24,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
 
-public class PlayGameActivity extends Activity implements GameListener {
+public class PlayGameActivity extends SuperActivity implements GameListener {
 	public PieceAdapter pieceAdapter1;
 	public PieceAdapter pieceAdapter2;
 	public GridView gridview_black;
