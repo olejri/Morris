@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.4.5)  12 APR 2012 13:47
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.4.5)  12 APR 2012 15:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,7 +587,7 @@ ids.jpg>]) (./Architecture.tocpdfTeX warning (ext4): destination with the same
 identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...ne {7.4}Physical view}{11}{subsection.7.4}
+l.29 ...ne {7.4}Physical view}{12}{subsection.7.4}
                                                    [1])
 \tf@toc=\write4
 \openout4 = `Architecture.toc'.
@@ -602,46 +602,43 @@ l.29 ...ne {7.4}Physical view}{11}{subsection.7.4}
 \openout6 = `Architecture.lof'.
 
  [2] (./1-introduction.tex) (./2-drivers.tex)
-(./3-stakeholders.tex [3]) (./4-viewpoint.tex [4]
+(./3-stakeholders.tex [3]) (./4-viewpoint.tex [4] [5
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) (./5-tactics.tex [5
-
-]) (./6-patterns.tex [6]
+]) (./5-tactics.tex
+[6]) (./6-patterns.tex [7]
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
-) (./7-views.tex [7]
-<./Images/LogicalView.png, id=253, 724.6272pt x 652.839pt>
+) (./7-views.tex [8]
+<./Images/LogicalView.png, id=258, 724.6272pt x 652.839pt>
 File: ./Images/LogicalView.png Graphic file (type png)
 
 <use ./Images/LogicalView.png>
-<./Images/DevelopmentView.png, id=255, 289.5618pt x 431.6928pt>
+<./Images/DevelopmentView.png, id=260, 484.66069pt x 548.80031pt>
 File: ./Images/DevelopmentView.png Graphic file (type png)
 
-<use ./Images/DevelopmentView.png> [8 <./Images/LogicalView.png (PNG copy)>]
-[9 <./Images/DevelopmentView.png (PNG copy)>]
-<./Images/ProcessView.png, id=267, 382.5492pt x 698.61pt>
+<use ./Images/DevelopmentView.png> [9 <./Images/LogicalView.png (PNG copy)>]
+[10 <./Images/DevelopmentView.png>]
+<./Images/ProcessView.png, id=274, 375.35231pt x 771.48225pt>
 File: ./Images/ProcessView.png Graphic file (type png)
 
-<use ./Images/ProcessView.png>
-<./Images/physicalLayer1.png, id=268, 386.19281pt x 244.81462pt>
+<use ./Images/ProcessView.png> [11 <./Images/ProcessView.png>]
+<./Images/physicalLayer1.png, id=282, 386.19281pt x 244.81462pt>
 File: ./Images/physicalLayer1.png Graphic file (type png)
 
-<use ./Images/physicalLayer1.png> [10 <./Images/ProcessView.png (PNG copy)>]
+<use ./Images/physicalLayer1.png>
 Overfull \hbox (1.027pt too wide) in paragraph at lines 54--55
 \T1/cmr/m/n/12 web-server and the clients. Skiller is a mo-bile so-cial gam-ing
  plat-form. Skiller's
  []
 
-) (./8-consistency.tex [11 <./Images/physicalLayer1.png>]) (./9-rationale.tex
+) (./8-consistency.tex [12 <./Images/physicalLayer1.png>]) (./9-rationale.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./10-issues.tex) (./11-changes.tex [12]) [13] (./Architecture.bbl
+) (./10-issues.tex) (./11-changes.tex [13]) [14] (./Architecture.bbl
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -658,7 +655,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--13
 or / teaching / papers / 4 +
  []
 
-) AED: lastpage setting LastPage [14]
+) AED: lastpage setting LastPage [15]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
  (./Architecture.aux)
@@ -667,9 +664,9 @@ Package rerunfilecheck Info: File `Architecture.out' has not changed.
 (rerunfilecheck)             Checksum: C0BC5303DE2E3F4B46E8994DC4894EF3;2185.
  ) 
 Here is how much of TeX's memory you used:
- 6189 strings out of 493747
- 89054 string characters out of 3143547
- 171308 words of memory out of 3000000
+ 6190 strings out of 493747
+ 89061 string characters out of 3143547
+ 170308 words of memory out of 3000000
  9234 multiletter control sequences out of 15000+200000
  16249 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
@@ -687,10 +684,10 @@ ive/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texliv
 e/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/
 2010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/20
 10/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Architecture.pdf (15 pages, 501825 bytes).
+Output written on Architecture.pdf (16 pages, 579119 bytes).
 PDF statistics:
- 357 PDF objects out of 1000 (max. 8388607)
- 318 compressed objects within 4 object streams
- 64 named destinations out of 1000 (max. 500000)
+ 364 PDF objects out of 1000 (max. 8388607)
+ 322 compressed objects within 4 object streams
+ 65 named destinations out of 1000 (max. 500000)
  298 words of extra memory for PDF output out of 10000 (max. 10000000)
 
