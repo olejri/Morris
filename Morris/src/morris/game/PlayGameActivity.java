@@ -47,32 +47,29 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		GameController.getMorrisGame().initPlayers();		
 		GameController.getInstance().getMorrisGame().addGameListener(this);
 
-		SKUser owner = GameController.getInstance().getOwner();
-		SKUser guest = GameController.getInstance().getGuest();
+		SKUser owner = network.getOwner();
+		SKUser guest = network.getGuest();
 		GameController.getInstance().getMorrisGame().initPlayers();
-
-		GameController.getInstance().setCanvasContext(this);
 
 		setUpScoreBoard();
 		setScoreBoardNames();
-		// updateScoreBoard();
 
 		try{
-			if(GameController.getInstance().isWaiting_for_opponnent()){
-				GameController.getInstance().showToastOnCanvas("Still waiting on opponent");
+			if(network.isWaiting_for_opponnent()){
+				network.showToastOnCanvas("Still waiting on opponent");
 			}
-			if(GameController.getInstance().isGameOwner()){
-				if(GameController.getInstance().isGameStarted()){
-					GameController.getInstance().clearGame();
-					GameController.getInstance().setGameStarted(false);
-					GameController.getInstance().setWaiting_for_opponent(false);
-					GameController.getInstance().setSide(1);
-					GameController.getInstance().setSide(2);
-					GameController.getInstance().showToastOnCanvas("Game starting?");
+			if(network.isGameOwner()){
+				if(network.isGameStarted()){
+					network.clearGame();
+					network.setGameStarted(false);
+					network.setWaiting_for_opponent(false);
+					network.setSide(1);
+					network.setSide(2);
+					network.showToastOnCanvas("Game starting?");
 				}
 			}
 			else{
-
+				Log.i("skiller", "Vil ikke starte");
 			}
 		}
 		catch(Exception e){

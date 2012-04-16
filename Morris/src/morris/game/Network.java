@@ -2,9 +2,11 @@ package morris.game;
 
 import java.util.Timer;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.skiller.api.items.SKUser;
 import com.skiller.api.listeners.SKOnFeeChosenListener;
@@ -56,8 +58,15 @@ public class Network implements GameListener{
 		return instance;
 	}
 	
+	public void clearGame() {
+		serverEndGameresponse=false;
+		turn = 1;
+		printed = false;
+		gameStarted=false;
+	}
 	
-	private void chooseFeeDialog() {
+	
+	public void chooseFeeDialog() {
 		skMorris.getUIManager().showChooseFeeScreen(menuContext,
 				new SKOnFeeChosenListener() {
 					@Override
@@ -74,19 +83,19 @@ public class Network implements GameListener{
 	private void startGameWithChosenFee(int fee) {
 		System.out.println("startGameWithChosenFee() started");
 		skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new StartGame());
-		GameController.getInstance().clearGame();
-		GameController.getInstance().setWaiting_for_opponent(true);
+		Network.getInstance().clearGame();
+		Network.getInstance().setWaiting_for_opponent(true);
 		
 		
-		Intent intent = new Intent(GameController.getInstance().getMenuContext(), PlayGameActivity.class);
-		GameController.getInstance().getMenuContext().startActivity(intent);
+		Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
+		Network.getInstance().getMenuContext().startActivity(intent);
 	}
 	
 	/*
 	 * sendInformation() method - Standard game move, sending payload with as a String with the x,y coordinates/id's
 	 */
 	public void sendInformation(String payload, int event, String chat){
-		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new NetworkListener());
+		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
 	}
 	
 	
@@ -95,19 +104,19 @@ public class Network implements GameListener{
 	 *  invokes the suitable communication method for every game_state.
 	 */	
 	public void handleOpponentMove(int game_state, String game_id, String Opponentpayload){
-		GameController.getInstance().setGameStarted(true);
+		Network.getInstance().setGameStarted(true);
 		
 		switch(game_state){
 		case SKTurnBasedTools.GAME_STATE_WON:
-			GameController.getInstance().setServerEndGameresponse(true);
+			Network.getInstance().setServerEndGameresponse(true);
 			break;
 			
 		case SKTurnBasedTools.GAME_STATE_LOST:
-			GameController.getInstance().setServerEndGameresponse(true);
+			Network.getInstance().setServerEndGameresponse(true);
 			break;
 			
 		case SKTurnBasedTools.GAME_STATE_TIED:
-			GameController.getInstance().setServerEndGameresponse(true);
+			Network.getInstance().setServerEndGameresponse(true);
 			break;
 			
 		case SKTurnBasedTools.GAME_STATE_ARE_YOU_HERE:
@@ -121,9 +130,9 @@ public class Network implements GameListener{
 			int x = Integer.parseInt(strx);
 			int y = Integer.parseInt(stry);
 			
-			GameController.getInstance().makeMove(x, y);
+			Network.getInstance().makeMove(x, y);
 			
-			GameController.getInstance().switchTurns();
+			Network.getInstance().switchTurns();
 			//NOW CHECK IF SOMEONE IS WINNING, NEEDS MOAR LOGIC
 			
 			break;
@@ -160,6 +169,22 @@ public class Network implements GameListener{
 		else{
 			this.setTurn(1);
 		}
+	}
+	
+	/*
+	 * showToastOnCanvas() method - shows a specified toast message on the canvas
+	 */
+	public void showToastOnCanvas(final String string){
+		Runnable toastAction = new Runnable(){
+
+			@Override
+			public void run() {
+				Toast.makeText(Network.getInstance().getCanvasContext(), string, Toast.LENGTH_SHORT).show();
+
+			}
+
+		};
+		((Activity)(Network.getInstance().getCanvasContext())).runOnUiThread(toastAction );
 	}
 	
 	public void setTurn(int turn){
