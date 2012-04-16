@@ -88,14 +88,15 @@ public class Network implements GameListener{
 		Network.getInstance().setWaiting_for_opponent(true);
 		
 		
-		Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
-		Network.getInstance().getMenuContext().startActivity(intent);
+		//Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
+		//Network.getInstance().getMenuContext().startActivity(intent);
 	}
 	
 	/*
 	 * sendInformation() method - Standard game move, sending payload with as a String with the x,y coordinates/id's
 	 */
 	public void sendInformation(String payload, int event, String chat){
+		Log.i("skiller", "Opponentpayload: "+payload);
 		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
 	}
 	
@@ -110,7 +111,7 @@ public class Network implements GameListener{
 	 */	
 	public void handleOpponentMove(int game_state, String game_id, String Opponentpayload){
 		Network.getInstance().setGameStarted(true);
-		Log.i("skiller", "Opponentpayload: "+Opponentpayload);
+		Log.i("skiller", "Payload recieved: "+Opponentpayload);
 		switch(game_state){
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);

@@ -38,7 +38,7 @@ public class StartGame extends SKOnGameStartedListener {
 				Network.getInstance().setPot(pot);
 				Network.getInstance().setGame_id(game_id);
 				Network.getInstance().setGameOwner(true);
-				
+				Network.getInstance().startGame();
 				return;
 			}		
 			

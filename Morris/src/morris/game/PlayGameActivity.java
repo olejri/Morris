@@ -69,9 +69,11 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					network.setSide(1);
 					network.setSide(2);
 					network.showToastOnCanvas("Game starting?");
-					
+					Log.i("skiller", "ER DU HER ???");
 					network.sendInformation("Dette funker", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 				}
+				Log.i("skiller", "ER DU HER ???");
+				network.sendInformation("Dette funker", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 			}
 			else{
 				Log.i("skiller", "Vil ikke starte");
