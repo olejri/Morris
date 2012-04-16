@@ -1,5 +1,6 @@
 package morris.models;
 
+import morris.game.Network;
 import morris.game.controller.GameController;
 
 import com.skiller.api.listeners.SKOnGameMoveListener;
@@ -12,14 +13,14 @@ public class GameMove extends SKOnGameMoveListener{
 	{
 		if (st.getStatusCode() == 0)
 		{// status OK
-
+			
 			//1. received data:
 			String chat=st.getChatLine();
 			int game_state=st.getGameState();
 			String game_id=st.getGameId();
 			//2. game logic
 			String Opponentpayload=st.getPayload();
-			GameController.getInstance().handleOpponentMove(game_state, game_id, Opponentpayload);	
+			Network.getInstance().handleOpponentMove(game_state, game_id, Opponentpayload);	
 		}
 		else
 		{//status ERROR

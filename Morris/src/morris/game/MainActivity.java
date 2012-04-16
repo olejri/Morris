@@ -26,11 +26,6 @@ import android.widget.TextView;
 
 public class MainActivity extends SuperActivity {
 
-	private SKApplication skMorris;
-	private int screen_width;
-	private int screen_height;
-
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,21 +33,10 @@ public class MainActivity extends SuperActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 
-		GameController.getInstance().setMenuContext(this);
-		Display display = getWindowManager().getDefaultDisplay();
+		network.setMenuContext(this);
 		setButtonFonts();
 
-		skMorris = new SKApplication(Constant.app_id, Constant.app_key,
-				Constant.app_secret, "1", 0);
-		GameController.getInstance().setSkApplication(skMorris);
-		skMorris.login(this, display.getWidth(), display.getHeight(), null,
-				null, new SKBaseListener() {
-			public void onResponse(SKBaseResponse st) {
-
-
-			}
-		});	
-
+		
 
 	}
 
@@ -75,10 +59,8 @@ public class MainActivity extends SuperActivity {
 	public void onClick(View view) {
 		Intent i = new Intent();
 		if (view.getId() == R.id.menu_button_creategame) {
-			GameController.getInstance().clearGame();
 			GameController.getInstance().createNewGame();
-			// i.setClass(this, PlayGameActivity.class);
-			// startActivity(i);
+			network.chooseFeeDialog();
 		} else if (view.getId() == R.id.menu_button_joingame) {
 			skMorris.getUIManager().showTurnbasedGamesLobbyScreen(this,
 					new SKOnTurnbasedGameChosenListener() {
