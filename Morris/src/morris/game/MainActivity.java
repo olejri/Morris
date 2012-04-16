@@ -8,6 +8,7 @@ import morris.models.Game;
 import com.skiller.api.listeners.SKBaseListener;
 import com.skiller.api.listeners.SKOnTurnbasedGameChosenListener;
 import com.skiller.api.operations.SKApplication;
+import com.skiller.api.operations.SKUIManager;
 import com.skiller.api.responses.SKBaseResponse;
 import com.skiller.api.responses.SKTurnbasedGameChosenResponse;
 
@@ -51,6 +52,8 @@ public class MainActivity extends SuperActivity {
 		.setTypeface(button_font);
 		((Button) ((Activity) this).findViewById(R.id.menu_button_show_board))
 		.setTypeface(button_font);
+		((Button) ((Activity) this).findViewById(R.id.menu_button_achievements))
+		.setTypeface(button_font);
 		((TextView) ((Activity) this).findViewById(R.id.toolbar_title))
 		.setTypeface(button_font);
 
@@ -74,6 +77,8 @@ public class MainActivity extends SuperActivity {
 			startActivity(i);
 		} else if (view.getId() == R.id.menu_button_show_board) {
 			startActivity(new Intent(this, PlayGameActivity.class));
+		} else if (view.getId() == R.id.menu_button_achievements){
+			skMorris.getUIManager().showScreen(this, SKUIManager.ACHIEVEMENTS_SOCIAL);
 		}
 
 	}
