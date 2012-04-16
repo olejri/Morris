@@ -92,21 +92,24 @@ public class Game {
 			unreserveBoardModelPoint(p.getPosition());
 			reserveBoardModelPoint(to, p);
 			p.setPosition(to);
-		}
-		// Checks for Morris at the point the piece is placed at.		
-		if(checkMorris(p,player)){ // endret fra achievedMorris(to)
-			Log.i("LOGHELP", player.name + " got morris");
-			setState(new RemovalState());
-			updateMorrisStates(player);
-			System.out.println("Removable pieces:");
-			for(Piece piece : getPieces(1)){
-				if(!piece.inMorris() && piece.getPosition() >= 0){
-					System.out.println("Piece at position "+piece.getPosition()+" is removable!");
+
+			// Checks for Morris at the point the piece is placed at.		
+			if(checkMorris(p,player)){ // endret fra achievedMorris(to)
+				Log.i("LOGHELP", player.name + " got morris");
+				setState(new RemovalState());
+				updateMorrisStates(player);
+				System.out.println("Removable pieces:");
+				for(Piece piece : getPieces(1)){
+					if(!piece.inMorris() && piece.getPosition() >= 0){
+						System.out.println("Piece at position "+piece.getPosition()+" is removable!");
+					}
 				}
+			} 
+			else{
+				changePlayer();
+				
 			}
-		} 
-		else{
-			changePlayer();
+			player.setSelectedPiece(null);
 		}
 
 	}
@@ -186,7 +189,7 @@ public class Game {
 		for (Piece piece : pieces){
 			if(piece.getPosition() == p.getId()){
 				ps = piece;
-				
+
 
 			}
 		}

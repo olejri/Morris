@@ -140,6 +140,8 @@ public class GameController {
 				}
 				else{
 					morrisGame.setState(new SelectState());
+					morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
+					
 				}
 
 			}
