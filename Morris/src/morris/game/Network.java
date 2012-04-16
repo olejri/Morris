@@ -135,12 +135,11 @@ public class Network implements GameListener{
 	}
 	
 	public void startGame(){
-		String payload = null;
-		int event = SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY;
-		String chat=null;
-		//sending the information
-		Network.getInstance().sendInformation( payload, event, chat);
-		Network.getInstance().setGameStarted(true);
+		if(isGameOwner()){
+			//sending the information
+			Network.getInstance().sendInformation(null, SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY, null);
+			Network.getInstance().setGameStarted(true);
+		}
 		Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
 		Network.getInstance().getMenuContext().startActivity(intent);
 	}
