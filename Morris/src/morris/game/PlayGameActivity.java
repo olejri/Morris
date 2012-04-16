@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.GridView;
@@ -173,16 +174,31 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		gridview_black.refreshDrawableState();
 	}
 
-	@Override
-	public void playerMoved(Player player, Piece piece) {
-		// TODO Auto-generated method stub
 
-	}
 
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
 		updateScoreBoard();
 
+	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event){
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			try{
+				Network.getInstance().sendInformation(null, SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+				((Activity) Network.getInstance().getCanvasContext()).finish();
+			} catch (Exception e){
+			}
+		return true;
+		} else {
+			return super.onKeyDown(keyCode, event);
+		}
+	}
+
+	@Override
+	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

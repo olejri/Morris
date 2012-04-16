@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import android.graphics.Color;
 import android.util.Log;
 
+import morris.game.Network;
 import morris.gui.Point;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
+import morris.interfaces.NetworkListener;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.states.FlyingState;
@@ -17,7 +20,7 @@ import morris.states.PlacementState;
 import morris.states.RemovalState;
 import morris.states.SelectState;
 
-public class Game {
+public class Game implements NetworkListener {
 
 	private List<StateListener> stateListeners = new CopyOnWriteArrayList<StateListener>();
 	private List<GameListener> gameListeners = new CopyOnWriteArrayList<GameListener>();
@@ -41,7 +44,7 @@ public class Game {
 		previousState = new PlacementState();
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
-
+		Network.getInstance().addListener(this);
 	}
 
 	public void initPlayers(){
@@ -288,31 +291,39 @@ public class Game {
 	 * @param listener
 	 */
 
-	public void addGameListener(GameListener listener) {
-		gameListeners.add(listener);
-	}
-	/**
-	 * remove listener
-	 * @param listener
-	 */
-	public void removeListener(StateListener listener){
-		stateListeners.remove(listener);
-	}
 
-	/**
-	 * FIRE LISTENERS
-	 */
+    public void addGameListener(GameListener listener) {
+    	gameListeners.add(listener);
+    }
+    /**
+     * remove listener
+     * @param listener
+     */
+    public void removeListener(StateListener listener){
+    	stateListeners.remove(listener);
+    }
+    
+    /**
+     * FIRE LISTENERS
+     */
+     
+    private void firePiecePlaced(Player player,Piece piece) {
+    	for(GameListener l : gameListeners){
+    		l.playerPlacedPiece(player, piece);
+    	}
+    }
+    
+    private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
+    	for(GameListener l : gameListeners){
+    		l.playerMoved(pieceFromPosition, pieceToPosition);
+    	}
+    }
 
-	private void firePiecePlaced(Player player,Piece piece) {
-		for(GameListener l : gameListeners){
-			l.playerPlacedPiece(player, piece);
-		}
-	}
+    /*
+     * TODO
+     * Remove pieceCounter and implement logic for initial state change in GameController.
+     */
 
-	/*
-	 * TODO
-	 * Remove pieceCounter and implement logic for initial state change in GameController.
-	 */
 	public void playerPlacedPiece(Player player,Piece piece, int position) {
 		if(isValidMove(piece, position)){
 			piece.setPosition(position);
@@ -375,6 +386,36 @@ public class Game {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Methods from network
+	 */
+	
+	@Override
+	public void networkPlayerMoved(int pieceID, int toPosition) {
+		
+		
+	}
+
+	@Override
+	public void networkPlayerPlacedPiece(int pieceID, int toPosition) {
+		Log.i("skiller", "networkPlayerPlaced");
+		Piece p = new Piece(Constant.BLACK);
+		playerPlacedPiece(player2, p, toPosition);
+		
+	}
+
+	@Override
+	public void networkPlayerWon() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void networkPlayerRemovedPiece() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

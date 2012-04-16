@@ -37,6 +37,11 @@
             style="@style/button_style_menu"
             android:layout_below="@id/menu_button_help"
             android:text="Show board" />
+        <Button
+            android:id="@+id/menu_button_achievements"
+            style="@style/button_style_menu"
+            android:layout_below="@id/menu_button_show_board"
+            android:text="Achievements" />
     </LinearLayout>
 
 </RelativeLayout>
