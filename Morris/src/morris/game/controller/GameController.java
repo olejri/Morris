@@ -3,6 +3,7 @@ package morris.game.controller;
 import java.util.ArrayList;
 import java.util.Timer;
 
+import morris.game.Network;
 import morris.game.PlayGameActivity;
 import morris.gui.Point;
 import morris.help.Constant;
@@ -106,6 +107,7 @@ public class GameController {
 	}
 
 	public static void handlePlayerAction(Point p) {
+				
 		if (morrisGame.getState() instanceof PlacementState) {
 			for (int i = 0; i < morrisGame.getPlayer1().getPieces().size(); i++) {
 				Piece piece = morrisGame.getPlayer1().getPieces().get(i);

@@ -16,7 +16,6 @@ import com.skiller.api.listeners.SKOnFeeChosenListener;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
-import com.skiller.examples.tictactoe.GameManager;
 
 import morris.game.controller.GameController;
 import morris.interfaces.GameListener;
