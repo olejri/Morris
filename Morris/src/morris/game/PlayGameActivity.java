@@ -1,6 +1,8 @@
 package morris.game;
 
 import com.skiller.api.items.SKUser;
+import com.skiller.api.operations.SKApplication;
+import com.skiller.api.operations.SKTurnBasedTools;
 
 import morris.game.controller.GameController;
 import morris.gui.BoardView;
@@ -57,6 +59,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		try{
 			if(network.isWaiting_for_opponnent()){
 				network.showToastOnCanvas("Still waiting on opponent");
+				Log.i("skiller", "Venter på en kar");
 			}
 			if(network.isGameOwner()){
 				if(network.isGameStarted()){
@@ -66,6 +69,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					network.setSide(1);
 					network.setSide(2);
 					network.showToastOnCanvas("Game starting?");
+					
+					network.sendInformation("Dette funker", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 				}
 			}
 			else{

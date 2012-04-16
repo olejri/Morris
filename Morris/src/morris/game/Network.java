@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.skiller.api.items.SKUser;
@@ -98,6 +99,10 @@ public class Network implements GameListener{
 		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
 	}
 	
+	public void startGame(){
+		Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
+		Network.getInstance().getMenuContext().startActivity(intent);
+	}
 	
 	/*
 	 *  handleOpponentMove() method - handles the opponent move according to received game_state.
@@ -105,7 +110,7 @@ public class Network implements GameListener{
 	 */	
 	public void handleOpponentMove(int game_state, String game_id, String Opponentpayload){
 		Network.getInstance().setGameStarted(true);
-		
+		Log.i("skiller", "Opponentpayload: "+Opponentpayload);
 		switch(game_state){
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
