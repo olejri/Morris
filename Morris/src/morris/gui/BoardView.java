@@ -97,126 +97,27 @@ public class BoardView extends View {
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (GameController.getGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
-
-					if (GameController.getGame().getState() instanceof PlacementState) {	
-						Log.i(Constant.STATE_DEBUG, "Placement state");
-						for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
-							Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
-							if (piece.getPosition() < 0) {
-								piece.setPosition(p.getId());
-								GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece, p.getId());
-								// STEINAR 26.03 Lagt til 1 for � assigne punktene til spiller �n
-								//GameController.getGame().getBoard().getSlotByID(p.getId()).setTaken(true,1);  
-								GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
-								System.out.println("ID set to:"+piece.getPosition());
-								break;
-							}
-						}
-						// STEINAR 19.03
-					} else if(GameController.getGame().getState() instanceof SelectState){
-						Log.i(Constant.STATE_DEBUG, "Select state");
-						if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
-							GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-							GameController.getGame().setState(new MoveState());
-						}
-					} else if(GameController.getGame().getState() instanceof MoveState){
-						Log.i(Constant.STATE_DEBUG, "Move state");
-						if (GameController.getGame().getState() instanceof PlacementState) {	
-							Log.i(Constant.STATE_DEBUG, "Placement state");
-							for (int i = 0; i < GameController.getGame().getPlayer1().getPieces().size(); i++) {
-								Piece piece = GameController.getGame().getPlayer1().getPieces().get(i);
-								if (piece.getPosition() < 0) {
-									//piece.setPosition(p.getId());
-									Log.i(Constant.STATE_DEBUG, "Point ID som sendes til placement: "+p.getId());
-									GameController.getGame().playerPlacedPiece(GameController.getGame().getPlayer1(),piece, p.getId());
-									// STEINAR 26.03 Lagt til 1 for � assigne punktene til spiller �n
-									//GameController.getGame().getBoard().reserveModelPoint(p.getId(), piece);  
-									System.out.println("ID set to:"+piece.getPosition());
-									break;
-								}
-							}
-							// STEINAR 19.03
-						} else if(GameController.getGame().getState() instanceof SelectState){
-							Log.i(Constant.STATE_DEBUG, "Select state");
-							if(GameController.getGame().selectable(GameController.getGame().getPlayer1(), p.getId())){
-								GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-								GameController.getGame().setState(new MoveState());
-								//GameController.getGame().setState(new FlyingState());
-							}
-						} else if(GameController.getGame().getState() instanceof MoveState){
-							Log.i(Constant.STATE_DEBUG, "Move state");
-
-							GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-
-							if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
-
-								GameController.getGame().setState(new SelectState());
-							}else{
-								// move(piece, to, player)
-								GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
-
-								if(GameController.getGame().getState() instanceof RemovalState){
-									Log.i(Constant.STATE_DEBUG, "Remove state");
-									GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-								}
-								else {
-
-									// B�R BARE GJ�RES DERSOM DET ER ET GYLDIG FLYTT
-									GameController.getGame().setState(new SelectState());
-								}
-
-							}
-							//Ole 29.03.2012
-						}
-					} else if(GameController.getGame().getState() instanceof RemovalState){
-						// testing with just player1
-						GameController.getGame().removePiece(p, GameController.getGame().getPlayer1());
-						GameController.getGame().setState(new SelectState());
-						GameController.getGame().updatePieceImages(GameController.getGame().getPlayer1(), p.getId());
-					
-					} else if(GameController.getGame().getState() instanceof FlyingState){
-						if(GameController.getGame().getPlayer1().getSelectedPiece().getPosition()==p.getId()){
-							GameController.getGame().setState(new SelectState());
-						}else{
-							GameController.getGame().move(GameController.getGame().getPlayer1().getSelectedPiece(), p.getId(), GameController.getGame().getPlayer1()); // SISTE PARAMETER ER SPILLER ID
-							// B�R BARE GJ�RES DERSOM DET ER ET GYLDIG FLYTT
-							GameController.getGame().setState(new SelectState());
-
-						}
-					}
+					GameController.handlePlayerAction(p);
 				}
 				postInvalidate();
 			}
 		}
-		// Update screen
-
 		return true;
 	}
-
-	// Add needed parameters. I want a piece highlighting plz. -Steinar
-	public void highlightPieces(Player player){
-		//TODO
-	}
-
 	/*
 	 * Metoden highlighter bare for spiller 1. For testing.
 	 */
 	public void highlightPoints(Canvas c, Paint p) {
+		p.setStyle(Style.STROKE);
+		p.setColor(Color.GREEN);
+		p.setStrokeWidth(3);
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
-
-		// BURDE KALLES MED GameController.getHighlightList()
-		if(GameController.getGame().getPlayer1().getSelectedPiece() != null){					
-			highlights = GameController.getGame().getHighlightList(GameController.getGame().getPlayer1().getSelectedPiece().getPosition(), GameController.getGame().getPlayer1());  
-		} else {
-			highlights = GameController.getMorrisGame().getHighlightList(-1, GameController.getGame().getPlayer1());  
-		}
+		highlights = GameController.getHighlightsList();
 		for (int i = 0; i < highlights.size(); i++) {
 			for (int j = 0; j < pointList.size(); j++) {
 				if (highlights.get(i).getId() == pointList.get(j).getId()) {
@@ -337,20 +238,7 @@ public class BoardView extends View {
 		drawLine(midX, yTop, midX, yTop + thirdRect, canvas, p);
 		// 4th line
 		drawLine(midX, yBottom - thirdRect, midX, yBottom, canvas, p);
-		p.setStyle(Style.FILL);
 		drawPoints(canvas, p);
-
-		/*
-		 * for (Point point : pointList){ l.Out(point.toString()); if
-		 * (point.getId() == 13){ p.setStyle(Style.STROKE);
-		 * p.setColor(Color.GREEN); p.setStrokeWidth(3); point.highLight(canvas,
-		 * p); }
-		 * 
-		 * }
-		 */
-		p.setStyle(Style.STROKE);
-		p.setColor(Color.GREEN);
-		p.setStrokeWidth(3);
 		highlightPoints(canvas, p);
 	}
 
@@ -378,6 +266,7 @@ public class BoardView extends View {
 	}
 
 	private void drawPoints(Canvas canvas, Paint p) {
+		p.setStyle(Style.FILL);
 		midX = midX - xLeft;
 		int counter = 0;
 		for (float x = xLeft; x < xRight + xLeft; x = x + midX) {

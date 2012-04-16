@@ -24,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.view.Window;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends SuperActivity {
 
 	private SKApplication skMorris;
 	private int screen_width;

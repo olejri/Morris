@@ -1,14 +1,23 @@
-\section{Architectural patterns}
+\section{Patterns}
 
-\subsection{States}
-The state pattern will be implemented in order to ensure high modifiability, and to be able to smoothly change the state of the game at runtime. The different states of the game is shown in the logical view in section 7.1.
+\subsection{Architectural patterns}
 
-\subsection{MVC}
-Model-View-Controller pattern will be used when implementing \emph{Nine Men’s Morris}, where we will isolate the domain logic from the user interface. This will separate our program into distinct features, which will be easier to develop, test, and maintain. \\
+\subsubsection{MVC}
+Model-View-Controller (MVC) is an architectural pattern that divides interactions between users and applications into three roles: the Model (business logic), the View (user interface), and the Controller (user input). This separation makes is possible to develop, test and maintain each role independently. \\
+
+MVC pattern will be used when implementing \emph{Nine Men’s Morris}, where we will isolate the domain logic from the user interface. This will separate our program into distinct features, which will be easier to develop, test, and maintain. \\
 
 In Android the Activities will be our View-and-Controller, so as the \emph{View} it will need need to implement the \emph{Observer} interface. As the \emph{Controller}, it will need to implement the \emph{OnClickListener} interface. The Activity’s methods are going to access the \emph{Model}.
 
-\subsection{Singleton}
+\subsection{Design pattern}
+\subsubsection{States}
+The state pattern is used to represent the state of an object. This a clean way for an object to partially change its type at runtime. \\
+
+The state pattern will be implemented in order to ensure high modifiability, and to be able to smoothly change the state of the game. The different states of the game is shown in the logical view in section 7.1.
+
+\subsubsection{Singleton}
+The singleton pattern is used to implement the mathematical concept of a singleton, by restricting the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system. \\
+
 To avoid unnecessary instantiation of objects, we will implement the singleton pattern where we see fit. This will benefit the developer that only needs to deal with one instance of the object in question.
 
 
