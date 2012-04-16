@@ -77,11 +77,10 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 				network.sendInformation("Dette funker",
 						SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 			} else {
-				network.sendInformation("", SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY, null);
 				Log.i("skiller", "Vil ikke starte");
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		
 		GameController.getMorrisGame().addGameListener(network);

@@ -2,14 +2,16 @@ package morris.states;
 
 import java.util.ArrayList;
 
+import morris.help.Constant;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.models.Board;
 import morris.models.ModelPoint;
+import morris.models.Piece;
 import morris.models.Player;
 
 public class PlacementState implements StateListener, State{
-	
+
 	/*
 	 * Returns an ArrayList of the Slot objects that are to be highlighted.
 	 * @see morris.interfaces.State#highlightPossibilities(morris.models.Slot[][], morris.models.Player)
@@ -26,8 +28,11 @@ public class PlacementState implements StateListener, State{
 
 	@Override
 	public void updatePieceImages(Player player,int positionId){
-		// TODO Auto-generated method stub
-		
+		for (Piece p : player.getPieces()) {
+			p.updatePieceResource(Constant.NORMAL);
+		}
+
+
 	}
 
 }

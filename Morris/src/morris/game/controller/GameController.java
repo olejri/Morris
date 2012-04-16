@@ -109,34 +109,39 @@ public class GameController {
 	public static void handlePlayerAction(Point p) {
 				
 		if (morrisGame.getState() instanceof PlacementState) {
-			for (int i = 0; i < morrisGame.getPlayer1().getPieces().size(); i++) {
-				Piece piece = morrisGame.getPlayer1().getPieces().get(i);
+			for (int i = 0; i < morrisGame.getCurrentPlayer().getPieces().size(); i++) {
+				Piece piece = morrisGame.getCurrentPlayer().getPieces().get(i);
 				if (piece.getPosition() < 0) {
-					piece.setPosition(p.getId());
-					morrisGame.playerPlacedPiece(morrisGame.getPlayer1(),piece, p.getId());
-					morrisGame.getBoard().reserveModelPoint(p.getId(), piece);  
+					morrisGame.playerPlacedPiece(morrisGame.getCurrentPlayer(),piece, p.getId());
 					break;
 				}
 			}
+			if(morrisGame.getState() instanceof RemovalState){
+				morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+			}
+			morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
 		}
 		else if(morrisGame.getState() instanceof SelectState){
-			if(morrisGame.selectable(morrisGame.getPlayer1(), p.getId())){
-				morrisGame.updatePieceImages(morrisGame.getPlayer1(), p.getId());
+			if(morrisGame.selectable(morrisGame.getCurrentPlayer(), p.getId())){
+				morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
 				morrisGame.setState(new MoveState());
 			}
 		}
 		else if(morrisGame.getState() instanceof MoveState){
-			morrisGame.updatePieceImages(morrisGame.getPlayer1(), p.getId());
-			if(morrisGame.getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+			morrisGame.setPreviousState(new MoveState());
+			morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
+			if(morrisGame.getCurrentPlayer().getSelectedPiece().getPosition()==p.getId()){
 				morrisGame.setState(new SelectState());
 			}
 			else{
-				morrisGame.move(morrisGame.getPlayer1().getSelectedPiece(), p.getId(), morrisGame.getPlayer1()); // SISTE PARAMETER ER SPILLER ID
+				morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer()); // SISTE PARAMETER ER SPILLER ID
 				if(morrisGame.getState() instanceof RemovalState){
-					morrisGame.updatePieceImages(morrisGame.getPlayer1(), p.getId());
+					morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
 				}
 				else{
 					morrisGame.setState(new SelectState());
+					morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
+					
 				}
 
 			}
@@ -144,16 +149,20 @@ public class GameController {
 		}
 		else if(morrisGame.getState() instanceof RemovalState){
 			//getPlayer1() just for testing, must be changed to getPlayer2()
-			morrisGame.removePiece(p, morrisGame.getPlayer1());
-			morrisGame.setState(new SelectState());
-			morrisGame.updatePieceImages(morrisGame.getPlayer1(), p.getId());
+			if(morrisGame.removePiece(p, morrisGame.getOpponent())){
+				morrisGame.setState(morrisGame.getPreviousState());
+				morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
+				
+			}
+			
+			//morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
 
 		}
 		else if(morrisGame.getState() instanceof FlyingState){
-			if(morrisGame.getPlayer1().getSelectedPiece().getPosition()==p.getId()){
+			if(morrisGame.getCurrentPlayer().getSelectedPiece().getPosition()==p.getId()){
 				morrisGame.setState(new SelectState());
 			}else{
-				morrisGame.move(morrisGame.getPlayer1().getSelectedPiece(), p.getId(), morrisGame.getPlayer1()); // SISTE PARAMETER ER SPILLER ID
+				morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer()); // SISTE PARAMETER ER SPILLER ID
 				morrisGame.setState(new SelectState());
 
 			}
@@ -162,10 +171,10 @@ public class GameController {
 	//Player1 is used for testing, must change with getPlayingPlayer()
 	public static ArrayList<ModelPoint> getHighlightsList() {
 		ArrayList<ModelPoint> highlights; 
-		if(morrisGame.getPlayer1().getSelectedPiece() != null){					
-			highlights = morrisGame.getHighlightList(morrisGame.getPlayer1().getSelectedPiece().getPosition(), morrisGame.getPlayer1());  
+		if(morrisGame.getCurrentPlayer().getSelectedPiece() != null){					
+			highlights = morrisGame.getHighlightList(morrisGame.getCurrentPlayer().getSelectedPiece().getPosition(), morrisGame.getCurrentPlayer());  
 		} else {
-			highlights = morrisGame.getHighlightList(-1, morrisGame.getPlayer1());  
+			highlights = morrisGame.getHighlightList(-1, morrisGame.getCurrentPlayer());  
 		}
 		return highlights;
 	}
