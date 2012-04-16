@@ -174,11 +174,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		gridview_black.refreshDrawableState();
 	}
 
-	@Override
-	public void playerMoved(Player player, Piece piece) {
-		// TODO Auto-generated method stub
 
-	}
 
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
@@ -197,6 +193,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		} else {
 			return super.onKeyDown(keyCode, event);
 		}
+	}
+
+	@Override
+	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
