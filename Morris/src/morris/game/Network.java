@@ -1,6 +1,8 @@
 package morris.game;
 
+import java.util.List;
 import java.util.Timer;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -24,6 +26,8 @@ import morris.models.Player;
 import morris.models.StartGame;
 
 public class Network implements GameListener{
+	
+	List<NetworkListener>networkListeners = new CopyOnWriteArrayList<NetworkListener>();
 	
 	private static Network instance = null;
 	
@@ -58,6 +62,35 @@ public class Network implements GameListener{
 		}
 		return instance;
 	}
+	
+	public void addListener(NetworkListener listener){
+		networkListeners.add(listener);
+	}
+	public void removeListener(NetworkListener listener){
+		networkListeners.remove(listener);
+	}
+	
+	/**
+	 * Fire component player moved
+	 * @param playerID
+	 * @param toPosition
+	 */
+	private void fireNetworkPlayerMoved(int pieceID, int toPosition){
+		for(NetworkListener l : networkListeners){
+			l.networkPlayerMoved(pieceID,toPosition);
+		}
+	}
+	/**
+	 * Fire component player placed piece
+	 * @param pieceID
+	 * @param toPosition
+	 */
+	private void fireNetworkPlayerPlacedPiece(int pieceID, int toPosition){
+		for(NetworkListener l : networkListeners){
+			l.networkPlayerPlacedPiece(pieceID,toPosition);
+		}
+	}
+	
 	
 	public void clearGame() {
 		serverEndGameresponse=false;
