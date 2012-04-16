@@ -28,6 +28,10 @@ public class Piece {
 			imageResource = morris.game.R.drawable.piece_black;
 		}
 	}
+	
+	public String getColor(){
+		return color;
+	}
 
 	/**
 	 * Update piece resource

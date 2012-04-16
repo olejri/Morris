@@ -1,5 +1,7 @@
 \section{Architectural rationale}
 
-We have chosen to build our architecture with implementation of the MVC, State, and Singleton pattern. The MVC pattern will help us cleanly separate domain logic from the user interface, which conforms with both modifiability and testability. The state pattern allows for extension of the game in a convenient matter, conforming with our main focus. The singleton pattern is used to prevent unnecessary instantiation of objects central to the application. \\
+We have chosen to build our architecture with implementation of the MVC, State, and Singleton pattern. The MVC pattern will help us cleanly separate domain logic from the user interface, which conforms with both modifiability and usability. The state pattern allows for extension of the game in a convenient matter, conforming with our main focus. The singleton pattern is used to prevent unnecessary instantiation of objects central to the application. \\
 
-Usability is exstremely important in a gaming environment, and we have therefore chosen to have this as our second area of focus. The end user will have a lot to say in our final design, and we will strive to satisfy this user group in a best possible manner.strive to satisfy the end users in a best possible manner.
+Usability is extremely important in a gaming environment, and we have therefore chosen to have this as our second area of focus. The end user will have a lot to say in our final design, and we will strive to satisfy this user group in a best possible manner. High usability for the end user will be achieved through gameplay hints and on-screen messages, as mentioned under architectural tactics in section five. \\
+
+The developer team's usability is achieved through usage of an easily implemented third party network framework, in addition to separation of the graphical interface from the model.

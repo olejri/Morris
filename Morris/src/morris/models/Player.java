@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.R;
 import android.util.Log;
 
-import morris.game.GameHandler;
+import morris.game.controller.GameController;
 import morris.help.Constant;
 
 public class Player {
@@ -37,6 +37,19 @@ public class Player {
 	public Piece getSelectedPiece(){
 		return selectedPiece;
 	}
+	
+	public void removePiece(Piece piece) {
+		/*Piece pRemove = null;
+		for (Piece p : pieces){
+			if(piece.getPosition()== p.getPosition()){
+				pRemove = p;
+			}
+			
+		}
+		*/
+		pieces.remove(piece);
+		
+	}
 
 	/**
 	 * Init player pieces
@@ -44,7 +57,7 @@ public class Player {
 	 */
 	public void initPieces(){
 		int pieces_number = 9;
-		if(GameHandler.getInstance().getMorrisGame().getMorrisGameType().equals(Constant.TWELVE_MENS_MORRIS)){
+		if(GameController.getInstance().getMorrisGame().getMorrisGameType().equals(Constant.TWELVE_MENS_MORRIS)){
 			pieces_number = 12;
 		}
 		for(int i=0;i<pieces_number;i++){
@@ -65,11 +78,6 @@ public class Player {
 	
 	public void setName(String name){
 		this.name = name;
-	}
-	
-	public void removePiece(int row, int column){
-		// TODO
-		// Logikken som finner ut hvilken brikke som skal fjernes (og hvilken koordinat den har) trenger ikke n�dvendigvis ligge her.
 	}
 	
 }

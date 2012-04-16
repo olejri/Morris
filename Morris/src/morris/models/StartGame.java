@@ -3,7 +3,7 @@ package morris.models;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import morris.game.GameHandler;
+import morris.game.controller.GameController;
 
 import android.app.ProgressDialog;
 
@@ -24,50 +24,50 @@ public class StartGame extends SKOnGameStartedListener {
 			String ownerUsername = ownerUser.getUserName();
 			
 			// Checking if the current user is the owner of the game
-			if(GameHandler.getInstance().getSkApplication().getUserManager().getCurrentUsername().equals(ownerUsername)){
-				System.out.println("User: "+GameHandler.getInstance().getSkApplication().getUserManager().getCurrentUsername().toString());
+			if(GameController.getInstance().getSkApplication().getUserManager().getCurrentUsername().equals(ownerUsername)){
+				System.out.println("User: "+GameController.getInstance().getSkApplication().getUserManager().getCurrentUsername().toString());
 				int pot = st.getPot();
 				SKUser guest = st.getGuest();
 				SKUser owner = st.getOwner();
 				String game_id = st.getGameId();
 				
-				GameHandler.getInstance().setWaiting_for_opponent(false);
-				GameHandler.getInstance().setOwner(owner);
-				GameHandler.getInstance().setGuest(guest);
-				GameHandler.getInstance().setPot(pot);
-				GameHandler.getInstance().setGame_id(game_id);
-				GameHandler.getInstance().setGameOwner(true);
+				GameController.getInstance().setWaiting_for_opponent(false);
+				GameController.getInstance().setOwner(owner);
+				GameController.getInstance().setGuest(guest);
+				GameController.getInstance().setPot(pot);
+				GameController.getInstance().setGame_id(game_id);
+				GameController.getInstance().setGameOwner(true);
 				
 				return;
 			}		
 			
 			// Guest game
-			GameHandler.getInstance().setWaiting_for_opponent(false);
-			GameHandler.getInstance().setProgressDialog(ProgressDialog.show(GameHandler.getInstance().getMenuContext(),"Please wait" , "Connecting to the game...", true));
+			GameController.getInstance().setWaiting_for_opponent(false);
+			GameController.getInstance().setProgressDialog(ProgressDialog.show(GameController.getInstance().getMenuContext(),"Please wait" , "Connecting to the game...", true));
 		
 			class DismissProgressDialogTask extends TimerTask{
 				@Override
 				public void run() {
-					GameHandler.getInstance().getProgressDialog().dismiss();
+					GameController.getInstance().getProgressDialog().dismiss();
 					
 				}
 			}
 			
-			GameHandler.getInstance().setTimer(new Timer());
-			GameHandler.getInstance().getTimer().schedule(new DismissProgressDialogTask(), 15000);
+			GameController.getInstance().setTimer(new Timer());
+			GameController.getInstance().getTimer().schedule(new DismissProgressDialogTask(), 15000);
 		
 			int pot=st.getPot();
 			SKUser guest=st.getGuest();
 			SKUser owner=st.getOwner();
 			String game_id=st.getGameId();
 			
-			GameHandler.getInstance().setGameStarted(true);
-			GameHandler.getInstance().setPrinted(false);
-			GameHandler.getInstance().setGame_id(game_id);
-			GameHandler.getInstance().setOwner(owner);
-			GameHandler.getInstance().setGuest(guest);
-			GameHandler.getInstance().setPot(pot);	
-			GameHandler.getInstance().setGameOwner(false);
+			GameController.getInstance().setGameStarted(true);
+			GameController.getInstance().setPrinted(false);
+			GameController.getInstance().setGame_id(game_id);
+			GameController.getInstance().setOwner(owner);
+			GameController.getInstance().setGuest(guest);
+			GameController.getInstance().setPot(pot);	
+			GameController.getInstance().setGameOwner(false);
 			
 			return;
 		}

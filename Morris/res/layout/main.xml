@@ -3,33 +3,40 @@
     style="@style/layout_fill_fill"
     android:background="@drawable/meny_background"
     android:orientation="vertical" >
-    
-    <include layout="@layout/header"></include>
+
+    <include layout="@layout/header" >
+    </include>
+
+    <LinearLayout 
+       style="@style/layout_fill_fill"
+       android:orientation="vertical"
+       android:gravity="center"
+        >
 	
-	<Button
-        android:id="@+id/menu_button_creategame"
-        style="@style/button_style_menu"
-        android:text="Create Game"
-        android:layout_below="@id/header" />
+        <Button
+            android:id="@+id/menu_button_creategame"
+            style="@style/button_style_menu"
+            android:layout_below="@id/header"
+            android:text="Create Game" />
 
-    <Button
-        android:id="@+id/menu_button_joingame"
-        style="@style/button_style_menu"
-        android:text="Join Game"
-        android:layout_below="@id/menu_button_creategame"
-         />
+        <Button
+            android:id="@+id/menu_button_joingame"
+            style="@style/button_style_menu"
+            android:layout_below="@id/menu_button_creategame"
+            android:text="Join Game" />
 
-    <Button
-        android:id="@+id/menu_button_help"
-        style="@style/button_style_menu"
-        android:text="Help"
-        android:layout_below="@id/menu_button_joingame"
-    />
-    
+        <Button
+            android:id="@+id/menu_button_help"
+            style="@style/button_style_menu"
+            android:layout_below="@id/menu_button_joingame"
+            android:background="@drawable/color_button_black"
+            android:text="Help" />
+
         <Button
             android:id="@+id/menu_button_show_board"
             style="@style/button_style_menu"
             android:layout_below="@id/menu_button_help"
             android:text="Show board" />
-  		
+    </LinearLayout>
+
 </RelativeLayout>
