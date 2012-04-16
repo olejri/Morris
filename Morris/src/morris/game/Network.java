@@ -14,6 +14,7 @@ import com.skiller.api.listeners.SKOnFeeChosenListener;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
+import com.skiller.examples.tictactoe.GameManager;
 
 import morris.game.controller.GameController;
 import morris.interfaces.GameListener;
@@ -101,6 +102,12 @@ public class Network implements GameListener{
 	}
 	
 	public void startGame(){
+		String payload = null;
+		int event = SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY;
+		String chat=null;
+		//sending the information
+		Network.getInstance().sendInformation( payload, event, chat);
+		Network.getInstance().setGameStarted(true);
 		Intent intent = new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class);
 		Network.getInstance().getMenuContext().startActivity(intent);
 	}
