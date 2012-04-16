@@ -37,9 +37,10 @@ public class MoveState implements StateListener, State {
 	@Override
 	public void updatePieceImages(Player player, int positionId) {
 		for (Piece p : player.getPieces()) {
-			if (p.getImageState() != Constant.SELECTED) {
-				p.updatePieceResource(Constant.NORMAL);
-			}
+			p.updatePieceResource(Constant.NORMAL);
+//			if (p.getImageState() != Constant.SELECTED) {
+//				p.updatePieceResource(Constant.NORMAL);
+//			}
 		}
 
 	}

@@ -109,7 +109,7 @@ public class Game {
 				changePlayer();
 				
 			}
-			player.setSelectedPiece(null);
+			
 		}
 
 	}
@@ -330,8 +330,12 @@ public class Game {
 			firePiecePlaced(player, piece);
 			pieceCounter++;
 			if(pieceCounter == 18){
+				previousState = new SelectState();
 				Log.i("LOGHELP", "testing started");
-				setState(new SelectState());
+				if(state instanceof PlacementState){
+					setState(new SelectState());
+				}
+				
 			}
 
 		}
