@@ -90,6 +90,7 @@ public class Network implements GameListener{
 			l.networkPlayerPlacedPiece(pieceID,toPosition);
 		}
 	}
+
 	
 	
 	public void clearGame() {
@@ -377,7 +378,7 @@ public class Network implements GameListener{
 
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
-		// TODO Auto-generated method stub
+		Network.getInstance().sendInformation("Player placed piece pieceID: "+" Name: " + player.getName()+", PieceID: " + piece.getPosition(), SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 		
 	}
 }

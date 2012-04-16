@@ -83,6 +83,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		} catch (Exception e) {
 
 		}
+		
+		GameController.getMorrisGame().addGameListener(network);
+		
 	}
 
 	/**
