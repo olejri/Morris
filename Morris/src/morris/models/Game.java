@@ -164,6 +164,8 @@ public class Game {
 		for (Piece piece : pieces){
 			if(piece.getPosition() == p.getId()){
 				ps = piece;
+				unreserveBoardModelPoint(p.getId());
+				
 			}
 		}
 		player.removePiece(ps);
