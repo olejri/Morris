@@ -46,7 +46,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		setButtonFonts();
 
 		GameController.setMorrisGame(new Game());
-		GameController.getMorrisGame().initPlayers();		
+		GameController.getMorrisGame().initPlayers();
 		GameController.getInstance().getMorrisGame().addGameListener(this);
 
 		SKUser owner = network.getOwner();
@@ -56,73 +56,80 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		setUpScoreBoard();
 		setScoreBoardNames();
 
-		try{
-			if(network.isWaiting_for_opponnent()){
+		try {
+			if (network.isWaiting_for_opponnent()) {
 				network.showToastOnCanvas("Still waiting on opponent");
 				Log.i("skiller", "Venter på en kar");
 			}
-			if(network.isGameOwner()){
-				if(network.isGameStarted()){
+			if (network.isGameOwner()) {
+				if (network.isGameStarted()) {
 					network.clearGame();
 					network.setGameStarted(false);
 					network.setWaiting_for_opponent(false);
 					network.setSide(1);
 					network.setSide(2);
 					network.showToastOnCanvas("Game starting?");
-					
-					network.sendInformation("Dette funker", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+					Log.i("skiller", "ER DU HER ???");
+					network.sendInformation("Dette funker",
+							SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 				}
-			}
-			else{
+				Log.i("skiller", "ER DU HER ???");
+				network.sendInformation("Dette funker",
+						SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+			} else {
+				network.sendInformation("", SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY, null);
 				Log.i("skiller", "Vil ikke starte");
 			}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 
 		}
 	}
+
 	/**
-	 * onWindowChange we dedicate 70 % of the screen to the BoardView and 20 for scoreview
+	 * onWindowChange we dedicate 70 % of the screen to the BoardView and 20 for
+	 * scoreview
 	 */
 	public void onWindowFocusChanged(boolean hasFocus) {
 		Display display = getWindowManager().getDefaultDisplay();
 		int screenHeight = display.getHeight();
 
-		RelativeLayout header = (RelativeLayout)findViewById(R.id.header);
+		RelativeLayout header = (RelativeLayout) findViewById(R.id.header);
 		int headerheight = header.getHeight();
 
 		Log.i("height", "Header height: " + headerheight);
 
 		int usableArea = screenHeight - (headerheight);
 		float viewHeight = (float) usableArea * 0.60f;
-		float scoreHeight = (float)usableArea * 0.30f;
+		float scoreHeight = (float) usableArea * 0.30f;
 
-
-		Constant.boardHeight = (int)viewHeight;
-		Constant.scoreBoardHeight = (int)scoreHeight;
-
+		Constant.boardHeight = (int) viewHeight;
+		Constant.scoreBoardHeight = (int) scoreHeight;
 
 		BoardView cardView = (BoardView) findViewById(R.id.board_view_id);
-		LinearLayout scoreView = (LinearLayout)findViewById(R.id.score_board_id);
-		RelativeLayout.LayoutParams scoreParams = (RelativeLayout.LayoutParams) scoreView.getLayoutParams();
-		RelativeLayout.LayoutParams params = (LayoutParams) cardView.getLayoutParams();
+		LinearLayout scoreView = (LinearLayout) findViewById(R.id.score_board_id);
+		RelativeLayout.LayoutParams scoreParams = (RelativeLayout.LayoutParams) scoreView
+				.getLayoutParams();
+		RelativeLayout.LayoutParams params = (LayoutParams) cardView
+				.getLayoutParams();
 
 		scoreView.setLayoutParams(scoreParams);
 		cardView.setLayoutParams(params);
 
 	}
+
 	/**
 	 * Set boardView height to 70 % of screen
 	 */
-	private void setBoardHeight(){
+	private void setBoardHeight() {
 
 	}
 
+	private void setButtonFonts() {
 
-	private void setButtonFonts(){
-
-		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
-		((TextView)((Activity)this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
+		Typeface button_font = Typeface.createFromAsset(getAssets(),
+				"fonts/text-font.otf");
+		((TextView) ((Activity) this).findViewById(R.id.toolbar_title))
+				.setTypeface(button_font);
 
 	}
 
@@ -132,24 +139,26 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	private void setUpScoreBoard() {
 		// Set up player 1 pieces
 		gridview_black = (GridView) findViewById(R.id.gridview_player1);
-		pieceAdapter1 = new PieceAdapter(getApplicationContext(),Constant.WHITE);
+		pieceAdapter1 = new PieceAdapter(getApplicationContext(),
+				Constant.WHITE);
 		gridview_black.setAdapter(pieceAdapter1);
 		// Set up player 2 pieces
 
 		gridview_white = (GridView) findViewById(R.id.gridview_player2);
 
-
-		pieceAdapter2 = new PieceAdapter(getApplicationContext(), Constant.BLACK);
+		pieceAdapter2 = new PieceAdapter(getApplicationContext(),
+				Constant.BLACK);
 		gridview_white.setAdapter(pieceAdapter2);
-
 
 	}
 
 	private void setScoreBoardNames() {
 		TextView player1 = (TextView) findViewById(R.id.player1_name);
 		TextView player2 = (TextView) findViewById(R.id.player2_name);
-		player1.setText(GameController.getInstance().getMorrisGame().getPlayer1().getName());
-		player2.setText(GameController.getInstance().getMorrisGame().getPlayer2().getName());
+		player1.setText(GameController.getInstance().getMorrisGame()
+				.getPlayer1().getName());
+		player2.setText(GameController.getInstance().getMorrisGame()
+				.getPlayer2().getName());
 	}
 
 	/**

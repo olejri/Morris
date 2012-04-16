@@ -13,7 +13,7 @@ public class GameMove extends SKOnGameMoveListener{
 	{
 		if (st.getStatusCode() == 0)
 		{// status OK
-
+			
 			//1. received data:
 			String chat=st.getChatLine();
 			int game_state=st.getGameState();
