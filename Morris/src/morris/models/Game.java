@@ -44,12 +44,9 @@ public class Game implements NetworkListener {
 		previousState = new PlacementState();
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
-<<<<<<< HEAD
 		
 		Network.getInstance().addListener(this);
-=======
 
->>>>>>> ad4e39577887d1c5b76a7796359514b30ae46b71
 	}
 
 	public void initPlayers(){
@@ -296,7 +293,6 @@ public class Game implements NetworkListener {
 	 * @param listener
 	 */
 
-<<<<<<< HEAD
     public void addGameListener(GameListener listener) {
     	gameListeners.add(listener);
     }
@@ -324,37 +320,11 @@ public class Game implements NetworkListener {
     	}
     }
 
-    /*
-     * TODO
-     * Remove pieceCounter and implement logic for initial state change in GameController.
-     */
-=======
-	public void addGameListener(GameListener listener) {
-		gameListeners.add(listener);
-	}
-	/**
-	 * remove listener
-	 * @param listener
-	 */
-	public void removeListener(StateListener listener){
-		stateListeners.remove(listener);
-	}
-
-	/**
-	 * FIRE LISTENERS
-	 */
-
-	private void firePiecePlaced(Player player,Piece piece) {
-		for(GameListener l : gameListeners){
-			l.playerPlacedPiece(player, piece);
-		}
-	}
-
 	/*
 	 * TODO
 	 * Remove pieceCounter and implement logic for initial state change in GameController.
 	 */
->>>>>>> ad4e39577887d1c5b76a7796359514b30ae46b71
+
 	public void playerPlacedPiece(Player player,Piece piece, int position) {
 		if(isValidMove(piece, position)){
 			piece.setPosition(position);
