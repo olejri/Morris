@@ -46,7 +46,6 @@ public class Game implements NetworkListener {
 		gameType = Constant.NINE_MENS_MORRIS;
 		
 		Network.getInstance().addListener(this);
-
 	}
 
 	public void initPlayers(){
@@ -114,7 +113,7 @@ public class Game implements NetworkListener {
 				changePlayer();
 				
 			}
-			player.setSelectedPiece(null);
+			
 		}
 
 	}
@@ -324,6 +323,10 @@ public class Game implements NetworkListener {
 	 * TODO
 	 * Remove pieceCounter and implement logic for initial state change in GameController.
 	 */
+    /*
+     * TODO
+     * Remove pieceCounter and implement logic for initial state change in GameController.
+     */
 
 	public void playerPlacedPiece(Player player,Piece piece, int position) {
 		if(isValidMove(piece, position)){
@@ -342,8 +345,12 @@ public class Game implements NetworkListener {
 			firePiecePlaced(player, piece);
 			pieceCounter++;
 			if(pieceCounter == 18){
+				previousState = new SelectState();
 				Log.i("LOGHELP", "testing started");
-				setState(new SelectState());
+				if(state instanceof PlacementState){
+					setState(new SelectState());
+				}
+				
 			}
 
 		}
