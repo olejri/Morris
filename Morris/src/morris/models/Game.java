@@ -404,9 +404,14 @@ public class Game implements NetworkListener {
 
 	@Override
 	public void networkPlayerPlacedPiece(int pieceID, int toPosition) {
-		Log.i("skiller", "networkPlayerPlaced");
-		Piece p = new Piece(Constant.BLACK);
-		playerPlacedPiece(player2, p, toPosition);
+		Log.i("skiller", "place piece in game from network");
+		for(Piece p : player2.getPieces()){
+			if(p.getPosition()<0){
+				Log.i("skiller", "fire playerPlacedPiece(Player,Piece,Position");
+				playerPlacedPiece(player2,p, toPosition);
+				break;
+			}
+		}
 		
 	}
 
