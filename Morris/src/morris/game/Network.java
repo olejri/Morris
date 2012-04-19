@@ -269,7 +269,6 @@ public class Network implements GameListener {
 			public void run() {
 				Toast.makeText(Network.getInstance().getCanvasContext(),
 						string, Toast.LENGTH_SHORT).show();
-
 			}
 
 		};
@@ -328,7 +327,7 @@ public class Network implements GameListener {
 	public void setOwner(SKUser owner) {
 		this.owner = owner;
 	}
-
+	
 	public SKUser getGuest() {
 		return guest;
 	}
