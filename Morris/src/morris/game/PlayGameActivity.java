@@ -54,7 +54,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 		SKUser owner = network.getOwner();
 		SKUser guest = network.getGuest();
-		GameController.getInstance().getMorrisGame().initPlayers();
 
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
