@@ -132,7 +132,11 @@ public class GameController {
 		else if(morrisGame.getState() instanceof SelectState){
 			if(morrisGame.selectable(morrisGame.getCurrentPlayer(), p.getId())){
 				morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
-				morrisGame.setState(new MoveState());
+				if(morrisGame.getCurrentPlayer().getPieces().size() == 3){
+					morrisGame.setState(new FlyingState());
+				} else {
+					morrisGame.setState(new MoveState());
+				}
 			}
 		}
 		else if(morrisGame.getState() instanceof MoveState){
@@ -193,7 +197,8 @@ public class GameController {
 						morrisGame.setState(new SelectState());
 					}
 				}
-
+				morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+				morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
 			}
 		}
 	}

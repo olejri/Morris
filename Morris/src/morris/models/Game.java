@@ -98,6 +98,9 @@ public class Game implements NetworkListener {
 			unreserveBoardModelPoint(p.getPosition());
 			reserveBoardModelPoint(to, p);
 			p.setPosition(to);
+			if(p.inMorris()){
+				updateMorrisStates(player);
+			}
 			return true;
 			// Checks for Morris at the point the piece is placed at.		
 			/*
@@ -185,6 +188,7 @@ public class Game implements NetworkListener {
 			setMorrisInDomain(vDomain, player);
 		}
 		if(vertical==3 || horizontal==3){
+			updateMorrisStates(player);
 			return true;
 		} else {
 			return false;

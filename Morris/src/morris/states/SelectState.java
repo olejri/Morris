@@ -20,20 +20,24 @@ public class SelectState implements State {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		ArrayList<Piece> pieces = currentPlayer.getPieces();
 		for(Piece p : pieces){
-			if(board.getPoint(p.getPosition()) != null){
-				ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
-				boolean selectable = false;
-				for(Integer i : neighbours){
-					if(!board.getPoint(i).isTaken()) selectable = true;
-					//updateSelectablePieces(p, board, i);
-					if(!board.getPoint(i).isTaken() && !highlights.contains(board.getPoint(p.getPosition()))){
-						highlights.add(board.getPoint(p.getPosition()));
+			if(pieces.size() == 3) {
+				p.setSelectable(true);
+			} else {
+				if(board.getPoint(p.getPosition()) != null){
+					ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
+					boolean selectable = false;
+					for(Integer i : neighbours){
+						if(!board.getPoint(i).isTaken()) selectable = true;
+						//updateSelectablePieces(p, board, i);
+						if(!board.getPoint(i).isTaken() && !highlights.contains(board.getPoint(p.getPosition()))){
+							highlights.add(board.getPoint(p.getPosition()));
+						}
 					}
-				}
-				if(selectable){
-					p.setSelectable(true);
-				} else {
-					p.setSelectable(false);
+					if(selectable){
+						p.setSelectable(true);
+					} else {
+						p.setSelectable(false);
+					}
 				}
 			}
 		}
