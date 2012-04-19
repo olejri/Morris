@@ -380,12 +380,14 @@ public class Game implements NetworkListener {
 		this.currentPlayer = currentPlayer;
 	}
 
-	public void changePlayer(){
-		if (currentPlayer == player1){
-			setCurrentPlayer(player2);
-		}
-		else {
-			setCurrentPlayer(player1);
+	public void changePlayer(boolean hotseat){
+		if(hotseat){
+			if (currentPlayer == player1){
+				setCurrentPlayer(player2);
+			}
+			else {
+				setCurrentPlayer(player1);
+			}
 		}
 	}
 
@@ -430,7 +432,7 @@ public class Game implements NetworkListener {
 				break;
 			}
 		}
-		changePlayer();
+		changePlayer(true);
 		
 	}
 
