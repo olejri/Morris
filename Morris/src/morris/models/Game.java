@@ -86,6 +86,14 @@ public class Game implements NetworkListener {
 		}
 		return false;
 	}
+	
+	public boolean isGameOver(Player player){
+		if(player.getPieces().size() < 3 || player.hasSelectablePieces()){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 
 	/*
