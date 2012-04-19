@@ -30,6 +30,13 @@ public class Player {
 		return color;
 	}
 	
+	public boolean hasSelectablePieces(){
+		for(Piece p : pieces){
+			if(p.isSelectable()) return true;
+		}
+		return false;
+	}
+	
 	public void setSelectedPiece(Piece selectedPiece){
 		this.selectedPiece = selectedPiece;
 	}
