@@ -53,6 +53,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		SKUser owner = network.getOwner();
 		SKUser guest = network.getGuest();
 		GameController.getInstance().getMorrisGame().initPlayers();
+		
+		Network.getInstance().setCanvasContext(this);
+		Network.getInstance().setCanvasContextON(true);
 
 		setUpScoreBoard();
 		setScoreBoardNames();
@@ -183,17 +186,14 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		updateScoreBoard();
 
 	}
-	
-	public boolean onKeyDown(int keyCode, KeyEvent event){
-		if(keyCode == KeyEvent.KEYCODE_BACK){
-			try{
-				Network.getInstance().sendInformation(null, SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
-				((Activity) Network.getInstance().getCanvasContext()).finish();
-			} catch (Exception e){
-			}
-		return true;
-		} else {
-			return super.onKeyDown(keyCode, event);
+	@Override
+	public void onBackPressed(){
+		super.onBackPressed();
+		try{
+			Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+			finish();
+		} catch (Exception e){
+			finish();
 		}
 	}
 
