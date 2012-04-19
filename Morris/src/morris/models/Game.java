@@ -129,7 +129,7 @@ public class Game implements NetworkListener {
 		return state;
 	}
 	public boolean isYourTurn(){
-		return currentPlayer==player1;
+		return true;
 	}
 	public State getPreviousState() {
 		return previousState;
@@ -312,7 +312,7 @@ public class Game implements NetworkListener {
     }
     
     /**
-     * FIRE LISTENERS
+     * FIRE LISTENER METHODS
      */
      
     private void firePiecePlaced(Player player,Piece piece) {
@@ -325,6 +325,12 @@ public class Game implements NetworkListener {
     private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
     	for(GameListener l : gameListeners){
     		l.playerMoved(pieceFromPosition, pieceToPosition);
+    	}
+    }
+    
+    private void firePieceRemoved(int piecePosition){
+    	for(GameListener l : gameListeners){
+    		l.playerRemovedPiece(piecePosition);
     	}
     }
 
@@ -418,7 +424,7 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerPlacedPiece(int pieceID, int toPosition) {
+	public void networkPlayerPlacedPiece(int toPosition) {
 		Log.i("skiller", "place piece in game from network");
 		Log.i("skiller", "what");
 
@@ -441,9 +447,9 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerRemovedPiece() {
-		// TODO Auto-generated method stub
-		
+	public void networkPlayerRemovedPiece(int piecePosition) {
+		Point p = new Point(piecePosition, 0, 0);
+		removePiece(p, getOpponent());
 	}
 
 	@Override

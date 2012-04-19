@@ -198,4 +198,10 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	}
 
+	@Override
+	public void playerRemovedPiece(int piecePosition) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
