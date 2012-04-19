@@ -446,5 +446,11 @@ public class Game implements NetworkListener {
 		
 	}
 
+	@Override
+	public void networkSetPlayerNames() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
