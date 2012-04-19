@@ -136,17 +136,19 @@ public class Network implements GameListener {
 	 * String with the x,y coordinates/id's
 	 */
 	public void sendInformation(String payload, int event, String chat) {
-		Log.i("skiller", "Network. Send message: " + payload);
-		skMorris.getGameManager().getTurnBasedTools()
-				.makeGameMove(game_id, event, payload, chat, new GameMove());
+		Log.i("skiller","Checking turn: " + turn);
+		if(turn==1){
+			Log.i("skiller", "Network. Send message: " + payload);
+		skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
+		}
 	}
 
 	public void startGame() {
+		Network.getInstance().setGameStarted(true);
 		if (isGameOwner()) {
 			// sending the information
 			Network.getInstance().sendInformation(null,
 					SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY, null);
-			Network.getInstance().setGameStarted(true);
 		}
 		Intent intent = new Intent(Network.getInstance().getMenuContext(),
 				PlayGameActivity.class);

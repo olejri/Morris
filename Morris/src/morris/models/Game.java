@@ -312,6 +312,7 @@ public class Game implements NetworkListener {
     private void firePiecePlaced(Player player,Piece piece) {
     	for(GameListener l : gameListeners){
     		l.playerPlacedPiece(player, piece);
+    		
     	}
     }
     
@@ -337,6 +338,7 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
+		
 			if(checkMorris(piece, player)){
 				System.out.println("Morris achieved. Removal State should be set!");
 				updateMorrisStates(player);
@@ -412,7 +414,7 @@ public class Game implements NetworkListener {
 		Log.i("skiller", "place piece in game from network");
 		Log.i("skiller", "what");
 
-		for(Piece p : getOpponent().getPieces()){
+		for(Piece p : player2.getPieces()){
 			Log.i("skiller", "Piece position: "+p.getPosition());
 			if(p.getPosition()<0){
 				Log.i("skiller", "fire playerPlacedPiece(Player,Piece,Position");
