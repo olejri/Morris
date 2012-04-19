@@ -93,13 +93,17 @@ public class Game implements NetworkListener {
 	 * ID for the point the piece was moved from is available via p.getPosition().
 	 * The player integer can be 1 or 2, depending on whose turn it is.
 	 */
-	public void move(Piece p, int to, Player player){ 
+	public boolean move(Piece p, int to, Player player){ 
 		if(isValidMove(p, to)){
 			unreserveBoardModelPoint(p.getPosition());
 			reserveBoardModelPoint(to, p);
 			p.setPosition(to);
-
+			if(p.inMorris()){
+				updateMorrisStates(player);
+			}
+			return true;
 			// Checks for Morris at the point the piece is placed at.		
+			/*
 			if(checkMorris(p,player)){ // endret fra achievedMorris(to)
 				Log.i("LOGHELP", player.name + " got morris");
 				setState(new RemovalState());
@@ -110,21 +114,22 @@ public class Game implements NetworkListener {
 						System.out.println("Piece at position "+piece.getPosition()+" is removable!");
 					}
 				}
-			} 
+			}
 			else{
 				changePlayer();
 				
-			}
+			}*/
 			
+		} else {
+			return false;
 		}
-
 	}
 
 	public State getState(){
 		return state;
 	}
 	public boolean isYourTurn(){
-		return yourTurn;
+		return currentPlayer==player1;
 	}
 	public State getPreviousState() {
 		return previousState;
@@ -156,7 +161,7 @@ public class Game implements NetworkListener {
 	/*
 	 * Checks if the newly placed piece caused a Morris state.
 	 */
-	private boolean checkMorris(Piece piece, Player player){
+	public boolean checkMorris(Piece piece, Player player){
 		ArrayList<Integer> hDomain = board.getHorizontalDomain(piece.getPosition());
 		int horizontal = 0;
 		for(Integer i : hDomain){
@@ -183,6 +188,7 @@ public class Game implements NetworkListener {
 			setMorrisInDomain(vDomain, player);
 		}
 		if(vertical==3 || horizontal==3){
+			updateMorrisStates(player);
 			return true;
 		} else {
 			return false;
@@ -202,7 +208,7 @@ public class Game implements NetworkListener {
 		if(isValidMove(ps, 0)){
 			unreserveBoardModelPoint(p.getId());
 			player.removePiece(ps);
-			changePlayer();
+			//changePlayer();
 			return true;
 		}
 		return false;
@@ -312,6 +318,7 @@ public class Game implements NetworkListener {
     private void firePiecePlaced(Player player,Piece piece) {
     	for(GameListener l : gameListeners){
     		l.playerPlacedPiece(player, piece);
+    		
     	}
     }
     
@@ -337,6 +344,9 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
+
+			/*
+>>>>>>> e1e3760c598c18b337324969be2ed66da9a3d1e6
 			if(checkMorris(piece, player)){
 				System.out.println("Morris achieved. Removal State should be set!");
 				updateMorrisStates(player);
@@ -345,7 +355,7 @@ public class Game implements NetworkListener {
 			}
 			else{
 				changePlayer();
-			}
+			}*/
 			Log.i("skiller","Time to fire piece placed");
 			firePiecePlaced(player, piece);
 			pieceCounter++;
@@ -408,7 +418,7 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerPlacedPiece(final int pieceID, final int toPosition) {
+	public void networkPlayerPlacedPiece(int pieceID, int toPosition) {
 		Log.i("skiller", "place piece in game from network");
 		Log.i("skiller", "what");
 
@@ -420,6 +430,7 @@ public class Game implements NetworkListener {
 				break;
 			}
 		}
+		changePlayer();
 		
 	}
 

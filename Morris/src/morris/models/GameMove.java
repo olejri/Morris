@@ -20,8 +20,7 @@ public class GameMove extends SKOnGameMoveListener {
 			String game_id = st.getGameId();
 			// 2. game logic
 			String Opponentpayload = st.getPayload();
-			Network.getInstance().handleOpponentMove(game_state, game_id,
-					Opponentpayload);
+			Network.getInstance().handleOpponentMove(game_state, game_id,Opponentpayload);
 		} else {// status ERROR
 			Log.i("skiller", "could not get message from skGameMoveResponse");
 				// GameHandler.getInstance().showErrorDialog(st.getStatusMessage());

@@ -46,14 +46,16 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		h = new Handler();
 		setButtonFonts();
 
-		GameController.setMorrisGame(new Game());
-		GameController.getMorrisGame().initPlayers();
+		if (GameController.getMorrisGame() == null) {
+			GameController.setMorrisGame(new Game());
+			GameController.getMorrisGame().initPlayers();
+		}
 		GameController.getInstance().getMorrisGame().addGameListener(this);
 
 		SKUser owner = network.getOwner();
 		SKUser guest = network.getGuest();
 		GameController.getInstance().getMorrisGame().initPlayers();
-		
+
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
 
@@ -72,25 +74,19 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					network.setWaiting_for_opponent(false);
 					network.setSide(1);
 					network.setSide(2);
-					network.showToastOnCanvas("Game starting?");
-					Log.i("skiller", "ER DU HER ???");
-					network.sendInformation("Dette funker",
-							SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+					network.showToastOnCanvas("Game started");
 				}
-				Log.i("skiller", "ER DU HER ???");
-				network.sendInformation("Dette funker",
-						SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 			} else {
 				Log.i("skiller", "Vil ikke starte");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		GameController.getMorrisGame().addGameListener(network);
-		BoardView b = (BoardView)findViewById(R.id.board_view_id);
+		BoardView b = (BoardView) findViewById(R.id.board_view_id);
 		GameController.getMorrisGame().addGameListener(b);
-		
+
 	}
 
 	/**
@@ -179,20 +175,20 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		gridview_black.refreshDrawableState();
 	}
 
-
-
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
 		updateScoreBoard();
 
 	}
+
 	@Override
-	public void onBackPressed(){
+	public void onBackPressed() {
 		super.onBackPressed();
-		try{
-			Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+		try {
+			Network.getInstance().sendInformation("",
+					SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 			finish();
-		} catch (Exception e){
+		} catch (Exception e) {
 			finish();
 		}
 	}
@@ -200,7 +196,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -54,6 +54,8 @@ public class StartGame extends SKOnGameStartedListener {
 				}
 			}
 			
+			Network.getInstance().clearGame();
+			
 			Network.getInstance().setTimer(new Timer());
 			Network.getInstance().getTimer().schedule(new DismissProgressDialogTask(), 15000);
 		
