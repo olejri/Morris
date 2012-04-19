@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.graphics.Color;
+import android.os.Handler;
 import android.util.Log;
 
 import morris.game.Network;
@@ -28,6 +29,7 @@ public class Game implements NetworkListener {
 	private State state;
 	private Board board;
 	private State previousState;
+	private Handler h;
 
 
 	public String gameType;
@@ -329,7 +331,10 @@ public class Game implements NetworkListener {
      */
 
 	public void playerPlacedPiece(Player player,Piece piece, int position) {
+		Log.i("skiller","playerPlacedPieceMethod");
+		Log.i("skiller","Is place taken?: "+ board.getPoint(position).isTaken());
 		if(isValidMove(piece, position)){
+			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
 			if(checkMorris(piece, player)){
@@ -341,7 +346,7 @@ public class Game implements NetworkListener {
 			else{
 				changePlayer();
 			}
-
+			Log.i("skiller","Time to fire piece placed");
 			firePiecePlaced(player, piece);
 			pieceCounter++;
 			if(pieceCounter == 18){
@@ -403,12 +408,15 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerPlacedPiece(int pieceID, int toPosition) {
+	public void networkPlayerPlacedPiece(final int pieceID, final int toPosition) {
 		Log.i("skiller", "place piece in game from network");
-		for(Piece p : player2.getPieces()){
+		Log.i("skiller", "what");
+
+		for(Piece p : getOpponent().getPieces()){
+			Log.i("skiller", "Piece position: "+p.getPosition());
 			if(p.getPosition()<0){
 				Log.i("skiller", "fire playerPlacedPiece(Player,Piece,Position");
-				playerPlacedPiece(player2,p, toPosition);
+				playerPlacedPiece(getOpponent(),p, toPosition);
 				break;
 			}
 		}

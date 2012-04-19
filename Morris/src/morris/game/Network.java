@@ -92,7 +92,7 @@ public class Network implements GameListener {
 	 * @param toPosition
 	 */
 	private void fireNetworkPlayerPlacedPiece(int pieceID, int toPosition) {
-		Log.i("skiller", "fireNetworkPlayerMoved TO: " + toPosition);
+		Log.i("skiller", "fireNetworkPlayerPlaced TO: " + toPosition);
 		for (NetworkListener l : networkListeners) {
 			l.networkPlayerPlacedPiece(pieceID, toPosition);
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.help.LogHelp;
+import morris.interfaces.GameListener;
 import morris.models.Game;
 import morris.models.ModelPoint;
 import morris.models.Piece;
@@ -30,7 +31,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-public class BoardView extends View {
+public class BoardView extends View implements GameListener {
 	private float xLeft;
 	private float yTop;
 	private float xRight;
@@ -63,7 +64,7 @@ public class BoardView extends View {
 	}
 
 	private void init() {
-
+		//GameController.getMorrisGame().addGameListener(this);
 	}
 
 	@Override
@@ -312,5 +313,18 @@ public class BoardView extends View {
 			counter++;
 		}
 		makePointList = false;
+	}
+
+	@Override
+	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playerPlacedPiece(Player player, Piece piece) {
+		Log.i("skiller", "player placed piece name: " + player.getName());
+		postInvalidate();
+		
 	}
 }

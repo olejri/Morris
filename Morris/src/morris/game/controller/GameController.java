@@ -85,6 +85,7 @@ public class GameController {
 	 */
 	public void createNewGame() {
 		GameController.getInstance().setMorrisGame(new Game());
+		GameController.getInstance().getMorrisGame().initPlayers();
 		//chooseFeeDialog();
 	}
 

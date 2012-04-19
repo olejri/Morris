@@ -85,6 +85,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		}
 		
 		GameController.getMorrisGame().addGameListener(network);
+		BoardView b = (BoardView)findViewById(R.id.board_view_id);
+		GameController.getMorrisGame().addGameListener(b);
 		
 	}
 
