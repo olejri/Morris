@@ -137,7 +137,7 @@ public class Game implements NetworkListener {
 		return state;
 	}
 	public boolean isYourTurn(){
-		return yourTurn;
+		return currentPlayer==player1;
 	}
 	public State getPreviousState() {
 		return previousState;
@@ -326,6 +326,7 @@ public class Game implements NetworkListener {
     private void firePiecePlaced(Player player,Piece piece) {
     	for(GameListener l : gameListeners){
     		l.playerPlacedPiece(player, piece);
+    		
     	}
     }
     
@@ -351,7 +352,9 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
+
 			/*
+>>>>>>> e1e3760c598c18b337324969be2ed66da9a3d1e6
 			if(checkMorris(piece, player)){
 				System.out.println("Morris achieved. Removal State should be set!");
 				updateMorrisStates(player);
@@ -423,7 +426,7 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerPlacedPiece(final int pieceID, final int toPosition) {
+	public void networkPlayerPlacedPiece(int pieceID, int toPosition) {
 		Log.i("skiller", "place piece in game from network");
 		Log.i("skiller", "what");
 
@@ -435,6 +438,7 @@ public class Game implements NetworkListener {
 				break;
 			}
 		}
+		changePlayer();
 		
 	}
 
@@ -446,6 +450,12 @@ public class Game implements NetworkListener {
 
 	@Override
 	public void networkPlayerRemovedPiece() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void networkSetPlayerNames() {
 		// TODO Auto-generated method stub
 		
 	}

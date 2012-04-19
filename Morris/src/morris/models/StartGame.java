@@ -54,6 +54,8 @@ public class StartGame extends SKOnGameStartedListener {
 				}
 			}
 			
+			Network.getInstance().clearGame();
+			
 			Network.getInstance().setTimer(new Timer());
 			Network.getInstance().getTimer().schedule(new DismissProgressDialogTask(), 15000);
 		
@@ -69,6 +71,7 @@ public class StartGame extends SKOnGameStartedListener {
 			Network.getInstance().setGuest(guest);
 			Network.getInstance().setPot(pot);	
 			Network.getInstance().setGameOwner(false);
+			Network.getInstance().setTurn(1);
 			Network.getInstance().startGame();
 			return;
 		}

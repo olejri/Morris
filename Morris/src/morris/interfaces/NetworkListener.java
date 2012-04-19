@@ -5,4 +5,5 @@ public interface NetworkListener {
 	public void networkPlayerPlacedPiece(int pieceID, int toPosition);
 	public void networkPlayerWon();
 	public void networkPlayerRemovedPiece();
+	public void networkSetPlayerNames();
 }

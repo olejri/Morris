@@ -79,7 +79,8 @@ public class Network implements GameListener {
 	 * @param toPosition
 	 */
 	private void fireNetworkPlayerMoved(int pieceID, int toPosition) {
-		Log.i("skiller", "fireNetworkPlayerMoved ID: " + pieceID + " TO: " + toPosition );
+		Log.i("skiller", "fireNetworkPlayerMoved ID: " + pieceID + " TO: "
+				+ toPosition);
 		for (NetworkListener l : networkListeners) {
 			l.networkPlayerMoved(pieceID, toPosition);
 		}
@@ -136,17 +137,23 @@ public class Network implements GameListener {
 	 * String with the x,y coordinates/id's
 	 */
 	public void sendInformation(String payload, int event, String chat) {
-		Log.i("skiller", "Network. Send message: " + payload);
-		skMorris.getGameManager().getTurnBasedTools()
-				.makeGameMove(game_id, event, payload, chat, new GameMove());
+		Log.i("skiller", "Checking turn: " + turn);
+		if (turn == 1) {
+			Log.i("skiller", "Network. Send message: " + payload);
+			skMorris.getGameManager()
+					.getTurnBasedTools()
+					.makeGameMove(game_id, event, payload, chat, new GameMove());
+		}else{
+			turn = 1;
+		}
 	}
 
 	public void startGame() {
+		Network.getInstance().setGameStarted(true);
 		if (isGameOwner()) {
 			// sending the information
 			Network.getInstance().sendInformation(null,
 					SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY, null);
-			Network.getInstance().setGameStarted(true);
 		}
 		Intent intent = new Intent(Network.getInstance().getMenuContext(),
 				PlayGameActivity.class);
@@ -162,7 +169,7 @@ public class Network implements GameListener {
 			String Opponentpayload) {
 		Network.getInstance().setGameStarted(true);
 		Log.i("skiller", "Payload recieved: " + Opponentpayload);
-		handleMessage(Opponentpayload);
+
 		switch (game_state) {
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
@@ -182,23 +189,15 @@ public class Network implements GameListener {
 					.makeGameMove(game_id,
 							SKTurnBasedTools.GAME_EVENT_STILL_HERE, "", null,
 							new GameMove());
-
-		default:
-
-			String strx = Opponentpayload.substring(0, 1);
-			String stry = Opponentpayload.substring(1, 2);
-
-			int x = Integer.parseInt(strx);
-			int y = Integer.parseInt(stry);
-
-			Network.getInstance().makeMove(x, y);
-
+		default :
+			Log.i("skiller", "After switch turns: " + turn);
 			Network.getInstance().switchTurns();
-			// NOW CHECK IF SOMEONE IS WINNING, NEEDS MOAR LOGIC
-			
-			
+			handleMessage(Opponentpayload);
 			break;
 		}
+
+
+		
 	}
 
 	/**
@@ -208,20 +207,22 @@ public class Network implements GameListener {
 	 */
 	private void handleMessage(String message) {
 		Log.i("skiller", "decode message: " + message);
-		String[] parts = message.split(Constant.SPLIT);
-		if ((parts[0]).equals(Constant.MESSAGE_PIECE_PLACED)) {
-			Log.i("skiller", "decode message: PIECE_PLACED");
-			int toPosition = Integer.parseInt(parts[1]);
-			fireNetworkPlayerPlacedPiece(0, toPosition);
-			// DO SOMETHING
-		} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)) {
-			Log.i("skiller", "decode message: PIECE_MOVED");
-			int pieceID = Integer.parseInt(parts[1]);
-			int toPosition = Integer.parseInt(parts[2]);
-			fireNetworkPlayerMoved(pieceID, toPosition);
-			// DO SOMETHING
-		} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)) {
-			int pieceID = Integer.parseInt(parts[1]);
+		if (message != null) {
+			String[] parts = message.split(Constant.SPLIT);
+			if ((parts[0]).equals(Constant.MESSAGE_PIECE_PLACED)) {
+				Log.i("skiller", "decode message: PIECE_PLACED");
+				int toPosition = Integer.parseInt(parts[1]);
+				fireNetworkPlayerPlacedPiece(0, toPosition);
+				// DO SOMETHING
+			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)) {
+				Log.i("skiller", "decode message: PIECE_MOVED");
+				int pieceID = Integer.parseInt(parts[1]);
+				int toPosition = Integer.parseInt(parts[2]);
+				fireNetworkPlayerMoved(pieceID, toPosition);
+				// DO SOMETHING
+			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)) {
+				int pieceID = Integer.parseInt(parts[1]);
+			}
 		}
 	}
 
@@ -269,7 +270,6 @@ public class Network implements GameListener {
 			public void run() {
 				Toast.makeText(Network.getInstance().getCanvasContext(),
 						string, Toast.LENGTH_SHORT).show();
-
 			}
 
 		};
@@ -328,7 +328,7 @@ public class Network implements GameListener {
 	public void setOwner(SKUser owner) {
 		this.owner = owner;
 	}
-
+	
 	public SKUser getGuest() {
 		return guest;
 	}

@@ -62,7 +62,7 @@ public class MainActivity extends SuperActivity {
 	public void onClick(View view) {
 		Intent i = new Intent();
 		if (view.getId() == R.id.menu_button_creategame) {
-			GameController.getInstance().createNewGame();
+			//GameController.getInstance().createNewGame();
 			network.chooseFeeDialog();
 		} else if (view.getId() == R.id.menu_button_joingame) {
 			skMorris.getUIManager().showTurnbasedGamesLobbyScreen(this,
