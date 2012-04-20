@@ -46,24 +46,22 @@ public class SelectState implements State {
 		return highlights;
 	}
 
-
+	// PLAYER ER ALLTID PLAYER1
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
-		if(player == GameController.getInstance().getGame().getPlayer1()){
-			for(Piece p : player.getPieces()){
-				if(p.getPosition()==positionId){
-					if(p.getImageState()==Constant.SELECTABLE){
-						p.updatePieceResource(Constant.SELECTED);
-						player.setSelectedPiece(p);
-					}
-				}else{
-					p.updatePieceResource(Constant.NORMAL);
+		for(Piece p : player.getPieces()){
+			if(p.getPosition()==positionId){
+				if(p.getImageState()==Constant.SELECTABLE){
+					p.updatePieceResource(Constant.SELECTED);
+					player.setSelectedPiece(p);
 				}
-			}
-		} else {
-			for(Piece p : player.getPieces()){
+			}else{
 				p.updatePieceResource(Constant.NORMAL);
 			}
+		}
+		// OPPDATERER MOTSTANDERS BRIKKER
+		for(Piece p : GameController.getInstance().getGame().getPlayer2().getPieces()){
+			p.updatePieceResource(Constant.NORMAL);
 		}
 	}
 }
