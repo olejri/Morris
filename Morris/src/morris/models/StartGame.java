@@ -4,8 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import morris.game.Network;
-import morris.game.controller.GameController;
-
 import android.app.ProgressDialog;
 
 import com.skiller.api.items.SKUser;

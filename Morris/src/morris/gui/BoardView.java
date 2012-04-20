@@ -5,30 +5,19 @@ import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.help.LogHelp;
 import morris.interfaces.GameListener;
-import morris.models.Game;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
-import morris.states.FlyingState;
-import morris.states.MoveState;
-import morris.states.PlacementState;
-import morris.states.RemovalState;
-import morris.states.SelectState;
-import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.graphics.Rect;
-import android.os.Debug;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 
 public class BoardView extends View implements GameListener {
@@ -76,6 +65,7 @@ public class BoardView extends View implements GameListener {
 
 	}
 
+	@Override
 	protected void onSizeChanged(int xNew, int yNew, int xOld, int yOld) {
 		super.onSizeChanged(xNew, yNew, xOld, yOld);
 		viewWidth = xNew;

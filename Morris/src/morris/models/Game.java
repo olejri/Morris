@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
 

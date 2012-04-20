@@ -1,7 +1,5 @@
 package morris.help;
 
-import morris.game.R;
-
 public class Constant {
 	
 	//Skiller id's for permission to use the Skiller Tools

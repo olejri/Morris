@@ -17,7 +17,6 @@ import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
 
-import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
 import morris.interfaces.NetworkListener;
@@ -180,6 +179,10 @@ public class Network implements GameListener {
 		Log.i("skiller", "Payload recieved: " + Opponentpayload);
 
 		switch (game_state) {
+		case SKTurnBasedTools.GAME_EVENT_QUIT_GAME:
+			showToastOnCanvas("The other player left the game");
+			Network.getInstance().setServerEndGameresponse(true);
+			break;
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
 			break;

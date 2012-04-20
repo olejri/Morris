@@ -59,8 +59,9 @@ public class SelectState implements State {
 				p.updatePieceResource(Constant.NORMAL);
 			}
 		}
+		GameController.getInstance();
 		// OPPDATERER MOTSTANDERS BRIKKER
-		for(Piece p : GameController.getInstance().getGame().getPlayer2().getPieces()){
+		for(Piece p : GameController.getGame().getPlayer2().getPieces()){
 			p.updatePieceResource(Constant.NORMAL);
 		}
 	}
