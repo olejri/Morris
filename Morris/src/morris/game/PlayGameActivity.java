@@ -13,6 +13,8 @@ import morris.models.Game;
 import morris.models.Piece;
 import morris.models.Player;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -184,16 +186,41 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		try {
-			Network.getInstance().sendInformation("",
-					SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
-			finish();
-		} catch (Exception e) {
-			finish();
-		}
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    //Handle the back button
+	    if(keyCode == KeyEvent.KEYCODE_BACK) {
+	        //Ask the user if they want to quit
+	        new AlertDialog.Builder(this)
+	        .setIcon(android.R.drawable.ic_dialog_alert)
+	        .setTitle("Quit game")
+	        .setMessage("Do you want to quit the game?")
+	        .setPositiveButton("Oh yea!", new DialogInterface.OnClickListener() {
+
+	            @Override
+	            public void onClick(DialogInterface dialog, int which) {
+
+	            	try {
+						Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+						GameController.setMorrisGame(null);
+						PlayGameActivity.this.finish();
+					} catch (Exception e) {
+						finish();
+					}
+					PlayGameActivity.this.finish();
+	            }
+
+	        })
+	        .setNegativeButton("Noo", null)
+	        .show();
+
+	        return true;
+	    }
+	    else {
+	        return super.onKeyDown(keyCode, event);
+	    }
+
 	}
+
 
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition,int morris) {
