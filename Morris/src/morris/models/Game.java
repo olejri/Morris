@@ -64,6 +64,13 @@ public class Game implements NetworkListener {
 		}
 		return selectable;
 	}
+	
+	public boolean opponentHasRemovablePieces(){
+		for(Piece p : getOpponent().getPieces()){
+			if(!p.inMorris()) return true;
+		}
+		return false;
+	}
 
 
 	private boolean isValidMove(Piece piece, int to){
@@ -431,6 +438,9 @@ public class Game implements NetworkListener {
 		//Piece movedP;
 		Log.i("movement","networkPlayerMoved() [Game]");
 		changePlayer(true);
+		move(board.getPoint(fromPostion).getPiece(), toPosition, getOpponent());
+		
+		/*
 		for(Piece p : getOpponent().getPieces()){
 			Log.i("movement","for: piecePosition: " + p.getPosition() + " == " + fromPostion);
 			if(p.getPosition()==fromPostion){
@@ -439,7 +449,7 @@ public class Game implements NetworkListener {
 				move(p, toPosition, getOpponent());
 				break;
 			}
-		}
+		}*/
 		
 	}
 
