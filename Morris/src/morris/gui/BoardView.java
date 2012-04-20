@@ -100,13 +100,13 @@ public class BoardView extends View implements GameListener {
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-			if (GameController.getGame().isYourTurn()) {
+			//if (GameController.getGame().isYourTurn()) {
 				Point p = getPressedPoint(event.getX(), event.getY());
 				if(p!=null){
 					GameController.handlePlayerAction(p);
 				}
 				postInvalidate();
-			}
+			//}
 		}
 		return true;
 	}
@@ -317,13 +317,19 @@ public class BoardView extends View implements GameListener {
 
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
-		// TODO Auto-generated method stub
+		postInvalidate();
 		
 	}
 
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
-		Log.i("skiller", "player placed piece name: " + player.getName());
+		Log.i("skiller", "player placed piece name: [BoardView] " + player.getName());
+		postInvalidate();
+		
+	}
+
+	@Override
+	public void playerRemovedPiece(int piecePosition) {
 		postInvalidate();
 		
 	}

@@ -81,6 +81,7 @@ public class Network implements GameListener {
 	private void fireNetworkPlayerMoved(int pieceID, int toPosition) {
 		Log.i("skiller", "fireNetworkPlayerMoved ID: " + pieceID + " TO: "
 				+ toPosition);
+		Log.i("movement","fireNetworkPlayerMoved() [Network]");
 		for (NetworkListener l : networkListeners) {
 			l.networkPlayerMoved(pieceID, toPosition);
 		}
@@ -92,10 +93,19 @@ public class Network implements GameListener {
 	 * @param pieceID
 	 * @param toPosition
 	 */
-	private void fireNetworkPlayerPlacedPiece(int pieceID, int toPosition) {
+	private void fireNetworkPlayerPlacedPiece(int toPosition) {
 		Log.i("skiller", "fireNetworkPlayerPlaced TO: " + toPosition);
 		for (NetworkListener l : networkListeners) {
-			l.networkPlayerPlacedPiece(pieceID, toPosition);
+			l.networkPlayerPlacedPiece(toPosition);
+		}
+	}
+	/**
+	 * Fire component player removed piece
+	 * @param piecePosition
+	 */
+	private void fireNetworkPlayerDeletedPiece(int piecePosition){
+		for(NetworkListener l : networkListeners){
+			l.networkPlayerRemovedPiece(piecePosition);
 		}
 	}
 
@@ -143,6 +153,7 @@ public class Network implements GameListener {
 			skMorris.getGameManager()
 					.getTurnBasedTools()
 					.makeGameMove(game_id, event, payload, chat, new GameMove());
+			Log.i("movement","playerMoved() message sent [Network]");
 		}else{
 			turn = 1;
 		}
@@ -212,16 +223,18 @@ public class Network implements GameListener {
 			if ((parts[0]).equals(Constant.MESSAGE_PIECE_PLACED)) {
 				Log.i("skiller", "decode message: PIECE_PLACED");
 				int toPosition = Integer.parseInt(parts[1]);
-				fireNetworkPlayerPlacedPiece(0, toPosition);
+				fireNetworkPlayerPlacedPiece(toPosition);
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)) {
 				Log.i("skiller", "decode message: PIECE_MOVED");
+				Log.i("movement","handleMoveMessage() [Network]");
 				int pieceID = Integer.parseInt(parts[1]);
 				int toPosition = Integer.parseInt(parts[2]);
 				fireNetworkPlayerMoved(pieceID, toPosition);
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)) {
-				int pieceID = Integer.parseInt(parts[1]);
+				int piecePosition = Integer.parseInt(parts[1]);
+				fireNetworkPlayerDeletedPiece(piecePosition);
 			}
 		}
 	}
@@ -413,19 +426,22 @@ public class Network implements GameListener {
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece) {
 		// Sending place message
-		String movedMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT
-				+ piece.getPosition();
-		Network.getInstance().sendInformation(movedMessage,
-				SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		String movedMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
+		Network.getInstance().sendInformation(movedMessage,SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 	}
 
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
 		// Sending move message
-		String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT
-				+ pieceFromPosition + Constant.SPLIT + pieceToPosition;
-		Network.getInstance().sendInformation(movedMessage,
-				SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		Log.i("movement","playerMoved() [Network]");
+		String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
+		Network.getInstance().sendInformation(movedMessage,SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 
+	}
+
+	@Override
+	public void playerRemovedPiece(int piecePosition) {
+		String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition;
+		Network.getInstance().sendInformation(removeMessage, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 	}
 }
