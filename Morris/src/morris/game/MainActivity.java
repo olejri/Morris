@@ -13,6 +13,8 @@ import com.skiller.api.responses.SKBaseResponse;
 import com.skiller.api.responses.SKTurnbasedGameChosenResponse;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -37,60 +39,58 @@ public class MainActivity extends SuperActivity {
 		network.setMenuContext(this);
 		setButtonFonts();
 
-		
-
 	}
 
 	private void setButtonFonts() {
 		Typeface button_font = Typeface.createFromAsset(getAssets(),
-		"fonts/text-font.otf");
+				"fonts/text-font.otf");
 		((Button) ((Activity) this).findViewById(R.id.menu_button_creategame))
-		.setTypeface(button_font);
+				.setTypeface(button_font);
 		((Button) ((Activity) this).findViewById(R.id.menu_button_joingame))
-		.setTypeface(button_font);
+				.setTypeface(button_font);
 		((Button) ((Activity) this).findViewById(R.id.menu_button_help))
-		.setTypeface(button_font);
+				.setTypeface(button_font);
 		((Button) ((Activity) this).findViewById(R.id.menu_button_show_board))
-		.setTypeface(button_font);
+				.setTypeface(button_font);
 		((Button) ((Activity) this).findViewById(R.id.menu_button_achievements))
-		.setTypeface(button_font);
+				.setTypeface(button_font);
 		((TextView) ((Activity) this).findViewById(R.id.toolbar_title))
-		.setTypeface(button_font);
+				.setTypeface(button_font);
 
 	}
 
 	public void onClick(View view) {
 		Intent i = new Intent();
 		if (view.getId() == R.id.menu_button_creategame) {
-			//GameController.getInstance().createNewGame();
+			// GameController.getInstance().createNewGame();
 			network.chooseFeeDialog();
 		} else if (view.getId() == R.id.menu_button_joingame) {
 			skMorris.getUIManager().showTurnbasedGamesLobbyScreen(this,
 					new SKOnTurnbasedGameChosenListener() {
-				public void onResponse(SKTurnbasedGameChosenResponse st) {
-					skMorris.getGameManager().getTurnBasedTools()
-					.joinGame(st.getGameId(), new StartGame());
-				}
-			});
+						public void onResponse(SKTurnbasedGameChosenResponse st) {
+							skMorris.getGameManager().getTurnBasedTools()
+									.joinGame(st.getGameId(), new StartGame());
+						}
+					});
 		} else if (view.getId() == R.id.menu_button_help) {
 			i.setClass(this, HelpActivity.class);
 			startActivity(i);
 		} else if (view.getId() == R.id.menu_button_show_board) {
 			startActivity(new Intent(this, PlayGameActivity.class));
-		} else if (view.getId() == R.id.menu_button_achievements){
-			skMorris.getUIManager().showScreen(this, SKUIManager.ACHIEVEMENTS_SOCIAL);
+		} else if (view.getId() == R.id.menu_button_achievements) {
+			skMorris.getUIManager().showScreen(this,
+					SKUIManager.ACHIEVEMENTS_SOCIAL);
 		}
 
 	}
 
-	@Override
-	public void onDestroy() {
+	public void onBackPressed(){
+		super.onBackPressed();
 		skMorris.logout(new SKBaseListener() {
 			@Override
 			public void onResponse(SKBaseResponse st) {
 			}
 		});
-		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
 }

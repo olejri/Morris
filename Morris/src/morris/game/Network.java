@@ -151,13 +151,7 @@ public class Network implements GameListener {
 		Log.i("skiller", "Checking turn: " + turn);
 		if (turn == 1) {
 			Log.i("skiller", "Network. Send message: " + payload);
-			skMorris.getGameManager()
-					.getTurnBasedTools()
-					.makeGameMove(game_id, event, payload, chat, new GameMove());
-			Log.i("movement","playerMoved() message sent [Network]");
-			if(payload.contains(Constant.MESSAGE_PIECE_DELETED)){
-				Log.i("removed","Delete message sent:[Network]");
-			}
+			skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
 		}else{
 			turn = 1;
 		}
@@ -246,6 +240,8 @@ public class Network implements GameListener {
 				int piecePosition = Integer.parseInt(parts[1]);
 				Log.i("removed","handleMoveMessage() PIECE_DELETED [Network]");
 				fireNetworkPlayerDeletedPiece(piecePosition);
+			} else {
+				Network.getInstance().switchTurns();
 			}
 		}
 	}
