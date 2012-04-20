@@ -89,7 +89,6 @@ public class Game implements NetworkListener {
 					return true;
 				}
 			}
-
 		}
 		return false;
 	}

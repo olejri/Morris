@@ -1,6 +1,8 @@
 package morris.states;
 
 import java.util.ArrayList;
+
+import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.State;
 import morris.models.Board;
@@ -47,13 +49,19 @@ public class SelectState implements State {
 
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
-		for(Piece p : player.getPieces()){
-			if(p.getPosition()==positionId){
-				if(p.getImageState()==Constant.SELECTABLE){
-					p.updatePieceResource(Constant.SELECTED);
-					player.setSelectedPiece(p);
+		if(player == GameController.getInstance().getGame().getPlayer1()){
+			for(Piece p : player.getPieces()){
+				if(p.getPosition()==positionId){
+					if(p.getImageState()==Constant.SELECTABLE){
+						p.updatePieceResource(Constant.SELECTED);
+						player.setSelectedPiece(p);
+					}
+				}else{
+					p.updatePieceResource(Constant.NORMAL);
 				}
-			}else{
+			}
+		} else {
+			for(Piece p : player.getPieces()){
 				p.updatePieceResource(Constant.NORMAL);
 			}
 		}
