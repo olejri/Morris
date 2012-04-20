@@ -81,6 +81,7 @@ public class Network implements GameListener {
 	private void fireNetworkPlayerMoved(int pieceID, int toPosition) {
 		Log.i("skiller", "fireNetworkPlayerMoved ID: " + pieceID + " TO: "
 				+ toPosition);
+		Log.i("movement","fireNetworkPlayerMoved() [Network]");
 		for (NetworkListener l : networkListeners) {
 			l.networkPlayerMoved(pieceID, toPosition);
 		}
@@ -152,6 +153,7 @@ public class Network implements GameListener {
 			skMorris.getGameManager()
 					.getTurnBasedTools()
 					.makeGameMove(game_id, event, payload, chat, new GameMove());
+			Log.i("movement","playerMoved() message sent [Network]");
 		}else{
 			turn = 1;
 		}
@@ -225,6 +227,7 @@ public class Network implements GameListener {
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)) {
 				Log.i("skiller", "decode message: PIECE_MOVED");
+				Log.i("movement","handleMoveMessage() [Network]");
 				int pieceID = Integer.parseInt(parts[1]);
 				int toPosition = Integer.parseInt(parts[2]);
 				fireNetworkPlayerMoved(pieceID, toPosition);
@@ -430,6 +433,7 @@ public class Network implements GameListener {
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
 		// Sending move message
+		Log.i("movement","playerMoved() [Network]");
 		String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
 		Network.getInstance().sendInformation(movedMessage,SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 

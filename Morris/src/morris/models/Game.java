@@ -101,32 +101,20 @@ public class Game implements NetworkListener {
 	 * ID for the point the piece was moved from is available via p.getPosition().
 	 * The player integer can be 1 or 2, depending on whose turn it is.
 	 */
-	public boolean move(Piece p, int to, Player player){ 
+	public boolean move(Piece p, int to, Player player){
+		int from = p.getPosition();
+		Log.i("movement","move fromPosition [Game] : "+ from + " to: " + to);
+		Log.i("movement","move. State is: " + state.getClass().toString());
 		if(isValidMove(p, to)){
+			Log.i("movement","move isValidMove() true [Game] ");
 			unreserveBoardModelPoint(p.getPosition());
 			reserveBoardModelPoint(to, p);
 			p.setPosition(to);
 			if(p.inMorris()){
 				updateMorrisStates(player);
 			}
+			firePieceMoved(from, to);
 			return true;
-			// Checks for Morris at the point the piece is placed at.		
-			/*
-			if(checkMorris(p,player)){ // endret fra achievedMorris(to)
-				Log.i("LOGHELP", player.name + " got morris");
-				setState(new RemovalState());
-				updateMorrisStates(player);
-				System.out.println("Removable pieces:");
-				for(Piece piece : getPieces(1)){
-					if(!piece.inMorris() && piece.getPosition() >= 0){
-						System.out.println("Piece at position "+piece.getPosition()+" is removable!");
-					}
-				}
-			}
-			else{
-				changePlayer();
-				
-			}*/
 			
 		} else {
 			return false;
@@ -324,13 +312,14 @@ public class Game implements NetworkListener {
      */
      
     private void firePiecePlaced(Player player,Piece piece) {
+    	//changePlayer(true);
     	for(GameListener l : gameListeners){
     		l.playerPlacedPiece(player, piece);
-    		
     	}
     }
     
     private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
+    	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
     		l.playerMoved(pieceFromPosition, pieceToPosition);
     	}
@@ -373,7 +362,7 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Time to fire piece placed");
 			firePiecePlaced(player, piece);
 			pieceCounter++;
-			if(pieceCounter == 18){
+			if(pieceCounter == 8){
 				previousState = new SelectState();
 				Log.i("LOGHELP", "testing started");
 				if(state instanceof PlacementState){
@@ -395,6 +384,11 @@ public class Game implements NetworkListener {
 	}
 
 	public void changePlayer(boolean hotseat){
+		boolean playerOne = currentPlayer == player1;
+		if(playerOne)Log.i("currentPlayer", "ChangePlayer: Player1");
+		else Log.i("currentPlayer", "ChangePlayer: Player2");
+		
+		
 		if(hotseat){
 			if (currentPlayer == player1){
 				setCurrentPlayer(player2);
@@ -403,6 +397,11 @@ public class Game implements NetworkListener {
 				setCurrentPlayer(player1);
 			}
 		}
+		Log.i("currentPlayer", "--------");
+		playerOne = currentPlayer == player1;
+		if(playerOne)Log.i("currentPlayer", "ChangePlayer: Player1");
+		else Log.i("currentPlayer", "ChangePlayer: Player2");
+		Log.i("currentPlayer", "****************");
 	}
 
 	public Player getOpponent(){
@@ -428,8 +427,19 @@ public class Game implements NetworkListener {
 	 */
 	
 	@Override
-	public void networkPlayerMoved(int pieceID, int toPosition) {
-		
+	public void networkPlayerMoved(int fromPostion, int toPosition) {
+		//Piece movedP;
+		Log.i("movement","networkPlayerMoved() [Game]");
+		changePlayer(true);
+		for(Piece p : getOpponent().getPieces()){
+			Log.i("movement","for: piecePosition: " + p.getPosition() + " == " + fromPostion);
+			if(p.getPosition()==fromPostion){
+				// Dette b¿r funke
+				Log.i("movement","calling move() [Game]");
+				move(p, toPosition, getOpponent());
+				break;
+			}
+		}
 		
 	}
 
@@ -437,7 +447,7 @@ public class Game implements NetworkListener {
 	public void networkPlayerPlacedPiece(int toPosition) {
 		Log.i("skiller", "place piece in game from network");
 		Log.i("skiller", "what");
-
+		changePlayer(true);
 		for(Piece p : getOpponent().getPieces()){
 			Log.i("skiller", "Piece position: "+p.getPosition());
 			if(p.getPosition()<0){
@@ -446,7 +456,7 @@ public class Game implements NetworkListener {
 				break;
 			}
 		}
-		changePlayer(true);
+		
 		
 	}
 

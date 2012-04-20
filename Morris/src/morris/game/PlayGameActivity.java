@@ -49,6 +49,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		if (GameController.getMorrisGame() == null) {
 			GameController.setMorrisGame(new Game());
 			GameController.getMorrisGame().initPlayers();
+			if(network.isGameOwner()){
+				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().player2);
+			}
 		}
 		GameController.getInstance().getMorrisGame().addGameListener(this);
 
