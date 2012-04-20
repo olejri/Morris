@@ -78,7 +78,7 @@ public class Game implements NetworkListener {
 			if(!board.getPoint(to).isTaken()){
 				return true;
 			}
-		} else if(state instanceof MoveState){
+		} else if(state instanceof MoveState || state instanceof SelectState){
 			if(!board.getPoint(to).isTaken() && board.getPoint(piece.getPosition()).isNeighbour(to)){
 				return true;
 			}
@@ -120,7 +120,14 @@ public class Game implements NetworkListener {
 			if(p.inMorris()){
 				updateMorrisStates(player);
 			}
-			firePieceMoved(from, to);
+			if(checkMorris(p, player)){
+				Log.i("removed","move CheckMorris() true [Game] ");
+				firePieceMoved(from, to, Constant.MESSAGE_MORRIS);
+			}else{
+				Log.i("removed","move CheckMorris() false [Game] ");
+				firePieceMoved(from, to, Constant.MESSAGE_NOT_MORRIS);
+			}
+			
 			return true;
 			
 		} else {
@@ -211,7 +218,7 @@ public class Game implements NetworkListener {
 		if(isValidMove(ps, 0)){
 			unreserveBoardModelPoint(p.getId());
 			player.removePiece(ps);
-			//changePlayer();
+			firePieceRemoved(p.getId());
 			return true;
 		}
 		return false;
@@ -325,10 +332,10 @@ public class Game implements NetworkListener {
     	}
     }
     
-    private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
+    private void firePieceMoved(int pieceFromPosition,int pieceToPosition, int morris) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition);
+    		l.playerMoved(pieceFromPosition, pieceToPosition,morris);
     	}
     }
     
@@ -434,22 +441,16 @@ public class Game implements NetworkListener {
 	 */
 	
 	@Override
-	public void networkPlayerMoved(int fromPostion, int toPosition) {
-		//Piece movedP;
+	public void networkPlayerMoved(int fromPostion, int toPosition, int morris) {
 		Log.i("movement","networkPlayerMoved() [Game]");
-		changePlayer(true);
-		move(board.getPoint(fromPostion).getPiece(), toPosition, getOpponent());
 		
-		/*
-		for(Piece p : getOpponent().getPieces()){
-			Log.i("movement","for: piecePosition: " + p.getPosition() + " == " + fromPostion);
-			if(p.getPosition()==fromPostion){
-				// Dette b¿r funke
-				Log.i("movement","calling move() [Game]");
-				move(p, toPosition, getOpponent());
-				break;
-			}
-		}*/
+		if(morris == Constant.MESSAGE_NOT_MORRIS)changePlayer(true);
+		
+		Piece pieceMoved = board.getPoint(fromPostion).getPiece();
+		unreserveBoardModelPoint(fromPostion);
+		reserveBoardModelPoint(toPosition, pieceMoved);
+		pieceMoved.setPosition(toPosition);
+		firePieceMoved(fromPostion, toPosition,morris);
 		
 	}
 
@@ -478,8 +479,17 @@ public class Game implements NetworkListener {
 
 	@Override
 	public void networkPlayerRemovedPiece(int piecePosition) {
-		Point p = new Point(piecePosition, 0, 0);
-		removePiece(p, getOpponent());
+		changePlayer(true);
+		Log.i("removed", "networkPlayerRemovedPiece [Game]");
+		Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
+		Log.i("removed", "PieceRemoved: Piece position" + pieceRemoved.getPosition() + "[Game]");
+		unreserveBoardModelPoint(piecePosition);
+		Log.i("removed", "Removing piece piece size: "+ currentPlayer.getPieces().size() + " [Game]");
+		currentPlayer.removePiece(pieceRemoved);
+		Log.i("removed", "Removing piece piece size currentPlayer: "+ currentPlayer.getPieces().size() + " [Game]");
+		
+		
+		firePieceRemoved(piecePosition);
 	}
 
 	@Override
