@@ -67,6 +67,7 @@ public class MainActivity extends SuperActivity {
 		} else if (view.getId() == R.id.menu_button_joingame) {
 			skMorris.getUIManager().showTurnbasedGamesLobbyScreen(this,
 					new SKOnTurnbasedGameChosenListener() {
+						@Override
 						public void onResponse(SKTurnbasedGameChosenResponse st) {
 							skMorris.getGameManager().getTurnBasedTools()
 									.joinGame(st.getGameId(), new StartGame());
@@ -84,6 +85,7 @@ public class MainActivity extends SuperActivity {
 
 	}
 
+	@Override
 	public void onBackPressed(){
 		super.onBackPressed();
 		skMorris.logout(new SKBaseListener() {

@@ -1,6 +1,5 @@
 package morris.game;
 
-import morris.game.controller.GameController;
 import morris.help.Constant;
 
 import com.skiller.api.listeners.SKBaseListener;
@@ -16,6 +15,7 @@ public class SuperActivity extends Activity {
 	public Network network;
 	public Display display;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		display = getWindowManager().getDefaultDisplay();
@@ -30,6 +30,7 @@ public class SuperActivity extends Activity {
 		network.setSkApplication(skMorris);
 		skMorris.login(this, display.getWidth(), display.getHeight(), null,
 				null, new SKBaseListener() {
+			@Override
 			public void onResponse(SKBaseResponse st) {
 			}
 		});	

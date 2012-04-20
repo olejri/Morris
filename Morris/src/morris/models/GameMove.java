@@ -1,8 +1,6 @@
 package morris.models;
 
 import morris.game.Network;
-import morris.game.controller.GameController;
-
 import android.util.Log;
 
 import com.skiller.api.listeners.SKOnGameMoveListener;

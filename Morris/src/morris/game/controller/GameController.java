@@ -3,23 +3,11 @@ package morris.game.controller;
 import java.util.ArrayList;
 import java.util.Timer;
 
-import morris.game.Network;
-import morris.game.PlayGameActivity;
 import morris.gui.Point;
-import morris.help.Constant;
-import morris.models.GameMove;
 import morris.models.ModelPoint;
 import morris.models.Piece;
-import morris.models.StartGame;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
 import morris.models.Game;
 import morris.states.FlyingState;
 import morris.states.MoveState;
@@ -28,12 +16,7 @@ import morris.states.RemovalState;
 import morris.states.SelectState;
 
 import com.skiller.api.items.SKUser;
-import com.skiller.api.listeners.SKOnFeeChosenListener;
-import com.skiller.api.listeners.SKOnGetFeeOptionsListener;
 import com.skiller.api.operations.SKApplication;
-import com.skiller.api.operations.SKTurnBasedTools;
-import com.skiller.api.responses.SKFeeChosenResponse;
-import com.skiller.api.responses.SKGetFeeOptionsResponse;
 
 public class GameController {
 
@@ -74,7 +57,8 @@ public class GameController {
 	}
 
 	public static Game getGame(){
-		return GameController.getInstance().getMorrisGame();
+		GameController.getInstance();
+		return GameController.getMorrisGame();
 	}
 
 
@@ -86,8 +70,10 @@ public class GameController {
 	 *  createNewGame() method - starts a new game that other can join
 	 */
 	public void createNewGame() {
-		GameController.getInstance().setMorrisGame(new Game());
-		GameController.getInstance().getMorrisGame().initPlayers();
+		GameController.getInstance();
+		GameController.setMorrisGame(new Game());
+		GameController.getInstance();
+		GameController.getMorrisGame().initPlayers();
 		//chooseFeeDialog();
 	}
 

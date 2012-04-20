@@ -17,6 +17,7 @@ public class Point {
 	}
 	
 	
+	@Override
 	public String toString(){
 		return "ID " + id + " X " + xCoor + " Y " + yCoor;
 		

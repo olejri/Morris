@@ -55,7 +55,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().player2);
 			}
 		}
-		GameController.getInstance().getMorrisGame().addGameListener(this);
+		GameController.getInstance();
+		GameController.getMorrisGame().addGameListener(this);
 
 		SKUser owner = network.getOwner();
 		SKUser guest = network.getGuest();
@@ -97,6 +98,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	 * onWindowChange we dedicate 70 % of the screen to the BoardView and 20 for
 	 * scoreview
 	 */
+	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		Display display = getWindowManager().getDefaultDisplay();
 		int screenHeight = display.getHeight();
@@ -107,8 +109,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		Log.i("height", "Header height: " + headerheight);
 
 		int usableArea = screenHeight - (headerheight);
-		float viewHeight = (float) usableArea * 0.60f;
-		float scoreHeight = (float) usableArea * 0.30f;
+		float viewHeight = usableArea * 0.60f;
+		float scoreHeight = usableArea * 0.30f;
 
 		Constant.boardHeight = (int) viewHeight;
 		Constant.scoreBoardHeight = (int) scoreHeight;
@@ -191,10 +193,10 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	    if(keyCode == KeyEvent.KEYCODE_BACK) {
 	        //Ask the user if they want to quit
 	        new AlertDialog.Builder(this)
-	        .setIcon(android.R.drawable.ic_dialog_alert)
-	        .setTitle("Quit game")
+	        .setIcon(R.drawable.icon_networkgame)
+	        .setTitle("Quit Game")
 	        .setMessage("Do you want to quit the game?")
-	        .setPositiveButton("Oh yea!", new DialogInterface.OnClickListener() {
+	        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
 	            @Override
 	            public void onClick(DialogInterface dialog, int which) {
@@ -210,7 +212,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	            }
 
 	        })
-	        .setNegativeButton("Noo", null)
+	        .setNegativeButton("No", null)
 	        .show();
 
 	        return true;
