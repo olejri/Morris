@@ -63,6 +63,8 @@ public class GameController {
 
 	private int turn;
 	private int side;
+	
+	static boolean hotseat = false;
 
 	public static GameController getInstance() {
 		if (instance == null) {
@@ -118,7 +120,7 @@ public class GameController {
 					if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer())){
 						morrisGame.setState(new RemovalState());
 					} else {
-						morrisGame.changePlayer();
+						morrisGame.changePlayer(hotseat);
 					}
 					break;
 				}
@@ -152,7 +154,7 @@ public class GameController {
 					if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 						morrisGame.setState(new RemovalState());
 					} else {
-						morrisGame.changePlayer(); 
+						morrisGame.changePlayer(hotseat); 
 					}
 				}
 				if(morrisGame.getState() instanceof RemovalState){
@@ -178,7 +180,7 @@ public class GameController {
 				}
 				// ENDRET TIL OPPONENT 12:34
 				morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
-				morrisGame.changePlayer();	
+				morrisGame.changePlayer(hotseat);	
 			}
 			
 			//morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
@@ -193,7 +195,7 @@ public class GameController {
 					if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 						morrisGame.setState(new RemovalState());
 					} else {
-						morrisGame.changePlayer();
+						morrisGame.changePlayer(hotseat);
 						morrisGame.setState(new SelectState());
 					}
 				}
