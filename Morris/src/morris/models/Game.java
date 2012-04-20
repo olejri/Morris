@@ -64,6 +64,13 @@ public class Game implements NetworkListener {
 		}
 		return selectable;
 	}
+	
+	public boolean opponentHasRemovablePieces(){
+		for(Piece p : getOpponent().getPieces()){
+			if(!p.inMorris()) return true;
+		}
+		return false;
+	}
 
 
 	private boolean isValidMove(Piece piece, int to){
