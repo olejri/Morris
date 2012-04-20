@@ -316,7 +316,7 @@ public class BoardView extends View implements GameListener {
 	}
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition, int morris) {
 		postInvalidate();
 		
 	}

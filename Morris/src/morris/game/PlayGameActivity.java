@@ -196,7 +196,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition,int morris) {
 		// TODO Auto-generated method stub
 
 	}

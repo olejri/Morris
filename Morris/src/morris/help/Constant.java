@@ -50,6 +50,9 @@ public class Constant {
 	public static final String MESSAGE_PIECE_MOVED = "m_p_m";
 	public static final String MESSAGE_PIECE_DELETED ="m_p_d";
 	
+	public static final int MESSAGE_MORRIS = 1;
+	public static final int MESSAGE_NOT_MORRIS = 0;
+	
 	
 	
 

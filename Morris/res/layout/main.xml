@@ -15,7 +15,7 @@
         <Button
             android:id="@+id/menu_button_creategame"
             style="@style/button_style_menu"
-            android:layout_below="@id/header"
+            android:layout_below="@+id/header"
             android:drawableLeft="@drawable/icon_networkgame"
             android:text="Create Game" />
 
@@ -29,21 +29,21 @@
         <Button
             android:id="@+id/menu_button_show_board"
             style="@style/button_style_menu"
-            android:layout_below="@id/menu_button_joingame"
+            android:layout_below="@+id/menu_button_joingame"
             android:drawableLeft="@drawable/icon_multiplayer"
             android:text="Local game" />
 
         <Button
             android:id="@+id/menu_button_achievements"
             style="@style/button_style_menu"
-            android:layout_below="@id/menu_button_show_board"
+            android:layout_below="@+id/menu_button_show_board"
             android:drawableLeft="@drawable/icon_achive"
             android:text="Achievements" />
 
         <Button
             android:id="@+id/menu_button_help"
             style="@style/button_style_menu"
-            android:layout_below="@id/menu_button_achievements"
+            android:layout_below="@+id/menu_button_achievements"
             android:background="@drawable/color_button_black"
             android:drawableLeft="@drawable/icon_help"
             android:text="Help" />
