@@ -16,7 +16,7 @@
             android:id="@+id/menu_button_creategame"
             style="@style/button_style_menu"
             android:layout_below="@+id/header"
-            android:drawableLeft="@drawable/icon_networkgame"
+            android:drawableLeft="@drawable/icon_networkgame_create"
             android:text="Create Game" />
 
         <Button
