@@ -2,6 +2,7 @@ package morris.states;
 
 import java.util.ArrayList;
 
+import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
@@ -20,8 +21,10 @@ public class PlacementState implements StateListener, State{
 	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
 		ArrayList<ModelPoint> points = board.getPoints();
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
-		for(ModelPoint mp : points){
-			if(!mp.isTaken())highlights.add(mp);
+		if(currentPlayer == GameController.getInstance().getGame().getPlayer1()){
+			for(ModelPoint mp : points){
+				if(!mp.isTaken())highlights.add(mp);
+			}
 		}
 		return highlights;
 	}
