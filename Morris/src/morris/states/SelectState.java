@@ -21,7 +21,7 @@ public class SelectState implements State {
 	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		ArrayList<Piece> pieces = currentPlayer.getPieces();
-		if(currentPlayer == GameController.getGame().getPlayer2()){
+		if(currentPlayer == GameController.getGame().getPlayer1()){
 			for(Piece p : pieces){
 				if(pieces.size() == 3) {
 					p.setSelectable(true);

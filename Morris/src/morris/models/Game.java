@@ -124,7 +124,7 @@ public class Game implements NetworkListener {
 			}else{
 				Log.i("removed","move CheckMorris() false [Game] ");
 				firePieceMoved(from, to, Constant.MESSAGE_NOT_MORRIS);
-				state.updatePieceImages(player, -1);
+				//state.updatePieceImages(player, -1);
 			}
 			
 			return true;
