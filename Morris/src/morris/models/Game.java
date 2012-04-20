@@ -438,6 +438,9 @@ public class Game implements NetworkListener {
 		//Piece movedP;
 		Log.i("movement","networkPlayerMoved() [Game]");
 		changePlayer(true);
+		move(board.getPoint(fromPostion).getPiece(), toPosition, getOpponent());
+		
+		/*
 		for(Piece p : getOpponent().getPieces()){
 			Log.i("movement","for: piecePosition: " + p.getPosition() + " == " + fromPostion);
 			if(p.getPosition()==fromPostion){
@@ -446,7 +449,7 @@ public class Game implements NetworkListener {
 				move(p, toPosition, getOpponent());
 				break;
 			}
-		}
+		}*/
 		
 	}
 
