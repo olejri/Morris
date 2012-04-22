@@ -312,15 +312,20 @@ public class BoardView extends View implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece) {
-		Log.i("skiller", "player placed piece name: [BoardView] " + player.getName());
+	public void playerRemovedPiece(int piecePosition) {
 		postInvalidate();
 		
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition) {
-		postInvalidate();
+	public void playerChangeTurn(Player p) {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void playerPlacedPiece(Player player, Piece piece, int morris) {
+		// TODO Auto-generated method stub
+		postInvalidate();
 	}
 }

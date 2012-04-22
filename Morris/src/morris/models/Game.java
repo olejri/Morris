@@ -324,10 +324,10 @@ public class Game implements NetworkListener {
      * FIRE LISTENER METHODS
      */
      
-    private void firePiecePlaced(Player player,Piece piece) {
+    private void firePiecePlaced(Player player,Piece piece, int morris) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece);
+    		l.playerPlacedPiece(player, piece,morris);
     	}
     }
     
@@ -341,6 +341,12 @@ public class Game implements NetworkListener {
     private void firePieceRemoved(int piecePosition){
     	for(GameListener l : gameListeners){
     		l.playerRemovedPiece(piecePosition);
+    	}
+    }
+    
+    private void firePlayerChangeTurn(Player p){
+    	for(GameListener l : gameListeners){
+    		l.playerChangeTurn(p);
     	}
     }
 
@@ -373,17 +379,27 @@ public class Game implements NetworkListener {
 				changePlayer();
 			}*/
 			Log.i("skiller","Time to fire piece placed");
-			firePiecePlaced(player, piece);
-			pieceCounter++;
-			if(pieceCounter == 8){
-				previousState = new SelectState();
-				Log.i("LOGHELP", "testing started");
-				if(state instanceof PlacementState){
-					setState(new SelectState());
-				}
-				
+			if(checkMorris(piece, player)){
+				Log.i("Balle","Vi har morris");
+				firePiecePlaced(player, piece,Constant.MESSAGE_MORRIS);
+			}else{
+				Log.i("Balle","Vi har ikke morris");
+				firePiecePlaced(player, piece,Constant.MESSAGE_NOT_MORRIS);
 			}
+			updatePieceCounter();
 
+		}
+	}
+	
+	private void updatePieceCounter(){
+		pieceCounter++;
+		if(pieceCounter == 8){
+			previousState = new SelectState();
+			Log.i("LOGHELP", "testing started");
+			if(state instanceof PlacementState){
+				setState(new SelectState());
+			}
+			
 		}
 	}
 
@@ -415,6 +431,8 @@ public class Game implements NetworkListener {
 		if(playerOne)Log.i("currentPlayer", "ChangePlayer: Player1");
 		else Log.i("currentPlayer", "ChangePlayer: Player2");
 		Log.i("currentPlayer", "****************");
+		
+		//firePlayerChangeTurn(getCurrentPlayer());
 	}
 
 	public Player getOpponent(){
@@ -454,18 +472,25 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerPlacedPiece(int toPosition) {
-		Log.i("skiller", "place piece in game from network");
-		Log.i("skiller", "what");
-		changePlayer(true);
-		for(Piece p : getOpponent().getPieces()){
-			Log.i("skiller", "Piece position: "+p.getPosition());
-			if(p.getPosition()<0){
-				Log.i("skiller", "fire playerPlacedPiece(Player,Piece,Position");
-				playerPlacedPiece(getOpponent(),p, toPosition);
+	public void networkPlayerPlacedPiece(int toPosition,int morris) {
+		
+		if(morris==Constant.MESSAGE_NOT_MORRIS){
+			changePlayer(true);
+		}
+		
+		for(Piece piece : player2.getPieces()){
+			if(piece.getPosition()==-1){
+				piece.setPosition(toPosition);
+				reserveBoardModelPoint(toPosition, piece);
+				updatePieceCounter();
+				firePiecePlaced(player2, piece, morris);
 				break;
 			}
 		}
+		
+		
+
+		
 		
 		
 	}

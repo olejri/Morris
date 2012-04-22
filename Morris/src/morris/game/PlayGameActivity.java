@@ -22,6 +22,8 @@ import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -34,6 +36,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public PieceAdapter pieceAdapter2;
 	public GridView gridview_black;
 	public GridView gridview_white;
+	public TextView player1;
+	public TextView player2;
+	private Animation textFadingAnimation;
 
 	Handler h;
 
@@ -47,6 +52,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 		h = new Handler();
 		setButtonFonts();
+		
+		player1 = (TextView) findViewById(R.id.player1_name);
+		player2 = (TextView) findViewById(R.id.player2_name);
 
 		if (GameController.getMorrisGame() == null) {
 			GameController.setMorrisGame(new Game());
@@ -91,6 +99,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		GameController.getMorrisGame().addGameListener(network);
 		BoardView b = (BoardView) findViewById(R.id.board_view_id);
 		GameController.getMorrisGame().addGameListener(b);
+		
+		startTextFading(GameController.getMorrisGame().getCurrentPlayer());
 
 	}
 
@@ -163,12 +173,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	private void setScoreBoardNames() {
-		TextView player1 = (TextView) findViewById(R.id.player1_name);
-		TextView player2 = (TextView) findViewById(R.id.player2_name);
-		player1.setText(GameController.getInstance().getMorrisGame()
-				.getPlayer1().getName());
-		player2.setText(GameController.getInstance().getMorrisGame()
-				.getPlayer2().getName());
+		player1.setText(GameController.getInstance().getMorrisGame().getPlayer1().getName());
+		player2.setText(GameController.getInstance().getMorrisGame().getPlayer2().getName());
 	}
 
 	/**
@@ -181,11 +187,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		gridview_black.refreshDrawableState();
 	}
 
-	@Override
-	public void playerPlacedPiece(Player player, Piece piece) {
-		updateScoreBoard();
 
-	}
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -222,18 +224,44 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	    }
 
 	}
+	
+	public void startTextFading(Player p){
+		Log.i("animation","StartTextFading(): " + p.getName());
+		textFadingAnimation = AnimationUtils.loadAnimation(this, R.anim.textfading);
+		textFadingAnimation.setRepeatCount(Animation.INFINITE);
+		if(p==GameController.getMorrisGame().getPlayer1()){
+			player2.clearAnimation();
+			player1.setAnimation(textFadingAnimation);
+			textFadingAnimation.start();
+		}else{
+			player1.clearAnimation();
+			player2.setAnimation(textFadingAnimation);
+			textFadingAnimation.start();
+		}
+	}
 
 
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition,int morris) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void playerRemovedPiece(int piecePosition) {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void playerChangeTurn(Player p) {
+		startTextFading(p);
+		
+	}
+
+	@Override
+	public void playerPlacedPiece(Player player, Piece piece, int morris) {
+		// TODO Auto-generated method stub
+		Log.i("balle", "playerPlacedPiece[PlayGameAct] at: " + piece.getPosition() + " player: " + player.getName() + " Morris: " + morris);
+		updateScoreBoard();
 	}
 
 }

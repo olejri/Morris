@@ -17,6 +17,7 @@ import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKFeeChosenResponse;
 
+import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
 import morris.interfaces.NetworkListener;
@@ -92,10 +93,10 @@ public class Network implements GameListener {
 	 * @param pieceID
 	 * @param toPosition
 	 */
-	private void fireNetworkPlayerPlacedPiece(int toPosition) {
+	private void fireNetworkPlayerPlacedPiece(int toPosition,int morris) {
 		Log.i("skiller", "fireNetworkPlayerPlaced TO: " + toPosition);
 		for (NetworkListener l : networkListeners) {
-			l.networkPlayerPlacedPiece(toPosition);
+			l.networkPlayerPlacedPiece(toPosition,morris);
 		}
 	}
 	/**
@@ -149,8 +150,9 @@ public class Network implements GameListener {
 	public void sendInformation(String payload, int event, String chat) {
 		Log.i("skiller", "Checking turn: " + turn);
 		if (turn == 1) {
-			Log.i("skiller", "Network. Send message: " + payload);
-			skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
+			
+				Log.i("skiller", "Network. Send message: " + payload);
+				skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat, new GameMove());
 		}else{
 			turn = 1;
 		}
@@ -181,7 +183,7 @@ public class Network implements GameListener {
 		switch (game_state) {
 		case SKTurnBasedTools.GAME_EVENT_QUIT_GAME:
 			showToastOnCanvas("The other player left the game");
-			Network.getInstance().setServerEndGameresponse(true);
+			//Network.getInstance().setServerEndGameresponse(true);
 			break;
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
@@ -222,10 +224,14 @@ public class Network implements GameListener {
 		if (message != null) {
 			String[] parts = message.split(Constant.SPLIT);
 			if ((parts[0]).equals(Constant.MESSAGE_PIECE_PLACED)) {
-				Network.getInstance().switchTurns();
-				Log.i("skiller", "decode message: PIECE_PLACED");
 				int toPosition = Integer.parseInt(parts[1]);
-				fireNetworkPlayerPlacedPiece(toPosition);
+				int morris = Integer.parseInt(parts[2]);
+				if(morris==Constant.MESSAGE_NOT_MORRIS){
+					Network.getInstance().switchTurns();
+				}
+				
+				Log.i("skiller", "decode message: PIECE_PLACED : " + message);
+				fireNetworkPlayerPlacedPiece(toPosition,morris);
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)) {
 				Log.i("skiller", "decode message: PIECE_MOVED");
@@ -434,10 +440,13 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece) {
+	public void playerPlacedPiece(Player player, Piece piece,int morris) {
 		// Sending place message
-		String movedMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
-		Network.getInstance().sendInformation(movedMessage,SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
+			String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition() + Constant.SPLIT + morris;
+			Network.getInstance().sendInformation(placeMessage,SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+			Log.i("placement", "playerPlacedPiece [Network]" );
+		}
 	}
 
 	@Override
@@ -453,5 +462,11 @@ public class Network implements GameListener {
 		Log.i("removed","playerRemovedPiece() Create Message[Network]");
 		String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition;
 		Network.getInstance().sendInformation(removeMessage, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+	}
+
+	@Override
+	public void playerChangeTurn(Player p) {
+		// TODO Auto-generated method stub
+		
 	}
 }
