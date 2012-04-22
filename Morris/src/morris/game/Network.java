@@ -250,7 +250,8 @@ public class Network implements GameListener {
 				Log.i("removed","handleMoveMessage() PIECE_DELETED [Network]");
 				fireNetworkPlayerDeletedPiece(piecePosition);
 			} else {
-				Network.getInstance().switchTurns();
+				//Network.getInstance().switchTurns();
+				Log.i("handleMessage [Network]", "switchTurns trigged");
 			}
 		}
 	}
