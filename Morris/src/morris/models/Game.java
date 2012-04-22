@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.skiller.api.operations.SKTurnBasedTools;
+
 import android.os.Handler;
 import android.util.Log;
 
@@ -476,6 +478,11 @@ public class Game implements NetworkListener {
 		
 		if(morris==Constant.MESSAGE_NOT_MORRIS){
 			changePlayer(true);
+		}
+		
+		// 22.april 18:13
+		if(morris==Constant.MESSAGE_MORRIS){
+			Network.getInstance().sendInformation("YOU HAVE MORRIS. STILL YOUR TURN", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 		}
 		
 		for(Piece piece : player2.getPieces()){
