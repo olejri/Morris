@@ -465,6 +465,10 @@ public class Game implements NetworkListener {
 		
 		if(morris == Constant.MESSAGE_NOT_MORRIS)changePlayer(true);
 		
+		if(morris==Constant.MESSAGE_MORRIS){
+			Network.getInstance().sendInformation("YOU HAVE MORRIS. STILL YOUR TURN", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		}
+		
 		Piece pieceMoved = board.getPoint(fromPostion).getPiece();
 		unreserveBoardModelPoint(fromPostion);
 		reserveBoardModelPoint(toPosition, pieceMoved);
@@ -480,7 +484,6 @@ public class Game implements NetworkListener {
 			changePlayer(true);
 		}
 		
-		// 22.april 18:13
 		if(morris==Constant.MESSAGE_MORRIS){
 			Network.getInstance().sendInformation("YOU HAVE MORRIS. STILL YOUR TURN", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 		}
