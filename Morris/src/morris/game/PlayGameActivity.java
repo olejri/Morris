@@ -242,12 +242,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition,int morris) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
 
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition) {
+	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition) {
 		
 	}
 
@@ -258,9 +258,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece, int morris) {
+	public void playerPlacedPiece(Player player, Piece piece) {
 		// TODO Auto-generated method stub
-		Log.i("balle", "playerPlacedPiece[PlayGameAct] at: " + piece.getPosition() + " player: " + player.getName() + " Morris: " + morris);
 		updateScoreBoard();
 	}
 
