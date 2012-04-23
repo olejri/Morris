@@ -95,13 +95,23 @@ public class Game implements NetworkListener {
 		}
 		return false;
 	}
-	
-	public boolean isGameOver(Player player){
-		if(player.getPieces().size() < 3 || player.hasSelectablePieces()){
-			return true;
-		} else {
-			return false;
+	/*
+	public void checkGameOwer(Player player){
+		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
+		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
+			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
+			if(getCurrentPlayer()==player1)firePlayerWon(1);
+			else firePlayerWon(2);
 		}
+	}
+	*/
+	public boolean playerWon(Player player){
+		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
+		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
+			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
+			firePlayerWon(1);
+			return true;
+		}else return false;
 	}
 
 
@@ -112,10 +122,7 @@ public class Game implements NetworkListener {
 	 */
 	public boolean move(Piece p, int to, Player player){
 		int from = p.getPosition();
-		Log.i("movement","move fromPosition [Game] : "+ from + " to: " + to);
-		Log.i("movement","move. State is: " + state.getClass().toString());
 		if(isValidMove(p, to)){
-			Log.i("movement","move isValidMove() true [Game] ");
 			unreserveBoardModelPoint(p.getPosition());
 			reserveBoardModelPoint(to, p);
 			p.setPosition(to);
@@ -123,16 +130,14 @@ public class Game implements NetworkListener {
 				updateMorrisStates(player);
 			}
 			if(checkMorris(p, player)){
-				Log.i("removed","move CheckMorris() true [Game] ");
 				//Sets last move
 				lastMoveFromPosition = from;
 				lastMoveToPosition = to;
-				//firePieceMoved(from, to, Constant.MESSAGE_MORRIS);
 			}else{
-				Log.i("removed","move CheckMorris() false [Game] ");
-				firePieceMoved(from, to);
-				//state.updatePieceImages(player, -1);
+				firePieceMoved(from, to,playerWon(player));
 			}
+			//Check if player won
+			//checkGameOwer(getOpponent());
 			
 			return true;
 			
@@ -224,7 +229,8 @@ public class Game implements NetworkListener {
 		if(isValidMove(ps, 0)){
 			unreserveBoardModelPoint(p.getId());
 			player.removePiece(ps);
-			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition);
+			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition,playerWon(player));
+			//checkGameOwer(getOpponent());
 			return true;
 		}
 		return false;
@@ -328,23 +334,23 @@ public class Game implements NetworkListener {
      * FIRE LISTENER METHODS
      */
      
-    private void firePiecePlaced(Player player,Piece piece) {
+    private void firePiecePlaced(Player player,Piece piece,boolean won) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece);
+    		l.playerPlacedPiece(player, piece,won);
     	}
     }
     
-    private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
+    private void firePieceMoved(int pieceFromPosition,int pieceToPosition,boolean won) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition);
+    		l.playerMoved(pieceFromPosition, pieceToPosition,won);
     	}
     }
     
-    private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition){
+    private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition,boolean won){
     	for(GameListener l : gameListeners){
-    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition);
+    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won);
     	}
     }
     
@@ -357,6 +363,12 @@ public class Game implements NetworkListener {
     private void fireUpdate(){
     	for(GameListener l : gameListeners){
     		l.update();
+    	}
+    }
+    
+    private void firePlayerWon(int player){
+    	for(GameListener l : gameListeners){
+    		l.playerWon(player);
     	}
     }
 
@@ -376,15 +388,18 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
-
+			
 			if(checkMorris(piece, player)){
 				Log.i("skiller","placePlacedPiece: morris [Game]");
 				lastMoveFromPosition = -1;
 				lastMoveToPosition = position;
+				
 			}else{
 				Log.i("skiller","placePlacedPiece: not morris firePiecePlaced() [Game]");
-				firePiecePlaced(player, piece);	
+				firePiecePlaced(player, piece,playerWon(player));	
 			}
+			//Check for win
+			//checkGameOwer(getOpponent());
 			Log.i("skiller","Time to fire piece placed");
 			
 			updatePieceCounter();
@@ -473,7 +488,7 @@ public class Game implements NetworkListener {
 		reserveBoardModelPoint(toPosition, pieceMoved);
 		pieceMoved.setPosition(toPosition);
 		
-		firePieceMoved(fromPostion, toPosition);
+		firePieceMoved(fromPostion, toPosition,false);
 		
 	}
 
@@ -487,17 +502,11 @@ public class Game implements NetworkListener {
 				piece.setPosition(toPosition);
 				reserveBoardModelPoint(toPosition, piece);
 				updatePieceCounter();
-				firePiecePlaced(player2, piece);
+				firePiecePlaced(player2, piece,false);
 				break;
 			}
 		}
 		
-		
-	}
-
-	@Override
-	public void networkPlayerWon() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -563,6 +572,13 @@ public class Game implements NetworkListener {
 	@Override
 	public void networkSetPlayerNames() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void networkPlayerLost() {
+		Log.i("win", "networkPlayerLost [Game]");
+		firePlayerWon(2);
 		
 	}
 

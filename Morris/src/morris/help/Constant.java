@@ -51,6 +51,7 @@ public class Constant {
 	
 	public static final int MESSAGE_MORRIS = 1;
 	public static final int MESSAGE_NOT_MORRIS = 0;
+	public static final String MESSAGE_WON = "won";
 	
 	
 	

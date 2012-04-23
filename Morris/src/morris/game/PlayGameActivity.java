@@ -29,6 +29,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 
 public class PlayGameActivity extends SuperActivity implements GameListener {
@@ -242,12 +243,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition,boolean won) {
 
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition) {
+	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition,boolean won) {
 		
 	}
 
@@ -258,7 +259,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece) {
+	public void playerPlacedPiece(Player player, Piece piece,boolean won) {
 		// TODO Auto-generated method stub
 		updateScoreBoard();
 	}
@@ -267,6 +268,25 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void playerWon(int player) {
+		if(player==1){
+			showWinToast("Emil");
+		}else{
+			showWinToast("Steinar");
+		}
+		
+	}
+	
+	private void showWinToast(final String player){
+		h.post(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(getApplicationContext(), "Player: " + player + " WON!", Toast.LENGTH_LONG).show();
+			}
+		});
 	}
 
 }
