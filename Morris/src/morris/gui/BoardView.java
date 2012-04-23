@@ -306,15 +306,23 @@ public class BoardView extends View implements GameListener {
 	}
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition, int morris) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition,
+			boolean won) {
+		// TODO Auto-generated method stub
 		postInvalidate();
-		
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition) {
+	public void playerPlacedPiece(Player player, Piece piece, boolean won) {
+		// TODO Auto-generated method stub
 		postInvalidate();
-		
+	}
+
+	@Override
+	public void playerRemovedPiece(int pieceRemoved,
+			int pieceMovedFromPosition, int pieceMovedToPosition, boolean won) {
+		// TODO Auto-generated method stub
+		postInvalidate();
 	}
 
 	@Override
@@ -324,8 +332,17 @@ public class BoardView extends View implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece, int morris) {
+	public void playerWon(int player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
 		// TODO Auto-generated method stub
 		postInvalidate();
 	}
+
+
+
 }

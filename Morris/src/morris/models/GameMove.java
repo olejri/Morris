@@ -11,6 +11,39 @@ public class GameMove extends SKOnGameMoveListener {
 
 	@Override
 	public void onResponse(SKGameMoveResponse st) {
+		
+		String state = "Default";
+		switch (st.getGameState()) {
+		case SKTurnBasedTools.GAME_EVENT_QUIT_GAME:
+			state = "GAME_EVENT_QUIT_GAME";
+			//Network.getInstance().setServerEndGameresponse(true);
+			break;
+		case SKTurnBasedTools.GAME_STATE_WON:
+			state = "GAME_STATE_WON";
+			Network.getInstance().setServerEndGameresponse(true);
+			break;
+
+		case SKTurnBasedTools.GAME_STATE_LOST:
+			state = "GAME_STATE_LOST";
+			Network.getInstance().setServerEndGameresponse(true);
+			break;
+
+		case SKTurnBasedTools.GAME_STATE_TIED:
+			state = "GAME_STATE_TIED";
+			Network.getInstance().setServerEndGameresponse(true);
+			break;
+
+		case SKTurnBasedTools.GAME_STATE_ARE_YOU_HERE:
+
+		default :
+
+		}
+		
+		Log.i("turn","GameCode: " + st.getStatusCode() + " Game State: " + state);
+		
+		
+		
+		
 		if (st.getStatusCode() == 0) {// status OK
 
 			// 1. received data:
@@ -20,8 +53,15 @@ public class GameMove extends SKOnGameMoveListener {
 			// 2. game logic
 			String Opponentpayload = st.getPayload();
 			Network.getInstance().handleOpponentMove(game_state, game_id,Opponentpayload);
+			
+			
+
+			
+			
+			
 		} else {// status ERROR
 			Log.i("skiller", "could not get message from skGameMoveResponse" + st.getStatusMessage());
+			Log.i("skiller", "could not get message Status code: " + st.getStatusCode());
 				// GameHandler.getInstance().showErrorDialog(st.getStatusMessage());
 			//Network.getInstance().switchTurns();
 			//Network.getInstance().sendInformation(st.getPayload(), SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);

@@ -31,6 +31,8 @@ public class Game implements NetworkListener {
 	private Board board;
 	private State previousState;
 	private Handler h;
+	private int lastMoveFromPosition;
+	private int lastMoveToPosition;
 
 
 	public String gameType;
@@ -47,7 +49,7 @@ public class Game implements NetworkListener {
 		previousState = new PlacementState();
 		board = new Board();
 		gameType = Constant.NINE_MENS_MORRIS;
-		
+		h = new Handler();
 		Network.getInstance().addListener(this);
 	}
 
@@ -93,13 +95,23 @@ public class Game implements NetworkListener {
 		}
 		return false;
 	}
-	
-	public boolean isGameOver(Player player){
-		if(player.getPieces().size() < 3 || player.hasSelectablePieces()){
-			return true;
-		} else {
-			return false;
+	/*
+	public void checkGameOwer(Player player){
+		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
+		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
+			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
+			if(getCurrentPlayer()==player1)firePlayerWon(1);
+			else firePlayerWon(2);
 		}
+	}
+	*/
+	public boolean playerWon(Player player){
+		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
+		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
+			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
+			firePlayerWon(1);
+			return true;
+		}else return false;
 	}
 
 
@@ -110,10 +122,7 @@ public class Game implements NetworkListener {
 	 */
 	public boolean move(Piece p, int to, Player player){
 		int from = p.getPosition();
-		Log.i("movement","move fromPosition [Game] : "+ from + " to: " + to);
-		Log.i("movement","move. State is: " + state.getClass().toString());
 		if(isValidMove(p, to)){
-			Log.i("movement","move isValidMove() true [Game] ");
 			unreserveBoardModelPoint(p.getPosition());
 			reserveBoardModelPoint(to, p);
 			p.setPosition(to);
@@ -121,13 +130,14 @@ public class Game implements NetworkListener {
 				updateMorrisStates(player);
 			}
 			if(checkMorris(p, player)){
-				Log.i("removed","move CheckMorris() true [Game] ");
-				firePieceMoved(from, to, Constant.MESSAGE_MORRIS);
+				//Sets last move
+				lastMoveFromPosition = from;
+				lastMoveToPosition = to;
 			}else{
-				Log.i("removed","move CheckMorris() false [Game] ");
-				firePieceMoved(from, to, Constant.MESSAGE_NOT_MORRIS);
-				//state.updatePieceImages(player, -1);
+				firePieceMoved(from, to,playerWon(player));
 			}
+			//Check if player won
+			//checkGameOwer(getOpponent());
 			
 			return true;
 			
@@ -219,20 +229,18 @@ public class Game implements NetworkListener {
 		if(isValidMove(ps, 0)){
 			unreserveBoardModelPoint(p.getId());
 			player.removePiece(ps);
-			firePieceRemoved(p.getId());
+			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition,playerWon(player));
+			//checkGameOwer(getOpponent());
 			return true;
 		}
 		return false;
-
-
-
 	}
 
 	/*
 	 * Updates the board, setting correct state on all pieces.
 	 * TODO Update Morris states for opponent's pieces
 	 */
-	private void updateMorrisStates(Player player){
+	public void updateMorrisStates(Player player){
 		ArrayList<Piece> pieces = player.getPieces(); // endret fra getPieces(1)
 		int horizontal = 0;
 		int vertical = 0;
@@ -326,29 +334,41 @@ public class Game implements NetworkListener {
      * FIRE LISTENER METHODS
      */
      
-    private void firePiecePlaced(Player player,Piece piece, int morris) {
+    private void firePiecePlaced(Player player,Piece piece,boolean won) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece,morris);
+    		l.playerPlacedPiece(player, piece,won);
     	}
     }
     
-    private void firePieceMoved(int pieceFromPosition,int pieceToPosition, int morris) {
+    private void firePieceMoved(int pieceFromPosition,int pieceToPosition,boolean won) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition,morris);
+    		l.playerMoved(pieceFromPosition, pieceToPosition,won);
     	}
     }
     
-    private void firePieceRemoved(int piecePosition){
+    private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition,boolean won){
     	for(GameListener l : gameListeners){
-    		l.playerRemovedPiece(piecePosition);
+    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won);
     	}
     }
     
     private void firePlayerChangeTurn(Player p){
     	for(GameListener l : gameListeners){
     		l.playerChangeTurn(p);
+    	}
+    }
+    
+    private void fireUpdate(){
+    	for(GameListener l : gameListeners){
+    		l.update();
+    	}
+    }
+    
+    private void firePlayerWon(int player){
+    	for(GameListener l : gameListeners){
+    		l.playerWon(player);
     	}
     }
 
@@ -368,26 +388,20 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
-
-			/*
->>>>>>> e1e3760c598c18b337324969be2ed66da9a3d1e6
+			
 			if(checkMorris(piece, player)){
-				System.out.println("Morris achieved. Removal State should be set!");
-				updateMorrisStates(player);
-				setState(new RemovalState());
-
-			}
-			else{
-				changePlayer();
-			}*/
-			Log.i("skiller","Time to fire piece placed");
-			if(checkMorris(piece, player)){
-				Log.i("Balle","Vi har morris");
-				firePiecePlaced(player, piece,Constant.MESSAGE_MORRIS);
+				Log.i("skiller","placePlacedPiece: morris [Game]");
+				lastMoveFromPosition = -1;
+				lastMoveToPosition = position;
+				
 			}else{
-				Log.i("Balle","Vi har ikke morris");
-				firePiecePlaced(player, piece,Constant.MESSAGE_NOT_MORRIS);
+				Log.i("skiller","placePlacedPiece: not morris firePiecePlaced() [Game]");
+				firePiecePlaced(player, piece,playerWon(player));	
 			}
+			//Check for win
+			//checkGameOwer(getOpponent());
+			Log.i("skiller","Time to fire piece placed");
+			
 			updatePieceCounter();
 
 		}
@@ -434,7 +448,7 @@ public class Game implements NetworkListener {
 		else Log.i("currentPlayer", "ChangePlayer: Player2");
 		Log.i("currentPlayer", "****************");
 		
-		//firePlayerChangeTurn(getCurrentPlayer());
+		firePlayerChangeTurn(getCurrentPlayer());
 	}
 
 	public Player getOpponent(){
@@ -460,75 +474,111 @@ public class Game implements NetworkListener {
 	 */
 	
 	@Override
-	public void networkPlayerMoved(int fromPostion, int toPosition, int morris) {
+	public void networkPlayerMoved(int fromPostion, int toPosition) {
 		Log.i("movement","networkPlayerMoved() [Game]");
 		
-		if(morris == Constant.MESSAGE_NOT_MORRIS)changePlayer(true);
-		
+			changePlayer(true);
+		/*
 		if(morris==Constant.MESSAGE_MORRIS){
 			Network.getInstance().sendInformation("YOU HAVE MORRIS. STILL YOUR TURN", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-		}
+		}*/
 		
 		Piece pieceMoved = board.getPoint(fromPostion).getPiece();
 		unreserveBoardModelPoint(fromPostion);
 		reserveBoardModelPoint(toPosition, pieceMoved);
 		pieceMoved.setPosition(toPosition);
-		firePieceMoved(fromPostion, toPosition,morris);
+		
+		firePieceMoved(fromPostion, toPosition,false);
 		
 	}
 
 	@Override
-	public void networkPlayerPlacedPiece(int toPosition,int morris) {
+	public void networkPlayerPlacedPiece(int toPosition) {
 		
-		if(morris==Constant.MESSAGE_NOT_MORRIS){
 			changePlayer(true);
-		}
-		
-		if(morris==Constant.MESSAGE_MORRIS){
-			Network.getInstance().sendInformation("YOU HAVE MORRIS. STILL YOUR TURN", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-		}
 		
 		for(Piece piece : player2.getPieces()){
 			if(piece.getPosition()==-1){
 				piece.setPosition(toPosition);
 				reserveBoardModelPoint(toPosition, piece);
 				updatePieceCounter();
-				firePiecePlaced(player2, piece, morris);
+				firePiecePlaced(player2, piece,false);
 				break;
 			}
 		}
 		
 		
-
-		
-		
-		
 	}
 
 	@Override
-	public void networkPlayerWon() {
-		// TODO Auto-generated method stub
+	public void networkPlayerRemovedPiece(final int piecePosition,final int pieceMovedFromPosition,final int pieceMovedToPosition) {
+		
+		
+		
+		Log.i("sleep", "before sleeping [game]");;
+				//Fire playerChangeTurn to update board
+			h.postDelayed(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						//Move first
+						Piece pieceMoved = null;
+						Log.i("values", "pieceMovedFromPosition: "+ pieceMovedFromPosition+" [game]");;
+						if(pieceMovedFromPosition!=-1){
+							pieceMoved = board.getPoint(pieceMovedFromPosition).getPiece();
+							unreserveBoardModelPoint(pieceMovedFromPosition);
+						}else{
+							pieceMoved = getFirstAvailablePiece();
+						}
+						reserveBoardModelPoint(pieceMovedToPosition, pieceMoved);
+						if(pieceMoved!=null)pieceMoved.setPosition(pieceMovedToPosition);
+						fireUpdate();
+					}
+				}, 10);
+				
+				
+				h.postDelayed(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						changePlayer(true);
+						Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
+						unreserveBoardModelPoint(piecePosition);
+						currentPlayer.removePiece(pieceRemoved);
+						fireUpdate();
+						
+					}
+				}, 1500);
+				
+				
+		
+
 		
 	}
-
-	@Override
-	public void networkPlayerRemovedPiece(int piecePosition) {
-		changePlayer(true);
-		Log.i("removed", "networkPlayerRemovedPiece [Game]");
-		Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
-		Log.i("removed", "PieceRemoved: Piece position" + pieceRemoved.getPosition() + "[Game]");
-		unreserveBoardModelPoint(piecePosition);
-		Log.i("removed", "Removing piece piece size: "+ currentPlayer.getPieces().size() + " [Game]");
-		currentPlayer.removePiece(pieceRemoved);
-		Log.i("removed", "Removing piece piece size currentPlayer: "+ currentPlayer.getPieces().size() + " [Game]");
-		
-		
-		firePieceRemoved(piecePosition);
+	
+	private Piece getFirstAvailablePiece(){
+		Piece available = null;
+		for(Piece piece : player2.getPieces()){
+			if(piece.getPosition()==-1){
+				available = piece;
+				break;
+			}
+		}
+		return available;
 	}
 
 	@Override
 	public void networkSetPlayerNames() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void networkPlayerLost() {
+		Log.i("win", "networkPlayerLost [Game]");
+		firePlayerWon(2);
 		
 	}
 
