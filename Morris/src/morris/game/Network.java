@@ -228,9 +228,10 @@ public class Network implements GameListener {
 				int morris = Integer.parseInt(parts[2]);
 				if(morris==Constant.MESSAGE_NOT_MORRIS){
 					Network.getInstance().switchTurns();
-				} else {
+				}
+				/*} else {
 					Network.getInstance().sendInformation(Constant.MESSAGE_EMPTY, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-				}				
+				}*/				
 				Log.i("skiller", "decode message: PIECE_PLACED : " + message);
 				fireNetworkPlayerPlacedPiece(toPosition,morris);
 				// DO SOMETHING

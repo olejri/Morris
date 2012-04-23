@@ -482,6 +482,8 @@ public class Game implements NetworkListener {
 		
 		if(morris==Constant.MESSAGE_NOT_MORRIS){
 			changePlayer(true);
+		} else {
+			Network.getInstance().sendInformation(Constant.MESSAGE_EMPTY, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
 		}
 		
 		for(Piece piece : player2.getPieces()){
