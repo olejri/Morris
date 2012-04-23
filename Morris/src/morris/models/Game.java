@@ -484,10 +484,6 @@ public class Game implements NetworkListener {
 			changePlayer(true);
 		}
 		
-		if(morris==Constant.MESSAGE_MORRIS){
-			Network.getInstance().sendInformation("YOU HAVE MORRIS. STILL YOUR TURN", SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-		}
-		
 		for(Piece piece : player2.getPieces()){
 			if(piece.getPosition()==-1){
 				piece.setPosition(toPosition);
