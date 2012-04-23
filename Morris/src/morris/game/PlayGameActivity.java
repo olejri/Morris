@@ -57,28 +57,33 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		player1 = (TextView) findViewById(R.id.player1_name);
 		player2 = (TextView) findViewById(R.id.player2_name);
 
+		
 		if (GameController.getMorrisGame() == null) {
+			Log.i("game", "GameController.getMorrisGame() == null");
 			GameController.setMorrisGame(new Game());
 			GameController.getMorrisGame().initPlayers();
 			if(network.isGameOwner()){
-				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().player2);
+				Log.i("game", "setting current player to player 2");
+				//GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
+			}else{
 			}
 		}
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
 
-		SKUser owner = network.getOwner();
-		SKUser guest = network.getGuest();
+		
 
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
 
 		setUpScoreBoard();
-		setScoreBoardNames();
+		
+		
 
 		try {
 			if (network.isWaiting_for_opponnent()) {
 				network.showToastOnCanvas("Still waiting on opponent");
+				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				Log.i("skiller", "Venter på en kar");
 			}
 			if (network.isGameOwner()) {
@@ -89,8 +94,11 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					network.setSide(1);
 					network.setSide(2);
 					network.showToastOnCanvas("Game started");
+					setScoreBoardNames(network.getOwner().getUserName(),network.getGuest().getUserName());
+					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				}
 			} else {
+				setScoreBoardNames(network.getGuest().getUserName(),network.getOwner().getUserName());
 				Log.i("skiller", "Vil ikke starte");
 			}
 		} catch (Exception e) {
@@ -173,9 +181,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	}
 
-	private void setScoreBoardNames() {
-		player1.setText(GameController.getInstance().getMorrisGame().getPlayer1().getName());
-		player2.setText(GameController.getInstance().getMorrisGame().getPlayer2().getName());
+	private void setScoreBoardNames(String name1, String name2) {
+		player1.setText(name1);
+		player2.setText(name2);
 	}
 
 	/**

@@ -149,9 +149,8 @@ public class Network implements GameListener {
 		Network.getInstance().clearGame();
 		Network.getInstance().setWaiting_for_opponent(true);
 
-		// Intent intent = new Intent(Network.getInstance().getMenuContext(),
-		// PlayGameActivity.class);
-		// Network.getInstance().getMenuContext().startActivity(intent);
+		//Starter play game
+		 Network.getInstance().getMenuContext().startActivity(new Intent(Network.getInstance().getMenuContext(), PlayGameActivity.class));
 	}
 
 	/*
@@ -191,16 +190,18 @@ public class Network implements GameListener {
 		
 	}
 
-	public void startGame() {
+	public void startGame(boolean owner) {
 		Network.getInstance().setGameStarted(true);
 		if (isGameOwner()) {
 			// sending the information
 			Network.getInstance().sendInformation(null,
 					SKTurnBasedTools.GAME_EVENT_READY_TO_PLAY, null);
 		}
+		if(!owner){
 		Intent intent = new Intent(Network.getInstance().getMenuContext(),
 				PlayGameActivity.class);
 		Network.getInstance().getMenuContext().startActivity(intent);
+		}
 	}
 
 	/*
@@ -217,11 +218,9 @@ public class Network implements GameListener {
 		
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
-			showToastOnCanvas("You won!");
 			break;
 
 		case SKTurnBasedTools.GAME_STATE_LOST:
-			showToastOnCanvas("You lost!");
 			Network.getInstance().setServerEndGameresponse(true);
 			handleMessage(Opponentpayload);
 			fireNetworkPlayerLost();
