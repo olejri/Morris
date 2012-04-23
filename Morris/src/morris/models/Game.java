@@ -528,11 +528,12 @@ public class Game implements NetworkListener {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
+						changePlayer(true);
 						Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
 						unreserveBoardModelPoint(piecePosition);
 						currentPlayer.removePiece(pieceRemoved);
 						firePlayerChangeTurn(getCurrentPlayer());
-						changePlayer(true);
+						
 						
 					}
 				}, 1500);
