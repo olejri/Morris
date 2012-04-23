@@ -234,7 +234,7 @@ public class Game implements NetworkListener {
 	 * Updates the board, setting correct state on all pieces.
 	 * TODO Update Morris states for opponent's pieces
 	 */
-	private void updateMorrisStates(Player player){
+	public void updateMorrisStates(Player player){
 		ArrayList<Piece> pieces = player.getPieces(); // endret fra getPieces(1)
 		int horizontal = 0;
 		int vertical = 0;
@@ -353,6 +353,12 @@ public class Game implements NetworkListener {
     		l.playerChangeTurn(p);
     	}
     }
+    
+    private void fireUpdate(){
+    	for(GameListener l : gameListeners){
+    		l.update();
+    	}
+    }
 
 	/*
 	 * TODO
@@ -427,7 +433,7 @@ public class Game implements NetworkListener {
 		else Log.i("currentPlayer", "ChangePlayer: Player2");
 		Log.i("currentPlayer", "****************");
 		
-		//firePlayerChangeTurn(getCurrentPlayer());
+		firePlayerChangeTurn(getCurrentPlayer());
 	}
 
 	public Player getOpponent(){
@@ -509,16 +515,16 @@ public class Game implements NetworkListener {
 						// TODO Auto-generated method stub
 						//Move first
 						Piece pieceMoved = null;
-						if(pieceMovedFromPosition>0){
+						Log.i("values", "pieceMovedFromPosition: "+ pieceMovedFromPosition+" [game]");;
+						if(pieceMovedFromPosition!=-1){
 							pieceMoved = board.getPoint(pieceMovedFromPosition).getPiece();
 							unreserveBoardModelPoint(pieceMovedFromPosition);
 						}else{
 							pieceMoved = getFirstAvailablePiece();
-						
 						}
 						reserveBoardModelPoint(pieceMovedToPosition, pieceMoved);
-						pieceMoved.setPosition(pieceMovedToPosition);
-						firePlayerChangeTurn(getCurrentPlayer());
+						if(pieceMoved!=null)pieceMoved.setPosition(pieceMovedToPosition);
+						fireUpdate();
 					}
 				}, 10);
 				
@@ -532,8 +538,7 @@ public class Game implements NetworkListener {
 						Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
 						unreserveBoardModelPoint(piecePosition);
 						currentPlayer.removePiece(pieceRemoved);
-						firePlayerChangeTurn(getCurrentPlayer());
-						
+						fireUpdate();
 						
 					}
 				}, 1500);

@@ -139,6 +139,7 @@ public class GameController {
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 							morrisGame.setState(new RemovalState());
+							morrisGame.updatePieceImages(morrisGame.getOpponent(), -1); // -1 fordi den er uvensentlig
 						} else {
 							morrisGame.changePlayer(hotseat); 
 						}
@@ -157,6 +158,7 @@ public class GameController {
 			}
 			else if(morrisGame.getState() instanceof RemovalState){
 				//getPlayer1() just for testing, must be changed to getPlayer2()
+				morrisGame.updateMorrisStates(morrisGame.getOpponent());
 				if(morrisGame.removePiece(p, morrisGame.getOpponent())){
 					//morrisGame.setState(morrisGame.getPreviousState());
 					if(morrisGame.getPreviousState() instanceof PlacementState){

@@ -9,4 +9,5 @@ public interface GameListener {
 	public void playerPlacedPiece(Player player, Piece piece);
 	public void playerRemovedPiece(int pieceRemoved,int pieceMovedFromPosition, int pieceMovedToPosition);
 	public void playerChangeTurn(Player p);
+	public void update();
 }

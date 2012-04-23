@@ -328,4 +328,10 @@ public class BoardView extends View implements GameListener {
 		// TODO Auto-generated method stub
 		postInvalidate();
 	}
+
+	@Override
+	public void update() {
+		postInvalidate();
+	}
+
 }

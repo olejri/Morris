@@ -263,4 +263,10 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		updateScoreBoard();
 	}
 
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
