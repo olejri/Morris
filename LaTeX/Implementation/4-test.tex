@@ -4,8 +4,141 @@ The report should contain test reports for both functional requirements and qual
 
 \subsection{Functional requirements testing}
 
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR1 - Placement of pieces} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 5 minutes \\ 
+Evaluation & The players successfully placed all nine pieces. \\ \hline
+\end{tabular}
+\caption{Testing of FR1}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR2 - Moving pieces} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 3 minutes \\ 
+Evaluation & The players successfully moved their pieces one length at the time. \\ \hline
+\end{tabular}
+\caption{Testing of FR2}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR3 - Morris state} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 3 minutes \\ 
+Evaluation & When placing three pieces in a row, the game successfully changed state, and a piece was removed from the opponent. \\ \hline
+\end{tabular}
+\caption{Testing of FR3}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR4 - Flying pieces} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 3 minutes \\ 
+Evaluation & When the player had three pieces left, the game successfully changed state to Flying state, and the player was allowed to move to any vacant field. \\ \hline
+\end{tabular}
+\caption{Testing of FR4}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR5 - Multiplayer} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 10 minutes \\ 
+Evaluation & Ole and Emil connected to each other via the Skiller framework, and successfully played a whole game. \\ \hline
+\end{tabular}
+\caption{Testing of FR5}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR6 - Random start} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 3 minutes \\ 
+Evaluation & IKKE IMPLEMENTERT OMG. \\ \hline
+\end{tabular}
+\caption{Testing of FR6}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR7 - Game board} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 1 minute \\ 
+Evaluation & The game has a board conforming with the layout of \emph{Nine Men's Morris}. \\ \hline
+\end{tabular}
+\caption{Testing of FR7}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR8 - Sound effects} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 10 minutes \\ 
+Evaluation & IKKE IMPLEMENTERT OMG. \\ \hline
+\end{tabular}
+\caption{Testing of FR8}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR9 - Setting player name} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 5 minutes \\ 
+Evaluation & A player can set his own name when creating a Skiller account. \\ \hline
+\end{tabular}
+\caption{Testing of FR9}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR10 -Highlighting possible moves} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 10 minutes \\ 
+Evaluation & Possible moves are highlighted in all states, as long as it is your turn. \\ \hline
+\end{tabular}
+\caption{Testing of FR10}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR11 - Game over} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 5 minutes \\ 
+Evaluation & When a player has only two pieces left, or cannot move any of his or her pieces, the game successfully ends. \\ \hline
+\end{tabular}
+\caption{Testing of FR11}
+\end{table}
+
 \subsection{Quality requirements testing}
 
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR11 - Game over} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 23.04.2012 \\ 
+Stimuli & Addition of a new game variant \\
+Expected response & The architecture should allow an easy extension to \emph{Twelve Men's Morris}. \\ 
+Observed response & The system is flexible and an extension can easily be added. \\
+Evaluation & Successful \\ \hline
+\end{tabular}
+\caption{Testing of M1}
+\end{table}
 
 
 
