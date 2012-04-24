@@ -1,34 +1,33 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}
 \contentsline {section}{\numberline {2}Architectural drivers}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Quality in all parts of the architecture}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Not too complex architecture}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Fast start up}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.1}Quality in all parts of the architecture}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Not too complex architecture}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Fast start up}{4}{subsection.2.3}
 \contentsline {section}{\numberline {3}Stakeholders}{4}{section.3}
-\contentsline {section}{\numberline {4}Architectural viewpoint selection}{5}{section.4}
-\contentsline {subsection}{\numberline {4.1}Logical view}{5}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Development view}{5}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Process view}{5}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Physical view}{6}{subsection.4.4}
-\contentsline {section}{\numberline {5}Architectural tactics}{7}{section.5}
-\contentsline {subsection}{\numberline {5.1}Modifiability}{7}{subsection.5.1}
-\contentsline {subsubsection}{\numberline {5.1.1}Prevention of Ripple Effect}{7}{subsubsection.5.1.1}
-\contentsline {subsubsection}{\numberline {5.1.2}Localize Changes}{7}{subsubsection.5.1.2}
-\contentsline {subsection}{\numberline {5.2}Usability}{7}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}User feedback between implementation iterations}{7}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2}Follow the Android user interface guidelines}{7}{subsubsection.5.2.2}
-\contentsline {subsection}{\numberline {5.3}Testability}{7}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {5.3.1}Testing third party multiplayer connection}{7}{subsubsection.5.3.1}
-\contentsline {section}{\numberline {6}Architectural patterns}{8}{section.6}
-\contentsline {subsection}{\numberline {6.1}States}{8}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}MVC}{8}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Singleton}{8}{subsection.6.3}
-\contentsline {section}{\numberline {7}Views}{9}{section.7}
-\contentsline {subsection}{\numberline {7.1}Logical view}{9}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Development view}{10}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Process view}{11}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Physical view}{12}{subsection.7.4}
-\contentsline {section}{\numberline {8}Consistency among views}{13}{section.8}
-\contentsline {section}{\numberline {9}Architectural rationale}{13}{section.9}
-\contentsline {section}{\numberline {10}Issues}{13}{section.10}
-\contentsline {section}{\numberline {11}Changes}{14}{section.11}
-\contentsline {section}{References}{15}{section*.4}
+\contentsline {section}{\numberline {4}Architectural viewpoint selection}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Logical view}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Development view}{6}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Process view}{6}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Physical view}{7}{subsection.4.4}
+\contentsline {section}{\numberline {5}Architectural tactics}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}Modifiability}{8}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Prevention of Ripple Effect}{8}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Localize Changes}{8}{subsubsection.5.1.2}
+\contentsline {subsection}{\numberline {5.2}Usability}{8}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Design-time tactics}{8}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Runtime tactics}{8}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}Others}{8}{subsubsection.5.2.3}
+\contentsline {section}{\numberline {6}Patterns}{9}{section.6}
+\contentsline {subsection}{\numberline {6.1}Architectural patterns}{9}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}MVC}{9}{subsubsection.6.1.1}
+\contentsline {subsection}{\numberline {6.2}Design pattern}{9}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}States}{9}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Singleton}{10}{subsubsection.6.2.2}
+\contentsline {section}{\numberline {7}Views}{11}{section.7}
+\contentsline {subsection}{\numberline {7.1}Logical view}{11}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Development view}{12}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Process view}{13}{subsection.7.3}
+\contentsline {section}{\numberline {8}Consistency among views}{14}{section.8}
+\contentsline {section}{\numberline {9}Architectural rationale}{14}{section.9}
+\contentsline {section}{\numberline {10}Issues}{15}{section.10}
+\contentsline {section}{\numberline {11}Changes}{16}{section.11}
