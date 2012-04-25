@@ -152,7 +152,7 @@ public class Game implements NetworkListener {
 				lastMoveToPosition = to;
 			}else{
 				//firePieceMoved(from, to, playerWon(player));
-				firePieceMoved(from, to, false);
+				firePieceMoved(from, to);
 			}
 			//Check if player won
 			//checkGameOwer(getOpponent());
@@ -248,7 +248,7 @@ public class Game implements NetworkListener {
 			unreserveBoardModelPoint(p.getId());
 			player.removePiece(ps);
 			// ENDRET TIL FALSE
-			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition, false);
+			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition);
 			//checkGameOwer(getOpponent());
 			return true;
 		}
@@ -353,23 +353,23 @@ public class Game implements NetworkListener {
      * FIRE LISTENER METHODS
      */
      
-    private void firePiecePlaced(Player player,Piece piece,boolean won) {
+    private void firePiecePlaced(Player player,Piece piece) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece,won, hotseat);
+    		l.playerPlacedPiece(player, piece, hotseat);
     	}
     }
     
-    private void firePieceMoved(int pieceFromPosition,int pieceToPosition,boolean won) {
+    private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition,won, hotseat);
+    		l.playerMoved(pieceFromPosition, pieceToPosition, hotseat);
     	}
     }
     
-    private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition,boolean won){
+    private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition){
     	for(GameListener l : gameListeners){
-    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won, hotseat);
+    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition, hotseat);
     	}
     }
     
@@ -416,7 +416,7 @@ public class Game implements NetworkListener {
 			}else{
 				Log.i("skiller","placePlacedPiece: not morris firePiecePlaced() [Game]");
 				// ENDRET TIL FALSE VED OMSKRIVING
-				firePiecePlaced(player, piece, false);	
+				firePiecePlaced(player, piece);	
 			}
 			//Check for win
 			//checkGameOwer(getOpponent());
@@ -508,7 +508,7 @@ public class Game implements NetworkListener {
 		reserveBoardModelPoint(toPosition, pieceMoved);
 		pieceMoved.setPosition(toPosition);
 		
-		firePieceMoved(fromPostion, toPosition,false);
+		firePieceMoved(fromPostion, toPosition);
 		
 		if(playerLost(player1)){
 			firePlayerLost(1);
@@ -526,7 +526,7 @@ public class Game implements NetworkListener {
 				piece.setPosition(toPosition);
 				reserveBoardModelPoint(toPosition, piece);
 				updatePieceCounter();
-				firePiecePlaced(player2, piece,false);
+				firePiecePlaced(player2, piece);
 				break;
 			}
 		}

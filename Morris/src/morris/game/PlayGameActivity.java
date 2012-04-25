@@ -255,12 +255,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition,boolean won, boolean hotseat) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat) {
 		SoundManager.getInstance().playSoundEffect(Constant.SOUND_MOVE);
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition,boolean won, boolean hotseat) {
+	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition, boolean hotseat) {
 		SoundManager.getInstance().playSoundEffect(Constant.SOUND_REMOVE);
 	}
 
@@ -271,7 +271,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece,boolean won, boolean hotseat) {
+	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat) {
 		// TODO Auto-generated method stub
 		updateScoreBoard();
 		SoundManager.getInstance().playSoundEffect(Constant.SOUND_DROP);
@@ -285,12 +285,11 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	@Override
 	public void playerLost(int player) {
-		if(player==1){
+		/*if(player==1){
 			showWinToast("Steinar");
 		}else{
 			showWinToast("Emil");
-		}
-		
+		}*/
 	}
 	
 	private void showWinToast(final String player){

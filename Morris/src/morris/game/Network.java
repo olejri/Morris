@@ -218,6 +218,7 @@ public class Network implements GameListener {
 		
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
+			Log.i("lost", "HandleOpponentMove GAME STATE WON");
 			showToastOnCanvas("You won!");
 			handleMessage(Opponentpayload);
 			fireNetworkPlayerWon();
@@ -225,6 +226,8 @@ public class Network implements GameListener {
 
 		case SKTurnBasedTools.GAME_STATE_LOST:
 			Network.getInstance().setServerEndGameresponse(true);
+			showToastOnCanvas("You lost!");
+			Log.i("lost", "HandleOpponentMove GAME STATE LOST");
 			break;
 
 		case SKTurnBasedTools.GAME_STATE_TIED:
@@ -287,7 +290,7 @@ public class Network implements GameListener {
 				Log.i("handleMessage [Network]", "switchTurns trigged");
 			}
 			if(message.contains(Constant.MESSAGE_WON)){
-				Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
+				Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, null);
 			}
 		}else{
 			Log.i("turn", "HandleMessage() message==null || message.equals('')");
@@ -457,48 +460,48 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece, boolean won, boolean hotseat) {
+	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat) {
 		if(!hotseat){
 			// Sending place message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
-				send(placeMessage, won);
+				send(placeMessage);
 				Log.i("placement", "playerPlacedPiece [Network]" );
 			}
 		}
 	}
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean won, boolean hotseat) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat) {
 		if(!hotseat){
 			// Sending move message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
 				Log.i("movement","playerMoved() [Network]");
 				String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
-				send(movedMessage, won);
+				send(movedMessage);
 			}
 		}
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition,int pieceMovedFromPosition, int pieceMovedToPosition, boolean won, boolean hotseat) {
+	public void playerRemovedPiece(int piecePosition,int pieceMovedFromPosition, int pieceMovedToPosition, boolean hotseat) {
 		if(!hotseat){
 			// Sending remove message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
 				Log.i("removed","playerRemovedPiece() Create Message[Network]");
 				String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition + Constant.SPLIT + pieceMovedFromPosition + Constant.SPLIT + pieceMovedToPosition;
-				send(removeMessage, won);
+				send(removeMessage);
 			}
 		}
 	}
 	
-	private void send(String payload,boolean won){
-		if(won){
-			payload+=Constant.SPLIT+Constant.MESSAGE_WON;
-			Network.getInstance().sendInformation(payload, SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, null);
+	private void send(String payload){
+		Network.getInstance().sendInformation(payload, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
+		/*
+			payload+=Constant.SPLIT+Constant.MESSAGE_WON; // BESKJEDEN ER MISVISENDE
+			Network.getInstance().sendInformation(payload, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 		}else{
-			Network.getInstance().sendInformation(payload, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-		}
+		}*/
 	}
 
 	@Override
