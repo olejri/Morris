@@ -20,12 +20,14 @@ public class SelectState implements State {
 	@Override
 	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat) {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
-		ArrayList<Piece> pieces;
+		ArrayList<Piece> pieces = new ArrayList<Piece>();
 		
 		if(hotseat){
 			pieces = currentPlayer.getPieces();
 		} else {
-			pieces = GameController.getGame().getPlayer1().getPieces();
+			if(currentPlayer==GameController.getGame().getPlayer1()){
+				pieces = GameController.getGame().getPlayer1().getPieces();
+			}
 		}
 
 		for(Piece p : pieces){
