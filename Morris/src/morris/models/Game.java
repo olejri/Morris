@@ -291,7 +291,7 @@ public class Game implements NetworkListener {
 
 	// Her kan man ta inn pointID og et Player-objekt.
 	public ArrayList<ModelPoint> getHighlightList(int id, Player player) {
-		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
+		return this.state.getHighlightList(board, id, player, hotseat); // aktuell spiller benyttes
 	}
 
 

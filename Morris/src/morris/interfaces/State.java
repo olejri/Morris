@@ -8,7 +8,7 @@ import morris.models.Player;
 
 public interface State {
 	
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer);
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat);
 	public void updatePieceImages(Player player,int positionId);
 	
 }
