@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 
 import morris.gui.Point;
+import morris.help.Constant;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import android.app.ProgressDialog;
@@ -69,13 +70,14 @@ public class GameController {
 	/*
 	 *  createNewGame() method - starts a new game that other can join
 	 */
-	public void createNewGame() {
-		GameController.getInstance();
-		GameController.setMorrisGame(new Game());
-		GameController.getInstance();
-		GameController.getMorrisGame().initPlayers();
-		//chooseFeeDialog();
-	}
+//	public void createNewGame() {
+//		
+//		GameController.getInstance();
+//		GameController.setMorrisGame(new Game(true));
+//		GameController.getInstance();
+//		GameController.getMorrisGame().initPlayers();
+//		//chooseFeeDialog();
+//	}
 
 	/**
 	 * Set MorrisGame

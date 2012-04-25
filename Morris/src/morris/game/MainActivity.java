@@ -77,7 +77,9 @@ public class MainActivity extends SuperActivity {
 			i.setClass(this, HelpActivity.class);
 			startActivity(i);
 		} else if (view.getId() == R.id.menu_button_show_board) {
-			startActivity(new Intent(this, PlayGameActivity.class));
+			i = new Intent(this, PlayGameActivity.class);
+			i.putExtra("Hotseat", true);
+			startActivity(i);
 		} else if (view.getId() == R.id.menu_button_achievements) {
 			skMorris.getUIManager().showScreen(this,
 					SKUIManager.ACHIEVEMENTS_SOCIAL);

@@ -40,6 +40,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public TextView player1;
 	public TextView player2;
 	private Animation textFadingAnimation;
+	private boolean hotseat;
 
 	Handler h;
 
@@ -48,9 +49,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.play_game_layout);
-
 		setBoardHeight();
-
+		Bundle extras = getIntent().getExtras();
+		hotseat = extras.getBoolean("Hotseat");
 		h = new Handler();
 		setButtonFonts();
 		
@@ -58,7 +59,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		player2 = (TextView) findViewById(R.id.player2_name);
 
 		if (GameController.getMorrisGame() == null) {
-			GameController.setMorrisGame(new Game());
+			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
 			if(network.isGameOwner()){
 				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().player2);

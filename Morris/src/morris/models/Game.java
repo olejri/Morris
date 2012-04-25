@@ -33,6 +33,7 @@ public class Game implements NetworkListener {
 	private Handler h;
 	private int lastMoveFromPosition;
 	private int lastMoveToPosition;
+	private boolean hotseat = false;
 
 
 	public String gameType;
@@ -44,7 +45,8 @@ public class Game implements NetworkListener {
 	public Player currentPlayer;
 
 	// Satt til placementstate midlertidig. Logisk � starte der uansett.
-	public Game(){
+	public Game(boolean hotseat){
+		this.hotseat = hotseat;
 		setState(new PlacementState());
 		previousState = new PlacementState();
 		board = new Board();
