@@ -2,15 +2,58 @@
 
 How to run the robot, how to compile it, run it, etc.
 
-\subsection{Installing the application}
+\subsection{Functional requirements}
+% User requirements?
+
+\begin{itemize}
+\item Android OS v2.2
+\end{itemize}
+
+\subsection{Running the application}
+The application is avalible at URL. \\
+The Eclipse-project is avalible at ANOTHER URL.
+
+\subsubsection{Emulator}
+To run the application in the emulator, the user needs to open the project in Eclipse.
+File -> Open project -> Existing source code -> path to downloaded project
+
+\subsubsection{On Android device}
+The user has to connect the Android device and load the application file. \\
+DETAILED (STEP BY STEP) DESCRIPTION NEEDED!
 
 \subsection{Game rules}
 
+The game is implemented with the same set of rules as the classic board game \emph{Nine Men's Morris} \cite{morris}. The goal of the game is to either block any opponent moves, or to reduce your opponent's piece number to less than three. If you get three pieces in a row, you enter a morris state, and are allowed to remove one of your opponent's pieces. Pieces that are in a morris state, i.e. forms three in a row either horizontally or vertically, are not removable.
+
 \subsection{Creating Skiller account}
 
-\subsection{How to play online game}
+\subsection{How to play}
 
-\subsection{How to play local game}
+\subsubsection{Choosing game mode}
+\label{section:game_mode}
+
+{\bf Figur av startmeny som viser valg av spillmodus.} \\
+
+\subsubsection{Placing, selecting, moving, and removing pieces}
+When it is your turn to move, either the board or your pieces will be highlighted. In addition, the name of the current player will be blinking as the game progresses. \\
+
+FIGUR AV PLACEMENTSTATE MED FORKLARING TIL AT DU KAN SETTE PÅ ALLE PLASSER. \\
+
+FIGUR AV SELECTSTATE SOM VISER MULIGE BRIKKEVALG. \\
+
+FIGUR AV MOVESTATE SOM VISER MULIGE FLYTT. \\
+
+FIGUR AV REMOVALSTATE SOM VISER MULIGE FJERNINGER AV BRIKKER. \\
+
+\subsubsection{Hotseat mode}
+
+If you start a local game as described in section \ref{section:game_mode}, you can control both players from the same device.
+
+\subsubsection{Online mode}
+
+If you start an online game as described in section \ref{section:game_mode}, you are taken to the board screen, and need to wait for another player to join your game. The guest, i.e. the one who joins the game, will get the initial move. Your own pieces will always be white.
+
+
 
 
 
