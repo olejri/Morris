@@ -7,6 +7,7 @@ import morris.gui.Point;
 import morris.help.Constant;
 import morris.models.ModelPoint;
 import morris.models.Piece;
+import morris.models.Player;
 import android.app.ProgressDialog;
 import android.content.Context;
 import morris.models.Game;
@@ -98,10 +99,9 @@ public class GameController {
 	}
 
 	public static void handlePlayerAction(Point p) {
-		//if hotseat player = getCurrentPlayer();
-		//if online player = morrisGame.getPlayer1()
-		//if(morrisGame.getCurrentPlayer()==player){	
-		if(morrisGame.getCurrentPlayer()==morrisGame.getPlayer1()){		
+		Player player = morrisGame.getPlayer1();
+		if(morrisGame.isHotseat())player = morrisGame.getCurrentPlayer();
+		if(morrisGame.getCurrentPlayer()==player){	
 			if (morrisGame.getState() instanceof PlacementState) {
 				for (int i = 0; i < morrisGame.getCurrentPlayer().getPieces().size(); i++) {
 					Piece piece = morrisGame.getCurrentPlayer().getPieces().get(i);

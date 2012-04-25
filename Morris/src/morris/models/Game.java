@@ -36,6 +36,10 @@ public class Game implements NetworkListener {
 	private boolean hotseat = false;
 
 
+	public boolean isHotseat() {
+		return hotseat;
+	}
+
 	public String gameType;
 
 	int pieceCounter = 0;
