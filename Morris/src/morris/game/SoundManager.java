@@ -60,7 +60,7 @@ public class SoundManager {
 	
 	public static void loadSoundsEffects(Context mContext){
 		//Add drop sound to SoundPool
-		mSoundPoolMap.put(Constant.SOUND_DROP, mSoundPool.load(mContext, R.raw.place, 1));
+		mSoundPoolMap.put(Constant.SOUND_DROP, mSoundPool.load(mContext, R.raw.drop, 1));
 	}
 	/**
 	 * Start Background Song
