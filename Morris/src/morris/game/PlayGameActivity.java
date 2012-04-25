@@ -40,7 +40,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public TextView player1;
 	public TextView player2;
 	private Animation textFadingAnimation;
-	private boolean hotseat;
+	private boolean hotseat = false;
 
 	Handler h;
 
@@ -51,7 +51,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		setContentView(R.layout.play_game_layout);
 		setBoardHeight();
 		Bundle extras = getIntent().getExtras();
+		if (extras != null){
 		hotseat = extras.getBoolean("Hotseat");
+		}
 		h = new Handler();
 		setButtonFonts();
 		

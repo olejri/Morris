@@ -33,7 +33,7 @@ public class Game implements NetworkListener {
 	private Handler h;
 	private int lastMoveFromPosition;
 	private int lastMoveToPosition;
-	private boolean hotseat = false;
+	private boolean hotseat;
 
 
 	public boolean isHotseat() {
