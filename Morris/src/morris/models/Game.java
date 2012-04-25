@@ -113,7 +113,7 @@ public class Game implements NetworkListener {
 	*/
 	public boolean playerWon(Player player){
 		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
-		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
+		if(player.getPieces().size() < 3 || player.hasSelectablePieces()){
 			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
 			firePlayerWon(1);
 			return true;
@@ -415,7 +415,7 @@ public class Game implements NetworkListener {
 	
 	private void updatePieceCounter(){
 		pieceCounter++;
-		if(pieceCounter == 8){
+		if(pieceCounter == 18){
 			previousState = new SelectState();
 			Log.i("LOGHELP", "testing started");
 			if(state instanceof PlacementState){
