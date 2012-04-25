@@ -18,33 +18,39 @@ public class SelectState implements State {
 	 * @see morris.interfaces.State#getHighlightList(morris.models.Board, int, morris.models.Player)
 	 */
 	@Override
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat) {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
-		ArrayList<Piece> pieces = currentPlayer.getPieces();
-		if(currentPlayer == GameController.getGame().getPlayer1()){
-			for(Piece p : pieces){
-				if(pieces.size() == 3) {
-					p.setSelectable(true);
-				} else {
-					if(board.getPoint(p.getPosition()) != null){
-						ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
-						boolean selectable = false;
-						for(Integer i : neighbours){
-							if(!board.getPoint(i).isTaken()) selectable = true;
-							//updateSelectablePieces(p, board, i);
-							if(!board.getPoint(i).isTaken() && !highlights.contains(board.getPoint(p.getPosition()))){
-								highlights.add(board.getPoint(p.getPosition()));
-							}
+		ArrayList<Piece> pieces;
+		
+		if(hotseat){
+			pieces = currentPlayer.getPieces();
+		} else {
+			pieces = GameController.getGame().getPlayer1().getPieces();
+		}
+
+		for(Piece p : pieces){
+			if(pieces.size() == 3) {
+				p.setSelectable(true);
+			} else {
+				if(board.getPoint(p.getPosition()) != null){
+					ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
+					boolean selectable = false;
+					for(Integer i : neighbours){
+						if(!board.getPoint(i).isTaken()) selectable = true;
+						//updateSelectablePieces(p, board, i);
+						if(!board.getPoint(i).isTaken() && !highlights.contains(board.getPoint(p.getPosition()))){
+							highlights.add(board.getPoint(p.getPosition()));
 						}
-						if(selectable){
-							p.setSelectable(true);
-						} else {
-							p.setSelectable(false);
-						}
+					}
+					if(selectable){
+						p.setSelectable(true);
+					} else {
+						p.setSelectable(false);
 					}
 				}
 			}
 		}
+	
 		return highlights;
 	}
 

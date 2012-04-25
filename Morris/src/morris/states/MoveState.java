@@ -13,7 +13,7 @@ import morris.models.Player;
 public class MoveState implements StateListener, State {
 
 	@Override
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat) {
 		ArrayList<Integer> IDs = getPossibleMoves(board, id);
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		for (int i = 0; i < IDs.size(); i++) {

@@ -18,7 +18,7 @@ public class PlacementState implements StateListener, State{
 	 * @see morris.interfaces.State#highlightPossibilities(morris.models.Slot[][], morris.models.Player)
 	 */
 	@Override
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat) {
 		ArrayList<ModelPoint> points = board.getPoints();
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		GameController.getInstance();

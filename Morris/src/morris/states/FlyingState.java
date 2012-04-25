@@ -12,7 +12,7 @@ public class FlyingState implements State, StateListener{
 
 	// Copied and pasted from PlacementState
 	@Override
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer) {
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat) {
 		ArrayList<ModelPoint> points = board.getPoints();
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		for(ModelPoint mp : points){
