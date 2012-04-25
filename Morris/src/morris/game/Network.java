@@ -522,13 +522,14 @@ public class Network implements GameListener {
 		if(player==1){
 			Log.i("lost", "sending GAME_EVENT_CLAIM_LOSE [Network]");
 			//skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, new SKBaseListener() {
-			skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, new SKBaseListener() {
-					
+			Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
+			/*skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, new SKBaseListener() {
+			
 			@Override
 				public void onResponse(SKBaseResponse st) {
 					if(st.getStatusCode()==0)Log.i("lost", "GAME_EVENT_CLAIM_LOSE sent successfully [Network]");
 				}
-			});
+			});*/
 		}
 		
 	}
