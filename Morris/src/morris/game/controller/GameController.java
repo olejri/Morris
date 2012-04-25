@@ -96,6 +96,9 @@ public class GameController {
 	}
 
 	public static void handlePlayerAction(Point p) {
+		//if hotseat player = getCurrentPlayer();
+		//if online player = morrisGame.getPlayer1()
+		//if(morrisGame.getCurrentPlayer()==player){	
 		if(morrisGame.getCurrentPlayer()==morrisGame.getPlayer1()){		
 			if (morrisGame.getState() instanceof PlacementState) {
 				for (int i = 0; i < morrisGame.getCurrentPlayer().getPieces().size(); i++) {
