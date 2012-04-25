@@ -22,9 +22,15 @@ public class PlacementState implements StateListener, State{
 		ArrayList<ModelPoint> points = board.getPoints();
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		GameController.getInstance();
-		if(currentPlayer == GameController.getGame().getPlayer1()){
+		if(hotseat){
 			for(ModelPoint mp : points){
 				if(!mp.isTaken())highlights.add(mp);
+			}
+		} else {
+			if(currentPlayer == GameController.getGame().getPlayer1()){
+				for(ModelPoint mp : points){
+					if(!mp.isTaken())highlights.add(mp);
+				}
 			}
 		}
 		return highlights;
