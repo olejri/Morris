@@ -9,6 +9,6 @@ public interface GameListener {
 	public void playerPlacedPiece(Player player, Piece piece, boolean won, boolean hotseat);
 	public void playerRemovedPiece(int pieceRemoved,int pieceMovedFromPosition, int pieceMovedToPosition, boolean won, boolean hotseat);
 	public void playerChangeTurn(Player p);
-	public void playerWon(int player);
+	public void playerLost(int player);
 	public void update();
 }

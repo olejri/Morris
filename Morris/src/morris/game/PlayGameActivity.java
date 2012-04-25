@@ -274,11 +274,11 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerWon(int player) {
+	public void playerLost(int player) {
 		if(player==1){
-			showWinToast("Emil");
-		}else{
 			showWinToast("Steinar");
+		}else{
+			showWinToast("Emil");
 		}
 		
 	}

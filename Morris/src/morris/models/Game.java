@@ -110,14 +110,24 @@ public class Game implements NetworkListener {
 			else firePlayerWon(2);
 		}
 	}
-	*/
+	
 	public boolean playerWon(Player player){
 		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
-		if(player.getPieces().size() < 3 || player.hasSelectablePieces()){
+		if(player.getPieces().size() < 3 || !getOpponent().hasSelectablePieces()){
 			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
-			firePlayerWon(1);
+			//firePlayerWon(1);
 			return true;
 		}else return false;
+	}*/
+	
+	public boolean playerLost(Player player){
+		if(player.getPieces().size() < 3 || !player.hasSelectablePieces()){
+			Log.i("lost", "Game is over : " + player.getName() + " lost [Game]");
+			firePlayerLost(1);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 
@@ -140,7 +150,8 @@ public class Game implements NetworkListener {
 				lastMoveFromPosition = from;
 				lastMoveToPosition = to;
 			}else{
-				firePieceMoved(from, to,playerWon(player));
+				//firePieceMoved(from, to, playerWon(player));
+				firePieceMoved(from, to, false);
 			}
 			//Check if player won
 			//checkGameOwer(getOpponent());
@@ -235,7 +246,8 @@ public class Game implements NetworkListener {
 		if(isValidMove(ps, 0)){
 			unreserveBoardModelPoint(p.getId());
 			player.removePiece(ps);
-			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition,playerWon(player));
+			// ENDRET TIL FALSE
+			firePieceRemoved(p.getId(),lastMoveFromPosition,lastMoveToPosition, false);
 			//checkGameOwer(getOpponent());
 			return true;
 		}
@@ -372,9 +384,9 @@ public class Game implements NetworkListener {
     	}
     }
     
-    private void firePlayerWon(int player){
+    private void firePlayerLost(int player){
     	for(GameListener l : gameListeners){
-    		l.playerWon(player);
+    		l.playerLost(player);
     	}
     }
 
@@ -402,7 +414,8 @@ public class Game implements NetworkListener {
 				
 			}else{
 				Log.i("skiller","placePlacedPiece: not morris firePiecePlaced() [Game]");
-				firePiecePlaced(player, piece,playerWon(player));	
+				// ENDRET TIL FALSE VED OMSKRIVING
+				firePiecePlaced(player, piece, false);	
 			}
 			//Check for win
 			//checkGameOwer(getOpponent());
@@ -496,6 +509,10 @@ public class Game implements NetworkListener {
 		
 		firePieceMoved(fromPostion, toPosition,false);
 		
+		if(playerLost(player1)){
+			firePlayerLost(1);
+		}
+		
 	}
 
 	@Override
@@ -511,6 +528,9 @@ public class Game implements NetworkListener {
 				firePiecePlaced(player2, piece,false);
 				break;
 			}
+		}
+		if(playerLost(player1)){
+			firePlayerLost(1);
 		}
 		
 		
@@ -558,6 +578,9 @@ public class Game implements NetworkListener {
 					}
 				}, 1500);
 				
+				if(playerLost(player1)){
+					firePlayerLost(1);
+				}
 				
 		
 
@@ -582,10 +605,12 @@ public class Game implements NetworkListener {
 	}
 
 	@Override
-	public void networkPlayerLost() {
+	public void networkPlayerWon() {
 		Log.i("win", "networkPlayerLost [Game]");
-		firePlayerWon(2);
-		
+		if(hotseat){
+			// ENDRET FRA 2 OG FRA PLAYERWON TIL PLAYERLOST
+			firePlayerLost(1);
+		}
 	}
 
 

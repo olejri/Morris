@@ -115,9 +115,9 @@ public class Network implements GameListener {
 		}
 	}
 	
-	private void fireNetworkPlayerLost(){
+	private void fireNetworkPlayerWon(){
 		for(NetworkListener l : networkListeners){
-			l.networkPlayerLost();
+			l.networkPlayerWon();
 		}
 	}
 
@@ -218,13 +218,13 @@ public class Network implements GameListener {
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
 			showToastOnCanvas("You won!");
+			handleMessage(Opponentpayload);
+			fireNetworkPlayerWon();
 			break;
 
 		case SKTurnBasedTools.GAME_STATE_LOST:
 			showToastOnCanvas("You lost!");
 			Network.getInstance().setServerEndGameresponse(true);
-			handleMessage(Opponentpayload);
-			fireNetworkPlayerLost();
 			break;
 
 		case SKTurnBasedTools.GAME_STATE_TIED:
@@ -514,14 +514,16 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerWon(int player) {
-		Log.i("win", "playerWon [Network]");
+	public void playerLost(int player) {
+		Log.i("lost", "playerLost [Network]");
 		if(player==1){
-			Log.i("win", "sending GAME_EVENT_CLAIM_WIN [Network]");
-			skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, new SKBaseListener() {
-				@Override
+			Log.i("lost", "sending GAME_EVENT_CLAIM_LOSE [Network]");
+			//skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, new SKBaseListener() {
+			skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, new SKBaseListener() {
+					
+			@Override
 				public void onResponse(SKBaseResponse st) {
-					if(st.getStatusCode()==0)Log.i("win", "GAME_EVENT_CLAIM_WIN sent successfully [Network]");
+					if(st.getStatusCode()==0)Log.i("lost", "GAME_EVENT_CLAIM_LOSE sent successfully [Network]");
 				}
 			});
 		}
