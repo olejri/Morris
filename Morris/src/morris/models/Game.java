@@ -121,13 +121,14 @@ public class Game implements NetworkListener {
 	}*/
 	
 	public boolean playerLost(Player player){
-		if(player.getPieces().size() < 3 || !player.hasSelectablePieces()){
-			Log.i("lost", "Game is over : " + player.getName() + " lost [Game]");
-			firePlayerLost(1);
-			return true;
-		} else {
-			return false;
+		if(!(state instanceof PlacementState)){
+			if(player.getPieces().size() < 3 || !player.hasSelectablePieces()){
+				Log.i("lost", "Game is over : " + player.getName() + " lost [Game]");
+				firePlayerLost(1);
+				return true;
+			}
 		}
+		return false;
 	}
 
 
@@ -529,9 +530,19 @@ public class Game implements NetworkListener {
 				break;
 			}
 		}
+		
 		if(playerLost(player1)){
 			firePlayerLost(1);
 		}
+		
+		boolean hasUnplacedPieces = false;
+		for(Piece p : player1.getPieces()){
+			if(p.getPosition() == -1){
+				hasUnplacedPieces = true;
+				break;
+			}	
+		}
+		if(!hasUnplacedPieces) setState(new SelectState());
 		
 		
 	}
