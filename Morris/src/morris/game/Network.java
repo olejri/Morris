@@ -457,31 +457,38 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece,boolean won) {
-		// Sending place message
-		if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
-			String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
-			send(placeMessage, won);
-			Log.i("placement", "playerPlacedPiece [Network]" );
+	public void playerPlacedPiece(Player player, Piece piece, boolean won, boolean hotseat) {
+		if(!hotseat){
+			// Sending place message
+			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
+				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
+				send(placeMessage, won);
+				Log.i("placement", "playerPlacedPiece [Network]" );
+			}
 		}
 	}
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition,boolean won) {
-		// Sending move message
-		if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
-			Log.i("movement","playerMoved() [Network]");
-			String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
-			send(movedMessage, won);
+	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean won, boolean hotseat) {
+		if(!hotseat){
+			// Sending move message
+			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
+				Log.i("movement","playerMoved() [Network]");
+				String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
+				send(movedMessage, won);
+			}
 		}
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition,int pieceMovedFromPosition, int pieceMovedToPosition,boolean won) {
-		if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
-			Log.i("removed","playerRemovedPiece() Create Message[Network]");
-			String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition + Constant.SPLIT + pieceMovedFromPosition + Constant.SPLIT + pieceMovedToPosition;
-			send(removeMessage, won);
+	public void playerRemovedPiece(int piecePosition,int pieceMovedFromPosition, int pieceMovedToPosition, boolean won, boolean hotseat) {
+		if(!hotseat){
+			// Sending remove message
+			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
+				Log.i("removed","playerRemovedPiece() Create Message[Network]");
+				String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition + Constant.SPLIT + pieceMovedFromPosition + Constant.SPLIT + pieceMovedToPosition;
+				send(removeMessage, won);
+			}
 		}
 	}
 	

@@ -339,20 +339,20 @@ public class Game implements NetworkListener {
     private void firePiecePlaced(Player player,Piece piece,boolean won) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece,won);
+    		l.playerPlacedPiece(player, piece,won, hotseat);
     	}
     }
     
     private void firePieceMoved(int pieceFromPosition,int pieceToPosition,boolean won) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition,won);
+    		l.playerMoved(pieceFromPosition, pieceToPosition,won, hotseat);
     	}
     }
     
     private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition,boolean won){
     	for(GameListener l : gameListeners){
-    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won);
+    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won, hotseat);
     	}
     }
     
