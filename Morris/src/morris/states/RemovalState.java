@@ -17,7 +17,7 @@ public class RemovalState implements StateListener, State {
 	 * @see morris.interfaces.State#getHighlightList(morris.models.Board, int, morris.models.Player)
 	 */
 	@Override
-	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player opponent) {
+	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player opponent, boolean hotseat) {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		ArrayList<Piece> pieces = opponent.getPieces();
 		for(Piece p : pieces){

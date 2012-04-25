@@ -40,6 +40,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public TextView player1;
 	public TextView player2;
 	private Animation textFadingAnimation;
+	private boolean hotseat = false;
 
 	Handler h;
 
@@ -48,9 +49,11 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.play_game_layout);
-
 		setBoardHeight();
-
+		Bundle extras = getIntent().getExtras();
+		if (extras != null){
+		hotseat = extras.getBoolean("Hotseat");
+		}
 		h = new Handler();
 		setButtonFonts();
 		
@@ -60,7 +63,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		
 		if (GameController.getMorrisGame() == null) {
 			Log.i("game", "GameController.getMorrisGame() == null");
-			GameController.setMorrisGame(new Game());
+
+			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
 			if(network.isGameOwner()){
 				Log.i("game", "setting current player to player 2");
@@ -251,12 +255,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition,boolean won) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition,boolean won, boolean hotseat) {
 
 	}
 
 	@Override
-	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition,boolean won) {
+	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition,boolean won, boolean hotseat) {
 		
 	}
 
@@ -267,7 +271,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece,boolean won) {
+	public void playerPlacedPiece(Player player, Piece piece,boolean won, boolean hotseat) {
 		// TODO Auto-generated method stub
 		updateScoreBoard();
 		SoundManager.getInstance().playSoundEffect(Constant.SOUND_DROP);

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Timer;
 
 import morris.gui.Point;
+import morris.help.Constant;
 import morris.models.ModelPoint;
 import morris.models.Piece;
+import morris.models.Player;
 import android.app.ProgressDialog;
 import android.content.Context;
 import morris.models.Game;
@@ -69,13 +71,14 @@ public class GameController {
 	/*
 	 *  createNewGame() method - starts a new game that other can join
 	 */
-	public void createNewGame() {
-		GameController.getInstance();
-		GameController.setMorrisGame(new Game());
-		GameController.getInstance();
-		GameController.getMorrisGame().initPlayers();
-		//chooseFeeDialog();
-	}
+//	public void createNewGame() {
+//		
+//		GameController.getInstance();
+//		GameController.setMorrisGame(new Game(true));
+//		GameController.getInstance();
+//		GameController.getMorrisGame().initPlayers();
+//		//chooseFeeDialog();
+//	}
 
 	/**
 	 * Set MorrisGame
@@ -96,7 +99,9 @@ public class GameController {
 	}
 
 	public static void handlePlayerAction(Point p) {
-		if(morrisGame.getCurrentPlayer()==morrisGame.getPlayer1()){		
+		Player player = morrisGame.getPlayer1();
+		if(morrisGame.isHotseat())player = morrisGame.getCurrentPlayer();
+		if(morrisGame.getCurrentPlayer()==player){	
 			if (morrisGame.getState() instanceof PlacementState) {
 				for (int i = 0; i < morrisGame.getCurrentPlayer().getPieces().size(); i++) {
 					Piece piece = morrisGame.getCurrentPlayer().getPieces().get(i);

@@ -17,10 +17,17 @@ public class Constant {
 	 * Screen height
 	 */
 	/**
-	 * Game Types
+	 * Board Types
 	 */
 	public static final String TWELVE_MENS_MORRIS = "twelve_mens_morris";
 	public static final String NINE_MENS_MORRIS = "nine_mens_morris";
+	
+	/**
+	 * Game Mode
+	 */
+	public static final String ONLINE = "online";
+	public static final String LOCAL = "local";
+	
 	/**
 	 * Game colors
 	 */

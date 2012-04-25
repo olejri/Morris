@@ -33,7 +33,12 @@ public class Game implements NetworkListener {
 	private Handler h;
 	private int lastMoveFromPosition;
 	private int lastMoveToPosition;
+	private boolean hotseat;
 
+
+	public boolean isHotseat() {
+		return hotseat;
+	}
 
 	public String gameType;
 
@@ -44,7 +49,8 @@ public class Game implements NetworkListener {
 	public Player currentPlayer;
 
 	// Satt til placementstate midlertidig. Logisk � starte der uansett.
-	public Game(){
+	public Game(boolean hotseat){
+		this.hotseat = hotseat;
 		setState(new PlacementState());
 		previousState = new PlacementState();
 		board = new Board();
@@ -107,7 +113,7 @@ public class Game implements NetworkListener {
 	*/
 	public boolean playerWon(Player player){
 		Log.i("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
-		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
+		if(player.getPieces().size() < 3 || player.hasSelectablePieces()){
 			Log.i("win", "Game is over : " + player.getName() + " lost [Game]");
 			firePlayerWon(1);
 			return true;
@@ -285,7 +291,7 @@ public class Game implements NetworkListener {
 
 	// Her kan man ta inn pointID og et Player-objekt.
 	public ArrayList<ModelPoint> getHighlightList(int id, Player player) {
-		return this.state.getHighlightList(board, id, player); // aktuell spiller benyttes
+		return this.state.getHighlightList(board, id, player, hotseat); // aktuell spiller benyttes
 	}
 
 
@@ -337,20 +343,20 @@ public class Game implements NetworkListener {
     private void firePiecePlaced(Player player,Piece piece,boolean won) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece,won);
+    		l.playerPlacedPiece(player, piece,won, hotseat);
     	}
     }
     
     private void firePieceMoved(int pieceFromPosition,int pieceToPosition,boolean won) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition,won);
+    		l.playerMoved(pieceFromPosition, pieceToPosition,won, hotseat);
     	}
     }
     
     private void firePieceRemoved(int piecePosition,int movedFromPosition,int movedToPosition,boolean won){
     	for(GameListener l : gameListeners){
-    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won);
+    		l.playerRemovedPiece(piecePosition,movedFromPosition,movedToPosition,won, hotseat);
     	}
     }
     
@@ -409,7 +415,7 @@ public class Game implements NetworkListener {
 	
 	private void updatePieceCounter(){
 		pieceCounter++;
-		if(pieceCounter == 8){
+		if(pieceCounter == 18){
 			previousState = new SelectState();
 			Log.i("LOGHELP", "testing started");
 			if(state instanceof PlacementState){
