@@ -53,6 +53,13 @@ public class Constant {
 	public static final int MESSAGE_NOT_MORRIS = 0;
 	public static final String MESSAGE_WON = "won";
 	
+	/**
+	 * Sound constants
+	 */
+	
+	public static final int SOUND_BACKGROUND = 1;
+	public static final int SOUND_DROP = 2;
+	
 	
 	
 

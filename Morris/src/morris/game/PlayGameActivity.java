@@ -270,6 +270,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public void playerPlacedPiece(Player player, Piece piece,boolean won) {
 		// TODO Auto-generated method stub
 		updateScoreBoard();
+		SoundManager.getInstance().playSoundEffect(Constant.SOUND_DROP);
 	}
 
 	@Override
