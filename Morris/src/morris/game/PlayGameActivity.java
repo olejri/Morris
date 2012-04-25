@@ -256,12 +256,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition,boolean won, boolean hotseat) {
-
+		SoundManager.getInstance().playSoundEffect(Constant.SOUND_MOVE);
 	}
 
 	@Override
 	public void playerRemovedPiece(int piecePosition,int movedFromPosition, int movedToPosition,boolean won, boolean hotseat) {
-		
+		SoundManager.getInstance().playSoundEffect(Constant.SOUND_REMOVE);
 	}
 
 	@Override

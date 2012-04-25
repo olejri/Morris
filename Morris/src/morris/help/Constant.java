@@ -65,7 +65,9 @@ public class Constant {
 	 */
 	
 	public static final int SOUND_BACKGROUND = 1;
-	public static final int SOUND_DROP = 2;
+	public static final int SOUND_DROP = 1;
+	public static final int SOUND_MOVE = 2;
+	public static final int SOUND_REMOVE = 3;
 	
 	
 	
