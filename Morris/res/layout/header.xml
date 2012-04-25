@@ -15,25 +15,25 @@
             android:layout_alignParentLeft="true"
             android:text="Morris" >
         </TextView>
-<!--  
+ 
         <Button
             android:id="@+id/settingButton"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5sp"
-            android:background="@android:drawable/ic_menu_preferences" >
+            android:layout_marginRight="10sp"
+            android:background="@drawable/settings" >
         </Button>
--->
+
         <Button
             android:id="@+id/soundButton"
             android:onClick="clickSound"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5sp"
-            android:layout_alignParentRight="true"
+            android:layout_marginRight="10sp"
+            android:layout_toLeftOf="@id/settingButton"
             android:background="@drawable/sound_on" >
         </Button>
     </RelativeLayout>

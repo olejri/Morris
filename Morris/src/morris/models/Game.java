@@ -121,7 +121,8 @@ public class Game implements NetworkListener {
 	}*/
 	
 	public boolean playerLost(Player player){
-		if(!(state instanceof PlacementState)){
+		Log.i("state","State in playerLost:  " + state.toString());
+		if((state instanceof SelectState)){
 			if(player.getPieces().size() < 3 || !player.hasSelectablePieces()){
 				Log.i("lost", "Game is over : " + player.getName() + " lost [Game]");
 				firePlayerLost(1);
