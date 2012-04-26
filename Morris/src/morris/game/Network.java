@@ -541,7 +541,7 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat) {
+	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat,boolean send) {
 		if(!hotseat){
 			// Sending place message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
@@ -557,7 +557,7 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat,boolean send) {
 		if(!hotseat){
 			// Sending move message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){

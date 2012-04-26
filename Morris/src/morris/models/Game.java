@@ -168,7 +168,7 @@ public class Game implements NetworkListener {
 				lastMoveToPosition = to;
 			}else{
 				//firePieceMoved(from, to, playerWon(player));
-				firePieceMoved(from, to);
+				firePieceMoved(from, to,true);
 			}
 			//Check if player won
 			//checkGameOwer(getOpponent());
@@ -369,17 +369,17 @@ public class Game implements NetworkListener {
      * FIRE LISTENER METHODS
      */
      
-    private void firePiecePlaced(Player player,Piece piece) {
+    private void firePiecePlaced(Player player,Piece piece,boolean send) {
     	//changePlayer(true);
     	for(GameListener l : gameListeners){
-    		l.playerPlacedPiece(player, piece, hotseat);
+    		l.playerPlacedPiece(player, piece, hotseat,send);
     	}
     }
     
-    private void firePieceMoved(int pieceFromPosition,int pieceToPosition) {
+    private void firePieceMoved(int pieceFromPosition,int pieceToPosition,boolean send) {
     	Log.i("movement","firePieceMoved() [Game]");
     	for(GameListener l : gameListeners){
-    		l.playerMoved(pieceFromPosition, pieceToPosition, hotseat);
+    		l.playerMoved(pieceFromPosition, pieceToPosition, hotseat,send);
     	}
     }
     
@@ -438,7 +438,7 @@ public class Game implements NetworkListener {
 			}else{
 				Log.i("skiller","placePlacedPiece: not morris firePiecePlaced() [Game]");
 				// ENDRET TIL FALSE VED OMSKRIVING
-				firePiecePlaced(player, piece);	
+				firePiecePlaced(player, piece,true);	
 			}
 			//Check for win
 			//checkGameOwer(getOpponent());
@@ -541,7 +541,7 @@ public class Game implements NetworkListener {
 		reserveBoardModelPoint(toPosition, pieceMoved);
 		pieceMoved.setPosition(toPosition);
 		
-		firePieceMoved(fromPostion, toPosition);
+		firePieceMoved(fromPostion, toPosition,false);
 		
 		checkPlayerLost(player1);
 		checkUnplacedPieces();
@@ -552,14 +552,14 @@ public class Game implements NetworkListener {
 	@Override
 	public void networkPlayerPlacedPiece(int toPosition) {
 		
-			changePlayer(true);
+		changePlayer(true);
 		
 		for(Piece piece : player2.getPieces()){
 			if(piece.getPosition()==-1){
 				piece.setPosition(toPosition);
 				reserveBoardModelPoint(toPosition, piece);
 				updatePieceCounter();
-				firePiecePlaced(player2, piece);
+				firePiecePlaced(player2, piece,false);
 				break;
 			}
 		}
