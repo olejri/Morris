@@ -53,9 +53,9 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.play_game_layout);
 		setBoardHeight();
-		Bundle extras = getIntent().getExtras();
-		if (extras != null){
-		hotseat = extras.getBoolean("Hotseat");
+
+		if (getIntent().getExtras() != null){
+		hotseat = getIntent().getBooleanExtra("Hotseat",false);
 		}
 		h = new Handler();
 		setButtonFonts();

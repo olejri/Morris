@@ -2,6 +2,8 @@ package morris.models;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 import morris.game.controller.GameController;
 import morris.help.Constant;
 
@@ -28,8 +30,12 @@ public class Player {
 	}
 	
 	public boolean hasSelectablePieces(){
+		Log.i("lost","hasSelectablePieces() [Player]");
 		for(Piece p : pieces){
-			if(p.isSelectable()) return true;
+			if(p.isSelectable()){
+				Log.i("lost","hasSelectablePieces() : piece is selectable return true : [Player]");
+				return true;
+			}
 		}
 		return false;
 	}
