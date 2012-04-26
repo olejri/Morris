@@ -598,12 +598,14 @@ public class Game implements NetworkListener {
 						currentPlayer.removePiece(pieceRemoved);
 						fireUpdate();
 						
+						checkUnplacedPieces();
+						
+						checkPlayerLost(player1);
+						
 					}
 				}, 1500);
 				
-				checkUnplacedPieces();
 				
-				checkPlayerLost(player1);
 		
 	}
 	
