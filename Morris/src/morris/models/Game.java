@@ -545,6 +545,7 @@ public class Game implements NetworkListener {
 		
 		checkPlayerLost(player1);
 		checkUnplacedPieces();
+		updateMorrisStates(player2);
 		
 	}
 
@@ -566,6 +567,8 @@ public class Game implements NetworkListener {
 		checkPlayerLost(player1);
 		
 		checkUnplacedPieces();
+		
+		updateMorrisStates(player2);
 
 		
 		
@@ -614,6 +617,8 @@ public class Game implements NetworkListener {
 						
 						checkPlayerLost(player1);
 						
+						updateMorrisStates(player2);
+						
 					}
 				}, 1500);
 				
@@ -642,7 +647,7 @@ public class Game implements NetworkListener {
 	public void networkPlayerWon() {
 		Log.i("win", "networkPlayerLost [Game]");
 		if(!gameFinish){
-			firePlayerLost(1);
+			firePlayerLost(2);
 			gameFinish = true;
 		}
 	}

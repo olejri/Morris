@@ -93,7 +93,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 			if (network.isWaiting_for_opponnent()) {
 				network.showToastOnCanvas("Still waiting on opponent");
 				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
-				setScoreBoardNames("You","Waiting for opponent..");
+				if(!hotseat)setScoreBoardNames("You","Waiting for opponent..");
 				Log.i("skiller", "Venter på en kar");
 			}
 			if (network.isGameOwner()) {
@@ -231,6 +231,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	            	try {
 						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+	            		setScoreBoardNames("Player1", "Player2");
 						GameController.setMorrisGame(null);
 						PlayGameActivity.this.finish();
 					} catch (Exception e) {

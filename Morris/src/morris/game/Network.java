@@ -34,7 +34,6 @@ import morris.interfaces.NetworkListener;
 import morris.models.GameMove;
 import morris.models.Piece;
 import morris.models.Player;
-import morris.models.StartGame;
 
 public class Network implements GameListener {
 
@@ -294,7 +293,7 @@ public class Network implements GameListener {
 	public void handleOpponentMove(int game_state, String game_id,
 			String Opponentpayload) {
 		Network.getInstance().setGameStarted(true);
-		Log.i("skiller", "handleOpponmentMove(): " + Opponentpayload + game_state);
+		Log.i("skiller", "handleOpponmentMove(): " + Opponentpayload +" State: "+ game_state);
 
 		switch (game_state) {
 		
@@ -323,7 +322,7 @@ public class Network implements GameListener {
 							SKTurnBasedTools.GAME_EVENT_STILL_HERE, "", null,
 							new GameMove());
 		default :
-			Log.i("skiller", "After switch turns: " + turn);
+			
 			
 			handleMessage(Opponentpayload);
 			break;
@@ -377,6 +376,7 @@ public class Network implements GameListener {
 		}else{
 			Log.i("turn", "HandleMessage() message==null || message.equals('')");
 		}
+		Log.i("skiller", "After switch turns: " + turn);
 	}
 
 	/*
