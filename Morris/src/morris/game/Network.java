@@ -547,13 +547,12 @@ public class Network implements GameListener {
 			// Sending place message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
 				
-				/*
+				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
 				send(placeMessage);
 				Log.i("placement", "playerPlacedPiece [Network]" );
-				*/
 				
-				Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
+				//Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 			}
 		}
 	}
