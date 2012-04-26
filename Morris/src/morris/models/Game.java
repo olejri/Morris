@@ -133,6 +133,7 @@ public class Game implements NetworkListener {
 	
 	private void updateSelectablePieces(Player player){
 		for(Piece p : player.getPieces()){
+			p.setSelectable(false);
 			if(player.getPieces().size()<3){
 				p.setSelectable(false);
 			} else {
@@ -356,6 +357,15 @@ public class Game implements NetworkListener {
 	public void reserveBoardModelPoint(int id, Piece piece){
 		board.reserveModelPoint(id, piece);
 	}
+	
+	// KUN FOR TESTING. FJERNES!
+	private void printTakenPoints(){
+		for(ModelPoint mp : getBoard().getPoints()){
+			if(mp.isTaken()){
+				Log.i("taken", "ModelPoint "+mp.getId()+"is TAKEN!");
+			}
+		}
+	}
 
 	public void unreserveBoardModelPoint(int id){
 		board.unReserveModelPoint(id);
@@ -559,6 +569,8 @@ public class Game implements NetworkListener {
 		
 		firePieceMoved(fromPostion, toPosition,false);
 		
+		printTakenPoints();
+
 		checkPlayerLost(player1);
 		checkUnplacedPieces();
 		updateMorrisStates(player2);
@@ -580,6 +592,8 @@ public class Game implements NetworkListener {
 			}
 		}
 		
+		printTakenPoints();
+
 		checkPlayerLost(player1);
 		
 		checkUnplacedPieces();
@@ -633,9 +647,13 @@ public class Game implements NetworkListener {
 						
 						checkUnplacedPieces();
 						
+						printTakenPoints();
+
 						checkPlayerLost(player1);
 						
 						updateMorrisStates(player2);
+						
+						
 						
 					}
 				}, 1500);

@@ -122,7 +122,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		BoardView b = (BoardView) findViewById(R.id.board_view_id);
 		GameController.getMorrisGame().addGameListener(b);
 		
-		startTextFading(GameController.getMorrisGame().getCurrentPlayer());
+		startTextFading(GameController.getMorrisGame().getCurrentPlayer(), false);
 
 	}
 
@@ -260,18 +260,24 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	}
 	
-	public void startTextFading(Player p){
-		Log.i("animation","StartTextFading(): " + p.getName());
+	public void startTextFading(Player p, boolean gameover){
 		textFadingAnimation = AnimationUtils.loadAnimation(this, R.anim.textfading);
 		textFadingAnimation.setRepeatCount(Animation.INFINITE);
-		if(p==GameController.getMorrisGame().getPlayer1()){
+		if(gameover){
 			player2.clearAnimation();
 			player1.setAnimation(textFadingAnimation);
 			textFadingAnimation.start();
-		}else{
-			player1.clearAnimation();
-			player2.setAnimation(textFadingAnimation);
-			textFadingAnimation.start();
+		} else {
+			Log.i("animation","StartTextFading(): " + p.getName());
+			if(p==GameController.getMorrisGame().getPlayer1()){
+				player2.clearAnimation();
+				player1.setAnimation(textFadingAnimation);
+				textFadingAnimation.start();
+			}else{
+				player1.clearAnimation();
+				player2.setAnimation(textFadingAnimation);
+				textFadingAnimation.start();
+			}
 		}
 	}
 
@@ -288,7 +294,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	@Override
 	public void playerChangeTurn(Player p) {
-		startTextFading(p);
+		startTextFading(p, false);
 		
 	}
 
@@ -318,12 +324,15 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 				userName1 = network.getGuest().getUserName();
 				userName2 = network.getOwner().getUserName();
 			}
+			startTextFading(GameController.getMorrisGame().getPlayer1(), true);
+		} else {
+			startTextFading(GameController.getMorrisGame().getCurrentPlayer(), true);		
 		}
 		if(player==1){
-			setScoreBoardNames(userName2+" Wins", userName1+ " Lose");
+			setScoreBoardNames(userName1+" lost", userName2+ " won");
 		}else{
-			setScoreBoardNames(userName1+" Lose", userName2+ " Wins");
-		}
+			setScoreBoardNames(userName1+" won", userName2+ " lost");
+		}		
 	}
 	
 	private void showToast(final String message){
