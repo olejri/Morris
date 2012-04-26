@@ -175,7 +175,7 @@ public class Network implements GameListener {
 							String Opponentpayload = st.getPayload();
 							Network.getInstance().handleOpponentMove(game_state, game_id,Opponentpayload);
 						}else{
-							Log.i("turn","Sending message again: Message" + payload);
+							Log.i("turn","Sending message again:" + payload);
 							
 							//sendInformation(payload, event, null);
 							
@@ -293,7 +293,7 @@ public class Network implements GameListener {
 				Log.i("handleMessage [Network]", "switchTurns trigged");
 			}
 			if(message.contains(Constant.MESSAGE_LOSE)){
-				Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, null);
+				Network.getInstance().sendInformation(Constant.MESSAGE_WIN, SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, null);
 			}
 		}else{
 			Log.i("turn", "HandleMessage() message==null || message.equals('')");
@@ -467,9 +467,13 @@ public class Network implements GameListener {
 		if(!hotseat){
 			// Sending place message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
+				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
 				send(placeMessage);
 				Log.i("placement", "playerPlacedPiece [Network]" );
+				
+				
+				//Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 			}
 		}
 	}

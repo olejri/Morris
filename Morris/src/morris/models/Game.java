@@ -131,8 +131,8 @@ public class Game implements NetworkListener {
 	
 	public boolean playerLost(Player player){
 		Log.i("state","State in playerLost:  " + state.toString());
-		updateSelectablePieces(player);
 		if((state instanceof SelectState)){
+			updateSelectablePieces(player);
 			if(player.getPieces().size() < 3 || !player.hasSelectablePieces()){
 				Log.i("lost", "Game is over : " + player.getName() + " lost [Game]");
 				firePlayerLost(1);
@@ -499,6 +499,17 @@ public class Game implements NetworkListener {
 		}
 		return false;
 	}
+	
+	public void checkUnplacedPieces(){
+		boolean hasUnplacedPieces = false;
+		for(Piece p : player1.getPieces()){
+			if(p.getPosition() == -1){
+				hasUnplacedPieces = true;
+				break;
+			}	
+		}
+		if(!hasUnplacedPieces) setState(new SelectState());
+	}
 
 	/**
 	 * Methods from network
@@ -522,7 +533,8 @@ public class Game implements NetworkListener {
 		firePieceMoved(fromPostion, toPosition);
 		
 		if(playerLost(player1)){
-			firePlayerLost(1);
+			Log.i("lost","firePlayerLost() : netowrkPlayerMoved() [Game]");
+			//firePlayerLost(1);
 		}
 		
 	}
@@ -543,17 +555,12 @@ public class Game implements NetworkListener {
 		}
 		
 		if(playerLost(player1)){
-			firePlayerLost(1);
+			Log.i("lost","firePlayerLost() : netowrkPlayerPlacedPiece() [Game]");
+			//firePlayerLost(1);
 		}
 		
-		boolean hasUnplacedPieces = false;
-		for(Piece p : player1.getPieces()){
-			if(p.getPosition() == -1){
-				hasUnplacedPieces = true;
-				break;
-			}	
-		}
-		if(!hasUnplacedPieces) setState(new SelectState());
+		checkUnplacedPieces();
+
 		
 		
 	}
@@ -600,12 +607,12 @@ public class Game implements NetworkListener {
 					}
 				}, 1500);
 				
-				if(playerLost(player1)){
-					firePlayerLost(1);
-				}
+				checkUnplacedPieces();
 				
-		
-
+				if(playerLost(player1)){
+					Log.i("lost","firePlayerLost() : networkPlayerRemovedPiece() [Game]");
+					//firePlayerLost(1);
+				}
 		
 	}
 	
