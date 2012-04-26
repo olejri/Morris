@@ -119,9 +119,9 @@ public class GameController {
 					}
 				}
 				if(morrisGame.getState() instanceof RemovalState){
-					morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+					morrisGame.updatePieceImages(morrisGame.getOpponent(morrisGame.getCurrentPlayer()), p.getId()); // ENDRET FRA getOpponent()
 				}
-				morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+				morrisGame.updatePieceImages(morrisGame.getOpponent(morrisGame.getCurrentPlayer()), p.getId());
 				
 			}
 			else if(morrisGame.getState() instanceof SelectState){
@@ -147,7 +147,7 @@ public class GameController {
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 							if(morrisGame.opponentHasRemovablePieces(morrisGame.getCurrentPlayer())) {
 								morrisGame.setState(new RemovalState());
-								morrisGame.updatePieceImages(morrisGame.getOpponent(), -1); // -1 fordi den er uvensentlig
+								morrisGame.updatePieceImages(morrisGame.getOpponent(morrisGame.getCurrentPlayer()), -1); // -1 fordi den er uvensentlig
 							} else {
 								morrisGame.changePlayer(hotseat);
 							}
@@ -157,7 +157,7 @@ public class GameController {
 					}
 					// Kan fjernes, og kun ha en sjekk på om den fortsatt er i MoveState, og deretter sette select.
 					if(morrisGame.getState() instanceof RemovalState){
-						morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+						morrisGame.updatePieceImages(morrisGame.getOpponent(morrisGame.getCurrentPlayer()), p.getId());
 					}
 					else{
 						morrisGame.setState(new SelectState());
@@ -169,8 +169,8 @@ public class GameController {
 			}
 			else if(morrisGame.getState() instanceof RemovalState){
 				//getPlayer1() just for testing, must be changed to getPlayer2()
-				morrisGame.updateMorrisStates(morrisGame.getOpponent());
-				if(morrisGame.removePiece(p, morrisGame.getOpponent())){
+				morrisGame.updateMorrisStates(morrisGame.getOpponent(morrisGame.getCurrentPlayer()));
+				if(morrisGame.removePiece(p, morrisGame.getOpponent(morrisGame.getCurrentPlayer()))){
 					//morrisGame.setState(morrisGame.getPreviousState());
 					if(morrisGame.getPreviousState() instanceof PlacementState){
 						morrisGame.setState(morrisGame.getPreviousState());
@@ -180,7 +180,7 @@ public class GameController {
 						morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1); // LAGT TIL 10:59 - 26.04.2012
 					}
 					// ENDRET TIL OPPONENT 12:34
-					morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+					morrisGame.updatePieceImages(morrisGame.getOpponent(morrisGame.getCurrentPlayer()), p.getId());
 					morrisGame.changePlayer(hotseat);	
 				}
 				
@@ -195,7 +195,7 @@ public class GameController {
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 							morrisGame.setState(new RemovalState());
-							morrisGame.updatePieceImages(morrisGame.getOpponent(), -1);
+							morrisGame.updatePieceImages(morrisGame.getOpponent(morrisGame.getCurrentPlayer()), -1);
 							morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1);
 						} else {
 							morrisGame.setState(new SelectState());

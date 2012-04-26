@@ -104,7 +104,7 @@ public class Game implements NetworkListener {
 			}
 		}
 		else if(state instanceof RemovalState){
-			for (Piece p : getOpponent().getPieces()){
+			for (Piece p : getOpponent(currentPlayer).getPieces()){ // ENDRET FRA TOM PARAMETER
 				if(p == piece && !p.inMorris()){
 					return true;
 				}
@@ -133,7 +133,7 @@ public class Game implements NetworkListener {
 	
 	private void updateSelectablePieces(Player player){
 		for(Piece p : player.getPieces()){
-			if(player.getPieces().size()<3){
+			if(player.getPieces().size()==3){
 				p.setSelectable(false);
 			} else {
 				ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
@@ -445,7 +445,7 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
-			updateMorrisStates(player2);
+			updateMorrisStates(getOpponent(player)); // ENDRET TIL getOpponent
 			Log.i("skiller","CheckingMorris: " + checkMorris(piece,player));
 			Log.i("skiller","CheckingOpponentHasRemovablePieces Player1: " + opponentHasRemovablePieces(player1));
 			Log.i("skiller","CheckingOpponentHasRemovablePieces: Player2" + opponentHasRemovablePieces(player2));
@@ -513,13 +513,9 @@ public class Game implements NetworkListener {
 		firePlayerChangeTurn(getCurrentPlayer());
 	}
 
-	public Player getOpponent(){
-		if (currentPlayer == getPlayer1()){
-			return player2;
-		}
-		else {
-			return player1;
-		}
+	public Player getOpponent(Player player){
+		if(player==player1) return player2;
+		else return player1;
 	}
 
 	public boolean selectable(Player player,int positionId){
