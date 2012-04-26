@@ -122,9 +122,13 @@ public class Game implements NetworkListener {
 	
 	private void updateSelectablePieces(Player player){
 		for(Piece p : player.getPieces()){
-			ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
-			for(Integer i : neighbours){
-				if(!board.getPoint(i).isTaken()) p.setSelectable(true);
+			if(player.getPieces().size()<3){
+				p.setSelectable(false);
+			} else {
+				ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
+				for(Integer i : neighbours){
+					if(!board.getPoint(i).isTaken()) p.setSelectable(true);
+				}
 			}
 		}
 	}
