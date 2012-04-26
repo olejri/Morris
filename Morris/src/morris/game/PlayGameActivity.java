@@ -269,7 +269,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 
 	@Override
-	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat) {
+	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat,boolean send) {
 		SoundManager.getInstance().playSoundEffect(Constant.SOUND_MOVE);
 	}
 
@@ -285,7 +285,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat) {
+	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat,boolean send) {
 		// TODO Auto-generated method stub
 		updateScoreBoard();
 		SoundManager.getInstance().playSoundEffect(Constant.SOUND_DROP);
@@ -310,8 +310,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 				userName1 = network.getGuest().getUserName();
 				userName2 = network.getOwner().getUserName();
 			}
-			
-			
 		}
 		if(player==1){
 			setScoreBoardNames(userName1+" Wins", userName2+ " Lose");
