@@ -537,6 +537,7 @@ public class Game implements NetworkListener {
 		firePieceMoved(fromPostion, toPosition);
 		
 		checkPlayerLost(player1);
+		checkUnplacedPieces();
 		
 	}
 
