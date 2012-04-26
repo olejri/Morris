@@ -237,7 +237,7 @@ public class Network implements GameListener {
 	 */
 	public void sendInformation(final String payload, final int event, final String chat) {
 		Log.i("skiller", "Checking turn: " + turn);
-		if (turn == 1) {
+		//if (turn == 1) {
 				Log.i("skiller", "Network. Send message: " + payload);
 				skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat,new SKOnGameMoveListener() {
 					@Override
@@ -261,9 +261,9 @@ public class Network implements GameListener {
 						
 					}
 				});
-		}else{
-			switchTurns();
-		}
+	//	}else{
+//			switchTurns();
+	//	}
 	}
 	
 	public void sendWin(){
@@ -547,7 +547,8 @@ public class Network implements GameListener {
 	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat,boolean send) {
 		if(!hotseat){
 			// Sending place message
-			if(true){
+			Log.i("sending", "Send = " + send );
+			if(send){
 				
 				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
@@ -563,7 +564,7 @@ public class Network implements GameListener {
 	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat,boolean send) {
 		if(!hotseat){
 			// Sending move message
-			if(true){
+			if(send){
 				Log.i("sending","playerMoved() [Network]");
 				String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
 				send(movedMessage);
