@@ -533,6 +533,7 @@ public class Game implements NetworkListener {
 		firePieceMoved(fromPostion, toPosition);
 		
 		if(playerLost(player1)){
+			Log.i("lost","firePlayerLost() : netowrkPlayerMoved() [Game]");
 			firePlayerLost(1);
 		}
 		
@@ -554,6 +555,7 @@ public class Game implements NetworkListener {
 		}
 		
 		if(playerLost(player1)){
+			Log.i("lost","firePlayerLost() : netowrkPlayerPlacedPiece() [Game]");
 			firePlayerLost(1);
 		}
 		
@@ -608,6 +610,7 @@ public class Game implements NetworkListener {
 				checkUnplacedPieces();
 				
 				if(playerLost(player1)){
+					Log.i("lost","firePlayerLost() : networkPlayerRemovedPiece() [Game]");
 					firePlayerLost(1);
 				}
 		
