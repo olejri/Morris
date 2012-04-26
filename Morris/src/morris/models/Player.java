@@ -49,16 +49,7 @@ public class Player {
 	}
 	
 	public void removePiece(Piece piece) {
-		/*Piece pRemove = null;
-		for (Piece p : pieces){
-			if(piece.getPosition()== p.getPosition()){
-				pRemove = p;
-			}
-			
-		}
-		*/
 		pieces.remove(piece);
-		
 	}
 
 	/**

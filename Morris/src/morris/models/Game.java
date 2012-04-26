@@ -133,7 +133,7 @@ public class Game implements NetworkListener {
 	
 	private void updateSelectablePieces(Player player){
 		for(Piece p : player.getPieces()){
-			if(player.getPieces().size()==3){
+			if(player.getPieces().size()<3){
 				p.setSelectable(false);
 			} else {
 				ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
