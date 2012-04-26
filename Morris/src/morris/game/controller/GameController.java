@@ -187,13 +187,17 @@ public class GameController {
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 							morrisGame.setState(new RemovalState());
+							morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
 						} else {
 							morrisGame.changePlayer(hotseat);
 							morrisGame.setState(new SelectState());
+							morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1); 
+							// -1 som siste parameter for Œ indikere at ingen brikke er selected (26.04 09:46) 
 						}
 					}
-					morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
-					morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
+	
+				
+					
 				}
 			}
 		}
