@@ -164,12 +164,10 @@ public class Game implements NetworkListener {
 			}
 			if(checkMorris(p, player) && opponentHasRemovablePieces()){ // Lagt til 14:!4 (26.04)
 				//Sets last move
-				Log.i("turnbased", "morris & opponentHasRemovablePieces()");
 				lastMoveFromPosition = from;
 				lastMoveToPosition = to;
 			}else{
 				//firePieceMoved(from, to, playerWon(player));
-				Log.i("turnbased", "Not morris | hasRemoveble: firePieceMoved");
 				firePieceMoved(from, to,true);
 				String balle = "balle";
 			}
@@ -360,10 +358,6 @@ public class Game implements NetworkListener {
     public void addGameListener(GameListener listener) {
     	gameListeners.add(listener);
     }
-    
-    public void removeGameListener(GameListener listener){
-    	gameListeners.remove(listener);
-    }
     /**
      * remove listener
      * @param listener
@@ -437,7 +431,7 @@ public class Game implements NetworkListener {
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
 			
-			if(checkMorris(piece, player) && opponentHasRemovablePieces()){
+			if(checkMorris(piece, player)){
 				Log.i("skiller","placePlacedPiece: morris [Game]");
 				lastMoveFromPosition = -1;
 				lastMoveToPosition = position;

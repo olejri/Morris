@@ -235,7 +235,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 	            		setScoreBoardNames("Player1", "Player2");
 	            		//Remove gamelistener
-	            		GameController.getMorrisGame().removeGameListener(network);
+	            		GameController.getMorrisGame().removeListener(network);
 	            		
 						GameController.setMorrisGame(null);
 						//Remove listeners
