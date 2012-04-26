@@ -262,7 +262,7 @@ public class Network implements GameListener {
 					}
 				});
 		}else{
-			turn = 1;
+			switchTurns();
 		}
 	}
 	
@@ -382,9 +382,12 @@ public class Network implements GameListener {
 	 * SwitchTurns() method - switches the turns between the users
 	 */
 	public void switchTurns() {
+		
 		if (turn == 1) {
+			Log.i("turnbased", "Bytter tur fra __1__ til __2__" );
 			Network.getInstance().setTurn(2);
 		} else {
+			Log.i("turnbased", "Bytter tur fra __2__ til __1__" );
 			Network.getInstance().setTurn(1);
 		}
 	}
@@ -549,7 +552,7 @@ public class Network implements GameListener {
 				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
 				send(placeMessage);
-				Log.i("sending", "playerPlacedPiece [Network]" );
+				Log.i("turnbased", "playerPlacedPiece [Network]" );
 				
 				//Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 			}
