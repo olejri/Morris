@@ -545,6 +545,7 @@ public class Game implements NetworkListener {
 		
 		checkPlayerLost(player1);
 		checkUnplacedPieces();
+		updateMorrisStates(player2);
 		
 	}
 
@@ -566,6 +567,8 @@ public class Game implements NetworkListener {
 		checkPlayerLost(player1);
 		
 		checkUnplacedPieces();
+		
+		updateMorrisStates(player2);
 
 		
 		
@@ -613,6 +616,8 @@ public class Game implements NetworkListener {
 						checkUnplacedPieces();
 						
 						checkPlayerLost(player1);
+						
+						updateMorrisStates(player2);
 						
 					}
 				}, 1500);
