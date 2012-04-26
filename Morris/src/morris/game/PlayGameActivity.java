@@ -64,12 +64,17 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		player2 = (TextView) findViewById(R.id.player2_name);
 
 		
+		
+		
 		if (GameController.getMorrisGame() == null) {
 			Log.i("game", "GameController.getMorrisGame() == null");
 
 			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
 		}
+		
+		setScoreBoardNames("Player1", "Player2");
+		
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
 
@@ -225,7 +230,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	            public void onClick(DialogInterface dialog, int which) {
 
 	            	try {
-						Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 						GameController.setMorrisGame(null);
 						PlayGameActivity.this.finish();
 					} catch (Exception e) {
