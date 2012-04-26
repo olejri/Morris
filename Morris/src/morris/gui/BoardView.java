@@ -342,6 +342,12 @@ public class BoardView extends View implements GameListener {
 		postInvalidate();
 	}
 
+	@Override
+	public void gameStarted() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

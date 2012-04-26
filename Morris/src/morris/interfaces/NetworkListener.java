@@ -6,4 +6,5 @@ public interface NetworkListener {
 	public void networkPlayerWon();
 	public void networkPlayerRemovedPiece(int piecePosition, int pieceMovedFromPosition, int pieceMovedToPosition);
 	public void networkSetPlayerNames();
+	public void networkGameStarted();
 }
