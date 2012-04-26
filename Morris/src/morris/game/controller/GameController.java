@@ -107,11 +107,13 @@ public class GameController {
 					Piece piece = morrisGame.getCurrentPlayer().getPieces().get(i);
 					if (piece.getPosition() < 0) {
 						morrisGame.playerPlacedPiece(morrisGame.getCurrentPlayer(),piece, p.getId());
-						// NYTT
-						if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer())){
-							morrisGame.setState(new RemovalState());
-						} else {
-							morrisGame.changePlayer(true);
+						// NYTT 26.04.2012
+						if(piece != null){
+							if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer())){
+								morrisGame.setState(new RemovalState());
+							} else {
+								morrisGame.changePlayer(true);
+							}
 						}
 						break;
 					}
