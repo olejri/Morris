@@ -176,6 +176,9 @@ public class Network implements GameListener {
 							Network.getInstance().handleOpponentMove(game_state, game_id,Opponentpayload);
 						}else{
 							Log.i("turn","Sending message again: Message" + payload);
+							
+							//sendInformation(payload, event, null);
+							
 							//sendInformation(payload, event, chat);
 						}
 						
@@ -212,7 +215,7 @@ public class Network implements GameListener {
 	public void handleOpponentMove(int game_state, String game_id,
 			String Opponentpayload) {
 		Network.getInstance().setGameStarted(true);
-		Log.i("skiller", "handleOpponmentMove(): " + Opponentpayload);
+		Log.i("skiller", "handleOpponmentMove(): " + Opponentpayload + game_state);
 
 		switch (game_state) {
 		
@@ -289,7 +292,7 @@ public class Network implements GameListener {
 				//Network.getInstance().switchTurns();
 				Log.i("handleMessage [Network]", "switchTurns trigged");
 			}
-			if(message.contains(Constant.MESSAGE_WON)){
+			if(message.contains(Constant.MESSAGE_LOSE)){
 				Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, null);
 			}
 		}else{
@@ -522,7 +525,7 @@ public class Network implements GameListener {
 		if(player==1){
 			Log.i("lost", "sending GAME_EVENT_CLAIM_LOSE [Network]");
 			//skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, new SKBaseListener() {
-			Network.getInstance().sendInformation("", SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
+			Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 			/*skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, new SKBaseListener() {
 			
 			@Override
