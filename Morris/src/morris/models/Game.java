@@ -162,7 +162,7 @@ public class Game implements NetworkListener {
 			if(p.inMorris()){
 				updateMorrisStates(player);
 			}
-			if(checkMorris(p, player)){
+			if(checkMorris(p, player) && opponentHasRemovablePieces()){ // Lagt til 14:!4 (26.04)
 				//Sets last move
 				lastMoveFromPosition = from;
 				lastMoveToPosition = to;
