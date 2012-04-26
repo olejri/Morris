@@ -642,7 +642,7 @@ public class Game implements NetworkListener {
 	public void networkPlayerWon() {
 		Log.i("win", "networkPlayerLost [Game]");
 		if(!gameFinish){
-			firePlayerLost(1);
+			firePlayerLost(2);
 			gameFinish = true;
 		}
 	}
