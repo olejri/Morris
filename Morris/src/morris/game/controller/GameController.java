@@ -213,11 +213,15 @@ public class GameController {
 	}
 	//Player1 is used for testing, must change with getPlayingPlayer()
 	public static ArrayList<ModelPoint> getHighlightsList() {
-		ArrayList<ModelPoint> highlights; 
-		if(morrisGame.getCurrentPlayer().getSelectedPiece() != null){					
-			highlights = morrisGame.getHighlightList(morrisGame.getCurrentPlayer().getSelectedPiece().getPosition(), morrisGame.getCurrentPlayer());  
-		} else {
-			highlights = morrisGame.getHighlightList(-1, morrisGame.getCurrentPlayer());  
+		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
+		if(morrisGame != null){
+			if(morrisGame.getCurrentPlayer() != null){
+				if(morrisGame.getCurrentPlayer().getSelectedPiece() != null){					
+					highlights = morrisGame.getHighlightList(morrisGame.getCurrentPlayer().getSelectedPiece().getPosition(), morrisGame.getCurrentPlayer());  
+				} else {
+					highlights = morrisGame.getHighlightList(-1, morrisGame.getCurrentPlayer());  
+				}
+			}
 		}
 		return highlights;
 	}
