@@ -169,6 +169,7 @@ public class Game implements NetworkListener {
 			}else{
 				//firePieceMoved(from, to, playerWon(player));
 				firePieceMoved(from, to,true);
+				String balle = "balle";
 			}
 			//Check if player won
 			//checkGameOwer(getOpponent());
