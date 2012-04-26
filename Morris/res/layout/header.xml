@@ -18,6 +18,7 @@
  
         <Button
             android:id="@+id/settingButton"
+            android:onClick="actionBarClick"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_alignParentRight="true"
@@ -28,7 +29,7 @@
 
         <Button
             android:id="@+id/soundButton"
-            android:onClick="clickSound"
+            android:onClick="actionBarClick"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_centerVertical="true"

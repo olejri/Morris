@@ -1,5 +1,6 @@
 package morris.game;
 
+import com.skiller.api.items.SKImage;
 import com.skiller.api.items.SKUser;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
@@ -41,6 +42,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public TextView player2;
 	private Animation textFadingAnimation;
 	private boolean hotseat = false;
+	private PopUp vsPopUp;
+	SKImage images;
 
 	Handler h;
 
@@ -61,21 +64,23 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		player2 = (TextView) findViewById(R.id.player2_name);
 
 		
+		
+		
 		if (GameController.getMorrisGame() == null) {
 			Log.i("game", "GameController.getMorrisGame() == null");
 
 			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
-			if(network.isGameOwner()){
-				Log.i("game", "setting current player to player 2");
-				//GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
-			}else{
-			}
 		}
+		
+		setScoreBoardNames("Player1", "Player2");
+		
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
 
-		
+		SKUser owner = network.getOwner();
+		SKUser guest = network.getGuest();
+
 
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
@@ -88,6 +93,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 			if (network.isWaiting_for_opponnent()) {
 				network.showToastOnCanvas("Still waiting on opponent");
 				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
+				setScoreBoardNames("You","Waiting for opponent..");
 				Log.i("skiller", "Venter på en kar");
 			}
 			if (network.isGameOwner()) {
@@ -98,10 +104,11 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					network.setSide(1);
 					network.setSide(2);
 					network.showToastOnCanvas("Game started");
-					setScoreBoardNames(network.getOwner().getUserName(),network.getGuest().getUserName());
 					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				}
 			} else {
+				//vsPopUp = new PopUp(this, owner, guest, Network.getInstance().getImageArray(), "playing for "+ Network.getInstance().getPot() + " coins!");
+				//vsPopUp.show();
 				setScoreBoardNames(network.getGuest().getUserName(),network.getOwner().getUserName());
 				Log.i("skiller", "Vil ikke starte");
 			}
@@ -185,9 +192,15 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	}
 
-	private void setScoreBoardNames(String name1, String name2) {
-		player1.setText(name1);
-		player2.setText(name2);
+	private void setScoreBoardNames(final String name1,final String name2) {
+		h.post(new Runnable() {
+			@Override
+			public void run() {
+				Log.i("names", "settingScoreBoardNames() [PlayGameActivity]");
+				player1.setText(name1);
+				player2.setText(name2);
+			}
+		});
 	}
 
 	/**
@@ -217,7 +230,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	            public void onClick(DialogInterface dialog, int which) {
 
 	            	try {
-						Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
+						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 						GameController.setMorrisGame(null);
 						PlayGameActivity.this.finish();
 					} catch (Exception e) {
@@ -285,20 +298,29 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	@Override
 	public void playerLost(int player) {
-		/*if(player==1){
-			showWinToast("Steinar");
+		Log.i("lost","playerLost [PlayGameActivity]");
+		if(player==1){
+			setScoreBoardNames("Winner", "Looser");
 		}else{
-			showWinToast("Emil");
-		}*/
+			setScoreBoardNames("Looser", "Winner");
+		}
 	}
 	
-	private void showWinToast(final String player){
+	private void showToast(final String message){
 		h.post(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(getApplicationContext(), "Player: " + player + " WON!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
+
+	@Override
+	public void gameStarted() {
+		Log.i("names", "gameStarted() [PlayGameActivity]");
+		if(network.isGameOwner())showToast(network.getGuest().getUserName() + " joined your game");
+		else showToast("You have joined " + network.getOwner().getUserName());
+		setScoreBoardNames(network.getOwner().getUserName(),network.getGuest().getUserName());
 	}
 
 }

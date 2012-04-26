@@ -405,6 +405,12 @@ public class Game implements NetworkListener {
     		l.playerLost(player);
     	}
     }
+    
+    private void fireGameStarted(){
+    	for(GameListener l : gameListeners){
+    		l.gameStarted();
+    	}
+    }
 
 	/*
 	 * TODO
@@ -638,6 +644,13 @@ public class Game implements NetworkListener {
 			// ENDRET FRA 2 OG FRA PLAYERWON TIL PLAYERLOST
 			firePlayerLost(1);
 		}
+	}
+
+	@Override
+	public void networkGameStarted() {
+		Log.i("names", "firePlayerWon [Game]");
+		fireGameStarted();
+		
 	}
 
 

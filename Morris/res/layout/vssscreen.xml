@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:background="@drawable/background">
+
+	<TableLayout android:id="@+id/vstable" android:layout_width="wrap_content" android:layout_height="wrap_content">
+		
+		<TableRow android:id="@+id/vstablerow1" android:layout_width="wrap_content" android:layout_height="wrap_content">		
+			<TextView android:id="@+id/vsusername1" android:text="@+id/TextView01"  android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center_horizontal"></TextView>
+			<TextView android:id="@+id/vsusername2" android:text="@+id/TextView02"  android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center_horizontal"></TextView>
+		</TableRow>
+			
+		<TableRow android:id="@+id/vstablerow2" android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<ImageView android:id="@+id/vsflag1" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>	
+			<ImageView android:id="@+id/vsflag2" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>	
+		</TableRow>
+		
+		<TableRow android:id="@+id/vstablerow3" android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<ImageView android:id="@+id/vsImage1"  android:layout_width="120dip" android:layout_height="wrap_content" android:gravity="center_horizontal"></ImageView>	
+			<ImageView android:id="@+id/vsImage2" android:layout_width="120dip" android:layout_height="wrap_content" android:gravity="center_horizontal"></ImageView>	
+		</TableRow>
+	
+		<TableRow android:id="@+id/vstablerow4" android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<TextView android:id="@+id/vstextline" android:text="@+id/TextView02" android:layout_span="2"  android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center_horizontal">
+			</TextView>
+		</TableRow>
+		
+	</TableLayout>
+
+
+</LinearLayout>

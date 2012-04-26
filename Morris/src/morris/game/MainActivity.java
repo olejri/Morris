@@ -47,7 +47,7 @@ public class MainActivity extends SuperActivity {
 		//soundhandler.initSounds(getApplicationContext());
 		
 		//soundhandler.playLoopedSound(1);
-
+		
 		SoundManager.getInstance().startBackgroundSound();
 		((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_on);
 	}
@@ -74,7 +74,6 @@ public class MainActivity extends SuperActivity {
 	public void onClick(View view) {
 		Intent i = new Intent();
 		if (view.getId() == R.id.menu_button_creategame) {
-			// GameController.getInstance().createNewGame();
 			network.chooseFeeDialog();
 		} else if (view.getId() == R.id.menu_button_joingame) {
 			skMorris.getUIManager().showTurnbasedGamesLobbyScreen(this,
@@ -96,7 +95,6 @@ public class MainActivity extends SuperActivity {
 			skMorris.getUIManager().showScreen(this,
 					SKUIManager.ACHIEVEMENTS_SOCIAL);
 		}
-
 	}
 
 	@Override

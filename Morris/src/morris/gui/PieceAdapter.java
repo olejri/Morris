@@ -26,6 +26,7 @@ public class PieceAdapter extends BaseAdapter {
 	public int getCount() { // lagt til getInstance()
 
 		int counter = 0;
+		if(GameController.getMorrisGame()!=null){
 		if (color.equals(Constant.WHITE)) {
 			for (Piece p : GameController.getMorrisGame().getPlayer1().getPieces()) {
 				if (p.getPosition() < 0)
@@ -36,6 +37,7 @@ public class PieceAdapter extends BaseAdapter {
 				if (p.getPosition() < 0)
 					counter++;
 			}
+		}
 		}
 		return counter;
 	}
