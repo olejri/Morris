@@ -297,12 +297,25 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	}
 
 	@Override
-	public void playerLost(int player) {
+	public void playerLost(int player,boolean hotseat) {
 		Log.i("lost","playerLost [PlayGameActivity]");
+		String userName1 ="";
+		String userName2 = "";
+		if(!hotseat){
+			if(network.isGameOwner()){
+				userName1 = network.getOwner().getUserName();
+				userName2 = network.getGuest().getUserName();
+			}else{
+				userName1 = network.getGuest().getUserName();
+				userName2 = network.getOwner().getUserName();
+			}
+			
+			
+		}
 		if(player==1){
-			setScoreBoardNames("Winner", "Looser");
+			setScoreBoardNames(userName1+" Wins", userName2+ " Lose");
 		}else{
-			setScoreBoardNames("Looser", "Winner");
+			setScoreBoardNames(userName1+" Lose", userName2+ " Wins");
 		}
 	}
 	

@@ -9,7 +9,7 @@ public interface GameListener {
 	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat);
 	public void playerRemovedPiece(int pieceRemoved,int pieceMovedFromPosition, int pieceMovedToPosition, boolean hotseat);
 	public void playerChangeTurn(Player p);
-	public void playerLost(int player);
+	public void playerLost(int player,boolean hotseat);
 	public void gameStarted();
 	public void update();
 }
