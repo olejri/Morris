@@ -40,6 +40,7 @@ public class Network implements GameListener {
 	List<NetworkListener> networkListeners = new CopyOnWriteArrayList<NetworkListener>();
 
 	private static Network instance = null;
+	private int messageCounter = 0;
 
 	// Get / Set variables
 	private Context menuContext;
@@ -293,10 +294,9 @@ public class Network implements GameListener {
 	 * received game_state. invokes the suitable communication method for every
 	 * game_state.
 	 */
-	public void handleOpponentMove(int game_state, String game_id,
-			String Opponentpayload) {
+	public void handleOpponentMove(int game_state, String game_id,String Opponentpayload) {
 		Network.getInstance().setGameStarted(true);
-		Log.i("skiller", "handleOpponmentMove(): " + Opponentpayload +" State: "+ game_state);
+		Log.i("balleballe", "RECEIVING: MessageCount: " + ++messageCounter + " Message: " + Opponentpayload);
 
 		switch (game_state) {
 		
@@ -319,11 +319,7 @@ public class Network implements GameListener {
 			break;
 
 		case SKTurnBasedTools.GAME_STATE_ARE_YOU_HERE:
-			skMorris.getGameManager()
-					.getTurnBasedTools()
-					.makeGameMove(game_id,
-							SKTurnBasedTools.GAME_EVENT_STILL_HERE, "", null,
-							new GameMove());
+			skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id,SKTurnBasedTools.GAME_EVENT_STILL_HERE, "", null,new GameMove());
 		default :
 			
 			
