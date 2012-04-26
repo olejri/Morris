@@ -359,7 +359,7 @@ public class Network implements GameListener {
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)) {
 				Log.i("turn","handleMessage() [Network] :before: turn = " + turn);
-				//Network.getInstance().switchTurns();
+				Network.getInstance().switchTurns();
 				Log.i("turn","handleMessage() [Network] :after:  turn = " + turn);
 				int piecePosition = Integer.parseInt(parts[1]);
 				int pieceMovedFrom = Integer.parseInt(parts[2]);
