@@ -33,6 +33,8 @@ public class SelectState implements State {
 		for(Piece p : pieces){
 			if(pieces.size() == 3) {
 				p.setSelectable(true);
+			} else if(pieces.size() < 3){
+				p.setSelectable(false);
 			} else {
 				if(board.getPoint(p.getPosition()) != null){
 					ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
