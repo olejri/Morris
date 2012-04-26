@@ -145,7 +145,8 @@ public class GameController {
 					// SISTE PARAMETER ER SPILLER ID
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
-							morrisGame.setState(new RemovalState());
+							if(!morrisGame.opponentHasRemovablePieces()) morrisGame.changePlayer(hotseat);
+							else morrisGame.setState(new RemovalState());
 							morrisGame.updatePieceImages(morrisGame.getOpponent(), -1); // -1 fordi den er uvensentlig
 						} else {
 							morrisGame.changePlayer(hotseat); 
