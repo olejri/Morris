@@ -499,6 +499,17 @@ public class Game implements NetworkListener {
 		}
 		return false;
 	}
+	
+	public void checkUnplacedPieces(){
+		boolean hasUnplacedPieces = false;
+		for(Piece p : player1.getPieces()){
+			if(p.getPosition() == -1){
+				hasUnplacedPieces = true;
+				break;
+			}	
+		}
+		if(!hasUnplacedPieces) setState(new SelectState());
+	}
 
 	/**
 	 * Methods from network
@@ -546,14 +557,8 @@ public class Game implements NetworkListener {
 			firePlayerLost(1);
 		}
 		
-		boolean hasUnplacedPieces = false;
-		for(Piece p : player1.getPieces()){
-			if(p.getPosition() == -1){
-				hasUnplacedPieces = true;
-				break;
-			}	
-		}
-		if(!hasUnplacedPieces) setState(new SelectState());
+		checkUnplacedPieces();
+
 		
 		
 	}
@@ -600,12 +605,11 @@ public class Game implements NetworkListener {
 					}
 				}, 1500);
 				
+				checkUnplacedPieces();
+				
 				if(playerLost(player1)){
 					firePlayerLost(1);
 				}
-				
-		
-
 		
 	}
 	
