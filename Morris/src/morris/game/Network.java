@@ -547,13 +547,12 @@ public class Network implements GameListener {
 			// Sending place message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
 				
-				/*
+				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
 				send(placeMessage);
 				Log.i("placement", "playerPlacedPiece [Network]" );
-				*/
 				
-				Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
+				//Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 			}
 		}
 	}
@@ -604,9 +603,10 @@ public class Network implements GameListener {
 	}
 
 	@Override
-	public void playerLost(int player) {
+	public void playerLost(int player,boolean hotseat) {
 		Log.i("lost", "playerLost [Network]");
 		if(player==1){
+			if(!hotseat){
 			Log.i("lost", "sending GAME_EVENT_CLAIM_LOSE [Network]");
 			//skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, new SKBaseListener() {
 			Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
@@ -617,6 +617,7 @@ public class Network implements GameListener {
 					if(st.getStatusCode()==0)Log.i("lost", "GAME_EVENT_CLAIM_LOSE sent successfully [Network]");
 				}
 			});*/
+			}
 		}
 		
 	}

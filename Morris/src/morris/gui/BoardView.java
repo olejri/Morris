@@ -331,7 +331,7 @@ public class BoardView extends View implements GameListener {
 	}
 
 	@Override
-	public void playerLost(int player) {
+	public void playerLost(int player,boolean hotseat) {
 		// TODO Auto-generated method stub
 		
 	}

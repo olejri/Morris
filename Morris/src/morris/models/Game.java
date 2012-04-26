@@ -34,6 +34,7 @@ public class Game implements NetworkListener {
 	private int lastMoveFromPosition;
 	private int lastMoveToPosition;
 	private boolean hotseat;
+	private boolean gameFinish = false;
 
 
 	public boolean isHotseat() {
@@ -402,7 +403,7 @@ public class Game implements NetworkListener {
     
     private void firePlayerLost(int player){
     	for(GameListener l : gameListeners){
-    		l.playerLost(player);
+    		l.playerLost(player,hotseat);
     	}
     }
     
@@ -640,9 +641,9 @@ public class Game implements NetworkListener {
 	@Override
 	public void networkPlayerWon() {
 		Log.i("win", "networkPlayerLost [Game]");
-		if(hotseat){
-			// ENDRET FRA 2 OG FRA PLAYERWON TIL PLAYERLOST
+		if(!gameFinish){
 			firePlayerLost(1);
+			gameFinish = true;
 		}
 	}
 
