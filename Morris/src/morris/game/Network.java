@@ -264,6 +264,10 @@ public class Network implements GameListener {
 		//}else{
 		//	switchTurns();
 		//}
+	//	}else{
+//			switchTurns();
+	//	}
+
 	}
 	
 	public void sendWin(){
@@ -548,6 +552,9 @@ public class Network implements GameListener {
 		if(!hotseat){
 			Log.i("turnbased","send value playerPlacedPiece: " + send);
 			// Sending place message
+
+			Log.i("sending", "Send = " + send );
+
 			if(send){
 				
 				

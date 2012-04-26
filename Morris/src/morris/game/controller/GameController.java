@@ -145,13 +145,17 @@ public class GameController {
 					// SISTE PARAMETER ER SPILLER ID
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
-							if(!morrisGame.opponentHasRemovablePieces()) morrisGame.changePlayer(hotseat);
-							else morrisGame.setState(new RemovalState());
-							morrisGame.updatePieceImages(morrisGame.getOpponent(), -1); // -1 fordi den er uvensentlig
+							if(morrisGame.opponentHasRemovablePieces()) {
+								morrisGame.setState(new RemovalState());
+								morrisGame.updatePieceImages(morrisGame.getOpponent(), -1); // -1 fordi den er uvensentlig
+							} else {
+								morrisGame.changePlayer(hotseat);
+							}
 						} else {
 							morrisGame.changePlayer(hotseat); 
 						}
 					}
+					// Kan fjernes, og kun ha en sjekk på om den fortsatt er i MoveState, og deretter sette select.
 					if(morrisGame.getState() instanceof RemovalState){
 						morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
 					}
