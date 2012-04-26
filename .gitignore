@@ -24,3 +24,6 @@ Morris/bin/resources.ap_
 Morris/gen
 Morris/proguard.cfg
 Morris/.settings
+Morris/libs
+Morris/libs/SkillerAndroidSDK.jar
+Morris/project.properties
