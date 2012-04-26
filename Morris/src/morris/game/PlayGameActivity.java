@@ -1,5 +1,6 @@
 package morris.game;
 
+import com.skiller.api.items.SKImage;
 import com.skiller.api.items.SKUser;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
@@ -41,6 +42,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public TextView player2;
 	private Animation textFadingAnimation;
 	private boolean hotseat = false;
+	private PopUp vsPopUp;
+	SKImage images;
 
 	Handler h;
 
@@ -75,7 +78,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
 
-		
+		SKUser owner = network.getOwner();
+		SKUser guest = network.getGuest();
 
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
@@ -102,6 +106,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				}
 			} else {
+				//vsPopUp = new PopUp(this, owner, guest, Network.getInstance().getImageArray(), "playing for "+ Network.getInstance().getPot() + " coins!");
+				//vsPopUp.show();
 				setScoreBoardNames(network.getGuest().getUserName(),network.getOwner().getUserName());
 				Log.i("skiller", "Vil ikke starte");
 			}

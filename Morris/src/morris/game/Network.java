@@ -12,6 +12,7 @@ import android.content.IntentSender.SendIntentException;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.skiller.api.items.SKImage;
 import com.skiller.api.items.SKUser;
 import com.skiller.api.listeners.SKBaseListener;
 import com.skiller.api.listeners.SKOnFeeChosenListener;
@@ -25,6 +26,7 @@ import com.skiller.api.responses.SKGameMoveResponse;
 import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.GameListener;
+import morris.interfaces.ImageListener;
 import morris.interfaces.NetworkListener;
 import morris.models.GameMove;
 import morris.models.Piece;
@@ -49,6 +51,7 @@ public class Network implements GameListener {
 	private boolean gameOwner;
 	private boolean printed = false;
 
+	SKImage [] imageArray;
 	// Skiller variables
 	private SKApplication skMorris;
 	private SKUser owner;
@@ -535,5 +538,29 @@ public class Network implements GameListener {
 			});*/
 		}
 		
+	}
+	public SKImage[] getImageArray() {
+		return imageArray;
+	}
+	
+	public void setImageArray(SKImage[] imageArray) {
+		this.imageArray = imageArray;
+	}
+	
+	public void getImages()
+	{
+		Log.i("image", "Kjøres denne?");
+		String  [] imagesIdArray=new String[6];
+		imagesIdArray[0]=owner.getAvatarFullImageId();
+		imagesIdArray[1]=guest.getAvatarFullImageId();
+		imagesIdArray[2]=owner.getCountryImageId();
+		imagesIdArray[3]=guest.getCountryImageId();
+		imagesIdArray[4]=owner.getAvatarHeadImageId();
+		imagesIdArray[5]=guest.getAvatarHeadImageId();
+		for(int i=0; i < 5; i++){
+			Log.i("image", "Antall bilder: " + imagesIdArray[i].toString());
+		}
+		
+		skMorris.getUIManager().getImage(imagesIdArray,new ImageListener());
 	}
 }

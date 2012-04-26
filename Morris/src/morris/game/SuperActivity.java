@@ -4,6 +4,7 @@ import morris.help.Constant;
 
 import com.skiller.api.listeners.SKBaseListener;
 import com.skiller.api.operations.SKApplication;
+import com.skiller.api.operations.SKUIManager;
 import com.skiller.api.responses.SKBaseResponse;
 
 import android.app.Activity;
@@ -59,8 +60,11 @@ public class SuperActivity extends Activity {
 	 * 
 	 * @param v
 	 */
-	public void clickSound(View v) {
-		if (!SoundManager.getInstance().getSound()) {
+	public void actionBarClick(View v) {
+		if(v.getId() == R.id.settingButton){
+			skMorris.getUIManager().showScreen(this, SKUIManager.DASHBOARD);
+		}
+		else if (v.getId() == R.id.soundButton && !SoundManager.getInstance().getSound()) {
 			SoundManager.getInstance().startBackgroundSound();
 			((Button) findViewById(R.id.soundButton))
 					.setBackgroundResource(R.drawable.sound_on);
