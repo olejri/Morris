@@ -71,10 +71,12 @@ public class SelectState implements State {
 				p.updatePieceResource(Constant.NORMAL);
 			}
 		}
-		GameController.getInstance();
-		// OPPDATERER MOTSTANDERS BRIKKER
-		for(Piece p : GameController.getGame().getPlayer2().getPieces()){
-			p.updatePieceResource(Constant.NORMAL);
+		// OPPDATERER MOTSTANDERS BRIKKER. FUNKER FOR ONLINE SPILLING
+		// IF !HOTSEAT
+		if(GameController.getGame().getCurrentPlayer() != GameController.getGame().getPlayer2()){
+			for(Piece p : GameController.getGame().getPlayer2().getPieces()){
+				p.updatePieceResource(Constant.NORMAL);
+			}
 		}
 	}
 }
