@@ -109,7 +109,7 @@ public class GameController {
 						morrisGame.playerPlacedPiece(morrisGame.getCurrentPlayer(),piece, p.getId());
 						// NYTT 26.04.2012
 						if(piece != null){
-							if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer())){
+							if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer()) && morrisGame.opponentHasRemovablePieces()){
 								morrisGame.setState(new RemovalState());
 							} else {
 								morrisGame.changePlayer(true);
