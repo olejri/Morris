@@ -129,7 +129,7 @@ public class Game implements NetworkListener {
 		}
 	}
 	
-	public boolean playerLost(Player player){
+	public boolean checkPlayerLost(Player player){
 		Log.i("state","State in playerLost:  " + state.toString());
 		if((state instanceof SelectState)){
 			updateSelectablePieces(player);
@@ -532,10 +532,7 @@ public class Game implements NetworkListener {
 		
 		firePieceMoved(fromPostion, toPosition);
 		
-		if(playerLost(player1)){
-			Log.i("lost","firePlayerLost() : netowrkPlayerMoved() [Game]");
-			//firePlayerLost(1);
-		}
+		checkPlayerLost(player1);
 		
 	}
 
@@ -554,10 +551,7 @@ public class Game implements NetworkListener {
 			}
 		}
 		
-		if(playerLost(player1)){
-			Log.i("lost","firePlayerLost() : netowrkPlayerPlacedPiece() [Game]");
-			//firePlayerLost(1);
-		}
+		checkPlayerLost(player1);
 		
 		checkUnplacedPieces();
 
@@ -609,10 +603,7 @@ public class Game implements NetworkListener {
 				
 				checkUnplacedPieces();
 				
-				if(playerLost(player1)){
-					Log.i("lost","firePlayerLost() : networkPlayerRemovedPiece() [Game]");
-					//firePlayerLost(1);
-				}
+				checkPlayerLost(player1);
 		
 	}
 	
