@@ -310,8 +310,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 				userName1 = network.getGuest().getUserName();
 				userName2 = network.getOwner().getUserName();
 			}
-			
-			
 		}
 		if(player==1){
 			setScoreBoardNames(userName1+" Wins", userName2+ " Lose");
