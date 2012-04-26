@@ -2,10 +2,12 @@ package morris.states;
 
 import java.util.ArrayList;
 
+import morris.help.Constant;
 import morris.interfaces.State;
 import morris.interfaces.StateListener;
 import morris.models.Board;
 import morris.models.ModelPoint;
+import morris.models.Piece;
 import morris.models.Player;
 
 public class FlyingState implements State, StateListener{
@@ -24,5 +26,8 @@ public class FlyingState implements State, StateListener{
 	@Override
 	public void updatePieceImages(Player player,int positionId) {
 		// TODO Auto-generated method stub	
+		for (Piece p : player.getPieces()) {
+			p.updatePieceResource(Constant.NORMAL);
+		}
 	}
 }

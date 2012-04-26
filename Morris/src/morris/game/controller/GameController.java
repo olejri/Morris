@@ -107,11 +107,13 @@ public class GameController {
 					Piece piece = morrisGame.getCurrentPlayer().getPieces().get(i);
 					if (piece.getPosition() < 0) {
 						morrisGame.playerPlacedPiece(morrisGame.getCurrentPlayer(),piece, p.getId());
-						// NYTT
-						if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer())){
-							morrisGame.setState(new RemovalState());
-						} else {
-							morrisGame.changePlayer(true);
+						// NYTT 26.04.2012
+						if(piece != null){
+							if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer())){
+								morrisGame.setState(new RemovalState());
+							} else {
+								morrisGame.changePlayer(true);
+							}
 						}
 						break;
 					}
@@ -154,8 +156,7 @@ public class GameController {
 					}
 					else{
 						morrisGame.setState(new SelectState());
-						morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());
-						
+						morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), p.getId());	
 					}
 	
 				}
@@ -168,8 +169,10 @@ public class GameController {
 					//morrisGame.setState(morrisGame.getPreviousState());
 					if(morrisGame.getPreviousState() instanceof PlacementState){
 						morrisGame.setState(morrisGame.getPreviousState());
+						morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1); // LAGT TIL 10:59 - 26.04.2012
 					} else {
 						morrisGame.setState(new SelectState());
+						morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1); // LAGT TIL 10:59 - 26.04.2012
 					}
 					// ENDRET TIL OPPONENT 12:34
 					morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
@@ -187,11 +190,12 @@ public class GameController {
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
 							morrisGame.setState(new RemovalState());
-							morrisGame.updatePieceImages(morrisGame.getOpponent(), p.getId());
+							morrisGame.updatePieceImages(morrisGame.getOpponent(), -1);
+							morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1);
 						} else {
-							morrisGame.changePlayer(hotseat);
 							morrisGame.setState(new SelectState());
 							morrisGame.updatePieceImages(morrisGame.getCurrentPlayer(), -1); 
+							morrisGame.changePlayer(hotseat);
 							// -1 som siste parameter for Œ indikere at ingen brikke er selected (26.04 09:46) 
 						}
 					}
