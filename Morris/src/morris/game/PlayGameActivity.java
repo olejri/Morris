@@ -117,6 +117,8 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		}
 
 		GameController.getMorrisGame().addGameListener(network);
+
+		
 		BoardView b = (BoardView) findViewById(R.id.board_view_id);
 		GameController.getMorrisGame().addGameListener(b);
 		
@@ -232,7 +234,13 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	            	try {
 						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 	            		setScoreBoardNames("Player1", "Player2");
+	            		//Remove gamelistener
+	            		GameController.getMorrisGame().removeGameListener(network);
+	            		
 						GameController.setMorrisGame(null);
+						//Remove listeners
+						//GameController.getMorrisGame().removeListener(network);
+						
 						PlayGameActivity.this.finish();
 					} catch (Exception e) {
 						finish();

@@ -360,6 +360,10 @@ public class Game implements NetworkListener {
     public void addGameListener(GameListener listener) {
     	gameListeners.add(listener);
     }
+    
+    public void removeGameListener(GameListener listener){
+    	gameListeners.remove(listener);
+    }
     /**
      * remove listener
      * @param listener

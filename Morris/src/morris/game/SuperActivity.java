@@ -16,7 +16,7 @@ import android.widget.Button;
 
 public class SuperActivity extends Activity {
 	public SKApplication skMorris;
-	public Network network;
+	public static Network network;
 	public Display display;
 
 	@Override
