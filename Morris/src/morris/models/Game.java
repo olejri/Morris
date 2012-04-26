@@ -120,8 +120,18 @@ public class Game implements NetworkListener {
 		}else return false;
 	}*/
 	
+	private void updateSelectablePieces(Player player){
+		for(Piece p : player.getPieces()){
+			ArrayList<Integer> neighbours = board.getPoint(p.getPosition()).getNeighbours();
+			for(Integer i : neighbours){
+				if(!board.getPoint(i).isTaken()) p.setSelectable(true);
+			}
+		}
+	}
+	
 	public boolean playerLost(Player player){
 		Log.i("state","State in playerLost:  " + state.toString());
+		updateSelectablePieces(player);
 		if((state instanceof SelectState)){
 			if(player.getPieces().size() < 3 || !player.hasSelectablePieces()){
 				Log.i("lost", "Game is over : " + player.getName() + " lost [Game]");
