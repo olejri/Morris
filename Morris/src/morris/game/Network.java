@@ -238,7 +238,6 @@ public class Network implements GameListener {
 	public void sendInformation(final String payload, final int event, final String chat) {
 		Log.i("skiller", "Checking turn: " + turn);
 		if (turn == 1) {
-			
 				Log.i("skiller", "Network. Send message: " + payload);
 				skMorris.getGameManager().getTurnBasedTools().makeGameMove(game_id, event, payload, chat,new SKOnGameMoveListener() {
 					@Override
@@ -359,7 +358,7 @@ public class Network implements GameListener {
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)) {
 				Log.i("turn","handleMessage() [Network] :before: turn = " + turn);
-				Network.getInstance().switchTurns();
+				//Network.getInstance().switchTurns();
 				Log.i("turn","handleMessage() [Network] :after:  turn = " + turn);
 				int piecePosition = Integer.parseInt(parts[1]);
 				int pieceMovedFrom = Integer.parseInt(parts[2]);
@@ -550,7 +549,7 @@ public class Network implements GameListener {
 				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
 				send(placeMessage);
-				Log.i("placement", "playerPlacedPiece [Network]" );
+				Log.i("sending", "playerPlacedPiece [Network]" );
 				
 				//Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
 			}
@@ -562,7 +561,7 @@ public class Network implements GameListener {
 		if(!hotseat){
 			// Sending move message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
-				Log.i("movement","playerMoved() [Network]");
+				Log.i("sending","playerMoved() [Network]");
 				String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
 				send(movedMessage);
 			}
@@ -574,7 +573,7 @@ public class Network implements GameListener {
 		if(!hotseat){
 			// Sending remove message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
-				Log.i("removed","playerRemovedPiece() Create Message[Network]");
+				Log.i("sending","playerRemovedPiece() Create Message[Network]");
 				String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition + Constant.SPLIT + pieceMovedFromPosition + Constant.SPLIT + pieceMovedToPosition;
 				send(removeMessage);
 			}
