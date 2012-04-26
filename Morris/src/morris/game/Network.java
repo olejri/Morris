@@ -2,6 +2,7 @@ package morris.game;
 
 import java.util.List;
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
@@ -16,11 +17,13 @@ import com.skiller.api.items.SKUser;
 import com.skiller.api.listeners.SKBaseListener;
 import com.skiller.api.listeners.SKOnFeeChosenListener;
 import com.skiller.api.listeners.SKOnGameMoveListener;
+import com.skiller.api.listeners.SKOnGameStartedListener;
 import com.skiller.api.operations.SKApplication;
 import com.skiller.api.operations.SKTurnBasedTools;
 import com.skiller.api.responses.SKBaseResponse;
 import com.skiller.api.responses.SKFeeChosenResponse;
 import com.skiller.api.responses.SKGameMoveResponse;
+import com.skiller.api.responses.SKGameStartedResponse;
 
 import morris.game.controller.GameController;
 import morris.help.Constant;
@@ -116,8 +119,15 @@ public class Network implements GameListener {
 	}
 	
 	private void fireNetworkPlayerWon(){
+		Log.i("names", "firePlayerWonNetwork [Network]");
 		for(NetworkListener l : networkListeners){
 			l.networkPlayerWon();
+		}
+	}
+	
+	private void fireNetworkGameStarted(){
+		for(NetworkListener l : networkListeners){
+			l.networkGameStarted();
 		}
 	}
 
@@ -144,8 +154,74 @@ public class Network implements GameListener {
 	 */
 	private void startGameWithChosenFee(int fee) {
 		System.out.println("startGameWithChosenFee() started");
-		skMorris.getGameManager().getTurnBasedTools()
-				.createNewGame(fee, null, null, new StartGame());
+		skMorris.getGameManager().getTurnBasedTools().createNewGame(fee, null, null, new SKOnGameStartedListener() {
+			
+			@Override
+			public void onResponse(SKGameStartedResponse st) {
+				System.out.println("Statuskode" +st.getStatusCode());
+				if(st.getStatusCode() == 0){
+					System.out.println("Statuskode 0");
+					// Getting username of the owner of the game
+					SKUser ownerUser = st.getOwner();
+					String ownerUsername = ownerUser.getUserName();
+					
+					// Checking if the current user is the owner of the game
+					if(Network.getInstance().getSkApplication().getUserManager().getCurrentUsername().equals(ownerUsername)){
+						System.out.println("User: "+Network.getInstance().getSkApplication().getUserManager().getCurrentUsername().toString());
+						int pot = st.getPot();
+						SKUser guest = st.getGuest();
+						SKUser owner = st.getOwner();
+						String game_id = st.getGameId();
+						
+						Network.getInstance().setWaiting_for_opponent(false);
+						Network.getInstance().setOwner(owner);
+						Network.getInstance().setGuest(guest);
+						Network.getInstance().setPot(pot);
+						Network.getInstance().setGame_id(game_id);
+						Network.getInstance().setGameOwner(true);
+						Network.getInstance().startGame(true);
+						
+						fireNetworkGameStarted();
+				//		Network.getInstance().setTurn(1);
+						return;
+					}		
+					
+					// Guest game
+					Network.getInstance().setWaiting_for_opponent(false);
+					Network.getInstance().setProgressDialog(ProgressDialog.show(Network.getInstance().getMenuContext(),"Please wait" , "Connecting to the game...", true));
+				
+					class DismissProgressDialogTask extends TimerTask{
+						@Override
+						public void run() {
+							Network.getInstance().getProgressDialog().dismiss();
+							
+						}
+					}
+					
+					Network.getInstance().clearGame();
+					
+					Network.getInstance().setTimer(new Timer());
+					Network.getInstance().getTimer().schedule(new DismissProgressDialogTask(), 15000);
+				
+					int pot=st.getPot();
+					SKUser guest=st.getGuest();
+					SKUser owner=st.getOwner();
+					String game_id=st.getGameId();
+					
+					Network.getInstance().setGameStarted(true);
+					Network.getInstance().setPrinted(false);
+					Network.getInstance().setGame_id(game_id);
+					Network.getInstance().setOwner(owner);
+					Network.getInstance().setGuest(guest);
+					Network.getInstance().setPot(pot);	
+					Network.getInstance().setGameOwner(false);
+					Network.getInstance().setTurn(1);
+					Network.getInstance().startGame(false);
+					return;
+				}
+				
+			}
+		});
 		Network.getInstance().clearGame();
 		Network.getInstance().setWaiting_for_opponent(true);
 
@@ -538,6 +614,12 @@ public class Network implements GameListener {
 				}
 			});*/
 		}
+		
+	}
+
+	@Override
+	public void gameStarted() {
+		// TODO Auto-generated method stub
 		
 	}
 }

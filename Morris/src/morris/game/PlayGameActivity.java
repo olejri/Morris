@@ -66,16 +66,10 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
-			if(network.isGameOwner()){
-				Log.i("game", "setting current player to player 2");
-				//GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
-			}else{
-			}
 		}
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
 
-		
 
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
@@ -88,6 +82,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 			if (network.isWaiting_for_opponnent()) {
 				network.showToastOnCanvas("Still waiting on opponent");
 				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
+				setScoreBoardNames("You","Waiting for opponent..");
 				Log.i("skiller", "Venter på en kar");
 			}
 			if (network.isGameOwner()) {
@@ -98,7 +93,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					network.setSide(1);
 					network.setSide(2);
 					network.showToastOnCanvas("Game started");
-					setScoreBoardNames(network.getOwner().getUserName(),network.getGuest().getUserName());
 					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				}
 			} else {
@@ -185,9 +179,15 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	}
 
-	private void setScoreBoardNames(String name1, String name2) {
-		player1.setText(name1);
-		player2.setText(name2);
+	private void setScoreBoardNames(final String name1,final String name2) {
+		h.post(new Runnable() {
+			@Override
+			public void run() {
+				Log.i("names", "settingScoreBoardNames() [PlayGameActivity]");
+				player1.setText(name1);
+				player2.setText(name2);
+			}
+		});
 	}
 
 	/**
@@ -292,13 +292,21 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		}*/
 	}
 	
-	private void showWinToast(final String player){
+	private void showToast(final String message){
 		h.post(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(getApplicationContext(), "Player: " + player + " WON!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
+
+	@Override
+	public void gameStarted() {
+		Log.i("names", "gameStarted() [PlayGameActivity]");
+		if(network.isGameOwner())showToast(network.getGuest().getUserName() + " joined your game");
+		else showToast("You have joined " + network.getOwner().getUserName());
+		setScoreBoardNames(network.getOwner().getUserName(),network.getGuest().getUserName());
 	}
 
 }
