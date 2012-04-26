@@ -109,7 +109,7 @@ public class GameController {
 						morrisGame.playerPlacedPiece(morrisGame.getCurrentPlayer(),piece, p.getId());
 						// NYTT 26.04.2012
 						if(piece != null){
-							if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer()) && morrisGame.opponentHasRemovablePieces()){
+							if(morrisGame.checkMorris(piece, morrisGame.getCurrentPlayer()) && morrisGame.opponentHasRemovablePieces(morrisGame.getCurrentPlayer())){
 								morrisGame.setState(new RemovalState());
 							} else {
 								morrisGame.changePlayer(true);
@@ -145,7 +145,7 @@ public class GameController {
 					// SISTE PARAMETER ER SPILLER ID
 					if(morrisGame.move(morrisGame.getCurrentPlayer().getSelectedPiece(), p.getId(), morrisGame.getCurrentPlayer())){
 						if(morrisGame.checkMorris(morrisGame.getCurrentPlayer().getSelectedPiece(), morrisGame.getCurrentPlayer())){
-							if(morrisGame.opponentHasRemovablePieces()) {
+							if(morrisGame.opponentHasRemovablePieces(morrisGame.getCurrentPlayer())) {
 								morrisGame.setState(new RemovalState());
 								morrisGame.updatePieceImages(morrisGame.getOpponent(), -1); // -1 fordi den er uvensentlig
 							} else {

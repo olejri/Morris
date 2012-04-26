@@ -235,7 +235,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 	            		setScoreBoardNames("Player1", "Player2");
 	            		//Remove gamelistener
-	            		GameController.getMorrisGame().removeListener(network);
+	            		GameController.getMorrisGame().removeGameListener(network);
 	            		
 						GameController.setMorrisGame(null);
 						//Remove listeners
@@ -320,7 +320,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 			}
 		}
 		if(player==1){
-			setScoreBoardNames(userName1+" Wins", userName2+ " Lose");
+			setScoreBoardNames(userName2+" Wins", userName1+ " Lose");
 		}else{
 			setScoreBoardNames(userName1+" Lose", userName2+ " Wins");
 		}

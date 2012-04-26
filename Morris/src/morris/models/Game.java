@@ -75,9 +75,19 @@ public class Game implements NetworkListener {
 		return selectable;
 	}
 	
-	public boolean opponentHasRemovablePieces(){
-		for(Piece p : getOpponent().getPieces()){
-			if(!p.inMorris()) return true;
+	public boolean opponentHasRemovablePieces(Player player){
+		Player opponent = player1;
+		if(player==player1){
+			Log.i("morris_state","opponentHasRemPieces: checking player 1");
+			opponent = player2;
+		}else{
+			Log.i("morris_state","opponentHasRemPieces: checking player 2");
+		}
+		for(Piece p : opponent.getPieces()){
+			if(p.getPosition()!=-1 && !p.inMorris()) {
+				Log.i("morris_state","Piece state: ID " + p.getPosition());
+				return true;
+			}
 		}
 		return false;
 	}
@@ -162,7 +172,7 @@ public class Game implements NetworkListener {
 			if(p.inMorris()){
 				updateMorrisStates(player);
 			}
-			if(checkMorris(p, player) && opponentHasRemovablePieces()){ // Lagt til 14:!4 (26.04)
+			if(checkMorris(p, player) && opponentHasRemovablePieces(player)){ // Lagt til 14:!4 (26.04)
 				//Sets last move
 				lastMoveFromPosition = from;
 				lastMoveToPosition = to;
@@ -245,6 +255,7 @@ public class Game implements NetworkListener {
 		}
 		if(vertical==3 || horizontal==3){
 			updateMorrisStates(player);
+			
 			return true;
 		} else {
 			return false;
@@ -366,6 +377,10 @@ public class Game implements NetworkListener {
     	stateListeners.remove(listener);
     }
     
+    public void removeGameListener(GameListener listener){
+    	gameListeners.remove(listener);
+    }
+    
     /**
      * FIRE LISTENER METHODS
      */
@@ -430,8 +445,12 @@ public class Game implements NetworkListener {
 			Log.i("skiller","Move is valid");
 			piece.setPosition(position);
 			reserveBoardModelPoint(position, piece); 
-			
-			if(checkMorris(piece, player)){
+			updateMorrisStates(player2);
+			Log.i("skiller","CheckingMorris: " + checkMorris(piece,player));
+			Log.i("skiller","CheckingOpponentHasRemovablePieces Player1: " + opponentHasRemovablePieces(player1));
+			Log.i("skiller","CheckingOpponentHasRemovablePieces: Player2" + opponentHasRemovablePieces(player2));
+			if(checkMorris(piece, player) &&  opponentHasRemovablePieces(player)){
+
 				Log.i("skiller","placePlacedPiece: morris [Game]");
 				lastMoveFromPosition = -1;
 				lastMoveToPosition = position;
@@ -598,6 +617,8 @@ public class Game implements NetworkListener {
 						}
 						reserveBoardModelPoint(pieceMovedToPosition, pieceMoved);
 						if(pieceMoved!=null)pieceMoved.setPosition(pieceMovedToPosition);
+						
+						Log.i("morris_state"," Checking piece position: " + pieceMoved.getPosition());
 						fireUpdate();
 					}
 				}, 10);
