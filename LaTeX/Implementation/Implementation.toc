@@ -7,18 +7,20 @@
 \contentsline {section}{\numberline {3}User manual}{6}{section.3}
 \contentsline {subsection}{\numberline {3.1}Functional requirements}{6}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Running the application}{6}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Emulator}{6}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}On Android device}{7}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Opening project in Eclipse}{6}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Running}{7}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Running on device}{7}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Installing APK-file}{7}{subsubsection.3.2.4}
 \contentsline {subsection}{\numberline {3.3}Game rules}{7}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Creating Skiller account}{7}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}How to play}{7}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Choosing game mode}{7}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5}How to play}{8}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Choosing game mode}{8}{subsubsection.3.5.1}
 \contentsline {subsubsection}{\numberline {3.5.2}Placing, selecting, moving, and removing pieces}{8}{subsubsection.3.5.2}
 \contentsline {subsubsection}{\numberline {3.5.3}Hotseat mode}{10}{subsubsection.3.5.3}
 \contentsline {subsubsection}{\numberline {3.5.4}Online mode}{10}{subsubsection.3.5.4}
 \contentsline {section}{\numberline {4}Test report}{10}{section.4}
 \contentsline {subsection}{\numberline {4.1}Functional requirements testing}{10}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Quality requirements testing}{13}{subsection.4.2}
-\contentsline {section}{\numberline {5}Relations to the architecture}{16}{section.5}
-\contentsline {section}{\numberline {6}Issues}{17}{section.6}
-\contentsline {subsection}{\numberline {6.1}Gained experieces}{17}{subsection.6.1}
+\contentsline {section}{\numberline {5}Relations to the architecture}{15}{section.5}
+\contentsline {section}{\numberline {6}Issues}{15}{section.6}
+\contentsline {subsection}{\numberline {6.1}Gained experieces}{16}{subsection.6.1}

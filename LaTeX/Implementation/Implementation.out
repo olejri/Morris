@@ -7,18 +7,20 @@
 \BOOKMARK [1][-]{section.3}{User manual}{}% 7
 \BOOKMARK [2][-]{subsection.3.1}{Functional requirements}{section.3}% 8
 \BOOKMARK [2][-]{subsection.3.2}{Running the application}{section.3}% 9
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Emulator}{subsection.3.2}% 10
-\BOOKMARK [3][-]{subsubsection.3.2.2}{On Android device}{subsection.3.2}% 11
-\BOOKMARK [2][-]{subsection.3.3}{Game rules}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.4}{Creating Skiller account}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.5}{How to play}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.5.1}{Choosing game mode}{subsection.3.5}% 15
-\BOOKMARK [3][-]{subsubsection.3.5.2}{Placing, selecting, moving, and removing pieces}{subsection.3.5}% 16
-\BOOKMARK [3][-]{subsubsection.3.5.3}{Hotseat mode}{subsection.3.5}% 17
-\BOOKMARK [3][-]{subsubsection.3.5.4}{Online mode}{subsection.3.5}% 18
-\BOOKMARK [1][-]{section.4}{Test report}{}% 19
-\BOOKMARK [2][-]{subsection.4.1}{Functional requirements testing}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.2}{Quality requirements testing}{section.4}% 21
-\BOOKMARK [1][-]{section.5}{Relations to the architecture}{}% 22
-\BOOKMARK [1][-]{section.6}{Issues}{}% 23
-\BOOKMARK [2][-]{subsection.6.1}{Gained experieces}{section.6}% 24
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Opening project in Eclipse}{subsection.3.2}% 10
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Running}{subsection.3.2}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Running on device}{subsection.3.2}% 12
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Installing APK-file}{subsection.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Game rules}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.4}{Creating Skiller account}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.5}{How to play}{section.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Choosing game mode}{subsection.3.5}% 17
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Placing, selecting, moving, and removing pieces}{subsection.3.5}% 18
+\BOOKMARK [3][-]{subsubsection.3.5.3}{Hotseat mode}{subsection.3.5}% 19
+\BOOKMARK [3][-]{subsubsection.3.5.4}{Online mode}{subsection.3.5}% 20
+\BOOKMARK [1][-]{section.4}{Test report}{}% 21
+\BOOKMARK [2][-]{subsection.4.1}{Functional requirements testing}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.2}{Quality requirements testing}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{Relations to the architecture}{}% 24
+\BOOKMARK [1][-]{section.6}{Issues}{}% 25
+\BOOKMARK [2][-]{subsection.6.1}{Gained experieces}{section.6}% 26
