@@ -39,17 +39,11 @@ public class MainActivity extends SuperActivity {
 		network.setMenuContext(this);
 		setButtonFonts();
 		
-		SoundManager.getInstance().initSound(getApplicationContext());
-				
-		
-		//This class is better for using more songs(effects at the same time) Need to compress the sound file first
-		//SoundHandler soundhandler = new SoundHandler();
-		//soundhandler.initSounds(getApplicationContext());
-		
-		//soundhandler.playLoopedSound(1);
-		
+		SoundManager.getInstance().initSound(getApplicationContext());	
 		SoundManager.getInstance().startBackgroundSound();
 		((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_on);
+		
+		initSkiller();
 	}
 	
 

@@ -296,13 +296,11 @@ public class Network implements GameListener {
 	 */
 	public void handleOpponentMove(int game_state, String game_id,String Opponentpayload) {
 		Network.getInstance().setGameStarted(true);
-		Log.i("balleballe", "RECEIVING: MessageCount: " + ++messageCounter + " Message: " + Opponentpayload);
 
 		switch (game_state) {
 		
 		case SKTurnBasedTools.GAME_STATE_WON:
 			Network.getInstance().setServerEndGameresponse(true);
-			Log.i("lost", "HandleOpponentMove GAME STATE WON");
 			showToastOnCanvas("You won!");
 			handleMessage(Opponentpayload);
 			fireNetworkPlayerWon();
@@ -311,7 +309,6 @@ public class Network implements GameListener {
 		case SKTurnBasedTools.GAME_STATE_LOST:
 			Network.getInstance().setServerEndGameresponse(true);
 			showToastOnCanvas("You lost!");
-			Log.i("lost", "HandleOpponentMove GAME STATE LOST");
 			break;
 
 		case SKTurnBasedTools.GAME_STATE_TIED:
@@ -337,7 +334,6 @@ public class Network implements GameListener {
 	 * @param message
 	 */
 	private void handleMessage(String message) {
-		Log.i("skiller", "handleMessage: " + message);
 		if (message != null && !message.equals("")) {
 			String[] parts = message.split(Constant.SPLIT);
 			if ((parts[0]).equals(Constant.MESSAGE_PIECE_PLACED)) {
@@ -347,8 +343,6 @@ public class Network implements GameListener {
 				fireNetworkPlayerPlacedPiece(toPosition);
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_MOVED)) {
-				Log.i("skiller", "decode message: PIECE_MOVED");
-				Log.i("movement","handleMoveMessage() [Network]");
 				Network.getInstance().switchTurns();
 				int pieceID = Integer.parseInt(parts[1]);
 				int toPosition = Integer.parseInt(parts[2]);
@@ -357,37 +351,28 @@ public class Network implements GameListener {
 
 				// DO SOMETHING
 			} else if ((parts[0]).equals(Constant.MESSAGE_PIECE_DELETED)) {
-				Log.i("turn","handleMessage() [Network] :before: turn = " + turn);
 				Network.getInstance().switchTurns();
-				Log.i("turn","handleMessage() [Network] :after:  turn = " + turn);
 				int piecePosition = Integer.parseInt(parts[1]);
 				int pieceMovedFrom = Integer.parseInt(parts[2]);
 				int pieceMovedTo = Integer.parseInt(parts[3]);
-				Log.i("removed","handleMoveMessage() PIECE_DELETED [Network]");
 				fireNetworkPlayerDeletedPiece(piecePosition,pieceMovedFrom,pieceMovedTo);
 			} else {
 				//Network.getInstance().switchTurns();
-				Log.i("handleMessage [Network]", "switchTurns trigged");
 			}
 			if(message.contains(Constant.MESSAGE_LOSE)){
 				Network.getInstance().sendInformation(Constant.MESSAGE_WIN, SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, null);
 			}
 		}else{
-			Log.i("turn", "HandleMessage() message==null || message.equals('')");
 		}
-		Log.i("skiller", "After switch turns: " + turn);
 	}
 
 	/*
 	 * SwitchTurns() method - switches the turns between the users
 	 */
 	public void switchTurns() {
-		
 		if (turn == 1) {
-			Log.i("turnbased", "Bytter tur fra __1__ til __2__" );
 			Network.getInstance().setTurn(2);
 		} else {
-			Log.i("turnbased", "Bytter tur fra __2__ til __1__" );
 			Network.getInstance().setTurn(1);
 		}
 	}
@@ -546,19 +531,10 @@ public class Network implements GameListener {
 	@Override
 	public void playerPlacedPiece(Player player, Piece piece, boolean hotseat,boolean send) {
 		if(!hotseat){
-			Log.i("turnbased","send value playerPlacedPiece: " + send);
 			// Sending place message
-
-			Log.i("sending", "Send = " + send );
-
 			if(send){
-				
-				
 				String placeMessage = Constant.MESSAGE_PIECE_PLACED + Constant.SPLIT + piece.getPosition();
-				send(placeMessage);
-				Log.i("turnbased", "playerPlacedPiece [Network]" );
-				
-				//Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
+				send(placeMessage);				
 			}
 		}
 	}
@@ -566,9 +542,7 @@ public class Network implements GameListener {
 	@Override
 	public void playerMoved(int pieceFromPosition, int pieceToPosition, boolean hotseat,boolean send) {
 		if(!hotseat){
-			// Sending move message
 			if(send){
-				Log.i("sending","playerMoved() [Network]");
 				String movedMessage = Constant.MESSAGE_PIECE_MOVED + Constant.SPLIT + pieceFromPosition + Constant.SPLIT + pieceToPosition;
 				send(movedMessage);
 			}
@@ -580,7 +554,6 @@ public class Network implements GameListener {
 		if(!hotseat){
 			// Sending remove message
 			if(GameController.getMorrisGame().getCurrentPlayer()==GameController.getMorrisGame().getPlayer1()){
-				Log.i("sending","playerRemovedPiece() Create Message[Network]");
 				String removeMessage = Constant.MESSAGE_PIECE_DELETED + Constant.SPLIT + piecePosition + Constant.SPLIT + pieceMovedFromPosition + Constant.SPLIT + pieceMovedToPosition;
 				send(removeMessage);
 			}
@@ -589,11 +562,6 @@ public class Network implements GameListener {
 	
 	private void send(String payload){
 		Network.getInstance().sendInformation(payload, SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-		/*
-			payload+=Constant.SPLIT+Constant.MESSAGE_WON; // BESKJEDEN ER MISVISENDE
-			Network.getInstance().sendInformation(payload, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
-		}else{
-		}*/
 	}
 
 	@Override
@@ -610,19 +578,9 @@ public class Network implements GameListener {
 
 	@Override
 	public void playerLost(int player,boolean hotseat) {
-		Log.i("lost", "playerLost [Network]");
 		if(player==1){
 			if(!hotseat){
-			Log.i("lost", "sending GAME_EVENT_CLAIM_LOSE [Network]");
-			//skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_WIN, new SKBaseListener() {
 			Network.getInstance().sendInformation(Constant.MESSAGE_LOSE, SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, null);
-			/*skMorris.getGameManager().getTurnBasedTools().endPractice(SKTurnBasedTools.GAME_EVENT_CLAIM_LOSE, new SKBaseListener() {
-			
-			@Override
-				public void onResponse(SKBaseResponse st) {
-					if(st.getStatusCode()==0)Log.i("lost", "GAME_EVENT_CLAIM_LOSE sent successfully [Network]");
-				}
-			});*/
 			}
 		}
 		
@@ -636,9 +594,7 @@ public class Network implements GameListener {
 		this.imageArray = imageArray;
 	}
 	
-	public void getImages()
-	{
-		Log.i("image", "Kjøres denne?");
+	public void getImages(){
 		String  [] imagesIdArray=new String[6];
 		imagesIdArray[0]=owner.getAvatarFullImageId();
 		imagesIdArray[1]=guest.getAvatarFullImageId();
@@ -647,7 +603,6 @@ public class Network implements GameListener {
 		imagesIdArray[4]=owner.getAvatarHeadImageId();
 		imagesIdArray[5]=guest.getAvatarHeadImageId();
 		for(int i=0; i < 5; i++){
-			Log.i("image", "Antall bilder: " + imagesIdArray[i].toString());
 		}
 		
 		skMorris.getUIManager().getImage(imagesIdArray,new ImageListener());

@@ -26,8 +26,7 @@ public class SoundManager {
 	 * @param c
 	 */
 	
-	private SoundManager(){
-	}
+	private SoundManager(){}
 	
 	public static void setSound(boolean value){
 		SoundManager.getInstance().sound = value;

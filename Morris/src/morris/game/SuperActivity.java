@@ -25,19 +25,15 @@ public class SuperActivity extends Activity {
 		display = getWindowManager().getDefaultDisplay();
 		network = Network.getInstance();
 		network.setCanvasContext(getApplicationContext());
-		// Init soundManager
 
-		initSkiller();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		if (SoundManager.getInstance().getSound()) {
-			Log.i("sound","onStart() [Super] : Sound is true");
 			((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_on);
 		} else {
-			Log.i("sound","onStart() [Super] : Sound is true");
 			((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_off);
 		}
 		

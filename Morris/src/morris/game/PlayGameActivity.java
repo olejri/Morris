@@ -42,7 +42,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	public TextView player2;
 	private Animation textFadingAnimation;
 	private boolean hotseat = false;
-	private PopUp vsPopUp;
 	SKImage images;
 
 	Handler h;
@@ -55,46 +54,42 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		setBoardHeight();
 
 		if (getIntent().getExtras() != null){
-		hotseat = getIntent().getBooleanExtra("Hotseat",false);
+			hotseat = getIntent().getBooleanExtra("Hotseat",false);
 		}
 		h = new Handler();
 		setButtonFonts();
 		
+		//Init player textViews
 		player1 = (TextView) findViewById(R.id.player1_name);
 		player2 = (TextView) findViewById(R.id.player2_name);
 
 		
 		
-		
+		//Init game
 		if (GameController.getMorrisGame() == null) {
-			Log.i("game", "GameController.getMorrisGame() == null");
-
 			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
 		}
-		
+		//Set default names
 		setScoreBoardNames("Player1", "Player2");
-		
+		//Add gamelistener : this
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
 
-		SKUser owner = network.getOwner();
-		SKUser guest = network.getGuest();
-
-
+		//Set activity context
 		Network.getInstance().setCanvasContext(this);
 		Network.getInstance().setCanvasContextON(true);
 
 		setUpScoreBoard();
 		
-		
-
+		/**
+		 * Check if waiting for opponent
+		 */
 		try {
 			if (network.isWaiting_for_opponnent()) {
 				network.showToastOnCanvas("Still waiting on opponent");
 				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				if(!hotseat)setScoreBoardNames("You","Waiting for opponent..");
-				Log.i("skiller", "Venter på en kar");
 			}
 			if (network.isGameOwner()) {
 				if (network.isGameStarted()) {
@@ -107,15 +102,12 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
 				}
 			} else {
-				//vsPopUp = new PopUp(this, owner, guest, Network.getInstance().getImageArray(), "playing for "+ Network.getInstance().getPot() + " coins!");
-				//vsPopUp.show();
 				setScoreBoardNames(network.getGuest().getUserName(),network.getOwner().getUserName());
-				Log.i("skiller", "Vil ikke starte");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		//Add gamelistener : network
 		GameController.getMorrisGame().addGameListener(network);
 
 		
@@ -138,8 +130,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		RelativeLayout header = (RelativeLayout) findViewById(R.id.header);
 		int headerheight = header.getHeight();
 
-		Log.i("height", "Header height: " + headerheight);
-
 		int usableArea = screenHeight - (headerheight);
 		float viewHeight = usableArea * 0.60f;
 		float scoreHeight = usableArea * 0.30f;
@@ -156,6 +146,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 		scoreView.setLayoutParams(scoreParams);
 		cardView.setLayoutParams(params);
+		
 
 	}
 
@@ -235,12 +226,14 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
 	            		setScoreBoardNames("Player1", "Player2");
 	            		//Remove gamelistener
-	            		GameController.getMorrisGame().removeGameListener(network);
+	            		Game game = GameController.getMorrisGame();
+	            		game.removeGameListener(network);
 	            		
+	            		Network.getInstance().removeListener(game);
 						GameController.setMorrisGame(null);
 						//Remove listeners
 						//GameController.getMorrisGame().removeListener(network);
-						
+						System.gc();
 						PlayGameActivity.this.finish();
 					} catch (Exception e) {
 						finish();
@@ -313,7 +306,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	@Override
 	public void playerLost(int player,boolean hotseat) {
-		Log.i("lost","playerLost [PlayGameActivity]");
 		String userName1 ="";
 		String userName2 = "";
 		if(!hotseat){
@@ -346,7 +338,6 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 	@Override
 	public void gameStarted() {
-		Log.i("names", "gameStarted() [PlayGameActivity]");
 		if(network.isGameOwner())showToast(network.getGuest().getUserName() + " joined your game");
 		else showToast("You have joined " + network.getOwner().getUserName());
 		setScoreBoardNames(network.getOwner().getUserName(),network.getGuest().getUserName());

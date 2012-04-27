@@ -15,9 +15,7 @@ public class StartGame extends SKOnGameStartedListener {
 	@Override
 	public void onResponse(SKGameStartedResponse st) {
 		// Status OK
-		System.out.println("Statuskode" +st.getStatusCode());
 		if(st.getStatusCode() == 0){
-			System.out.println("Statuskode 0");
 			// Getting username of the owner of the game
 			SKUser ownerUser = st.getOwner();
 			String ownerUsername = ownerUser.getUserName();
