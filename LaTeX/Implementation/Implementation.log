@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 15:38
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 17:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,7 +590,7 @@ LaTeX Info: Redefining \nameref on input line 40.
 \openout3 = `Implementation.out'.
 
  (./0-frontpage.tex
-<Images/androids.jpg, id=96, 552.0625pt x 414.54875pt>
+<Images/androids.jpg, id=100, 552.0625pt x 414.54875pt>
 File: Images/androids.jpg Graphic file (type jpg)
 
 <use Images/androids.jpg>
@@ -612,7 +612,7 @@ s/androids.jpg>]) (./Implementation.toc)
 r (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.4 ...\ignorespaces Testing of FR4}}{10}{table.4}
+l.2 ...{\ignorespaces Testing of FR2}}{8}{table.2}
                                                    [1])
 \tf@lot=\write5
 \openout5 = `Implementation.lot'.
@@ -622,26 +622,17 @@ l.4 ...\ignorespaces Testing of FR4}}{10}{table.4}
 \openout6 = `Implementation.lof'.
 
 
-[2] (./1-introduction.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
-) (./2-design.tex
-
-LaTeX Warning: Citation `skiller' on page 3 undefined on input line 7.
-
-
+[2] (./1-introduction.tex) (./2-design.tex
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
-[3]
+
 Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-<Images/activities.png, id=178, 343.2825pt x 161.25244pt>
+[3] <Images/activities.png, id=185, 343.2825pt x 161.25244pt>
 File: Images/activities.png Graphic file (type png)
 
 <use Images/activities.png>
@@ -658,25 +649,22 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
 
-
-LaTeX Warning: Citation `morris' on page 5 undefined on input line 26.
-
-[5] <Images/menuPage.png, id=193, 481.8pt x 803.0pt>
+<Images/menuPage.png, id=195, 481.8pt x 803.0pt>
 File: Images/menuPage.png Graphic file (type png)
  <use Images/menuPage.png>
-<Images/placementState.png, id=194, 481.8pt x 803.0pt>
+[5] <Images/placementState.png, id=203, 481.8pt x 803.0pt>
 File: Images/placementState.png Graphic file (type png)
 
 <use Images/placementState.png>
-<Images/selectState.png, id=195, 361.35pt x 602.25pt>
+<Images/selectState.png, id=204, 361.35pt x 602.25pt>
 File: Images/selectState.png Graphic file (type png)
 
 <use Images/selectState.png>
-<Images/selectedPiece.png, id=196, 361.35pt x 602.25pt>
+<Images/selectedPiece.png, id=205, 361.35pt x 602.25pt>
 File: Images/selectedPiece.png Graphic file (type png)
 
 <use Images/selectedPiece.png>
-<Images/removalState.png, id=197, 481.8pt x 803.0pt>
+<Images/removalState.png, id=206, 481.8pt x 803.0pt>
 File: Images/removalState.png Graphic file (type png)
 
 <use Images/removalState.png>
@@ -689,11 +677,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--51
 
  []
 
-[6 <./Images/menuPage.png (PNG copy)>] [7]
+[6 <./Images/menuPage.png (PNG copy)>]
 Overfull \vbox (4.55347pt too high) has occurred while \output is active []
 
 
-[8 <./Images/placementState.png (PNG copy)> <./Images/selectState.png> <./Image
+[7 <./Images/placementState.png (PNG copy)> <./Images/selectState.png> <./Image
 s/selectedPiece.png> <./Images/removalState.png (PNG copy)>]) (./4-test.tex
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 8--15
 [][] 
@@ -709,7 +697,7 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 30--37
 [][] 
  []
 
-[9]
+[8]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 41--48
 [][] 
  []
@@ -724,7 +712,7 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 63--70
 [][] 
  []
 
-[10]
+[9]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 87--94
 [][] 
  []
@@ -739,7 +727,7 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 124--133
 [][] 
  []
 
-[11]) (./5-relation.tex) (./6-problems.tex
+[10]) (./5-relation.tex) (./6-problems.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -749,28 +737,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
-[12]) [13]
-No file Implementation.bbl.
-AED: lastpage setting LastPage
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+) [12] (./Implementation.bbl
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 5.
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+))
+AED: lastpage setting LastPage [13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
  (./Implementation.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
 Package rerunfilecheck Info: File `Implementation.out' has not changed.
-(rerunfilecheck)             Checksum: CECB6B3FDC1F453D2DC3743CAAE7A2ED;1541.
-
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: D30C2D3010818A7DD3A3561A827F72DB;1588.
  ) 
 Here is how much of TeX's memory you used:
- 6317 strings out of 493747
- 90681 string characters out of 3143546
- 173334 words of memory out of 3000000
- 9380 multiletter control sequences out of 15000+200000
- 16699 words of font info for 37 fonts, out of 3000000 for 9000
+ 6342 strings out of 493747
+ 91375 string characters out of 3143546
+ 173391 words of memory out of 3000000
+ 9396 multiletter control sequences out of 15000+200000
+ 17012 words of font info for 38 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,12n,43p,723b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,43p,722b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
@@ -784,11 +782,12 @@ live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texli
 ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2
 010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/201
-0/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on Implementation.pdf (14 pages, 466651 bytes).
+0/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2010/
+texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on Implementation.pdf (14 pages, 489901 bytes).
 PDF statistics:
- 307 PDF objects out of 1000 (max. 8388607)
- 265 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
- 220 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 323 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 228 words of extra memory for PDF output out of 10000 (max. 10000000)
 
