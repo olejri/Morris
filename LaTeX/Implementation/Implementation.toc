@@ -20,4 +20,4 @@
 \contentsline {subsection}{\numberline {4.2}Quality requirements testing}{10}{subsection.4.2}
 \contentsline {section}{\numberline {5}Relations to the architecture}{10}{section.5}
 \contentsline {section}{\numberline {6}Issues}{10}{section.6}
-\contentsline {subsection}{\numberline {6.1}Gained experieces}{10}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.1}Gained experieces}{11}{subsection.6.1}
