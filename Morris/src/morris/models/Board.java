@@ -2,6 +2,8 @@ package morris.models;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 public class Board {
 
 	private ArrayList<ModelPoint> points = new ArrayList<ModelPoint>();
