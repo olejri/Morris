@@ -2,8 +2,8 @@
 Android \cite{Android} is a Linux based operation system developed by Open Handset Alliance. It runs on smart phones, computer tablets and mobile devices. Android is open source, and developers writes in a customized version of Java\cite{sdk}. In addition to original Android, our project involves the usage of Skiller\cite{Skiller}, which is a platform help develop networking multiplayer games. Skiller provides multiple tools to implement social and game-additive features, such as achivements and in-game items and much more.
 
 % In addition to Android, our project involves Open Feint, which is a multi-player game framework.??? [x]
-\subsection{Activities -- Android software?}
-An android application consists of activities, an activity is normally associated with a view. This view holds a canvas that the draw method can draw upon. We need to keep this in mind when developing our project.
+\subsection{Android activities}
+An android application is build up with activities that represents what you see on the screen. Normally an activity holds a view which is made in xml, that means we need to be aware of the usage of custom java views. Since we have planned a MVC structure in our game we also need to be aware of androids internal MVC structure, which can be counterproductive to avoid.
 
 \subsection{Touch screen}
 Android smart phones all have touch screens, therefore its very important that the game must be designed in a way that it interacts well with the screen constraints. Both the physical buttons and the touch menus must be designed in a way so that the user understand what they press.

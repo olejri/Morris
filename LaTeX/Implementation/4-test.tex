@@ -96,26 +96,26 @@ Evaluation & A player can set his own name when creating a Skiller account. \\ \
 
 % QUALITY REQUIREMENT
 
-%\begin{table}[H]
-%\begin{tabular}{| p{100pt} | p{290pt} |} \hline
-%\multicolumn{2}{| l |}{FR8 -Highlighting possible moves} \\ \hline
-%Executor & Ole Jørgen Rishoff \\
-%Date & 12.04.2012 \\ 
-%Time used & 10 minutes \\ 
-%Evaluation & Possible moves are highlighted in all states, as long as it is your turn. \\ \hline
-%\end{tabular}
-%\caption{Testing of FR10}
-%\end{table}
+\begin{table}[H]
+\begin{tabular}{| p{100pt} | p{290pt} |} \hline
+\multicolumn{2}{| l |}{FR8 - Denied Morris state} \\ \hline
+Executor & Ole Jørgen Rishoff \\
+Date & 12.04.2012 \\ 
+Time used & 10 minutes \\ 
+Evaluation &  The game automatically ends a players turn when he enters a Morris state, and all the opponents pieces also is in a Morris state\\ \hline
+\end{tabular}
+\caption{Testing of FR8}
+\end{table}
 
 \begin{table}[H]
 \begin{tabular}{| p{100pt} | p{290pt} |} \hline
-\multicolumn{2}{| l |}{FR8 - Game over} \\ \hline
+\multicolumn{2}{| l |}{FR9 - Game over} \\ \hline
 Executor & Ole Jørgen Rishoff \\
 Date & 12.04.2012 \\ 
 Time used & 5 minutes \\ 
 Evaluation & When a player has only two pieces left, or cannot move any of his or her pieces, the game successfully ends. \\ \hline
 \end{tabular}
-\caption{Testing of FR11}
+\caption{Testing of FR9}
 \end{table}
 
 \subsection{Quality requirements testing}
@@ -123,12 +123,12 @@ Evaluation & When a player has only two pieces left, or cannot move any of his o
 \begin{table}[H]
 \begin{tabular}{| p{100pt} | p{290pt} |} \hline
 \multicolumn{2}{| l |}{FR11 - Game over} \\ \hline
-Executor & Ole Jørgen Rishoff \\
-Date & 23.04.2012 \\ 
-Stimuli & Addition of a new game variant \\
-Expected response & The architecture should allow an easy extension to \emph{Twelve Men's Morris}. \\ 
-Observed response & The system is flexible and an extension can easily be added. \\
-Evaluation & Successful \\ \hline
+\bf Executor & Ole Jørgen Rishoff \\
+\bf Date & 23.04.2012 \\ 
+\bf Stimuli & Addition of a new game variant \\
+\bf Expected response & The architecture should allow an easy extension to \emph{Twelve Men's Morris}. \\ 
+\bf Observed response & The system is flexible and an extension can easily be added. \\
+\bf Evaluation & Successful \\ \hline
 \end{tabular}
 \caption{Testing of M1}
 \end{table}

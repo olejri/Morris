@@ -22,11 +22,10 @@ public class SuperActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		display = getWindowManager().getDefaultDisplay();
 		network = Network.getInstance();
 		network.setCanvasContext(getApplicationContext());
-		// Init soundManager
-
 		initSkiller();
 	}
 
@@ -42,10 +41,11 @@ public class SuperActivity extends Activity {
 		}
 		
 	}
-
+	/**
+	 * Init skiller library. keys etc.
+	 */
 	public void initSkiller() {
-		skMorris = new SKApplication(Constant.app_id, Constant.app_key,
-				Constant.app_secret, "1", 0);
+		skMorris = new SKApplication(Constant.app_id, Constant.app_key,Constant.app_secret, "1", 0);
 		network.setSkApplication(skMorris);
 		skMorris.login(this, display.getWidth(), display.getHeight(), null,
 				null, new SKBaseListener() {
@@ -66,12 +66,10 @@ public class SuperActivity extends Activity {
 		}
 		else if (v.getId() == R.id.soundButton && !SoundManager.getInstance().getSound()) {
 			SoundManager.getInstance().startBackgroundSound();
-			((Button) findViewById(R.id.soundButton))
-					.setBackgroundResource(R.drawable.sound_on);
+			((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_on);
 		} else {
 			SoundManager.getInstance().stopBackgroundSound();
-			((Button) findViewById(R.id.soundButton))
-					.setBackgroundResource(R.drawable.sound_off);
+			((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_off);
 		}
 	}
 

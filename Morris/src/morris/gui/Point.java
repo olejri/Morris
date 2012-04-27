@@ -16,13 +16,6 @@ public class Point {
 		this.yCoor = y;
 	}
 	
-	
-	@Override
-	public String toString(){
-		return "ID " + id + " X " + xCoor + " Y " + yCoor;
-		
-	}
-	
 	public int getId(){
 		return id;
 	}

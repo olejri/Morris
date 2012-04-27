@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import morris.game.controller.GameController;
 import morris.help.Constant;
 import morris.interfaces.State;
-import morris.interfaces.StateListener;
 import morris.models.Board;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
 
-public class PlacementState implements StateListener, State{
+public class PlacementState implements State{
 
 	/*
 	 * Returns an ArrayList of the Slot objects that are to be highlighted.

@@ -23,14 +23,34 @@ public class HelpActivity extends SuperActivity {
 		
 		LinearLayout help_box = (LinearLayout)findViewById(R.id.help_box);
 		
-		help_box.addView(getTitleTextView("Rules",android.R.drawable.ic_menu_info_details));
-		help_box.addView(getDescriptionView("Here are some text about rules. Some more rules about the pieces etc. Some text. Yea."));
+		help_box.addView(getTitleTextView("General",android.R.drawable.ic_menu_info_details));
+		String general = "Each player has nine pieces. The game can be won in two different ways. If you can trap your opponent, " +
+				"making it impossible for him to move, and if your opponent has only two pieces left.";
+		help_box.addView(getDescriptionView(general));
 		
-		help_box.addView(getTitleTextView("Pieces",android.R.drawable.ic_menu_info_details));
-		help_box.addView(getDescriptionView("Here are some text about the pieces. Some more rules about the pieces etc. Some text. Yea."));
+		help_box.addView(getTitleTextView("Placement",android.R.drawable.ic_menu_info_details));
+		String placement = "In the starting phase of the game, each player gets to place all nine pieces. If you get three in a row, " +
+				"you are allowed to remove any piece from the opponent that aren't forming three in a row";
+		help_box.addView(getDescriptionView(placement));
+		
+		help_box.addView(getTitleTextView("Select",android.R.drawable.ic_menu_info_details));
+		String select = "When the placement phase is over, the player can choose one of his pieces that he wants to move. " +
+				"This is only possible if neighbouring board points are free, or you have three pieces left and have entered " +
+				"the flying phase.";
+		help_box.addView(getDescriptionView(select));
 	
-		help_box.addView(getTitleTextView("More",android.R.drawable.ic_menu_info_details));
-		help_box.addView(getDescriptionView("Scrolling works. Yeas. ladjkfals kdfl ksdnf lksdnf lskdnf lskdf lsdf k"));
+		help_box.addView(getTitleTextView("Movement",android.R.drawable.ic_menu_info_details));
+		String movement = "When a piece has been chosen, the player can move it to any free neighbouring board points.";
+		help_box.addView(getDescriptionView(movement));
+		
+		help_box.addView(getTitleTextView("Remove",android.R.drawable.ic_menu_info_details));
+		String removal = "When you have three pieces in a row, you are allowed to remove one piece from your opponent, as long as " +
+				"it is not currently forming a mill (three in a row).";
+		help_box.addView(getDescriptionView(removal));
+		
+		help_box.addView(getTitleTextView("Flying",android.R.drawable.ic_menu_info_details));
+		String flying = "When a player has only three pieces left, he is allowed to move them to any free board point.";
+		help_box.addView(getDescriptionView(flying));
 	}
 	
 	private void setTextFont(){
