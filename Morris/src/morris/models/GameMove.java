@@ -37,15 +37,9 @@ public class GameMove extends SKOnGameMoveListener {
 
 		default :
 
-		}
-		
-		Log.i("turn","GameCode: " + st.getStatusCode() + " Game State: " + state);
-		
-		
-		
+		}		
 		
 		if (st.getStatusCode() == 0) {// status OK
-
 			// 1. received data:
 			String chat = st.getChatLine();
 			int game_state = st.getGameState();
@@ -60,12 +54,6 @@ public class GameMove extends SKOnGameMoveListener {
 			
 			
 		} else {// status ERROR
-			Log.i("skiller", "could not get message from skGameMoveResponse" + st.getStatusMessage());
-			Log.i("skiller", "could not get message Status code: " + st.getStatusCode());
-				// GameHandler.getInstance().showErrorDialog(st.getStatusMessage());
-			//Network.getInstance().switchTurns();
-			//Network.getInstance().sendInformation(st.getPayload(), SKTurnBasedTools.GAME_EVENT_MAKING_MOVE, null);
-			
 		}
 	}
 

@@ -41,6 +41,8 @@ public class GameController {
 
 
 	private GameController() {}
+
+
 	/**
 	 * Set MorrisGame
 	 * 
@@ -176,10 +178,7 @@ public class GameController {
 		}
 
 	}
-	/**
-	 * Player1 is used for testing, must change with getPlayingPlayer()
-	 * @return
-	 */
+	//Player1 is used for testing, must change with getPlayingPlayer()
 	public static ArrayList<ModelPoint> getHighlightsList() {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		if(morrisGame != null){

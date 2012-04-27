@@ -30,10 +30,8 @@ public class Player {
 	}
 	
 	public boolean hasSelectablePieces(){
-		Log.i("lost","hasSelectablePieces() [Player]");
 		for(Piece p : pieces){
 			if(p.isSelectable()){
-				Log.i("lost","hasSelectablePieces() : piece is selectable return true : [Player]");
 				return true;
 			}
 		}
