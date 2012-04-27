@@ -2,33 +2,37 @@
 
 \subsection{Functional requirements}
 \begin{itemize}
-\item Requires the user to have a android device with Android OS v2.2 or newer.
-\item Requires Internet to enable online play.
+\item Requires the user to have an Android device with Android OS v2.2 or newer.
+\item Requires internet connection to be able to play online.
 \end{itemize}
 
 \subsection{Running the application}
-The application is avalible at URL. \\
-The Eclipse-project is avalible at ANOTHER URL.
+The project files are supplied with the delivery. The project can be run in an emulator or on an Android device. In both scenarios it is recommended to open the project in Eclipse. It can also be installed directly on an Android device with the supplied *.apk file.
 
-\subsubsection{Emulator}
-To run the application in the emulator, the user needs to open the project in Eclipse.
-File -> Open project -> Existing source code -> path to downloaded project.
+\subsubsection{Opening project in Eclipse}
+Opening the project in Eclipse is done as follows:
+\begin{enumerate}
+\item Choose \emph{File}
+\item Choose \emph{Open project}
+\item Choose \emph{Existing source code}
+\item Navigate to the download path, and open the project
+\end{enumerate}
+%File -> Open project -> Existing source code -> path to downloaded project.
 
+\subsubsection{Running}
+To run the project in an emulator, the user needs to install an AVD, and then choose to run the project with this AVD.
 
-\subsubsection{On Android device}
-\paragraph*{Method 1}
-To run the application on the Android device, the user needs to open the project in Eclipse.
-File -> Open project -> Existing source code -> path to downloaded project.
-Then connect the Android device with an USB cable to the PC, and run the project.
+\subsubsection{Running on device}
+The user needs to connect the Android device to the computer, and run the project with the device set as target.
 
-\paragraph*{Method 2}
-Download the apk file form URL, transfer to the android device with an USB cable and explore and install the application on the device.
+\subsubsection{Installing APK-file}
+The user needs to connect the Android device to the computer, and transfer the APK-file to the SD card. The settings on the device must be set to accept installing applications from unknown sources. The next step is to open the file browser on the device, and click the application file on the SD card. It will then prompt the user to install the application.
 
 \subsection{Game rules}
 The game is implemented with the same set of rules as the classic board game \emph{Nine Men's Morris} \cite{morris}. The goal of the game is to either block any opponent moves, or to reduce your opponent's piece number to less than three. If you get three pieces in a row, you enter a morris state, and are allowed to remove one of your opponent's pieces. Pieces that are in a morris state, i.e. forms three in a row either horizontally or vertically, are not removable.
 
 \subsection{Creating Skiller account}
-The first thing that meets the user after starting the application for the first time, is a Skiller dialogue asking the user to create a Skiller account. This account will later be used for playing the game online.
+When running the application, the user is prompted to create a Skiller user account. The registration only requires a username and a password. If the user already has an account, he can log in with the existing user information. The account automatically gets 50 coins that are used for playing online games in the future.
 
 \subsection{How to play}
 \label{section:playing}
@@ -39,9 +43,9 @@ A user can choose between online mode or hotseat mode. Clicking "Crate Game" or 
 \begin{figure}[H]
 	\centering
 	\mbox{
-	\subfigure[Available game modes]{\includegraphics[width=2.1in]{Images/menuPage.png}}
-	\subfigure[Achievements]{\includegraphics[width=2.1in]{Images/menuPage.png}}
-	\subfigure[Help explaining the games rules]{\includegraphics[width=2.1in]{Images/achievements.png}}
+	\subfigure[Available game modes]{\includegraphics[width=0.3\textwidth]{Images/menuPage.png}}
+	\subfigure[Achievements]{\includegraphics[width=0.3\textwidth]{Images/menuPage.png}}
+	\subfigure[Help explaining the games rules]{\includegraphics[width=0.3\textwidth]{Images/achievements.png}}
 	}	
 \end{figure}
 
