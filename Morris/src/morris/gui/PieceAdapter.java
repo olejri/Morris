@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-
+/**
+ * Custom arrayAdapter that draw the pieces on scoreboardview
+ * @author emilandreasmork
+ *
+ */
 public class PieceAdapter extends BaseAdapter {
 	private Context context;
 	private String color;
@@ -24,7 +28,6 @@ public class PieceAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() { // lagt til getInstance()
-
 		int counter = 0;
 		if(GameController.getMorrisGame()!=null){
 		if (color.equals(Constant.WHITE)) {

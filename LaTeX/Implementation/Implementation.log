@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 13:19
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.4.5)  27 APR 2012 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,7 +570,7 @@ LaTeX Info: Redefining \nameref on input line 39.
 \openout3 = `Implementation.out'.
 
  (./0-frontpage.tex
-<Images/androids.jpg, id=96, 552.0625pt x 414.54875pt>
+<Images/androids.jpg, id=100, 552.0625pt x 414.54875pt>
 File: Images/androids.jpg Graphic file (type jpg)
 
 <use Images/androids.jpg>
@@ -592,7 +592,7 @@ s/androids.jpg>]) (./Implementation.toc)
 r (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.4 ...{\ignorespaces Testing of FR4}}{8}{table.4}
+l.2 ...{\ignorespaces Testing of FR2}}{8}{table.2}
                                                    [1])
 \tf@lot=\write5
 \openout5 = `Implementation.lot'.
@@ -621,7 +621,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-<Images/activities.png, id=176, 343.2825pt x 206.42119pt>
+<Images/activities.png, id=183, 343.2825pt x 206.42119pt>
 File: Images/activities.png Graphic file (type png)
 
 <use Images/activities.png>
@@ -629,7 +629,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
-[4 <./Images/activities.png>]) (./3-manual.tex
+[4 <./Images/activities.png>]
+<Images/mvc.png, id=192, 430.45819pt x 328.8285pt>
+File: Images/mvc.png Graphic file (type png)
+ <use Images/mvc.png>)
+(./3-manual.tex [5 <./Images/mvc.png>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
@@ -639,14 +643,14 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
 
 
-LaTeX Warning: Citation `morris' on page 5 undefined on input line 26.
+LaTeX Warning: Citation `morris' on page 6 undefined on input line 26.
 
-[5]
+
 Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
-
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
@@ -671,7 +675,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--47
 
  []
 
-[6]) (./4-test.tex
+) (./4-test.tex [7]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 8--15
 [][] 
  []
@@ -686,7 +690,7 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 30--37
 [][] 
  []
 
-[7]
+[8]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 41--48
 [][] 
  []
@@ -701,7 +705,7 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 63--70
 [][] 
  []
 
-[8]
+[9]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 87--94
 [][] 
  []
@@ -716,28 +720,30 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 124--133
 [][] 
  []
 
-[9]) (./5-relation.tex) (./6-problems.tex) [10]
-No file Implementation.bbl.
-AED: lastpage setting LastPage
+[10]) (./5-relation.tex) (./6-problems.tex) [11] (./Implementation.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+) AED: lastpage setting LastPage [12]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
  (./Implementation.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
 Package rerunfilecheck Info: File `Implementation.out' has not changed.
-(rerunfilecheck)             Checksum: CECB6B3FDC1F453D2DC3743CAAE7A2ED;1541.
+(rerunfilecheck)             Checksum: D30C2D3010818A7DD3A3561A827F72DB;1588.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6130 strings out of 493747
- 87807 string characters out of 3143546
- 171346 words of memory out of 3000000
- 9213 multiletter control sequences out of 15000+200000
+ 6143 strings out of 493747
+ 87980 string characters out of 3143547
+ 171382 words of memory out of 3000000
+ 9219 multiletter control sequences out of 15000+200000
  15936 words of font info for 36 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,12n,43p,723b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,43p,898b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
@@ -751,10 +757,10 @@ live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texli
 ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2
 010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on Implementation.pdf (11 pages, 288051 bytes).
+Output written on Implementation.pdf (13 pages, 341949 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 240 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 293 PDF objects out of 1000 (max. 8388607)
+ 258 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 208 words of extra memory for PDF output out of 10000 (max. 10000000)
 

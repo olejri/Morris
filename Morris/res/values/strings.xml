@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MorrisActivity!</string>
     <string name="app_name">Morris</string>
+    <string name="you">You</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="waiting_for_opponent">Waiting on opponent..</string>
+    <string name="game_started">Game started</string>
+    <string name="quit_game_question">Do you want to quit the game?</string>
+    <string name="player1">Player1</string>
+    <string name="player2">Player2</string>
 </resources>

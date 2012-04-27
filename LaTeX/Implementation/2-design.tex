@@ -9,7 +9,7 @@ Due to the desire of developing a fully functional multiplayer game, the \emph{S
 This framework supplies a server solution for turn based games, and it has been implemented in the network class. When playing a network game, the GameController class tells the Game model to  network class sends event messages to the server, and the server delivers it to the opponent.
 
 \subsection{Activities}
-Figure \ref{fig:activities} shows an overview of the application's different activities, and how the user interactions can change them. \\
+Figure \ref{fig:activities} shows an overview of the application's different activities, and how the user interactions can change them. The user can navigates back to the menuActivity by pressing the back button.\\
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{Images/activities}
@@ -23,7 +23,17 @@ Screencaps of the different activities, and the achievement screen, are shown in
 %\ref{section:label}
 
 \subsection{MVC}
-BoardView -> GameController -> Game model -> BoardView og Network (if(!hotseat))
+
+Our implementation of the MVC structure is based interface communication. In regular java there is more common to create a MVC structure where the view has model and the controller contains view and model. Android has its own MVC structure where an activity represent controller and view, which make it difficult to build ut the MVC on the regular way. The most favorable way of createing MVC in android is to use interfaces to update the view when there are changes in the model. Figure~\ref{fig:mvc} is a excerpt from our class diagram that shows our MVC structure with BoardView(View), GameController(Controller) and Game(Model). When the user interact with the ciew the controller handles the user action and tell the model what to do. When the model is updated the view receive a message on the interface, and finally update the screen.
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{Images/mvc}
+\caption{MVC structure}
+\label{fig:mvc}
+\end{center}
+\end{figure}
 
 
 

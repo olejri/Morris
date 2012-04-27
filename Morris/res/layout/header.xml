@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Toolbar shown at all Activities in the application. Shows Iridium and GPS signal -->
+<!-- Toolbar is visible on all views in the application. Included in other views -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <RelativeLayout
