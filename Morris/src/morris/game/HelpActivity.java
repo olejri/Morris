@@ -1,5 +1,11 @@
 package morris.game;
 
+import morris.help.Constant;
+
+import com.skiller.api.listeners.SKBaseListener;
+import com.skiller.api.operations.SKApplication;
+import com.skiller.api.responses.SKBaseResponse;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -57,7 +63,10 @@ public class HelpActivity extends SuperActivity {
 		Typeface button_font = Typeface.createFromAsset(getAssets(), "fonts/text-font.otf");
 		((TextView)((Activity)this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
 	}
-	
+	@Override
+	public void initSkiller() {
+		
+	}
 	private View getTitleTextView(String title,int titleImage){
 		TextView titleView = new TextView(this);
 		titleView.setText(title);
