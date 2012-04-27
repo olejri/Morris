@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 import morris.help.Constant;
 import morris.interfaces.State;
-import morris.interfaces.StateListener;
 import morris.models.Board;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
 
-public class RemovalState implements StateListener, State {
+public class RemovalState implements State {
 
 	/*
 	 * Highlights all pieces that are not in Morris state. Needs to take in opponent Player object.

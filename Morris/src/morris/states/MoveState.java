@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 import morris.help.Constant;
 import morris.interfaces.State;
-import morris.interfaces.StateListener;
 import morris.models.Board;
 import morris.models.ModelPoint;
 import morris.models.Piece;
 import morris.models.Player;
 
-public class MoveState implements StateListener, State {
+public class MoveState implements State {
 
 	@Override
 	public ArrayList<ModelPoint> getHighlightList(Board board, int id, Player currentPlayer, boolean hotseat) {

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 17:29
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -312,26 +312,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
 Package: `setspace' 6.7 <2000/12/01>
-) (/usr/local/texlive/2010/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen105
-\WF@size=\dimen106
-\c@WF@wrappedlines=\count89
-\WF@box=\box26
-\WF@everypar=\toks18
-Package: wrapfig 2003/01/31  v 3.6
-)
-(/usr/local/texlive/2010/texmf-dist/tex/latex/subfigure/subfigure.sty
+) (/usr/local/texlive/2010/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip55
 \subfigcapskip=\skip56
-\subfigcaptopadj=\dimen107
+\subfigcaptopadj=\dimen105
 \subfigbottomskip=\skip57
-\subfigcapmargin=\dimen108
+\subfigcapmargin=\dimen106
 \subfiglabelskip=\skip58
-\c@subfigure=\count90
-\c@lofdepth=\count91
-\c@subtable=\count92
-\c@lotdepth=\count93
+\c@subfigure=\count89
+\c@lofdepth=\count90
+\c@subtable=\count91
+\c@lotdepth=\count92
 
 ****************************************
 * Local config file subfigure.cfg used *
@@ -342,11 +334,11 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count94
-\float@exts=\toks19
-\float@box=\box27
-\@float@everytoks=\toks20
-\@floatcapt=\box28
+\c@float@type=\count93
+\float@exts=\toks18
+\float@box=\box26
+\@float@everytoks=\toks19
+\@floatcapt=\box27
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
@@ -354,14 +346,14 @@ Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2009/09/15 v5.5a a miscellany of footnote facilities
-\FN@temptoken=\toks21
-\footnotemargin=\dimen109
+\FN@temptoken=\toks20
+\footnotemargin=\dimen107
 
 
 LaTeX Warning: Command \@makecol  has changed.
                Check if current package is valid.
 
-\c@pp@next@reset=\count95
+\c@pp@next@reset=\count94
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -375,7 +367,7 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks22
+\KV@toks@=\toks21
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -388,8 +380,8 @@ File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 )
-\Gin@req@height=\dimen110
-\Gin@req@width=\dimen111
+\Gin@req@height=\dimen108
+\Gin@req@width=\dimen109
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2010/06/18 v6.81g Hypertext links for LaTeX
@@ -446,9 +438,9 @@ Package: xcolor-patch 2009/12/12 xcolor patch
 (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/letltxmacro.sty
 Package: letltxmacro 2008/06/24 v1.3 Let assignment for LaTeX macros (HO)
 )
-\@linkdim=\dimen112
-\Hy@linkcounter=\count96
-\Hy@pagecounter=\count97
+\@linkdim=\dimen110
+\Hy@linkcounter=\count95
+\Hy@pagecounter=\count96
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2010/06/18 v6.81g Hyperref: PDFDocEncoding definition (HO)
@@ -479,10 +471,10 @@ Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/bigintcalc.sty
 Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
 ))
-\Fld@menulength=\count98
-\Field@Width=\dimen113
-\Fld@charsize=\dimen114
-\Field@toks=\toks23
+\Fld@menulength=\count97
+\Field@Width=\dimen111
+\Fld@charsize=\dimen112
+\Field@toks=\toks22
 Package hyperref Info: Hyper figures OFF on input line 5137.
 Package hyperref Info: Link nesting OFF on input line 5142.
 Package hyperref Info: Hyper index ON on input line 5145.
@@ -496,9 +488,9 @@ LaTeX Info: Redefining \pageref on input line 5211.
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2010/03/25 v1.12 At begin shipout hook (HO)
 )
-\Hy@abspage=\count99
-\c@Item=\count100
-\c@Hfootnote=\count101
+\Hy@abspage=\count98
+\c@Item=\count99
+\c@Hfootnote=\count100
 )
 * hyperref using default driver hpdftex *
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -508,8 +500,8 @@ File: hpdftex.def 2010/06/18 v6.81g Hyperref driver for pdfTeX
 Package: atveryend 2010/03/24 v1.5 Hooks at very end of document (HO)
 Package atveryend Info: \enddocument detected (standard).
 )
-\Fld@listcount=\count102
-\c@bookmark@seq@number=\count103
+\Fld@listcount=\count101
+\c@bookmark@seq@number=\count102
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2010/03/16 v1.6 Rerun checks for auxiliary files (HO)
@@ -542,16 +534,16 @@ LaTeX Font Info:    ... okay on input line 40.
 
 (/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen115
-\scratchbox=\box29
-\nofMPsegments=\count105
-\nofMParguments=\count106
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen116
-\MPnumerator=\count108
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count103
+\scratchdimen=\dimen113
+\scratchbox=\box28
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count106
+\MPscratchDim=\dimen114
+\MPnumerator=\count107
+\everyMPtoPDFconversion=\toks24
 ) (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -567,7 +559,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box30
+\AtBeginShipoutBox=\box29
 Package hyperref Info: Link coloring OFF on input line 40.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -579,7 +571,7 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
-\c@section@level=\count109
+\c@section@level=\count108
 )
 LaTeX Info: Redefining \ref on input line 40.
 LaTeX Info: Redefining \pageref on input line 40.
@@ -612,7 +604,7 @@ s/androids.jpg>]) (./Implementation.toc)
 r (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2 ...{\ignorespaces Testing of FR2}}{8}{table.2}
+l.2 ...\ignorespaces Testing of FR2}}{11}{table.2}
                                                    [1])
 \tf@lot=\write5
 \openout5 = `Implementation.lot'.
@@ -623,6 +615,10 @@ l.2 ...{\ignorespaces Testing of FR2}}{8}{table.2}
 
 
 [2] (./1-introduction.tex) (./2-design.tex
+
+LaTeX Warning: Citation `skiller' on page 3 undefined on input line 7.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
@@ -632,7 +628,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-[3] <Images/activities.png, id=185, 343.2825pt x 161.25244pt>
+[3] <Images/activities.png, id=187, 343.2825pt x 161.25244pt>
 File: Images/activities.png Graphic file (type png)
 
 <use Images/activities.png>
@@ -640,31 +636,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
-) (./3-manual.tex [4 <./Images/activities.png>]
+[4 <./Images/activities.png>]
+<Images/mvc.png, id=197, 430.45819pt x 328.8285pt>
+File: Images/mvc.png Graphic file (type png)
+ <use Images/mvc.png>)
+(./3-manual.tex
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
 
-<Images/menuPage.png, id=195, 481.8pt x 803.0pt>
+[5 <./Images/mvc.png>]
+
+LaTeX Warning: Citation `morris' on page 6 undefined on input line 26.
+
+<Images/menuPage.png, id=205, 481.8pt x 803.0pt>
 File: Images/menuPage.png Graphic file (type png)
  <use Images/menuPage.png>
-[5] <Images/placementState.png, id=203, 481.8pt x 803.0pt>
+[6] <Images/placementState.png, id=212, 481.8pt x 803.0pt>
 File: Images/placementState.png Graphic file (type png)
 
 <use Images/placementState.png>
-<Images/selectState.png, id=204, 361.35pt x 602.25pt>
+<Images/selectState.png, id=213, 361.35pt x 602.25pt>
 File: Images/selectState.png Graphic file (type png)
 
 <use Images/selectState.png>
-<Images/selectedPiece.png, id=205, 361.35pt x 602.25pt>
+<Images/selectedPiece.png, id=214, 361.35pt x 602.25pt>
 File: Images/selectedPiece.png Graphic file (type png)
 
 <use Images/selectedPiece.png>
-<Images/removalState.png, id=206, 481.8pt x 803.0pt>
+<Images/removalState.png, id=215, 481.8pt x 803.0pt>
 File: Images/removalState.png Graphic file (type png)
 
 <use Images/removalState.png>
@@ -677,11 +680,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--51
 
  []
 
-[6 <./Images/menuPage.png (PNG copy)>]
+[7 <./Images/menuPage.png (PNG copy)>]
 Overfull \vbox (4.55347pt too high) has occurred while \output is active []
 
 
-[7 <./Images/placementState.png (PNG copy)> <./Images/selectState.png> <./Image
+[8 <./Images/placementState.png (PNG copy)> <./Images/selectState.png> <./Image
 s/selectedPiece.png> <./Images/removalState.png (PNG copy)>]) (./4-test.tex
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 8--15
 [][] 
@@ -697,7 +700,7 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 30--37
 [][] 
  []
 
-[8]
+[9]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 41--48
 [][] 
  []
@@ -712,8 +715,13 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 63--70
 [][] 
  []
 
-[9]
+[10]
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 87--94
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 100--107
 [][] 
  []
 
@@ -722,22 +730,32 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 111--118
 [][] 
  []
 
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
+[]|\T1/cmr/bx/n/12 Expected re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
+[]|\T1/cmr/bx/n/12 Observed re-
+ []
+
 
 Overfull \hbox (25.19998pt too wide) in paragraph at lines 124--133
 [][] 
  []
 
-[10]) (./5-relation.tex) (./6-problems.tex
+) (./5-relation.tex) (./6-problems.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
-
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
-[11]
+
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
@@ -747,47 +765,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-) [12] (./Implementation.bbl
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 5.
+) [13] (./Implementation.bbl
 
-(/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-))
-AED: lastpage setting LastPage [13]
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+) AED: lastpage setting LastPage [14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
  (./Implementation.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
 Package rerunfilecheck Info: File `Implementation.out' has not changed.
 (rerunfilecheck)             Checksum: D30C2D3010818A7DD3A3561A827F72DB;1588.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 6342 strings out of 493747
- 91375 string characters out of 3143546
- 173391 words of memory out of 3000000
- 9396 multiletter control sequences out of 15000+200000
- 17012 words of font info for 38 fonts, out of 3000000 for 9000
+ 6269 strings out of 493747
+ 90061 string characters out of 3143546
+ 171172 words of memory out of 3000000
+ 9328 multiletter control sequences out of 15000+200000
+ 16699 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,12n,43p,722b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-/usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
-sr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
-/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/l
-ocal/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/loc
-al/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local
-/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/t
-exlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/tex
-live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texli
-ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive
-/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2
-010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/201
-0/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2010/
-texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Implementation.pdf (14 pages, 489901 bytes).
+ 41i,12n,43p,898b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{page.16} has been referenced but does not exist, 
+replaced by a fixed one
+
+{/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</
+usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr
+/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/l
+ocal/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/loc
+al/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local
+/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/t
+exlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/tex
+live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/texli
+ve/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texlive
+/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2
+010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/201
+0/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2010/
+texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on Implementation.pdf (15 pages, 520083 bytes).
 PDF statistics:
- 323 PDF objects out of 1000 (max. 8388607)
+ 325 PDF objects out of 1000 (max. 8388607)
  280 compressed objects within 3 object streams
- 58 named destinations out of 1000 (max. 500000)
- 228 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 60 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
 

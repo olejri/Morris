@@ -23,33 +23,8 @@ import com.skiller.api.operations.SKApplication;
 public class GameController {
 
 	private static GameController instance = null;
-
-
-	private Context menuContext;
-	private Context canvasContext;
-
-	private ProgressDialog progressDialog;
-	private Timer timer;
-
-	private boolean serverEndGameresponse=false;
-	private boolean gameStarted=false;
-	private boolean waiting_for_opponnent = false;
-	private boolean canvasContextON=false;
-	private boolean gameOwner;
-	private boolean printed = false;
-
 	private static Game morrisGame = null;
-
-	private SKApplication skMorris;
-	private SKUser owner;
-	private SKUser guest;
-	private String game_id;
-	private int pot;
-
-	private int turn;
-	private int side;
 	private static Point justPressedPoint = new Point(100, 0, 0);
-
 	static boolean hotseat = true;
 
 	public static GameController getInstance() {
@@ -65,22 +40,7 @@ public class GameController {
 	}
 
 
-	private GameController() {
-	}
-
-
-	/*
-	 *  createNewGame() method - starts a new game that other can join
-	 */
-	//	public void createNewGame() {
-	//		
-	//		GameController.getInstance();
-	//		GameController.setMorrisGame(new Game(true));
-	//		GameController.getInstance();
-	//		GameController.getMorrisGame().initPlayers();
-	//		//chooseFeeDialog();
-	//	}
-
+	private GameController() {}
 	/**
 	 * Set MorrisGame
 	 * 
@@ -216,7 +176,10 @@ public class GameController {
 		}
 
 	}
-	//Player1 is used for testing, must change with getPlayingPlayer()
+	/**
+	 * Player1 is used for testing, must change with getPlayingPlayer()
+	 * @return
+	 */
 	public static ArrayList<ModelPoint> getHighlightsList() {
 		ArrayList<ModelPoint> highlights = new ArrayList<ModelPoint>();
 		if(morrisGame != null){
