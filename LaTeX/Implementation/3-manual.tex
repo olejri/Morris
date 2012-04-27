@@ -31,19 +31,23 @@ The game is implemented with the same set of rules as the classic board game \em
 
 \subsubsection{Choosing game mode}
 \label{section:game_mode}
-
-{\bf Figur av startmeny som viser valg av spillmodus.} \\
+\begin{figure}[H]
+\begin{center}
+    \includegraphics[height=300pt]{Images/menuPage}
+\end{center}
+\caption{Available game modes}
+\label{fig:gameMode}
+\end{figure}
 
 \subsubsection{Placing, selecting, moving, and removing pieces}
 When it is your turn to move, either the board or your pieces will be highlighted. In addition, the name of the current player will be blinking as the game progresses. \\
-
-FIGUR AV PLACEMENTSTATE MED FORKLARING TIL AT DU KAN SETTE PÅ ALLE PLASSER. \\
-
-FIGUR AV SELECTSTATE SOM VISER MULIGE BRIKKEVALG. \\
-
-FIGUR AV MOVESTATE SOM VISER MULIGE FLYTT. \\
-
-FIGUR AV REMOVALSTATE SOM VISER MULIGE FJERNINGER AV BRIKKER. \\
+\begin{figure}[H]
+	\centering
+	\mbox{\subfigure[Green indicator shows where you can place a piece]{\includegraphics[width=2.1in]{Images/placementState.png}} \qquad
+	\subfigure[Highlights selectable pieces]{\includegraphics[width=2.1in]{Images/selectState.png}}}
+	\mbox{\subfigure[Highlights selected piece, green indicator on possible moves]{\includegraphics[width=2.1in]{Images/selectedPiece.png}} \qquad
+	\subfigure[Highlights removable pieces with a red cross]{\includegraphics[width=2.1in]{Images/removalState.png}}}
+\end{figure}
 
 \subsubsection{Hotseat mode}
 
