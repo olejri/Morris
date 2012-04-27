@@ -107,24 +107,6 @@ public class Game implements NetworkListener {
 		}
 		return false;
 	}
-	/*
-	public void checkGameOwer(Player player){
-		("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
-		if(player.getPieces().size() < 9 || player.hasSelectablePieces()){
-			("win", "Game is over : " + player.getName() + " lost [Game]");
-			if(getCurrentPlayer()==player1)firePlayerWon(1);
-			else firePlayerWon(2);
-		}
-	}
-
-	public boolean playerWon(Player player){
-		("win", "checkGameOver [Game] for player:"+player.getName() + " pieces size: " + player.getPieces().size());
-		if(player.getPieces().size() < 3 || !getOpponent().hasSelectablePieces()){
-			("win", "Game is over : " + player.getName() + " lost [Game]");
-			//firePlayerWon(1);
-			return true;
-		}else return false;
-	}*/
 
 	private void updateSelectablePieces(Player player){
 		for(Piece p : player.getPieces()){
@@ -166,18 +148,13 @@ public class Game implements NetworkListener {
 			if(p.inMorris()){
 				updateMorrisStates(player);
 			}
-			if(checkMorris(p, player) && opponentHasRemovablePieces(player)){ // Lagt til 14:!4 (26.04)
+			if(checkMorris(p, player) && opponentHasRemovablePieces(player)){ 
 				//Sets last move
 				lastMoveFromPosition = from;
 				lastMoveToPosition = to;
 			}else{
-				//firePieceMoved(from, to, playerWon(player));
 				firePieceMoved(from, to,true);
-				String balle = "balle";
 			}
-			//Check if player won
-			//checkGameOwer(getOpponent());
-
 			return true;
 
 		} else {
@@ -223,9 +200,7 @@ public class Game implements NetworkListener {
 	 */
 	public boolean checkMorris(Piece piece, Player player){
 		ArrayList<Integer> hDomain = new ArrayList<Integer>();
-		if (piece.getPosition()> 0){
-			hDomain = board.getHorizontalDomain(piece.getPosition());
-		}
+		hDomain = board.getHorizontalDomain(piece.getPosition());
 		int horizontal = 0;
 		for(Integer i : hDomain){
 			if(board.getPoint(i) != null){
@@ -238,9 +213,7 @@ public class Game implements NetworkListener {
 			setMorrisInDomain(hDomain, player);
 		}
 		ArrayList<Integer> vDomain = new ArrayList<Integer>();
-		if (piece.getPosition()> 0){
-			vDomain = board.getVerticalDomain(piece.getPosition());
-		}
+		vDomain = board.getVerticalDomain(piece.getPosition());
 		int vertical = 0;
 		for(Integer i : vDomain){
 			if(board.getPoint(i) != null){
@@ -318,23 +291,10 @@ public class Game implements NetworkListener {
 		}
 	}
 
-	/*
-	 * Help method only used to get the player's pieces when checking for Morris state (rows and columns).
-	 */
-	private ArrayList<Piece> getPieces(int player){
-		if(player == 1){
-			return getPlayer1().getPieces();
-		} else {
-			return getPlayer2().getPieces();
-		}
-	}
-
 	// Her kan man ta inn pointID og et Player-objekt.
 	public ArrayList<ModelPoint> getHighlightList(int id, Player player) {
 		return this.state.getHighlightList(board, id, player, hotseat); // aktuell spiller benyttes
 	}
-
-
 	/**
 	 * Update pieces resource images
 	 * @param player
@@ -471,9 +431,6 @@ public class Game implements NetworkListener {
 	}
 
 	public void changePlayer(boolean hotseat){
-		boolean playerOne = currentPlayer == player1;
-
-
 		if(hotseat){
 			if (currentPlayer == player1){
 				setCurrentPlayer(player2);
@@ -482,8 +439,6 @@ public class Game implements NetworkListener {
 				setCurrentPlayer(player1);
 			}
 		}
-		playerOne = currentPlayer == player1;
-
 		firePlayerChangeTurn(getCurrentPlayer());
 	}
 
