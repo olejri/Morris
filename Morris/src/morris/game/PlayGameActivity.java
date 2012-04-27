@@ -51,64 +51,69 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.play_game_layout);
-		
-		h = new Handler();
-		setButtonAndFont();
-		
-		//Set hotseat value
+		setBoardHeight();
+
 		if (getIntent().getExtras() != null){
 			hotseat = getIntent().getBooleanExtra("Hotseat",false);
 		}
+		h = new Handler();
+		setButtonFonts();
 		
-		//Init new game
+		//Init player textViews
+		player1 = (TextView) findViewById(R.id.player1_name);
+		player2 = (TextView) findViewById(R.id.player2_name);
+
+		
+		
+		//Init game
 		if (GameController.getMorrisGame() == null) {
 			GameController.setMorrisGame(new Game(hotseat));
 			GameController.getMorrisGame().initPlayers();
 		}
-		
-		//Set default player names
-		setScoreBoardNames(getString(R.string.player1), getString(R.string.player2));
-		
-		//Add gamelistener
+		//Set default names
+		setScoreBoardNames("Player1", "Player2");
+		//Add gamelistener : this
 		GameController.getInstance();
 		GameController.getMorrisGame().addGameListener(this);
-		setUpScoreBoard();
-		if(!hotseat){
-			//Network
-			Network.getInstance().setCanvasContext(this);
-			Network.getInstance().setCanvasContextON(true);
-			setUpScoreBoard();
-			try {
-				if (network.isWaiting_for_opponnent()) {
-					network.showToastOnCanvas(getString(R.string.waiting_for_opponent));
-					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
-					if(!hotseat)setScoreBoardNames(getString(R.string.you),getString(R.string.waiting_for_opponent));
-				}
-				if (network.isGameOwner()) {
-					if (network.isGameStarted()) {
-						network.clearGame();
-						network.setGameStarted(false);
-						network.setWaiting_for_opponent(false);
-						network.setSide(1);
-						network.setSide(2);
-						network.showToastOnCanvas(getString(R.string.game_started));
-						GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
-					}
-				} else {
-					setScoreBoardNames(network.getGuest().getUserName(),network.getOwner().getUserName());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			//Add gamelistener to network
-			GameController.getMorrisGame().addGameListener(network);
 
-			//Add gamelistener to view
-			BoardView b = (BoardView) findViewById(R.id.board_view_id);
-			GameController.getMorrisGame().addGameListener(b);
-		}
+		//Set activity context
+		Network.getInstance().setCanvasContext(this);
+		Network.getInstance().setCanvasContextON(true);
+
+		setUpScoreBoard();
 		
-		//Start fading text
+		/**
+		 * Check if waiting for opponent
+		 */
+		try {
+			if (network.isWaiting_for_opponnent()) {
+				network.showToastOnCanvas("Still waiting on opponent");
+				GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
+				if(!hotseat)setScoreBoardNames("You","Waiting for opponent..");
+			}
+			if (network.isGameOwner()) {
+				if (network.isGameStarted()) {
+					network.clearGame();
+					network.setGameStarted(false);
+					network.setWaiting_for_opponent(false);
+					network.setSide(1);
+					network.setSide(2);
+					network.showToastOnCanvas("Game started");
+					GameController.getMorrisGame().setCurrentPlayer(GameController.getMorrisGame().getPlayer2());
+				}
+			} else {
+				setScoreBoardNames(network.getGuest().getUserName(),network.getOwner().getUserName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//Add gamelistener : network
+		GameController.getMorrisGame().addGameListener(network);
+
+		
+		BoardView b = (BoardView) findViewById(R.id.board_view_id);
+		GameController.getMorrisGame().addGameListener(b);
+		
 		startTextFading(GameController.getMorrisGame().getCurrentPlayer(), false);
 
 	}
@@ -124,6 +129,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 		RelativeLayout header = (RelativeLayout) findViewById(R.id.header);
 		int headerheight = header.getHeight();
+
 		int usableArea = screenHeight - (headerheight);
 		float viewHeight = usableArea * 0.60f;
 		float scoreHeight = usableArea * 0.30f;
@@ -133,18 +139,30 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 
 		BoardView cardView = (BoardView) findViewById(R.id.board_view_id);
 		LinearLayout scoreView = (LinearLayout) findViewById(R.id.score_board_id);
-		RelativeLayout.LayoutParams scoreParams = (RelativeLayout.LayoutParams) scoreView.getLayoutParams();
-		RelativeLayout.LayoutParams params = (LayoutParams) cardView.getLayoutParams();
+		RelativeLayout.LayoutParams scoreParams = (RelativeLayout.LayoutParams) scoreView
+				.getLayoutParams();
+		RelativeLayout.LayoutParams params = (LayoutParams) cardView
+				.getLayoutParams();
 
 		scoreView.setLayoutParams(scoreParams);
 		cardView.setLayoutParams(params);
+		
+
 	}
 
-	private void setButtonAndFont() {
-		player1 = (TextView) findViewById(R.id.player1_name);
-		player2 = (TextView) findViewById(R.id.player2_name);
-		Typeface button_font = Typeface.createFromAsset(getAssets(),"fonts/text-font.otf");
-		((TextView) ((Activity) this).findViewById(R.id.toolbar_title)).setTypeface(button_font);
+	/**
+	 * Set boardView height to 70 % of screen
+	 */
+	private void setBoardHeight() {
+
+	}
+
+	private void setButtonFonts() {
+
+		Typeface button_font = Typeface.createFromAsset(getAssets(),
+				"fonts/text-font.otf");
+		((TextView) ((Activity) this).findViewById(R.id.toolbar_title))
+				.setTypeface(button_font);
 
 	}
 
@@ -154,11 +172,15 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	private void setUpScoreBoard() {
 		// Set up player 1 pieces
 		gridview_black = (GridView) findViewById(R.id.gridview_player1);
-		pieceAdapter1 = new PieceAdapter(getApplicationContext(),Constant.WHITE);
+		pieceAdapter1 = new PieceAdapter(getApplicationContext(),
+				Constant.WHITE);
 		gridview_black.setAdapter(pieceAdapter1);
 		// Set up player 2 pieces
+
 		gridview_white = (GridView) findViewById(R.id.gridview_player2);
-		pieceAdapter2 = new PieceAdapter(getApplicationContext(),Constant.BLACK);
+
+		pieceAdapter2 = new PieceAdapter(getApplicationContext(),
+				Constant.BLACK);
 		gridview_white.setAdapter(pieceAdapter2);
 
 	}
@@ -167,6 +189,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		h.post(new Runnable() {
 			@Override
 			public void run() {
+				Log.i("names", "settingScoreBoardNames() [PlayGameActivity]");
 				player1.setText(name1);
 				player2.setText(name2);
 			}
@@ -183,9 +206,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		gridview_black.refreshDrawableState();
 	}
 
-	/**
-	 * To make sure that the player not quits the game without confirming
-	 */
+
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -195,18 +216,24 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	        new AlertDialog.Builder(this)
 	        .setIcon(R.drawable.icon_networkgame)
 	        .setTitle("Quit Game")
-	        .setMessage(getString(R.string.quit_game_question))
-	        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+	        .setMessage("Do you want to quit the game?")
+	        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
 	            @Override
 	            public void onClick(DialogInterface dialog, int which) {
+
 	            	try {
 						//Network.getInstance().sendInformation("",SKTurnBasedTools.GAME_EVENT_QUIT_GAME, null);
-	            		setScoreBoardNames(getString(R.string.player1), getString(R.string.player2));
+	            		setScoreBoardNames("Player1", "Player2");
 	            		//Remove gamelistener
-	            		GameController.getMorrisGame().removeGameListener(network);
-	            		//Remove game
+	            		Game game = GameController.getMorrisGame();
+	            		game.removeGameListener(network);
+	            		
+	            		Network.getInstance().removeListener(game);
 						GameController.setMorrisGame(null);
-						//Finish activity
+						//Remove listeners
+						//GameController.getMorrisGame().removeListener(network);
+						System.gc();
 						PlayGameActivity.this.finish();
 					} catch (Exception e) {
 						finish();
@@ -214,7 +241,10 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 					PlayGameActivity.this.finish();
 	            }
 
-	        }).setNegativeButton(getString(R.string.no), null).show();
+	        })
+	        .setNegativeButton("No", null)
+	        .show();
+
 	        return true;
 	    }
 	    else {
@@ -222,11 +252,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 	    }
 
 	}
-	/**
-	 * Start fading text. Show current player
-	 * @param p
-	 * @param gameover
-	 */
+	
 	public void startTextFading(Player p, boolean gameover){
 		textFadingAnimation = AnimationUtils.loadAnimation(this, R.anim.textfading);
 		textFadingAnimation.setRepeatCount(Animation.INFINITE);
@@ -235,6 +261,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 			player1.setAnimation(textFadingAnimation);
 			textFadingAnimation.start();
 		} else {
+			Log.i("animation","StartTextFading(): " + p.getName());
 			if(p==GameController.getMorrisGame().getPlayer1()){
 				player2.clearAnimation();
 				player1.setAnimation(textFadingAnimation);
@@ -276,10 +303,7 @@ public class PlayGameActivity extends SuperActivity implements GameListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	/**
-	 * Set winner and loser text when playerLost is fired from the model
-	 */
+
 	@Override
 	public void playerLost(int player,boolean hotseat) {
 		String userName1 ="";

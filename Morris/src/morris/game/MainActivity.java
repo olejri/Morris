@@ -38,22 +38,15 @@ public class MainActivity extends SuperActivity {
 
 		network.setMenuContext(this);
 		setButtonFonts();
-
-		initSound();
-	}
-	
-	/**
-	 * Start sound
-	 */
-	private void initSound(){
-		SoundManager.getInstance().initSound(getApplicationContext());
+		
+		SoundManager.getInstance().initSound(getApplicationContext());	
 		SoundManager.getInstance().startBackgroundSound();
 		((Button) findViewById(R.id.soundButton)).setBackgroundResource(R.drawable.sound_on);
+		
+		initSkiller();
 	}
 	
-	/**
-	 * Set up custom font on main manu buttons
-	 */
+
 	private void setButtonFonts() {
 		Typeface button_font = Typeface.createFromAsset(getAssets(),
 				"fonts/text-font.otf");
@@ -71,10 +64,7 @@ public class MainActivity extends SuperActivity {
 				.setTypeface(button_font);
 
 	}
-	/**
-	 * Called when a main manu button is pressed
-	 * @param view
-	 */
+
 	public void onClick(View view) {
 		Intent i = new Intent();
 		if (view.getId() == R.id.menu_button_creategame) {
@@ -101,9 +91,6 @@ public class MainActivity extends SuperActivity {
 		}
 	}
 
-	/**
-	 * Called when user goes back(out) of the game
-	 */
 	@Override
 	public void onBackPressed(){
 		super.onBackPressed();

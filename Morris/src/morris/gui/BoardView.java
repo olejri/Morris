@@ -3,6 +3,7 @@ package morris.gui;
 import java.util.ArrayList;
 import morris.game.controller.GameController;
 import morris.help.Constant;
+import morris.help.LogHelp;
 import morris.interfaces.GameListener;
 import morris.models.ModelPoint;
 import morris.models.Piece;
@@ -15,7 +16,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -37,6 +37,7 @@ public class BoardView extends View implements GameListener {
 	private int pieceSize;
 	private boolean makePointList = true;
 	ArrayList<Point> pointList = new ArrayList<Point>();
+	private Point justPressedPoint = new Point(100, 0, 0);
 
 	// Bitmaps pieces
 
@@ -86,9 +87,10 @@ public class BoardView extends View implements GameListener {
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		//testing
+
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-		}else if (event.getAction() == MotionEvent.ACTION_UP) {
-			//if (GameController.getGame().isYourTurn()) {
+		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			Point p = getPressedPoint(event.getX(), event.getY());
 			if(p!=null){
 				GameController.handlePlayerAction(p);
