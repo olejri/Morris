@@ -85,7 +85,6 @@ public class Game implements NetworkListener {
 		}
 		for(Piece p : opponent.getPieces()){
 			if(p.getPosition()!=-1 && !p.inMorris()) {
-				Log.i("morris_state","Piece state: ID " + p.getPosition());
 				return true;
 			}
 		}
