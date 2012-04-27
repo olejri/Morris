@@ -1,0 +1,66 @@
+%\documentclass[a4paper,norsk,12pt]{article}
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\setlength{\parindent}{0in} % Setter lengden på det automatiske innrykket for hver paragraf
+
+\usepackage[utf8]{inputenc} % Tegnsett UTF-8.
+\usepackage[T1]{fontenc,url}
+% \usepackage[norsk]{babel} % Norsk språkpakke.
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{wrapfig}
+\usepackage{float}
+
+\headwidth = 390pt
+\textwidth = 390pt
+
+\usepackage{lastpage}
+% \cfoot{Side \thepage\ av \pageref{LastPage}}
+% \cfoot{}
+
+\usepackage[bottom]{footmisc} % Tvinger alle footnotes nederst på siden
+
+% Forside-stuffs
+\usepackage[pdftex]{graphicx}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\lhead{ATAM} % venstrestilt header
+\rhead{Page \thepage\ of \pageref{LastPage}} % høyrestilt header
+
+\usepackage[pdfborder={0 0 0}]{hyperref}
+
+\title{ATAM}
+\author{Steinar Haram}
+
+\begin{document}
+
+\input{0-frontpage.tex}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+
+% \caption[list-of-figure text]{actual caption text}
+
+\pagebreak
+\input{1-introduction}
+\input{2-utility}
+\input{3-approach}
+\input{4-sensitivity}
+\input{5-tradeoffs}
+\input{6-risks}
+\input{7-experience}
+\input{8-issues}
+\input{9-changes}
+
+\pagebreak
+\bibliographystyle{phjcp}			
+\bibliography{references}
+\addcontentsline{toc}{section}{References}
+
+\end{document}

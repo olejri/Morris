@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.4.5)  27 APR 2012 12:15
-=======
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.11)  27 APR 2012 09:44
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  23 APR 2012 19:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Architecture.tex
-(./Architecture.tex
+**Implementation.tex
+(./Implementation.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman-x-2009-06-19, ngerman-x-2009-06-19, ancientgreek, ibycus, arabic, armenian
@@ -506,8 +502,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip55
 )
-(./Architecture.aux)
-\openout1 = `Architecture.aux'.
+(./Implementation.aux)
+\openout1 = `Implementation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
@@ -569,193 +565,172 @@ LaTeX Info: Redefining \ref on input line 39.
 LaTeX Info: Redefining \pageref on input line 39.
 LaTeX Info: Redefining \nameref on input line 39.
 
-(./Architecture.out) (./Architecture.out)
+(./Implementation.out) (./Implementation.out)
 \@outlinefile=\write3
-\openout3 = `Architecture.out'.
+\openout3 = `Implementation.out'.
 
-<<<<<<< HEAD
  (./0-frontpage.tex
-<./androids.jpg, id=144, 552.0625pt x 414.54875pt>
-=======
-(D:\GiT\Morris\LaTeX\Architecture\0-frontpage.tex
-<./androids.jpg, id=143, 552.0625pt x 414.54875pt>
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-File: ./androids.jpg Graphic file (type jpg)
- <use ./androids.jpg>
+<Images/androids.jpg, id=84, 552.0625pt x 414.54875pt>
+File: Images/androids.jpg Graphic file (type jpg)
+
+<use Images/androids.jpg>
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 24.
+ [1
 
-[1
+{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Image
+s/androids.jpg>]) (./Implementation.toc)
+\tf@toc=\write4
+\openout4 = `Implementation.toc'.
 
-{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./andro
-ids.jpg>]) (./Architecture.tocpdfTeX warning (ext4): destination with the same 
-identifier (name{page.1}) has been already used, duplicate ignored
+
+(./Implementation.lotpdfTeX warning (ext4): destination with the same identifie
+r (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...ine {7.1}Logical view}{11}{subsection.7.1}
+l.7 ...{\ignorespaces Testing of FR7}}{7}{table.7}
                                                    [1])
-\tf@toc=\write4
-\openout4 = `Architecture.toc'.
-
- (./Architecture.lot)
 \tf@lot=\write5
-\openout5 = `Architecture.lot'.
+\openout5 = `Implementation.lot'.
 
-
-(./Architecture.lof)
+ (./Implementation.lof)
 \tf@lof=\write6
-\openout6 = `Architecture.lof'.
-
- [2] (./1-introduction.tex
-Underfull \hbox (badness 10000) in paragraph at lines 2--3
-
- []
+\openout6 = `Implementation.lof'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
-
- []
-
-) (./2-drivers.tex [3]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 5.
-
-) (./3-stakeholders.tex
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) (./4-viewpoint.tex [4] [5] [6
-
-<<<<<<< HEAD
-]) (./5-tactics.tex [7]
-=======
-])
-(D:\GiT\Morris\LaTeX\Architecture\5-tactics.tex [7]
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-
-LaTeX Warning: Citation `requirement' on page 8 undefined on input line 11.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 17.
-<<<<<<< HEAD
-(/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
-=======
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
- [8])
-(./6-patterns.tex
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--18
-
- []
-
-<<<<<<< HEAD
-[9]) (./7-views.tex [10]
-<./Images/LogicalView_final.png, id=270, 1358.676pt x 1052.88356pt>
-File: ./Images/LogicalView_final.png Graphic file (type png)
-
-<use ./Images/LogicalView_final.png>
-Overfull \hbox (77.99881pt too wide) in paragraph at lines 9--10
- [] 
- []
-
-
-LaTeX Warning: Citation `krutchen' on page 11 undefined on input line 14.
-
-<./Images/DevelopmentView.png, id=272, 484.66069pt x 548.80031pt>
-File: ./Images/DevelopmentView.png Graphic file (type png)
-
-<use ./Images/DevelopmentView.png> [11 <./Images/LogicalView_final.png>]
-[12 <./Images/DevelopmentView.png>]
-<./Images/ProcessView.png, id=287, 355.92975pt x 919.18407pt>
-=======
-[9]) (D:\GiT\Morris\LaTeX\Architecture\7-views.tex [10]
-<./Images/LogicalView.png, id=268, 724.6272pt x 652.839pt>
-File: ./Images/LogicalView.png Graphic file (type png)
-
-<use ./Images/LogicalView.png>
-
-LaTeX Warning: Citation `krutchen' on page 11 undefined on input line 14.
-
-<./Images/DevelopmentView.png, id=269, 484.66069pt x 548.80031pt>
-File: ./Images/DevelopmentView.png Graphic file (type png)
-
-<use ./Images/DevelopmentView.png> [11 <D:/GiT/Morris/LaTeX/Architecture/Images
-/LogicalView.png (PNG copy)>] [12 <D:/GiT/Morris/LaTeX/Architecture/Images/Deve
-lopmentView.png>]
-<./Images/ProcessView.png, id=283, 375.35231pt x 771.48225pt>
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-File: ./Images/ProcessView.png Graphic file (type png)
-
-<use ./Images/ProcessView.png> [13 <./Images/ProcessView.png>])
-(./8-consistency.tex) (./9-rationale.tex
+[2] (./1-introduction.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
+) (./2-design.tex) (./3-manual.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
+ [3]
+
+LaTeX Warning: Citation `morris' on page 4 undefined on input line 26.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
 
  []
 
-[14]) (./10-issues.tex) (./11-changes.tex [15]
-Underfull \hbox (badness 2189) in paragraph at lines 10--10
-[]|\T1/cmr/m/n/12 Rewritten in-tro-duc-tion and added run-time and
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
  []
 
-) [16]
-No file Architecture.bbl.
-<<<<<<< HEAD
-=======
 
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+
+ []
+
+) (./4-test.tex
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 8--15
+[][] 
+ []
+
+[5]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 19--26
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 30--37
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 41--48
+[][] 
+ []
+
+[6]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 52--59
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 63--70
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 74--81
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 85--92
+[][] 
+ []
+
+[7]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 96--103
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 107--114
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 118--125
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 131--140
+[][] 
+ []
+
+[8]) (./5-relation.tex) (./6-problems.tex) [9]
+No file Implementation.bbl.
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
- (./Architecture.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
-Package rerunfilecheck Info: File `Architecture.out' has not changed.
-<<<<<<< HEAD
-(rerunfilecheck)             Checksum: 8022B8F22B0007D3E5625E1A537E30EA;2205.
-=======
-(rerunfilecheck)             Checksum: 2E025FE1AD54B42DCA69A1AAF879AD96;2235.
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
+ (./Implementation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
+Package rerunfilecheck Info: File `Implementation.out' has not changed.
+(rerunfilecheck)             Checksum: DC5D0EF9347D250C4DCC6E3257649523;1349.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 6181 strings out of 493747
- 88650 string characters out of 3143547
- 170245 words of memory out of 3000000
- 9230 multiletter control sequences out of 15000+200000
+ 6116 strings out of 493747
+ 87559 string characters out of 3143546
+ 174299 words of memory out of 3000000
+ 9202 multiletter control sequences out of 15000+200000
  15936 words of font info for 36 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,12n,43p,772b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,43p,723b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
@@ -769,36 +744,10 @@ live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texli
 ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2
 010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on Architecture.pdf (17 pages, 981603 bytes).
+Output written on Implementation.pdf (10 pages, 246914 bytes).
 PDF statistics:
- 365 PDF objects out of 1000 (max. 8388607)
- 323 compressed objects within 4 object streams
-=======
- 6252 strings out of 494053
- 89767 string characters out of 3148600
- 176135 words of memory out of 3000000
- 9308 multiletter control sequences out of 15000+200000
- 15936 words of font info for 36 fonts, out of 3000000 for 9000
- 715 hyphenation exceptions out of 8191
- 41i,12n,43p,773b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
-\ecbx1440.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
-n\ec\dpi600\ecti1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
-our\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\f
-onts\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk> <C:\Users\Nelich\AppData\Local\M
-iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Nelich\AppD
-ata\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\
-Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk>
- <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
-crm1440.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\eccc1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\eccc2074.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\eccc1728.pk><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Architecture.pdf (17 pages, 507241 bytes).
-PDF statistics:
- 678 PDF objects out of 1000 (max. 8388607)
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
- 64 named destinations out of 1000 (max. 500000)
- 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 250 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
 

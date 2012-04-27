@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Design and implementation details}{3}{section.2}
+\contentsline {section}{\numberline {3}User manual}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Functional requirements}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Running the application}{3}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Emulator}{4}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}On Android device}{4}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Game rules}{4}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Creating Skiller account}{4}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}How to play}{4}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Choosing game mode}{4}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Placing, selecting, moving, and removing pieces}{4}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}Hotseat mode}{5}{subsubsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.4}Online mode}{5}{subsubsection.3.5.4}
+\contentsline {section}{\numberline {4}Test report}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Functional requirements testing}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Quality requirements testing}{9}{subsection.4.2}
+\contentsline {section}{\numberline {5}Relations to the architecture}{9}{section.5}
+\contentsline {section}{\numberline {6}Issues}{9}{section.6}
+\contentsline {subsection}{\numberline {6.1}Gained experieces}{9}{subsection.6.1}

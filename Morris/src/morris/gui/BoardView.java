@@ -39,6 +39,7 @@ public class BoardView extends View implements GameListener {
 	private boolean makePointList = true;
 	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
+	private Point justPressedPoint = new Point(100, 0, 0);
 
 	// Bitmaps pieces
 
@@ -88,16 +89,18 @@ public class BoardView extends View implements GameListener {
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		//testing
+
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			//if (GameController.getGame().isYourTurn()) {
-				Point p = getPressedPoint(event.getX(), event.getY());
-				if(p!=null){
-					GameController.handlePlayerAction(p);
-				}
-				postInvalidate();
+			Point p = getPressedPoint(event.getX(), event.getY());
+			if(p!=null){
+				GameController.handlePlayerAction(p);
+			}
+			postInvalidate();
 			//}
-		}
+		}		
 		return true;
 	}
 	/*
@@ -327,13 +330,13 @@ public class BoardView extends View implements GameListener {
 	@Override
 	public void playerChangeTurn(Player p) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void playerLost(int player,boolean hotseat) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -345,7 +348,7 @@ public class BoardView extends View implements GameListener {
 	@Override
 	public void gameStarted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
