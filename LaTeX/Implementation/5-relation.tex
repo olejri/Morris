@@ -1,7 +1,8 @@
 \section{Relations to the architecture}
 
-This section should list the inconsistencies between your architecture and the implementation. Give the reasons for these inconsistencies. Discuss whether they could have been discovered at an earlier point, for instance during the ATAM evaluation.
+According to our original architectural drivers we should have quality in all parts of the architecture, not too complex architecture and fast start up. In retrospect we feel that we have achived these goals. In the start, we did not implement any of the main logic, but structures that was independent on the chosen architecture. This gave us bether time to make the main logic and our architectural pattern as good as possible.\\
 
+We were very motivated to implement the achitecture we had decided in advance. Our first concerns war related to the MVC pattern. We have decent knowledge of Android development, and we know that implementing an MVC in a native Android application needed some extra attention. \\
 
-
+The implementation is very similar to the architecture we plotted at the start of the project. One notable change is that we changed the GameHandler from our original plans, and replaced it with a GameController, which gave us our final MVC structure. This was done after receiving feedback in the ATAM exercise 
 

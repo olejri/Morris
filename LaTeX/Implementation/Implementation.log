@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 21:37
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  27 APR 2012 20:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Architecture.tex
-(./Architecture.tex
+**Implementation.tex
+(./Implementation.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman-x-2009-06-19, ngerman-x-2009-06-19, ancientgreek, ibycus, arabic, armenian
@@ -312,21 +312,45 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
 Package: `setspace' 6.7 <2000/12/01>
-) (/usr/local/texlive/2010/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen105
-\WF@size=\dimen106
-\c@WF@wrappedlines=\count89
-\WF@box=\box26
-\WF@everypar=\toks18
-Package: wrapfig 2003/01/31  v 3.6
+) (/usr/local/texlive/2010/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip55
+\subfigcapskip=\skip56
+\subfigcaptopadj=\dimen105
+\subfigbottomskip=\skip57
+\subfigcapmargin=\dimen106
+\subfiglabelskip=\skip58
+\c@subfigure=\count89
+\c@lofdepth=\count90
+\c@subtable=\count91
+\c@lotdepth=\count92
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2010/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip59
+\subfig@bottom=\skip60
 )
+(/usr/local/texlive/2010/texmf-dist/tex/latex/units/units.sty
+Package: units 1998/08/04 v0.9b Typesetting units
+
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2010/texmf-dist/tex/latex/units/nicefrac.sty
+Package: nicefrac 1998/08/04 v0.9b Nice fractions
+\L@UnitsRaiseDisplaystyle=\skip61
+\L@UnitsRaiseTextstyle=\skip62
+\L@UnitsRaiseScriptstyle=\skip63
+))
 (/usr/local/texlive/2010/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count90
-\float@exts=\toks19
-\float@box=\box27
-\@float@everytoks=\toks20
-\@floatcapt=\box28
+\c@float@type=\count93
+\float@exts=\toks18
+\float@box=\box26
+\@float@everytoks=\toks19
+\@floatcapt=\box27
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
@@ -334,14 +358,14 @@ Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2009/09/15 v5.5a a miscellany of footnote facilities
-\FN@temptoken=\toks21
+\FN@temptoken=\toks20
 \footnotemargin=\dimen107
 
 
 LaTeX Warning: Command \@makecol  has changed.
                Check if current package is valid.
 
-\c@pp@next@reset=\count91
+\c@pp@next@reset=\count94
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -355,7 +379,7 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks22
+\KV@toks@=\toks21
 )
 (/usr/local/texlive/2010/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -427,8 +451,8 @@ Package: xcolor-patch 2009/12/12 xcolor patch
 Package: letltxmacro 2008/06/24 v1.3 Let assignment for LaTeX macros (HO)
 )
 \@linkdim=\dimen110
-\Hy@linkcounter=\count92
-\Hy@pagecounter=\count93
+\Hy@linkcounter=\count95
+\Hy@pagecounter=\count96
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2010/06/18 v6.81g Hyperref: PDFDocEncoding definition (HO)
@@ -459,10 +483,10 @@ Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/bigintcalc.sty
 Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
 ))
-\Fld@menulength=\count94
+\Fld@menulength=\count97
 \Field@Width=\dimen111
 \Fld@charsize=\dimen112
-\Field@toks=\toks23
+\Field@toks=\toks22
 Package hyperref Info: Hyper figures OFF on input line 5137.
 Package hyperref Info: Link nesting OFF on input line 5142.
 Package hyperref Info: Hyper index ON on input line 5145.
@@ -476,9 +500,9 @@ LaTeX Info: Redefining \pageref on input line 5211.
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2010/03/25 v1.12 At begin shipout hook (HO)
 )
-\Hy@abspage=\count95
-\c@Item=\count96
-\c@Hfootnote=\count97
+\Hy@abspage=\count98
+\c@Item=\count99
+\c@Hfootnote=\count100
 )
 * hyperref using default driver hpdftex *
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -488,8 +512,8 @@ File: hpdftex.def 2010/06/18 v6.81g Hyperref driver for pdfTeX
 Package: atveryend 2010/03/24 v1.5 Hooks at very end of document (HO)
 Package atveryend Info: \enddocument detected (standard).
 )
-\Fld@listcount=\count98
-\c@bookmark@seq@number=\count99
+\Fld@listcount=\count101
+\c@bookmark@seq@number=\count102
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2010/03/16 v1.6 Rerun checks for auxiliary files (HO)
@@ -500,38 +524,38 @@ Package: uniquecounter 2009/12/18 v1.1 Provides unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 71.
 )
-\Hy@SectionHShift=\skip55
+\Hy@SectionHShift=\skip64
 )
-(./Architecture.aux)
-\openout1 = `Architecture.aux'.
+(./Implementation.aux)
+\openout1 = `Implementation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
 
 (/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
+\scratchcounter=\count103
 \scratchdimen=\dimen113
-\scratchbox=\box29
-\nofMPsegments=\count101
-\nofMParguments=\count102
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count103
+\scratchbox=\box28
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count106
 \MPscratchDim=\dimen114
-\MPnumerator=\count104
-\everyMPtoPDFconversion=\toks25
+\MPnumerator=\count107
+\everyMPtoPDFconversion=\toks24
 ) (/usr/local/texlive/2010/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -547,8 +571,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring OFF on input line 39.
+\AtBeginShipoutBox=\box29
+Package hyperref Info: Link coloring OFF on input line 42.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -559,52 +583,52 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
-\c@section@level=\count105
+\c@section@level=\count108
 )
-LaTeX Info: Redefining \ref on input line 39.
-LaTeX Info: Redefining \pageref on input line 39.
-LaTeX Info: Redefining \nameref on input line 39.
+LaTeX Info: Redefining \ref on input line 42.
+LaTeX Info: Redefining \pageref on input line 42.
+LaTeX Info: Redefining \nameref on input line 42.
 
-(./Architecture.out) (./Architecture.out)
+(./Implementation.out) (./Implementation.out)
 \@outlinefile=\write3
-\openout3 = `Architecture.out'.
+\openout3 = `Implementation.out'.
 
  (./0-frontpage.tex
-<./androids.jpg, id=152, 552.0625pt x 414.54875pt>
-File: ./androids.jpg Graphic file (type jpg)
- <use ./androids.jpg>
+<Images/androids.jpg, id=108, 552.0625pt x 414.54875pt>
+File: Images/androids.jpg Graphic file (type jpg)
+
+<use Images/androids.jpg>
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 24.
+ [1
 
-[1
+{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Image
+s/androids.jpg>]) (./Implementation.toc)
+\tf@toc=\write4
+\openout4 = `Implementation.toc'.
 
-{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./andro
-ids.jpg>]) (./Architecture.tocpdfTeX warning (ext4): destination with the same 
-identifier (name{page.1}) has been already used, duplicate ignored
+
+(./Implementation.lotpdfTeX warning (ext4): destination with the same identifie
+r (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...ine {7.1}Logical view}{10}{subsection.7.1}
+l.2 ...{\ignorespaces Testing of FR2}}{9}{table.2}
                                                    [1])
-\tf@toc=\write4
-\openout4 = `Architecture.toc'.
-
- (./Architecture.lot)
 \tf@lot=\write5
-\openout5 = `Architecture.lot'.
+\openout5 = `Implementation.lot'.
 
-
-(./Architecture.lof)
+ (./Implementation.lof)
 \tf@lof=\write6
-\openout6 = `Architecture.lof'.
+\openout6 = `Implementation.lof'.
 
- [2] (./1-introduction.tex
-Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
- []
+[2] (./1-introduction.tex) (./2-design.tex
+
+LaTeX Warning: Citation `skiller' on page 3 undefined on input line 4.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
@@ -612,24 +636,172 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
 
-) (./2-drivers.tex [3]) (./3-stakeholders.tex [4]) (./4-viewpoint.tex [5]
-[6
+<Images/activities.png, id=202, 343.2825pt x 161.25244pt>
+File: Images/activities.png Graphic file (type png)
 
-]) (./5-tactics.tex
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 17.
+<use Images/activities.png> [3]
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
+[4 <./Images/activities.png>]
+<Images/mvc.png, id=219, 430.45819pt x 328.8285pt>
+File: Images/mvc.png Graphic file (type png)
+ <use Images/mvc.png>
+<Images/states.png, id=221, 566.86781pt x 225.84375pt>
+File: Images/states.png Graphic file (type png)
+ <use Images/states.png>
+[5 <./Images/mvc.png>]) (./3-manual.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 5.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
- [7])
-(./6-patterns.tex
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
+ [6 <./Images/states.png>]
+
+LaTeX Warning: Citation `morris' on page 7 undefined on input line 32.
+
+[7] <Images/menuPage.png, id=245, 481.8pt x 803.0pt>
+File: Images/menuPage.png Graphic file (type png)
+ <use Images/menuPage.png>
+File: Images/menuPage.png Graphic file (type png)
+
+<use Images/menuPage.png> <Images/achievements.png, id=246, 481.8pt x 803.0pt>
+File: Images/achievements.png Graphic file (type png)
+
+<use Images/achievements.png>
+Underfull \hbox (badness 5050) in paragraph at lines 49--49
+[]\T1/cmr/m/n/10 (c) Help ex-plain-ing the
+ []
+
+<Images/placementState.png, id=247, 481.8pt x 803.0pt>
+File: Images/placementState.png Graphic file (type png)
+
+<use Images/placementState.png>
+<Images/selectState.png, id=248, 361.35pt x 602.25pt>
+File: Images/selectState.png Graphic file (type png)
+
+<use Images/selectState.png>
+<Images/selectedPiece.png, id=249, 361.35pt x 602.25pt>
+File: Images/selectedPiece.png Graphic file (type png)
+
+<use Images/selectedPiece.png>
+<Images/removalState.png, id=250, 481.8pt x 803.0pt>
+File: Images/removalState.png Graphic file (type png)
+
+<use Images/removalState.png>
+Underfull \hbox (badness 4205) in paragraph at lines 59--59
+[]\T1/cmr/m/n/10 (g) High-lights re-mov-able pieces
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--60
+
+ []
+
+[8 <./Images/menuPage.png (PNG copy)> <./Images/achievements.png (PNG copy)>]
+Overfull \vbox (4.55347pt too high) has occurred while \output is active []
+
+
+[9 <./Images/placementState.png (PNG copy)> <./Images/selectState.png> <./Image
+s/selectedPiece.png> <./Images/removalState.png (PNG copy)>]) (./4-test.tex
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 8--15
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 19--26
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 30--37
+[][] 
+ []
+
+[10]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 41--48
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 52--59
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 63--70
+[][] 
+ []
+
+[11]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 87--94
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 100--107
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 111--118
+[][] 
+ []
+
+[12]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 125--134
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 138--147
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 151--160
+[][] 
+ []
+
+[13]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 164--173
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 177--186
+[][] 
+ []
+
+
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 190--199
+[][] 
+ []
+
+[14]
+Overfull \hbox (25.19998pt too wide) in paragraph at lines 203--212
+[][] 
+ []
+
+) (./5-relation.tex) (./6-problems.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
 
@@ -638,85 +810,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 17--18
-
- []
-
-) (./7-views.tex [9]
-<./Images/LogicalView_final.png, id=280, 1358.676pt x 1052.88356pt>
-File: ./Images/LogicalView_final.png Graphic file (type png)
-
-<use ./Images/LogicalView_final.png>
-Overfull \hbox (77.99881pt too wide) in paragraph at lines 10--11
- [] 
- []
-
-<./Images/DevelopmentView.png, id=283, 466.59319pt x 530.73282pt>
-File: ./Images/DevelopmentView.png Graphic file (type png)
-
-<use ./Images/DevelopmentView.png> [10 <./Images/LogicalView_final.png>]
-[11 <./Images/DevelopmentView.png>]
-<./Images/ProcessView.png, id=298, 355.92975pt x 919.18407pt>
-File: ./Images/ProcessView.png Graphic file (type png)
-
-<use ./Images/ProcessView.png> [12 <./Images/ProcessView.png>]
-<./Images/PhysicalLayer1.png, id=306, 386.19281pt x 244.81462pt>
-File: ./Images/PhysicalLayer1.png Graphic file (type png)
-
-<use ./Images/PhysicalLayer1.png>) (./8-consistency.tex
-Underfull \hbox (badness 10000) in paragraph at lines 2--3
-
- []
-
-) (./9-rationale.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
-[13 <./Images/PhysicalLayer1.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
-
- []
-
-) (./10-issues.tex) (./11-changes.tex [14]
-Underfull \hbox (badness 2189) in paragraph at lines 10--10
-[]|\T1/cmr/m/n/12 Rewritten in-tro-duc-tion and added run-time and
- []
-
-) [15] (./Architecture.bbl
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
-
-(/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-Underfull \hbox (badness 3148) in paragraph at lines 8--13
-[]\T1/cmr/m/sc/12 P. Krutchen\T1/cmr/m/n/12 ,  The 4+1 View Model of Soft-ware 
-Ar-chi-tec-
- []
+) [16]
+No file Implementation.bbl.
+AED: lastpage setting LastPage
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
+ (./Implementation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
+Package rerunfilecheck Info: File `Implementation.out' has not changed.
+(rerunfilecheck)             Checksum: BFD73D03BA8AFAFB7394EBE5140A5A19;1761.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--13
-\T1/cmr/m/n/12 ture,  []$\T1/cmtt/m/n/12 http : / / www . cs . ubc . ca / ~greg
-or / teaching / papers / 4 +
- []
+LaTeX Warning: There were undefined references.
 
-) AED: lastpage setting LastPage [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
- (./Architecture.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
-Package rerunfilecheck Info: File `Architecture.out' has not changed.
-(rerunfilecheck)             Checksum: 2EFEE3705474A71692F5AEA4B70D3249;2310.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 6215 strings out of 493747
- 89541 string characters out of 3143546
- 170352 words of memory out of 3000000
- 9252 multiletter control sequences out of 15000+200000
- 16249 words of font info for 37 fonts, out of 3000000 for 9000
+ 6374 strings out of 493747
+ 91631 string characters out of 3143546
+ 176647 words of memory out of 3000000
+ 9406 multiletter control sequences out of 15000+200000
+ 17463 words of font info for 38 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,12n,43p,772b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,15n,43p,868b,393s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 /usr/local/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
@@ -727,14 +845,15 @@ al/texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local
 /texlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/t
 exlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/tex
 live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texli
-ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
-/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2
-010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/201
-0/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Architecture.pdf (17 pages, 1095900 bytes).
+ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive
+/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2
+010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/201
+0/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2010/
+texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on Implementation.pdf (17 pages, 764682 bytes).
 PDF statistics:
- 391 PDF objects out of 1000 (max. 8388607)
- 346 compressed objects within 4 object streams
- 69 named destinations out of 1000 (max. 500000)
- 322 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 376 PDF objects out of 1000 (max. 8388607)
+ 324 compressed objects within 4 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 259 words of extra memory for PDF output out of 10000 (max. 10000000)
 

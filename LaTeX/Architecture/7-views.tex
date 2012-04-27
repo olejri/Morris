@@ -23,7 +23,7 @@ The diagram follows the 4+1 logic view notation suggested by the Kructhen articl
 \caption{Development view}
 \end{figure}
 
-The game is divided into several layers. The android framework, a 2D framework, the game logic, and graphics. The diagram show the different parts of the system.
+The development view shows how we have organized our project. The diagram shows a rough overview of how the packages are organized. We have separated our models, views and activities (within Core) in different packages for a better overview.
 
 \pagebreak
 
@@ -39,7 +39,6 @@ The game is divided into several layers. The android framework, a 2D framework, 
 
 The game is a turn based game with two players. In the activity diagram the progress of a game is described. When a game is started one of the players starts placing one of its pieces. The game checks if the player get three in a row. In that case the player can remove one of the opponents pieces. If the opponents have less then three pieces left, the other player have won. The diagram shows how a game round will pan out. 
 
-
 \subsection{Physical view}
 
 \begin{figure}[H]
@@ -49,6 +48,8 @@ The game is a turn based game with two players. In the activity diagram the prog
 \end{center}
 \caption{Physical view}
 \end{figure}
+
+The physical view shows how the clients interact with the server of the Skiller framework. This is included for visualization only.
 
 
 
