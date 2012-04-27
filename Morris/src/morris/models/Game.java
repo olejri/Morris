@@ -230,9 +230,9 @@ public class Game implements NetworkListener {
 	 */
 	public boolean checkMorris(Piece piece, Player player){
 		ArrayList<Integer> hDomain = new ArrayList<Integer>();
-		if (piece.getPosition()> 0){
+		
 			hDomain = board.getHorizontalDomain(piece.getPosition());
-		}
+		
 		int horizontal = 0;
 		for(Integer i : hDomain){
 			if(board.getPoint(i) != null){
@@ -245,9 +245,9 @@ public class Game implements NetworkListener {
 			setMorrisInDomain(hDomain, player);
 		}
 		ArrayList<Integer> vDomain = new ArrayList<Integer>();
-		if (piece.getPosition()> 0){
+		
 			vDomain = board.getVerticalDomain(piece.getPosition());
-		}
+		
 		int vertical = 0;
 		for(Integer i : vDomain){
 			if(board.getPoint(i) != null){
@@ -612,18 +612,14 @@ public class Game implements NetworkListener {
 	@Override
 	public void networkPlayerRemovedPiece(final int piecePosition,final int pieceMovedFromPosition,final int pieceMovedToPosition) {
 
-
-
-		Log.i("sleep", "before sleeping [game]");;
 		//Fire playerChangeTurn to update board
-		h.postDelayed(new Runnable() {
+		h.post(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				//Move first
 				Piece pieceMoved = null;
-				Log.i("values", "pieceMovedFromPosition: "+ pieceMovedFromPosition+" [game]");;
 				if(pieceMovedFromPosition!=-1){
 					pieceMoved = board.getPoint(pieceMovedFromPosition).getPiece();
 					unreserveBoardModelPoint(pieceMovedFromPosition);
@@ -633,16 +629,17 @@ public class Game implements NetworkListener {
 				reserveBoardModelPoint(pieceMovedToPosition, pieceMoved);
 				if(pieceMoved!=null)pieceMoved.setPosition(pieceMovedToPosition);
 
-				Log.i("morris_state"," Checking piece position: " + pieceMoved.getPosition());
 				fireUpdate();
+				h.removeCallbacks(this);
 			}
-		}, 10);
+		});
 
 
 		h.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
+
 				// TODO Auto-generated method stub
 				changePlayer(true);
 				Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
@@ -652,20 +649,20 @@ public class Game implements NetworkListener {
 
 				checkUnplacedPieces();
 
-				printTakenPoints();
-
 				checkPlayerLost(player1);
 
 				updateMorrisStates(player2);
-
+				
+				h.removeCallbacks(this);
 
 
 			}
-		}, 1500);
+		},1500);
 
 
 
 	}
+	
 
 	private Piece getFirstAvailablePiece(){
 		Piece available = null;
