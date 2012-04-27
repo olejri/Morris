@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.4.5)  27 APR 2012 12:15
-=======
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.11)  27 APR 2012 09:44
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2011.4.5)  27 APR 2012 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -573,13 +569,8 @@ LaTeX Info: Redefining \nameref on input line 39.
 \@outlinefile=\write3
 \openout3 = `Architecture.out'.
 
-<<<<<<< HEAD
  (./0-frontpage.tex
-<./androids.jpg, id=144, 552.0625pt x 414.54875pt>
-=======
-(D:\GiT\Morris\LaTeX\Architecture\0-frontpage.tex
-<./androids.jpg, id=143, 552.0625pt x 414.54875pt>
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
+<./androids.jpg, id=152, 552.0625pt x 414.54875pt>
 File: ./androids.jpg Graphic file (type jpg)
  <use ./androids.jpg>
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -625,32 +616,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-) (./2-drivers.tex [3]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 5.
-
-) (./3-stakeholders.tex
+) (./2-drivers.tex [3]) (./3-stakeholders.tex
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ) (./4-viewpoint.tex [4] [5] [6
 
-<<<<<<< HEAD
 ]) (./5-tactics.tex [7]
-=======
-])
-(D:\GiT\Morris\LaTeX\Architecture\5-tactics.tex [7]
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-
-LaTeX Warning: Citation `requirement' on page 8 undefined on input line 11.
-
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 17.
-<<<<<<< HEAD
+
 (/usr/local/texlive/2010/texmf-dist/tex/latex/base/omscmr.fd
-=======
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
@@ -671,9 +646,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-<<<<<<< HEAD
 [9]) (./7-views.tex [10]
-<./Images/LogicalView_final.png, id=270, 1358.676pt x 1052.88356pt>
+<./Images/LogicalView_final.png, id=285, 1358.676pt x 1052.88356pt>
 File: ./Images/LogicalView_final.png Graphic file (type png)
 
 <use ./Images/LogicalView_final.png>
@@ -681,79 +655,64 @@ Overfull \hbox (77.99881pt too wide) in paragraph at lines 9--10
  [] 
  []
 
-
-LaTeX Warning: Citation `krutchen' on page 11 undefined on input line 14.
-
-<./Images/DevelopmentView.png, id=272, 484.66069pt x 548.80031pt>
+<./Images/DevelopmentView.png, id=288, 484.66069pt x 548.80031pt>
 File: ./Images/DevelopmentView.png Graphic file (type png)
 
 <use ./Images/DevelopmentView.png> [11 <./Images/LogicalView_final.png>]
 [12 <./Images/DevelopmentView.png>]
-<./Images/ProcessView.png, id=287, 355.92975pt x 919.18407pt>
-=======
-[9]) (D:\GiT\Morris\LaTeX\Architecture\7-views.tex [10]
-<./Images/LogicalView.png, id=268, 724.6272pt x 652.839pt>
-File: ./Images/LogicalView.png Graphic file (type png)
-
-<use ./Images/LogicalView.png>
-
-LaTeX Warning: Citation `krutchen' on page 11 undefined on input line 14.
-
-<./Images/DevelopmentView.png, id=269, 484.66069pt x 548.80031pt>
-File: ./Images/DevelopmentView.png Graphic file (type png)
-
-<use ./Images/DevelopmentView.png> [11 <D:/GiT/Morris/LaTeX/Architecture/Images
-/LogicalView.png (PNG copy)>] [12 <D:/GiT/Morris/LaTeX/Architecture/Images/Deve
-lopmentView.png>]
-<./Images/ProcessView.png, id=283, 375.35231pt x 771.48225pt>
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
+<./Images/ProcessView.png, id=303, 355.92975pt x 919.18407pt>
 File: ./Images/ProcessView.png Graphic file (type png)
 
-<use ./Images/ProcessView.png> [13 <./Images/ProcessView.png>])
-(./8-consistency.tex) (./9-rationale.tex
+<use ./Images/ProcessView.png> [13 <./Images/ProcessView.png>]
+<./Images/PhysicalLayer1.png, id=310, 386.19281pt x 244.81462pt>
+File: ./Images/PhysicalLayer1.png Graphic file (type png)
+
+<use ./Images/PhysicalLayer1.png>) (./8-consistency.tex) (./9-rationale.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-
+[14 <./Images/PhysicalLayer1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
-[14]) (./10-issues.tex) (./11-changes.tex [15]
+) (./10-issues.tex) (./11-changes.tex [15]
 Underfull \hbox (badness 2189) in paragraph at lines 10--10
 []|\T1/cmr/m/n/12 Rewritten in-tro-duc-tion and added run-time and
  []
 
-) [16]
-No file Architecture.bbl.
-<<<<<<< HEAD
-=======
+) [16] (./Architecture.bbl
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
 
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-AED: lastpage setting LastPage
+(/usr/local/texlive/2010/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Underfull \hbox (badness 3148) in paragraph at lines 8--13
+[]\T1/cmr/m/sc/12 P. Krutchen\T1/cmr/m/n/12 ,  The 4+1 View Model of Soft-ware 
+Ar-chi-tec-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--13
+\T1/cmr/m/n/12 ture,  []$\T1/cmtt/m/n/12 http : / / www . cs . ubc . ca / ~greg
+or / teaching / papers / 4 +
+ []
+
+) AED: lastpage setting LastPage [17]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
  (./Architecture.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
 Package rerunfilecheck Info: File `Architecture.out' has not changed.
-<<<<<<< HEAD
-(rerunfilecheck)             Checksum: 8022B8F22B0007D3E5625E1A537E30EA;2205.
-=======
-(rerunfilecheck)             Checksum: 2E025FE1AD54B42DCA69A1AAF879AD96;2235.
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
-
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: 2EFEE3705474A71692F5AEA4B70D3249;2310.
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 6181 strings out of 493747
- 88650 string characters out of 3143547
- 170245 words of memory out of 3000000
- 9230 multiletter control sequences out of 15000+200000
- 15936 words of font info for 36 fonts, out of 3000000 for 9000
+ 6215 strings out of 493747
+ 89526 string characters out of 3143547
+ 170308 words of memory out of 3000000
+ 9251 multiletter control sequences out of 15000+200000
+ 16249 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  41i,12n,43p,772b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2010/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
@@ -768,37 +727,12 @@ exlive/2010/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/tex
 live/2010/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texli
 ve/2010/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
 /2010/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2
-010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on Architecture.pdf (17 pages, 981603 bytes).
+010/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/201
+0/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on Architecture.pdf (18 pages, 1101521 bytes).
 PDF statistics:
- 365 PDF objects out of 1000 (max. 8388607)
- 323 compressed objects within 4 object streams
-=======
- 6252 strings out of 494053
- 89767 string characters out of 3148600
- 176135 words of memory out of 3000000
- 9308 multiletter control sequences out of 15000+200000
- 15936 words of font info for 36 fonts, out of 3000000 for 9000
- 715 hyphenation exceptions out of 8191
- 41i,12n,43p,773b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
-\ecbx1440.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
-n\ec\dpi600\ecti1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
-our\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\f
-onts\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk> <C:\Users\Nelich\AppData\Local\M
-iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Nelich\AppD
-ata\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\
-Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk>
- <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
-crm1440.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\eccc1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\eccc2074.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\eccc1728.pk><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Architecture.pdf (17 pages, 507241 bytes).
-PDF statistics:
- 678 PDF objects out of 1000 (max. 8388607)
->>>>>>> 9dc201a1f4676e5d38f0a2b9d0018e36f48612d0
- 64 named destinations out of 1000 (max. 500000)
- 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 349 compressed objects within 4 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 322 words of extra memory for PDF output out of 10000 (max. 10000000)
 

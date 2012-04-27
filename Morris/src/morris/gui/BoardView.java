@@ -3,7 +3,6 @@ package morris.gui;
 import java.util.ArrayList;
 import morris.game.controller.GameController;
 import morris.help.Constant;
-import morris.help.LogHelp;
 import morris.interfaces.GameListener;
 import morris.models.ModelPoint;
 import morris.models.Piece;
@@ -37,9 +36,7 @@ public class BoardView extends View implements GameListener {
 	private float yBottomOld;
 	private int pieceSize;
 	private boolean makePointList = true;
-	LogHelp l = new LogHelp();
 	ArrayList<Point> pointList = new ArrayList<Point>();
-	private Point justPressedPoint = new Point(100, 0, 0);
 
 	// Bitmaps pieces
 
@@ -89,17 +86,14 @@ public class BoardView extends View implements GameListener {
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		//testing
-
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-		} else if (event.getAction() == MotionEvent.ACTION_UP) {
+		}else if (event.getAction() == MotionEvent.ACTION_UP) {
 			//if (GameController.getGame().isYourTurn()) {
 			Point p = getPressedPoint(event.getX(), event.getY());
 			if(p!=null){
 				GameController.handlePlayerAction(p);
 			}
 			postInvalidate();
-			//}
 		}		
 		return true;
 	}
