@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.11)  27 APR 2012 14:57
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.11)  27 APR 2012 14:58
 entering extended mode
 **Implementation.tex
 (D:\GiT\Morris\LaTeX\Implementation\Implementation.tex
@@ -605,7 +605,7 @@ stination with the same identifier (name{page.1}) has been already used, duplic
 ate ignored
 <to be read again> 
                    \relax 
-l.4 ...{\ignorespaces Testing of FR4}}{8}{table.4}
+l.4 ...\ignorespaces Testing of FR4}}{10}{table.4}
                                                    [1])
 \tf@lot=\write5
 
@@ -631,7 +631,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
-<Images/activities.png, id=174, 343.2825pt x 161.25244pt>
+<Images/activities.png, id=176, 343.2825pt x 161.25244pt>
 File: Images/activities.png Graphic file (type png)
 
 <use Images/activities.png>
@@ -652,22 +652,22 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 LaTeX Warning: Citation `morris' on page 5 undefined on input line 26.
 
-[5] <Images/menuPage.png, id=188, 481.8pt x 803.0pt>
+[5] <Images/menuPage.png, id=190, 481.8pt x 803.0pt>
 File: Images/menuPage.png Graphic file (type png)
  <use Images/menuPage.png>
-<Images/placementState.png, id=189, 481.8pt x 803.0pt>
+<Images/placementState.png, id=191, 481.8pt x 803.0pt>
 File: Images/placementState.png Graphic file (type png)
 
 <use Images/placementState.png>
-<Images/selectState.png, id=190, 361.35pt x 602.25pt>
+<Images/selectState.png, id=192, 361.35pt x 602.25pt>
 File: Images/selectState.png Graphic file (type png)
 
 <use Images/selectState.png>
-<Images/selectedPiece.png, id=191, 361.35pt x 602.25pt>
+<Images/selectedPiece.png, id=193, 361.35pt x 602.25pt>
 File: Images/selectedPiece.png Graphic file (type png)
 
 <use Images/selectedPiece.png>
-<Images/removalState.png, id=192, 481.8pt x 803.0pt>
+<Images/removalState.png, id=194, 481.8pt x 803.0pt>
 File: Images/removalState.png Graphic file (type png)
 
 <use Images/removalState.png>
@@ -738,9 +738,6 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 124--133
 (D:\GiT\Morris\LaTeX\Implementation\6-problems.tex) [12]
 No file Implementation.bbl.
 
-Package lastpage Warning: Rerun to get the references right on input line 64.
-
-
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
@@ -752,14 +749,11 @@ Package rerunfilecheck Info: File `Implementation.out' has not changed.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  6385 strings out of 494053
  91512 string characters out of 3148600
- 178814 words of memory out of 3000000
+ 178865 words of memory out of 3000000
  9456 multiletter control sequences out of 15000+200000
  16699 words of font info for 37 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
@@ -779,7 +773,7 @@ r\jknappen\ec\dpi600\eccc1200.pk> <C:\Users\Nelich\AppData\Local\MiKTeX\2.9\fon
 ts\pk\ljfour\jknappen\ec\dpi600\eccc2074.pk> <C:\Users\Nelich\AppData\Local\MiK
 TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1728.pk><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Implementation.pdf (13 pages, 440633 bytes).
+Output written on Implementation.pdf (13 pages, 440592 bytes).
 PDF statistics:
  633 PDF objects out of 1000 (max. 8388607)
  54 named destinations out of 1000 (max. 500000)
