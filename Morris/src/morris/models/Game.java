@@ -229,9 +229,7 @@ public class Game implements NetworkListener {
 	 */
 	public boolean checkMorris(Piece piece, Player player){
 		ArrayList<Integer> hDomain = new ArrayList<Integer>();
-		if (piece.getPosition()> 0){
-			hDomain = board.getHorizontalDomain(piece.getPosition());
-		}
+		hDomain = board.getHorizontalDomain(piece.getPosition());
 		int horizontal = 0;
 		for(Integer i : hDomain){
 			if(board.getPoint(i) != null){
@@ -244,9 +242,7 @@ public class Game implements NetworkListener {
 			setMorrisInDomain(hDomain, player);
 		}
 		ArrayList<Integer> vDomain = new ArrayList<Integer>();
-		if (piece.getPosition()> 0){
-			vDomain = board.getVerticalDomain(piece.getPosition());
-		}
+		vDomain = board.getVerticalDomain(piece.getPosition());
 		int vertical = 0;
 		for(Integer i : vDomain){
 			if(board.getPoint(i) != null){
