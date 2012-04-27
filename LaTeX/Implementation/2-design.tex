@@ -24,7 +24,7 @@ Screencaps of the different activities, and the achievement screen, are shown in
 
 \subsection{MVC}
 
-Our implementation of the MVC structure is based interface communication. In regular java there is more common to create a MVC structure where the view has model and the controller contains view and model. Android has its own MVC structure where an activity represent controller and view, which make it difficult to build ut the MVC on the regular way. The most favorable way of createing MVC in android is to use interfaces to update the view when there are changes in the model. Figure~\ref{fig:mvc} is a excerpt from our class diagram that shows our MVC structure with BoardView(View), GameController(Controller) and Game(Model). When the user interact with the ciew the controller handles the user action and tell the model what to do. When the model is updated the view receive a message on the interface, and finally update the screen.
+Our implementation of the MVC structure is based interface communication. In regular Java it is more common to create a MVC structure where the view has model and the controller contains view and model. Android has its own MVC structure where an activity represent controller and view, which makes it difficult to build ut the MVC in a regular way. The most favorable way of createing MVC in android is to use interfaces to update the view when there are changes in the model. Figure~\ref{fig:mvc} shows an overview of the MVC structure, with BoardView (View), GameController (Controller) and Game (Model). When the user interact with the view the controller handles the user action and tells the model what to do. When the model is updated, the view receive a message via the interface, and updates the screen.
 
 \begin{figure}[H]
 \begin{center}
@@ -35,6 +35,16 @@ Our implementation of the MVC structure is based interface communication. In reg
 \end{figure}
 
 \subsection{States}
+
+The Game class is implemented with associated states. The states change on runtime depending on player interaction. All states have their own way of controlling user possibilities, and telling the user what to do while playing.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{Images/states}
+\caption{State structure}
+\label{fig:states}
+\end{center}
+\end{figure}
 
 
 
