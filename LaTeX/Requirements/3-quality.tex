@@ -25,22 +25,22 @@ Extending the game by adding an additional game board, where the player starts w
 
 \pagebreak
 
-\subsubsection{M2 - Computer opponent}
+\subsubsection{M2 - Local hotseat}
 
-Extending the game by making it possible to play single-player against the computer, whereas the computer has three different skill levels ranging from easy to hard. Easy will be random placement of the pieces, medium will require some skill to beat and hard will at worst draw against a human.
+Extending the game by making it possible to play multiplayer against the another player locally on the same phone, the game will be turn-based with no time restriction. The hotseat option will make the game still playable while offline.
 
 \begin{table}[h!]
 \begin{tabular}{ | p{110pt} | p{250pt}  |}
 \hline
 \bf Source of stimulus &  Developer  \\ \hline
-\bf Stimulus & Adding a computer based player \\ \hline 
+\bf Stimulus & Adding an option to play locally \\ \hline 
 \bf Artifact & A change that operates with target system  \\  \hline
 \bf Environment & At design time \\ \hline
 \bf Response & Extends functionality \\ \hline
-\bf Response Measure & 15 hours to do the modification \\ \hline
+\bf Response Measure & 8 hours to do the modification \\ \hline
 
 \end{tabular}
-\caption{M2 - Computer opponent}
+\caption{M2 - Local hotseat}
 \end{table}
 
 \subsubsection{M3 - Chat}
@@ -94,8 +94,8 @@ If the user don't know the game rules, he can look up the rules in the applicati
 \bf Stimulus & Learning system features \\ \hline 
 \bf Artifact & System  \\  \hline
 \bf Environment & At run-time \\ \hline
-\bf Response & Proviedes a set of rules to play the game \\ \hline
-\bf Response Measure & Reducing 30\% time of decision making \\ \hline
+\bf Response & A set of game rules is reachable in the game menu. \\ \hline
+\bf Response Measure & Reducing 30\% time when placing pieces \\ \hline
 
 \end{tabular}
 \caption{U1 - Learning game rules}
@@ -116,9 +116,26 @@ The player will continuously be presented with the possible actions he can make,
 \bf Environment & At run-time \\ \hline
 \bf Response & Highlights possible moves \\ \hline
 \bf Response Measure & Reducing 20\% time of decision making   \\ \hline
-
 \end{tabular}
 \caption{U2 - Show possible moves}
+\end{table}
+
+\subsubsection{U3 - Sound effects}
+
+The players will be presented with ingame sound effects, there will be a continious themes song played in the main menu. In addition there wil be effects played when a player places, moves and deletes a piece, this is added to make a more enjoyable overall experience for the players. The option to mute all sounds ingame should be present in every activity.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{110pt} | p{250pt}  |}
+\hline
+\bf Source of stimulus &  End user  \\ \hline
+\bf Stimulus & Enhance overall experience \\ \hline 
+\bf Artifact & System  \\  \hline
+\bf Environment & At run-time \\ \hline
+\bf Response & Sound effects should be played when the users plays the game \\ \hline
+\bf Response Measure &  The sounds should play within 1 second of opening the game. \\ \hline
+
+\end{tabular}
+\caption{U3 - Sound effects}
 \end{table}
 
 \subsection{Testability}
