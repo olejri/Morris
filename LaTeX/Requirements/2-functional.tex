@@ -3,15 +3,27 @@
 
 \section{Functional requirements}
 
-%\subsection{FR1 - Placement}
+Functional requirements capture the intended behavior of the system, this behavior is expressed in the form of functions the system is expected to perform. Priorities on each requirement is set to plan for staged deliveries and make the necessary trade-off decisions. The priorities is described in the following table.
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf Names &  \bf Meanings  \\ \hline
+High & The product is not acceptable unless these requirements are satisfied \\ \hline 
+Medium & Would enhance the product, but the product is not unacceptable if absent  \\ \hline
+Low & Functions that may or may not be worthwhile \\ \hline
+\end{tabular}
+
+\caption{Prioritization scale}
+\end{table}
+
 
 \begin{table}[h!]
 \begin{tabular}{ | p{90pt} | p{270pt}  |}
 \hline
 \bf ID &  FR1  \\ \hline
 \bf Descripton & Placement of pieces \\ \hline 
-\bf Requirement & The players place all nine pieces, one at the time.  \\   
-& The starting player is chosen at random. \\ 
+\bf Requirement & The players place all nine pieces, one at the time.  \\  
 & Only one piece can be placed at a given field. \\ \hline
 \bf Priority & High \\ \hline
 \end{tabular}
@@ -29,7 +41,7 @@
 \bf ID &  FR2  \\ \hline
 \bf Descripton & Movement \\ \hline 
 \bf Requirement & Players can move their pieces one length  \\
-& The game locig checks valid moves  \\ \hline
+& The game logic checks for valid moves  \\ \hline
 \bf Priority & High \\ \hline
 
 \end{tabular}
@@ -65,7 +77,7 @@
 \bf ID &  FR4  \\ \hline
 \bf Descripton & Flying state \\ \hline 
 \bf Requirement & If the player only has three pieces left, the player can move his pieces freely to any vacant field \\ \hline
-\bf Priority & High \\ \hline
+\bf Priority & Medium \\ \hline
 
 \end{tabular}
 
@@ -92,55 +104,22 @@
 
 \end{table}
 
-%\subsection{FR6 - Random start}
 
-\begin{table}[h!]
-\begin{tabular}{ | p{90pt} | p{270pt}  |}
-\hline
-\bf ID &  FR6  \\ \hline
-\bf Descripton & Random start \\ \hline 
-\bf Requirement & The starting player is chosen at random. \\ \hline
-\bf Priority & High \\ \hline
-
-\end{tabular}
-
-\caption{FR6 - Random start}
-\addcontentsline{toc}{subsection}{FR6 - Random start}
-
-\end{table}
 
 %\subsection{FR7 - Game board}
 
 \begin{table}[h!]
 \begin{tabular}{ | p{90pt} | p{270pt}  |}
 \hline
-\bf ID &  FR7  \\ \hline
+\bf ID &  FR6  \\ \hline
 \bf Descripton & Game board \\ \hline 
-\bf Requirement & There should be one type of game board, ala the \newline classic board for \emph{Nine Men's Morris}.\\ \hline
+\bf Requirement & There should be one type of game board, in the manner of a classic \emph{Nine Men's Morris} board.\\ \hline
 \bf Priority & High \\ \hline
 
 \end{tabular}
 
-\caption{FR7 - Game board}
-\addcontentsline{toc}{subsection}{FR7 - Game board}
-
-\end{table}
-
-%\subsection{FR8 - Sound effects}
-
-\begin{table}[h!]
-\begin{tabular}{ | p{90pt} | p{270pt}  |}
-\hline
-\bf ID &  FR8  \\ \hline
-\bf Descripton & Sound effects \\ \hline 
-\bf Requirement & There shall be sound effects for movement. \\
-& There shall be sound effects when a player wins. \\ \hline
-\bf Priority & Low \\ \hline
-
-\end{tabular}
-
-\caption{FR8 - Sound effects}
-\addcontentsline{toc}{subsection}{FR8 - Sound effects}
+\caption{FR6 - Game board}
+\addcontentsline{toc}{subsection}{FR6 - Game board}
 
 \end{table}
 
@@ -151,32 +130,31 @@
 \begin{table}[h!]
 \begin{tabular}{ | p{90pt} | p{270pt}  |}
 \hline
-\bf ID &  FR9 \\ \hline
+\bf ID &  FR7 \\ \hline
 \bf Descripton & Setting player name \\ \hline 
 \bf Requirement & A player shall be able to set his or her own name.  \\ \hline
-\bf Priority & Medium \\ \hline
-
-\end{tabular}
-
-\caption{FR9 - Setting player name}
-\addcontentsline{toc}{subsection}{FR9 - Setting player name}
-
-\end{table}
-
-%\subsection{FR10 - Highlighting possible moves}
-
-\begin{table}[h!]
-\begin{tabular}{ | p{90pt} | p{270pt}  |}
-\hline
-\bf ID &  FR10  \\ \hline
-\bf Descripton & Highlighting possible moves \\ \hline 
-\bf Requirement & When the player chooses a piece to move, all possible moves shall be highlighted.  \\ \hline
 \bf Priority & Low \\ \hline
 
 \end{tabular}
 
-\caption{FR10 - Highlighting possible moves}
-\addcontentsline{toc}{subsection}{FR10 - Highlighting possible moves}
+\caption{FR7 - Setting player name}
+\addcontentsline{toc}{subsection}{FR7 - Setting player name}
+
+\end{table}
+
+
+\begin{table}[h!]
+\begin{tabular}{ | p{90pt} | p{270pt}  |}
+\hline
+\bf ID &  FR8  \\ \hline
+\bf Descripton & Denied Morris state \\ \hline 
+\bf Requirement & When a player sets Morris but cannot remove any pieces from the opponent, the opponent gets the turn.  \\ \hline
+\bf Priority & Medium \\ \hline
+
+\end{tabular}
+
+\caption{FR8 - Denied Morris state}
+\addcontentsline{toc}{subsection}{FR8 - Denied Morris state}
 
 \end{table}
 
@@ -185,15 +163,15 @@
 \begin{table}[h!]
 \begin{tabular}{ | p{90pt} | p{270pt}  |}
 \hline
-\bf ID &  FR11  \\ \hline
+\bf ID &  FR9  \\ \hline
 \bf Descripton & Game over \\ \hline 
-\bf Requirement & When a player has only two pieces left, the game is over.  \\ \hline
+\bf Requirement & When a player only have two pieces left or no legal moves available, the game is over.  \\ \hline
 \bf Priority & High \\ \hline
 
 \end{tabular}
 
-\caption{FR11 - Game over}
-\addcontentsline{toc}{subsection}{FR11 - Game over}
+\caption{FR9 - Game over}
+\addcontentsline{toc}{subsection}{FR9 - Game over}
 
 \end{table}
 
