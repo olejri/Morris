@@ -5,6 +5,7 @@ Due to the desire of developing a fully functional multiplayer game, the \emph{S
 
 This framework supplies a server solution for turn based games, and it has been implemented in the network class. When playing a network game, the GameController class tells the Game model to  network class sends event messages to the server, and the server delivers it to the opponent.
 
+\pagebreak
 \subsection{Activities}
 Figure \ref{fig:activities} shows an overview of the application's different activities, and how the user interactions can change them. The user can navigates back to the menuActivity by pressing the back button.\\
 
@@ -30,6 +31,7 @@ Our implementation of the MVC structure is based interface communication. In reg
 \end{center}
 \end{figure}
 
+\pagebreak
 \subsection{States}
 
 The Game class is implemented with associated states. The states change on runtime depending on player interaction. All states have their own way of controlling user possibilities, and telling the user what to do while playing. Figure \ref{fig:states} shows the relation between the Game class, the State interface, and the context classes implementing the State interface.

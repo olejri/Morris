@@ -5,4 +5,14 @@
 \newblock Android OS,
 \newblock \url{http://www.android.com/about/}, 2012.
 
+\bibitem{sdk}
+{\sc A.~developers},
+\newblock SDK,
+\newblock \url{http://developer.android.com/index.html}, 2012.
+
+\bibitem{Skiller}
+{\sc Skiller-games},
+\newblock Skiller - The World's Playground,
+\newblock \url{http://www.skiller-games.com/Default.aspx}, 2012.
+
 \end{thebibliography}
