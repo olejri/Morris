@@ -105,7 +105,8 @@ public class GameController {
 		if(morrisGame.getCurrentPlayer()==player){	
 			if (morrisGame.getState() instanceof PlacementState) {
 				if(p != justPressedPoint){
-					justPressedPoint = p;
+					if (morrisGame.isHotseat())justPressedPoint = p;
+					
 					for (int i = 0; i < morrisGame.getCurrentPlayer().getPieces().size(); i++) {
 						Piece piece = morrisGame.getCurrentPlayer().getPieces().get(i);
 						if (piece.getPosition() < 0) {
