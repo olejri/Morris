@@ -3,13 +3,14 @@
 \contentsline {subsection}{\numberline {2.1}Skiller multiplayer framework}{3}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Activities}{4}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}MVC}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}States}{5}{subsection.2.4}
 \contentsline {section}{\numberline {3}User manual}{5}{section.3}
 \contentsline {subsection}{\numberline {3.1}Functional requirements}{5}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Running the application}{6}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Emulator}{6}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}On Android device}{6}{subsubsection.3.2.2}
 \contentsline {subsection}{\numberline {3.3}Game rules}{6}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Creating Skiller account}{7}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}Creating Skiller account}{6}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}How to play}{7}{subsection.3.5}
 \contentsline {subsubsection}{\numberline {3.5.1}Choosing game mode}{7}{subsubsection.3.5.1}
 \contentsline {subsubsection}{\numberline {3.5.2}Placing, selecting, moving, and removing pieces}{7}{subsubsection.3.5.2}
@@ -21,4 +22,4 @@
 \contentsline {section}{\numberline {5}Relations to the architecture}{12}{section.5}
 \contentsline {section}{\numberline {6}Issues}{12}{section.6}
 \contentsline {subsection}{\numberline {6.1}Gained experieces}{13}{subsection.6.1}
-\contentsline {section}{References}{14}{section*.4}
+\contentsline {section}{References}{14}{section*.6}

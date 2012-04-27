@@ -517,7 +517,7 @@ public class Game implements NetworkListener {
 	public void networkPlayerRemovedPiece(final int piecePosition,final int pieceMovedFromPosition,final int pieceMovedToPosition) {
 
 		//Fire playerChangeTurn to update board
-		h.postDelayed(new Runnable() {
+		h.post(new Runnable() {
 
 			@Override
 			public void run() {
@@ -534,14 +534,16 @@ public class Game implements NetworkListener {
 				if(pieceMoved!=null)pieceMoved.setPosition(pieceMovedToPosition);
 
 				fireUpdate();
+				h.removeCallbacks(this);
 			}
-		}, 10);
+		});
 
 
 		h.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
+
 				// TODO Auto-generated method stub
 				changePlayer(true);
 				Piece pieceRemoved = board.getPoint(piecePosition).getPiece();
@@ -554,15 +556,25 @@ public class Game implements NetworkListener {
 				checkPlayerLost(player1);
 
 				updateMorrisStates(player2);
-
+				
+				h.removeCallbacks(this);
 
 
 			}
-		}, 1500);
+		},1500);
 
 
 
 	}
+	
+	private Runnable removePiece = new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+	};
 
 	private Piece getFirstAvailablePiece(){
 		Piece available = null;
