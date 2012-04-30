@@ -1,0 +1,3 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Evaluated group - A16}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Focus attributes}{2}{subsection.1.2}

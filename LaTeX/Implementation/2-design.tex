@@ -3,7 +3,7 @@
 \subsection{Skiller multiplayer framework}
 Due to the desire of developing a fully functional multiplayer game, the \emph{Skiller multiplayer framework} \cite{skiller} has been used. This is a third party COTS software, and its usage has sped up the development process. Registration was needed in order to gain access to the Skiller SDK. When the registration was done, a new game could be created, and an application ID, an application key, and an application secret was supplied. These are used in the code to identify the specific application. \\
 
-This framework supplies a server solution for turn based games, and it has been implemented in the network class. When playing a network game, the GameController class tells the Game model to  network class sends event messages to the server, and the server delivers it to the opponent.
+This framework supplies a server solution for turn based games, and it has been implemented in the network class. When playing a network game, the GameController class tells the Game model to update. The Game class then tells the network class, via an interface, to send an event message to the server. The server delivers the event message to the opponent. 
 
 \pagebreak
 \subsection{Activities}
@@ -34,7 +34,7 @@ Our implementation of the MVC structure is based interface communication. In reg
 \pagebreak
 \subsection{States}
 
-The Game class is implemented with associated states. The states change on runtime depending on player interaction. All states have their own way of controlling user possibilities, and telling the user what to do while playing. Figure \ref{fig:states} shows the relation between the Game class, the State interface, and the context classes implementing the State interface.
+The Game class is implemented with associated states. The game changes states change on runtime depending on player interaction. All states have their own way of controlling user possibilities, and telling the user what to do while playing. Figure \ref{fig:states} shows the relation between the Game class, the State interface, and the context classes implementing the State interface.
 
 \begin{figure}[H]
 \begin{center}
